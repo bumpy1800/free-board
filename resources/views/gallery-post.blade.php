@@ -10,7 +10,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/my.css') }}" rel="stylesheet">
+		<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/gallery.css') }}" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	</head>
@@ -65,7 +65,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">m.갤러리</a>
+							<a class="nav-link" href="gallery">m.갤러리</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">갤로그</a>
@@ -88,9 +88,9 @@
 		</nav>
 
 		<div class="container">
-			<div class="gallery">
+			<div class="gallery content">
 				<div class="gallery-top">
-					<h4 class="title"><b>대출갤러리</b></h4>
+					<h4 class="title"><b>테스트갤러리</b></h4>
 					<div class="sub">
 						<span><a href="">연관 갤러리(0/5)</a></span>
 						<span class="mLine">|</span>
@@ -104,10 +104,211 @@
 				<div class="clear"></div>
 				<hr class="line">
 			</div>
+			<div class="mainRight">
+				<div class="login_line login">
+					<div class="user_box">
+						<div class="login_box">
+							<a href="login" id="login"><b>로그인을 해 주시기바랍니다</b></a>
+						</div>
+						<div class="help">
+							<div class="row">
+								<div class="col-sm-4">
+									<a href="register"><b>갤로그</b></a>
+								</div>
+								<div class="col-sm-4 LR_line">
+									<a href="/" class=""><b>즐겨찾기</b><i class="fas fa-caret-down" style="padding-left: 4px;"></i></a>
+								</div>
+								<div class="col-sm-4">
+									<a href="/"><i class="fas fa-bell" style="padding-right: 4px;"></i><b>알림</b></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right_ad">
+					<img src="https://tpc.googlesyndication.com/simgad/12871765273756679647?sqp=4sqPyQQ7QjkqNxABHQAAtEIgASgBMAk4A0DwkwlYAWBfcAKAAQGIAQGdAQAAgD-oAQGwAYCt4gS4AV_FAS2ynT4&rs=AOga4qmFBbjMJZsu2LGHX2Wwb1VR_TOVrg" alt="우측광고">
+				</div>
+				<div class="boxline liveRanking">
+					<div>
+						<h6><strong>실북갤</strong></h6>
+					</div>
+					<hr class="dot-line">
+						<div class="ranking">
+							<div class="ranking-left">
+								<h6>
+									<a href="gallery-post" class="badge badge-primary">1</a>
+									<a href="gallery-post">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
+							<div class="ranking-left">
+								<h6>
+									<a href="#" class="badge badge-primary">2</a>
+									<a href="#">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
+							<div class="ranking-left">
+								<h6>
+									<a href="#" class="badge badge-primary">3</a>
+									<a href="#">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
+							<div class="ranking-left">
+								<h6>
+									<a href="#" class="badge badge-primary">4</a>
+									<a href="#">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
+							<div class="ranking-left">
+								<h6>
+									<a href="#" class="badge badge-primary">5</a>
+									<a href="#">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
+							<div class="ranking-left">
+								<h6>
+									<a href="#" class="badge badge-primary">6</a>
+									<a href="#">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
+							<div class="ranking-left">
+								<h6>
+									<a href="#" class="badge badge-primary">7</a>
+									<a href="#">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
+							<div class="ranking-left">
+								<h6>
+									<a href="#" class="badge badge-primary">8</a>
+									<a href="#">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
+							<div class="ranking-left">
+								<h6>
+									<a href="#" class="badge badge-primary">9</a>
+									<a href="#">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
+							<div class="ranking-left">
+								<h6>
+									<a href="#" class="badge badge-primary">10</a>
+									<a href="#">겨울왕국</a>
+								</h6>
+							</div>
+							<div class="ranking-right">
+								<h6>
+									10
+									<a href="#" class="badge badge-danger">▲</a>
+								</h6>
+							</div>
+							<div class="clear"></div>
 
-			
+						</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="ranking-more">
+					<div id="ranking-more">
+						<a href="/"><b>더보기</b></a>
+					</div>
+				</div>
+
+				<div class="boxline newGallery">
+					<div>
+						<h6><strong>신설갤</strong></h6>
+					</div>
+					<hr class="dot-line">
+						<div class="list">
+							<ul>
+								<li>가나다</li>
+								<li>가나다</li>
+								<li>가나다</li>
+								<li>가나다</li>
+								<li>가나다</li>
+								<li>가나다</li>
+								<li>가나다</li>
+								<li>가나다</li>
+								<li>가나다</li>
+								<li>가나다</li>
+							</ul>
+						</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="ranking-more">
+					<div id="ranking-more">
+						<a href="/"><b>더보기</b></a>
+					</div>
+				</div>
+			</div>
+
 			<div class="clear"></div>
 
+
+		</div>
+		<div class="container">
 			<div class="mainFoot">
 				<table class="table">
 					<thead class="notice">

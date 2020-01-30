@@ -39,7 +39,7 @@ Route::get('register4', function () {
 Route::get('gallog', function () {
 	return view('gallog');
 });
-Route::get('gallery-post', function () {
+Route::get('gallery', function () {
 	return view('gallery-post');
 });
 

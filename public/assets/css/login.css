@@ -1,84 +1,174 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-* {
-	font-family: 'Nanum Gothic';
-}
-a{
-	color: black;
-}
-header{
-	display: block;
-}
-.header_bg {
-	background-color: #1379df;
-}
-.login_header{
-	position: relative;
-	width: 75%;
-	margin: 0 auto;
-	height: 85px;
-}
-.header_logo{
-	position: absolute;
-	top: 35%;
-	left: 85px;
-}
-.loginbox{
-	display: block;
-	margin: 15% auto;
-	width: 700px;
-	height: 100px;
-}
-.loginbox .login{
-	border: 3px #1379df solid;
-	border-radius: 2px;
-	padding: 50px 50px 50px 50px;
-	width: 400px;
-	float: left;
-}
-.loginbox .input_box{
-	clear: both;
 
+* {
+    font-family: 'Nanum Gothic';
 }
-.input_box input{
-	display: block;
-	margin: 2% 0 2% 0;
-	background-color: #f3f3f3;
-	border: none;
-	font-size: 14px;
-	width: 100%;
-	padding: 9px 9px 9px 9px
+
+a {
+    color: black;
 }
-.btn{
-	border-radius: 0px;
-	width: 100%;
-	font-size: 15px;
-	margin-top: 2px;
+
+header {
+    display: block;
 }
-.btn:hover{
-	color: rgb(255, 255, 255);
+
+.header_bg {
+    background-color: #1379df;
 }
-.btn_blue{
-	background: #1379df;
-	border-color: #1379df;
-	color: #ffffff;
+
+.login_header {
+    position: relative;
+    width: 75%;
+    margin: 0 auto;
+    height: 85px;
 }
-.loginbox .ad_box{
-	clear: both;
-	float: right;
+
+.header_logo {
+    position: absolute;
+    top: 35%;
+    left: 85px;
 }
+
+.loginbox {
+    display: block;
+    margin: 15% auto;
+    width: 800px;
+    height: 340px;
+}
+
+.loginbox .login {
+    border: 3px #1379df solid;
+    border-radius: 2px;
+    width: 100%;
+    height: 100%
+}
+
+.loginbox .input_box {
+    padding: 50px 50px 50px 50px;
+    width: 60%;
+    height: 100%;
+    float: left;
+}
+
+.input_login input {
+    display: block;
+    margin: 2% 0 2% 0;
+    background-color: #f3f3f3;
+    border: none;
+    font-size: 14px;
+    width: 100%;
+    padding: 9px 9px 9px 9px
+}
+
+.btn {
+    border-radius: 0px;
+    width: 100%;
+    font-size: 15px;
+    margin: 5px 0px;
+}
+
+.btn:hover {
+    color: rgb(255, 255, 255);
+}
+
+.btn_blue {
+    background: #1379df;
+    border-color: #1379df;
+    color: #ffffff;
+}
+
+.loginbox .ad_box {
+    background: rgb(188, 195, 196);
+    width: 40%;
+    height: 100%;
+    float: right;
+    padding: 5% 5%;
+    text-align: center;
+}
+
+.ad_box img {
+    width: 200px;
+    height: 250px;
+}
+
+.input_check {
+    margin-top: 2px;
+    width: 100%;
+    height: 10%
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+label.save:before {
+    content: "\f0c8";
+    font-family: "Font Awesome 5 Free";
+}
+
+input#user_save:checked+label.save:before {
+    content: "\f14a";
+}
+
+label.security:before {
+    content: "\f0c8";
+    font-family: "Font Awesome 5 Free";
+}
+
+input#user_security:checked+label.security:before {
+    content: "\f14a";
+}
+
+.help_box {
+    padding-top: 15px;
+    margin-top: 16px;
+    border-top: 1px #aaa dashed;
+}
+
+.help_box a {
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 0px 15px;
+}
+
+.help_box .middle {
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+}
+
 .biz {
-	margin-bottom: 50px;
-	text-align: center;
+    margin-bottom: 50px;
+    text-align: center;
 }
+
 .biz span {
-	font-size: 13px;
+    font-size: 13px;
 }
+
 .biz .mLine {
-	margin-left: 10px;
-	margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .biz .copy {
-	margin-top: 10px;
-	font-size: 13px;
+    margin-top: 10px;
+    font-size: 13px;
+}
+/*---------- 모바일 ----------*/
+@media(max-width: 800px) {
+.ad_box{
+	display: none;
+}
+.loginbox{
+	width: auto;
+}
+.loginbox .input_box{
+	width: 100%;
+}
+
 }

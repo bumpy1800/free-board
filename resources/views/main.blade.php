@@ -64,7 +64,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">m.갤러리</a>
+							<a class="nav-link" href="gallery">m.갤러리</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">갤로그</a>
