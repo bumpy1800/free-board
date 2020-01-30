@@ -55,69 +55,66 @@
 			</div>
 			<div class="menus">
 				<a href="gallog" class="btn">갤로그 홈</a>
-				<a href="gallog2" class="btn active">내 게시글</a>
+				<a href="gallog2" class="btn">내 게시글</a>
 				<a href="gallog3" class="btn">내 댓글</a>
-				<a href="gallog4" class="btn">스크랩</a>
+				<a href="gallog4" class="btn active">스크랩</a>
 				<a href="gallog5" class="btn">방명록</a>
 			</div>
 			<div class="middle">
-				<div class="mypost">
-					<span class="title"><b>- 내 게시글</b>(0)</span>
+				<div class="myscrap">
+					<span class="title"><b>- 스크랩</b>(0)</span>
 					<span class="all"><button class="btn">전체보기</button></span>
 					<div class="clear"></div>
 					<hr class="line">
-					<div>
-						<div class="have">
-							<div class="row">
-								<div class="user-title col-4">
-									<p><b>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</b></p>
-								</div>
-								<div class="test user-content col-5">
-									<p>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p>
-										<b>갤러리이름</b>
-										<button class="btn">삭제</button>
-									</p>
-									<p>2020.01.27 16:50:42</p>
-								</div>
-								<div class="user-title col-4">
-									<p><b>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</b></p>
-								</div>
-								<div class="user-content col-5">
-									<p>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p>
-										<b>갤러리이름</b>
-										<button class="btn">삭제</button>
-									</p>
-									<p>2020.01.27 16:50:42</p>
-								</div>
-								<div class="user-title col-4">
-									<p><b>제목</b></p>
-								</div>
-								<div class="user-content col-5">
-									<p>ㅈㄷㄱㅈㄱㄷㄱㅈ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p>
-										<b>갤러리이름갤러리이름갤러리이름갤러리이름</b>
-										<button class="btn">삭제</button>
-									</p>
-									<p>2020.01.27 16:50:42</p>
-								</div>
+					<div class="have">
+						<div class="row">
+							<div class="user-title col-4">
+								<p><b>제목</b></p>
+							</div>
+							<div class="user-content col-5">
+								<p>스크랩내용</p>
+							</div>
+							<div class="user-writeday col-3">
+								<p>
+									<b>갤러리이름</b>
+									<button class="btn">삭제</button>
+								</p>
+								<p>2020.01.27 16:50:42</p>
+							</div>
+							<div class="user-title col-4">
+								<p><b>제목</b></p>
+							</div>
+							<div class="user-content col-5">
+								<p>스크랩내용</p>
+							</div>
+							<div class="user-writeday col-3">
+								<p>
+									<b>갤러리이름</b>
+									<button class="btn">삭제</button>
+								</p>
+								<p>2020.01.27 16:50:42</p>
+							</div>
+							<div class="user-title col-4">
+								<p><b>제목</b></p>
+							</div>
+							<div class="user-content col-5">
+								<p>스크랩내용</p>
+							</div>
+							<div class="user-writeday col-3">
+								<p>
+									<b>갤러리이름</b>
+									<button class="btn">삭제</button>
+								</p>
+								<p>2020.01.27 16:50:42</p>
 							</div>
 						</div>
-						<!--<div class="none">
-							<b>등록된 게시글이 없습니다.</b>
-						</div>-->
 					</div>
-					<hr class="hr1">
+					<!--<div class="none">
+						<b>등록된 스크랩이 없습니다.</b>
+					</div>-->
+					<hr class="hr1">			
 				</div>
 			</div>
-				
 			
 			<div class="biz">
 				<span><a href="/">회사소개</a></span>

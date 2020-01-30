@@ -22,6 +22,22 @@ Route::get('login', function () {
 	return view('login');
 });
 
+Route::get('gallog', function () {
+	return view('gallog');
+});
+Route::get('gallog2', function () {
+	return view('gallog2');
+});
+Route::get('gallog3', function () {
+	return view('gallog3');
+});
+Route::get('gallog4', function () {
+	return view('gallog4');
+});
+Route::get('gallog5', function () {
+	return view('gallog5');
+});
+
 Route::get('register', function () {
 	return view('register');
 });

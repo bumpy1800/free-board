@@ -54,11 +54,11 @@
 				</div>
 			</div>
 			<div class="menus">
-				<button class="btn active">갤로그 홈</button>
-				<button class="btn">내 게시글</button>
-				<button class="btn">내 댓글</button>
-				<button class="btn">스크랩</button>
-				<button class="btn">방명록</button>
+				<a href="gallog" class="btn active">갤로그 홈</a>
+				<a href="gallog2" class="btn">내 게시글</a>
+				<a href="gallog3" class="btn">내 댓글</a>
+				<a href="gallog4" class="btn">스크랩</a>
+				<a href="gallog5" class="btn">방명록</a>
 			</div>
 			<div class="middle">
 				<div class="mypost">

@@ -55,69 +55,102 @@
 			</div>
 			<div class="menus">
 				<a href="gallog" class="btn">갤로그 홈</a>
-				<a href="gallog2" class="btn active">내 게시글</a>
+				<a href="gallog2" class="btn">내 게시글</a>
 				<a href="gallog3" class="btn">내 댓글</a>
 				<a href="gallog4" class="btn">스크랩</a>
-				<a href="gallog5" class="btn">방명록</a>
+				<a href="gallog5" class="btn active">방명록</a>
 			</div>
 			<div class="middle">
-				<div class="mypost">
-					<span class="title"><b>- 내 게시글</b>(0)</span>
-					<span class="all"><button class="btn">전체보기</button></span>
+				<div class="mybook">
+					<span class="title"><b>- 방명록</b>(0)</span>
+					<span class="all">
+						<select class="form-control year">
+							<option>2020</option>
+							<option>2019</option>
+							<option>2018</option>
+							<option>2017</option>
+							<option>2016</option>
+						</select>	
+					</span>
 					<div class="clear"></div>
-					<hr class="line">
-					<div>
-						<div class="have">
+					<form>
+						<div class="write-mybook">
+							<hr class="line">
 							<div class="row">
-								<div class="user-title col-4">
-									<p><b>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</b></p>
+								<div class="col-3">
+									<p>범피</p>
 								</div>
-								<div class="test user-content col-5">
-									<p>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p>
-										<b>갤러리이름</b>
-										<button class="btn">삭제</button>
-									</p>
-									<p>2020.01.27 16:50:42</p>
-								</div>
-								<div class="user-title col-4">
-									<p><b>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</b></p>
-								</div>
-								<div class="user-content col-5">
-									<p>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p>
-										<b>갤러리이름</b>
-										<button class="btn">삭제</button>
-									</p>
-									<p>2020.01.27 16:50:42</p>
-								</div>
-								<div class="user-title col-4">
-									<p><b>제목</b></p>
-								</div>
-								<div class="user-content col-5">
-									<p>ㅈㄷㄱㅈㄱㄷㄱㅈ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p>
-										<b>갤러리이름갤러리이름갤러리이름갤러리이름</b>
-										<button class="btn">삭제</button>
-									</p>
-									<p>2020.01.27 16:50:42</p>
+								<div class="col-9">
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+									<div class="form-check">
+										  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+										  <label class="form-check-label" for="defaultCheck1">
+											비밀글 쓰기
+										  </label>
+									</div>
+									<div class="submit">
+										<button class="btn">등록</button>
+									</div>
 								</div>
 							</div>
+							<hr class="line">
 						</div>
-						<!--<div class="none">
-							<b>등록된 게시글이 없습니다.</b>
-						</div>-->
+					</form>
+					<div class="have">
+						<div class="row">
+							<div class="user-title col-4">
+								<p><b>제목</b></p>
+							</div>
+							<div class="user-content col-5">
+								<p>방명록내용</p>
+							</div>
+							<div class="user-writeday col-3">
+								<p>2020.01.27 16:50:42</p>
+								<p>
+									<button class="btn small">댓글</button>
+									<button class="btn small">수정</button>
+									<button class="btn small">삭제</button>
+									<button class="btn small">비공개</button>
+								</p>
+							</div>
+							<div class="user-title col-4">
+								<p><b>제목</b></p>
+							</div>
+							<div class="user-content col-5">
+								<p>방명록내용</p>
+							</div>
+							<div class="user-writeday col-3">
+								<p>2020.01.27 16:50:42</p>
+								<p>
+									<button class="btn small">댓글</button>
+									<button class="btn small">수정</button>
+									<button class="btn small">삭제</button>
+									<button class="btn small">비공개</button>
+								</p>
+							</div>
+							<div class="user-title col-4">
+								<p><b>제목</b></p>
+							</div>
+							<div class="user-content col-5">
+								<p>방명록내용</p>
+							</div>
+							<div class="user-writeday col-3">
+								<p>2020.01.27 16:50:42</p>
+								<p>
+									<button class="btn small">댓글</button>
+									<button class="btn small">수정</button>
+									<button class="btn small">삭제</button>
+									<button class="btn small">비공개</button>
+								</p>
+							</div>
+						</div>
 					</div>
-					<hr class="hr1">
+					<!--<div class="none">
+						<b>등록된 방명록이 없습니다.</b>
+					</div>-->
+					<hr class="hr1">			
 				</div>
 			</div>
-				
 			
 			<div class="biz">
 				<span><a href="/">회사소개</a></span>

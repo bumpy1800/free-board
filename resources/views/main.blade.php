@@ -67,7 +67,7 @@
 							<a class="nav-link" href="gallery">m.갤러리</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">갤로그</a>
+							<a class="nav-link" href="gallog">갤로그</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">신고센터</a>
