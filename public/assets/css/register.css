@@ -1,0 +1,287 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+* {
+	font-family: 'Nanum Gothic';
+}
+a{
+  color: black;
+}
+header{
+  display: block;
+}
+.container {
+	padding-left: 85px;
+	padding-right: 85px;
+}
+.header_bg {
+  background-color: #1379df;
+}
+.register_header{
+  margin: 0 auto;
+  height: 85px;
+}
+.header_logo{
+	padding-top: 30px;
+  padding-bottom: 10px;
+  float: left;
+}
+.header_nav{
+	padding-top: 47px;
+  padding-bottom: 20.4px; /*11.4 + 10*/
+  font-size: 12px;
+  color: white;
+  float: right;
+}
+.header_nav .mLine{
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.joinpath {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 20px;
+	padding-top: 35px;
+}
+.joinpath .row{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.joinpath .boxline {
+	border: 1px solid #bbb;
+	padding: 18px;
+	margin-bottom: 15px;
+	border: 1px solid white;
+	border-radius: 10px;
+}
+.joinpath .col-3{
+	text-align: center;
+	background-color: #bbb;
+	font-size: 18px;
+	color: white;
+}
+.joinpath .active{
+	text-align: center;
+	color: #1379df;
+	background-color: white;
+	border: 2px solid #1379df;
+}
+
+.user_select {
+	padding-top: 25px;
+	padding-bottom: 7px;
+	margin-bottom: 20px;
+}
+.user_select .left {
+	float: left;
+	width: 50%;
+}
+.user_select .right{
+	float: right;
+	width: 50%;
+}
+
+.user_select .boxline{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-right: 0px;
+	border-color: #cecdce;
+	border-width: 3px;
+	border-radius: 5px;
+}
+.user_select .select{
+	margin-top: 8px;
+	float: left;
+}
+.user_select .select-icon{
+	float: right;
+}
+.user_select label{
+	margin-bottom: 0px;
+}
+.checkicon{
+	width:50px;
+	height:50px;
+}
+
+.ts-title {
+	padding-top: 10px;
+	padding-bottom: 7px;
+	color: #d31900;
+}
+.ts-boxline {
+	border: 1px #bbb solid;
+	height: 180px;
+	overflow: auto;
+}
+.ts {
+	padding: 10px;
+	font-size: 13px;
+}
+.agree {
+	float: right;
+}
+.agree label{
+	font-size: 13px;
+}
+.ts-line {
+	border-top: 1.5px dotted #bbb
+}
+.next-btn {
+	margin-top: 20px;
+	margin-bottom: 70px;
+	float: right;
+	background-color: #666;
+	color: white;
+	width: 96px;
+}
+
+.confirm, .email-check {
+	padding-top: 25px;
+	padding-bottom: 7px;
+}
+.confirm .boxline, .email-check .boxline{
+	border: 1px solid #bbb;
+	border-radius: 10px;
+	margin-bottom: 0px;
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+.confirm .boxline .col-9 input{
+	width: 100%;
+}
+.confirm .boxline .email .at{
+	text-align: center;
+	width: 6%;
+}
+.confirm .boxline .email .front{
+	width: 31.33%;
+}
+.confirm .boxline .email .back{
+	width: 31.33%;
+}
+.confirm .boxline .email .auto{
+	padding-left: 5px;
+	width: 31.33%;
+}
+.confirm .boxline .sub{
+	font-size: 12px;
+	color: #999;	
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
+.confirm .boxline .repw{
+	margin-top: 5px;
+}
+.confirm .boxline .col-3{
+	margin-top: 9px;
+}
+
+.email-check {
+    margin-bottom: 70px;
+}
+.email-check p{
+	margin-bottom: 6px;
+	font-size: 13px;
+}
+.email-check .point{
+	color: #d31900;
+	font-size: 15px;
+}
+.email-check a, .email-check button{
+	color: blue;
+	text-decoration: underline;
+}
+.email-box {
+	padding: 30px;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	background-color: #f3f3f3;
+}
+.email-box p{
+	font-size: 15px;
+}
+.email-box .useremail{
+    margin-top: 15px;
+	color: #1379df;
+	text-decoration: underline;
+}
+.email-box .email-check-btn{
+    margin-top: 15px;
+	background-color: #1379df;
+	color: white;
+	font-size: 13px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+/*---------- 모바일 ----------*/
+
+@media(max-width: 1199px) {
+
+}
+@media(max-width: 991px) {
+	.container {
+		padding-left: 45px;
+		padding-right: 45px;
+	}
+	.user_select .left {
+		float: none;
+		width: 100%;
+		padding-right: 0px;
+	}
+	.user_select .right {
+		float: none;
+		width: 100%;
+		padding-left: 0px;
+	}
+	.confirm .boxline {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.email-check .boxline {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+}
+
+@media(max-width: 767px) {
+	.register_header {
+		text-align: center;
+		height: 0%;
+	}
+	.register_header .header_logo {
+		float:none;
+		width: 100%;
+	}
+	.register_header .header_nav {
+		padding-top: 17px;
+		float:none;
+		width: 100%;
+	}
+	.joinpath .col-3 {		
+		margin-bottom: 3px;
+		padding: 10px;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+	.container {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	.confirm .col-3 {
+		flex: 0 0 0%;
+		max-width: 0%;
+	}
+	.confirm .col-3 b{
+		display: none;
+	}
+	.confirm .col-9 {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+	.email-box {
+		padding: 10px;
+	}
+}

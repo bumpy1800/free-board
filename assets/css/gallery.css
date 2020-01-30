@@ -1,0 +1,15 @@
+.gallery {
+	padding-top: 20px;
+}
+.gallery .gallery-top .title {
+	float:left;
+	margin-bottom: 0px;
+	color: #1379df;
+	text-align: bottom;
+}
+.gallery .gallery-top .sub {
+	float: right;
+	padding-top: 10px;
+	margin-bottom: 0px;
+	font-size: 13px;
+}
