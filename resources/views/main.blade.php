@@ -19,11 +19,14 @@
 			<div class="etc">
 				<a class="mb_menu" href="register">회원가입</a>
 				<a class="mb_menu" href="login">로그인</a>
+				<!-- 로그인 했을 때 
+				<a class="mb_menu" href="login">로그아웃</a>
+				-->
 			</div>
 
 			<div class="mainHead">
 				<div class="logo">
-					<a href="http://doerksk.dothome.co.kr"><img src="/assets/img/test.gif"></a>
+					<a href="/"><img src="/assets/img/test.gif"></a>
 				</div>
 				<div class="searchBundle">
 					<div class="todayIsue">
@@ -240,7 +243,6 @@
 									<div>
 										<input name="user_save" id="user_save" type="checkbox" hidden>
 										<label style="text-align: center;" for="user_save" class="save"> ID 저장</label>
-										<!--fas fa-check-square  이거는 체크된모양 노체크 유니코드 f0c8  체크 f14a-->
 									</div>
 									<div>
 										<input name="user_security" id="user_security" type="checkbox" hidden>
@@ -252,6 +254,12 @@
 								</div>
 							</div>
 						</div>
+						<!-- 로그인 했을 때 
+							<b style="color: blue">범피</b>님
+							<button style="background-color: blue; color: white;" class="btn">로그아웃</button>
+							<br>
+						글 1 댓글 1 방명록 1
+						-->
 					</form>
 					<hr class="dot-line">
 					<div class="service">

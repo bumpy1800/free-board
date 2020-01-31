@@ -125,6 +125,7 @@ body {
 	margin-top: 10px;
 }
 .middle .have .user-writeday{
+	padding-right: 35px;
 	text-align: center;
     margin-top: 10px;
 }
@@ -191,4 +192,41 @@ body {
     margin-left: 0px;
 }
 
+@media(max-width: 1199px) {
+
+}
+@media(max-width: 991px) {
+
+}
+
+@media(max-width: 767px) {
+	.container{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.menus {	
+		padding-top: 15px;
+		padding-bottom: 20px;
+	}
+	.menus .btn{
+		width: 100%;	
+		margin-bottom: 3px;
+	}
+	.middle .have .small {
+		margin-bottom: 3px;
+	}
+	
+	.middle .have .user-title{
+		padding-left: 15px;
+		padding-right: 0px;
+	}
+	.middle .have .user-content{	
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.middle .have .user-writeday{	
+		padding-right: 15px;
+		padding-left: 0px;
+	}
+}
 

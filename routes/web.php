@@ -38,6 +38,10 @@ Route::get('gallog5', function () {
 	return view('gallog5');
 });
 
+Route::get('report', function () {
+	return view('report');
+});
+
 Route::get('register', function () {
 	return view('register');
 });

@@ -106,12 +106,10 @@
 							</div>
 							<div class="user-writeday col-3">
 								<p>2020.01.27 16:50:42</p>
-								<p>
-									<button class="btn small">댓글</button>
-									<button class="btn small">수정</button>
-									<button class="btn small">삭제</button>
-									<button class="btn small">비공개</button>
-								</p>
+								<button class="btn small">댓글</button>
+								<button class="btn small">수정</button>
+								<button class="btn small">삭제</button>
+								<button class="btn small">비공개</button>
 							</div>
 							<div class="user-title col-4">
 								<p><b>제목</b></p>
@@ -121,12 +119,10 @@
 							</div>
 							<div class="user-writeday col-3">
 								<p>2020.01.27 16:50:42</p>
-								<p>
-									<button class="btn small">댓글</button>
-									<button class="btn small">수정</button>
-									<button class="btn small">삭제</button>
-									<button class="btn small">비공개</button>
-								</p>
+								<button class="btn small">댓글</button>
+								<button class="btn small">수정</button>
+								<button class="btn small">삭제</button>
+								<button class="btn small">비공개</button>
 							</div>
 							<div class="user-title col-4">
 								<p><b>제목</b></p>
@@ -136,12 +132,10 @@
 							</div>
 							<div class="user-writeday col-3">
 								<p>2020.01.27 16:50:42</p>
-								<p>
-									<button class="btn small">댓글</button>
-									<button class="btn small">수정</button>
-									<button class="btn small">삭제</button>
-									<button class="btn small">비공개</button>
-								</p>
+								<button class="btn small">댓글</button>
+								<button class="btn small">수정</button>
+								<button class="btn small">삭제</button>
+								<button class="btn small">비공개</button>
 							</div>
 						</div>
 					</div>
