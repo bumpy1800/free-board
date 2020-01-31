@@ -72,7 +72,8 @@ body {
 	color: #6dcff6;
 }
 .top-box .result .result-box i{
-	font-size: 18px;
+	font-size: 18px;	
+    padding-top: 1px;
 }
 
 .menus {

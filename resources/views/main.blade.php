@@ -73,7 +73,7 @@
 							<a class="nav-link" href="gallog">갤로그</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">신고센터</a>
+							<a class="nav-link" href="report">신고센터</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">Q&A</a>

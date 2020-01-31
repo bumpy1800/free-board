@@ -72,7 +72,8 @@ body {
 	color: #6dcff6;
 }
 .top-box .result .result-box i{
-	font-size: 18px;
+	font-size: 18px;	
+    padding-top: 1px;
 }
 
 .menus {
@@ -98,6 +99,15 @@ body {
 .middle .all{
 	float:right;
 }
+.middle .all .year{
+	background-color: rgb(250, 250, 250);
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	font-size: 12px;
+	height: 24px;
+}
 .middle .btn {
 	margin-left: 6px;
 	background-color: #1379df;
@@ -116,6 +126,7 @@ body {
 	margin-top: 10px;
 }
 .middle .have .user-writeday{
+	padding-right: 35px;
 	text-align: center;
     margin-top: 10px;
 }
@@ -145,3 +156,78 @@ body {
     padding-bottom: 50px;
     margin-bottom: 0px;
 }
+
+.middle .write-mybook {
+	background-color: rgb(250, 250, 250);
+}
+.middle .write-mybook p{
+	font-size: 13px;
+}
+.middle .write-mybook .col-3{
+	padding-left: 30px;
+}
+.middle .write-mybook .col-9{
+	padding-right: 30px;
+}
+.middle .write-mybook .form-check{
+	float:left;
+    padding-top: 10px;
+}
+.middle .write-mybook .form-check label{
+	font-size: 13px;
+}
+.middle .write-mybook .submit{
+	float:right;
+	margin-top: 8px;
+}
+.middle .write-mybook .submit .btn{
+	padding-left: 28px;
+    padding-right: 28px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+	background-color: #666;
+}
+.middle .have .small {
+	padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 0px;
+}
+
+@media(max-width: 1199px) {
+
+}
+@media(max-width: 991px) {
+
+}
+
+@media(max-width: 767px) {
+	.container{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.menus {	
+		padding-top: 15px;
+		padding-bottom: 20px;
+	}
+	.menus .btn{
+		width: 100%;	
+		margin-bottom: 3px;
+	}
+	.middle .have .small {
+		margin-bottom: 3px;
+	}
+	
+	.middle .have .user-title{
+		padding-left: 15px;
+		padding-right: 0px;
+	}
+	.middle .have .user-content{	
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.middle .have .user-writeday{	
+		padding-right: 15px;
+		padding-left: 0px;
+	}
+}
+
