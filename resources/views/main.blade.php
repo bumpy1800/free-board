@@ -56,27 +56,26 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								갤러리+
+							<a class="nav-link" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<b>카테고리+</b>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Something else here</a>
+								<a class="dropdown-item" href="gallery">게임</a>
+								<a class="dropdown-item" href="gallery">연예/방송</a>
+								<a class="dropdown-item" href="gallery">스포츠</a>
+								<a class="dropdown-item" href="gallery">교육/금융/IT</a>
+								<a class="dropdown-item" href="gallery">여행/음식/생물</a>
+								<a class="dropdown-item" href="gallery">취미/생활</a>
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="gallery">m.갤러리</a>
+							<a class="nav-link" href="gallery-plus"><b>갤러리</b></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="gallog">갤로그</a>
+							<a class="nav-link" href="gallog"><b>갤로그</b></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="report">신고센터</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Q&A</a>
+							<a class="nav-link" href="report"><b>신고/Q&amp;A</b></a>
 						</li>
 					</ul>
 					<span class="yesterday">

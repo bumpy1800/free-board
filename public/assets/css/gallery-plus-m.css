@@ -1,0 +1,35 @@
+/*---------- 모바일 ----------*/
+@media(max-width: 1199px) {
+
+}
+
+@media(max-width: 991px) {
+	.ad {
+		display: none;
+	}
+}
+
+@media(max-width: 767px) {
+	.cg-all{
+		width: 100%;
+		text-align: center;
+	}
+	.cg-all span{
+		width: 100%;
+		margin-bottom: 3px;
+	}
+	.cg-top color {
+		padding-left: 0px;
+	}
+	.category table {
+		display: table;
+	}
+	.category .page{
+		display: block;
+	}
+}
+
+
+
+
+

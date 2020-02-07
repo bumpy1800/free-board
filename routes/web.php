@@ -62,5 +62,11 @@ Route::get('gallog', function () {
 Route::get('gallery', function () {
 	return view('gallery-post');
 });
+Route::get('gallery-plus', function () {
+	return view('gallery-plus');
+});
+Route::get('gallery-plus-m', function () {
+	return view('gallery-plus-m');
+});
 
 Route::resource('test', 'TestController');
