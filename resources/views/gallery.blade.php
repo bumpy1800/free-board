@@ -12,7 +12,6 @@
 		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/gallery.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/gallery-post.css') }}" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	</head>
 
@@ -89,6 +88,7 @@
 		</nav>
 
 		<div class="container">
+			<div class="mainLeft">
 				<div class="gallery-top">
 					<h4 class="title"><b>테스트갤러리</b></h4>
 					<div class="sub">
@@ -104,6 +104,53 @@
 				<div class="clear"></div>
 				<hr class="line" style="margin-bottom:0px;">
 				<div class="infomation"><!--제일 큰박스-->
+					<div class="info-rank"><!--정보와 랭킹-->
+						<div class="info"><!--정보-->
+							<div class="img-info"><!--대표이미와 설명-->
+								<img src="https://static.wixstatic.com/media/0410f9_31769bd99aed4496b8a99667f7425f06~mv2.jpg/v1/fill/w_1600,h_900,al_c,q_90/file.jpg" alt="대표이미지">
+								<div class="txtbox">
+									<p>이곳에 갤러리에대한 설명이 들어갑니다</p>
+								</div>
+							</div>
+							<div class="m_list"><!--매니저 리스트-->
+								<div class="member">
+									<strong>매니저</strong>
+									<p>
+										<span>이름(아이디)</span>
+									</p>
+								</div>
+								<div class="member">
+									<strong>부매니저</strong>
+									<p>
+										<span>이름(아이디)</span>
+										<span>이름(아이디)</span>
+										<span>이름(아이디)</span>
+										<span>이름(아이디)</span>
+										<span>이름(아이디)</span>
+										<span>이름(아이디)</span>
+									</p>
+								</div>
+								<div class="member">
+									<strong>개설일</strong>
+									<p><span>날짜(1111-11-11)</span></p>
+								</div>
+							</div>
+						</div>
+						<div class="ranker"><!--랭킹-->
+							<div class="rank">
+								<h4><i class="fas fa-sun red"></i>대흥갤</h4>
+							</div>
+							<div class="num">
+								<h3>n위</h3>
+							</div>
+							<a href="#" class="rankBtn">
+								<img src="/assets/img/rank.png" alt="순위버튼">
+							</a>
+						</div>
+					</div>
+					<div class="top-ad"><!--상단광고-->
+						<img src="https://nstatic.dcinside.com/ad/2020/banner/200212_AFKarena_84090.jpg" alt="광고">
+					</div>
 					<div class="record"><!--방문기록-->
 						<h3 class="gal-record">최근 방문 갤러리</h3>
 						<button type="button" class="hide prev">
@@ -140,177 +187,49 @@
 						</button>
 					</div>
 				</div>
-                <div class="post_view">
-                    <header>
-                        <div class="view_head">
-                            <h3 class="view_title">
-                                <span class="view_headtext">[말머리]</span>
-                                <span class="view_subtitle">제목</span>
-                                <span class="post_device">
-                                    <i class="fas fa-mobile-alt blue"></i>
-                                </span>
-                            </h3>
-                            <div class="post_writer">
-                                <div class="left">
-                                    <span class="post_nick">작성자</span>
-                                    <span class="ip">(IP)</span>
-                                    <span class="view_date">작성시각</span>
-                                </div>
-                                <div class="right pdL6">
-                                    <span class="view_count">조회 수</span>
-                                    <span class="view_good">추천 수</span>
-                                    <span class="view_comment">댓글 수</span>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
-					<div class="post_content">
-						<div class="inner_content">
-							<div class="writing_box">
-								<img class="post_ad" src="https://tpc.googlesyndication.com/simgad/5021070197210013588?sqp=4sqPyQQ7QjkqNxABHQAAtEIgASgBMAk4A0DwkwlYAWBfcAKAAQGIAQGdAQAAgD-oAQGwAYCt4gS4AV_FAS2ynT4&amp;rs=AOga4qlWXOKLfPQIX4EL451kXmRrfvIh7A" alt="사진 미등록시 광고">
-								<div class="view_content" style="overflow:hidden;">
-									<div>
-										<span>내용</span>
-									</div>
-										<span>-모바일로 작성</span>
-								</div>
-							</div>
-							<div class="right">
-								<img src="https://t1.daumcdn.net/b2/creative/49429/956ce6247b83299a6ce6b75a158cb7f7.jpg" alt="우측광고">
-							</div>
-						</div>
-						<div class="recommend_box clear">
-							<div class="inner left">
-								<div class="up_box">
-									<p class="red">0</p>
-								</div>
-								<button class="up_btn" type="button" name="button"><img src="/assets/img/good.png" alt="추천"></button>
-							</div>
-							<div class="inner right">
-								<button class="down_btn" type="button" name="button"><img src="/assets/img/bad.png" alt="비추"></button>
-								<div class="down_box">
-									<p>0</p>
-								</div>
-							</div>
-							<div class="recom_bottom_box">
-								<button class="hitgal" type="button" name="button"><i class="fas fa-crown gray pdR6 fa-lg"></i>힛추</button>
-								<button class="share" type="button" name="button"><i class="fas fa-share-alt gray pdR6 fa-lg"></i>공유</button>
-								<button class="report" type="button" name="button"><i class="fas fa-concierge-bell gray pdR6 fa-lg"></i>신고</button>
-							</div>
-						</div>
-						<div class="clear"></div>
-						<div class="bottom_ad">
-							<img width="970" height="90" src="//t1.daumcdn.net/b2/creative/108609/11f6ec6f9d9a0243d46a4dd0e9a61dfa.jpg" alt="">
+				<div class="optionBar">
+					<div class="leftBox">
+						<button type="button" name="button" class="on">전체글</button>
+						<button type="button" name="button" class="">개념글</button>
+						<button type="button" name="button" class="">공지</button>
+					</div>
+					<div class="centerBox">
+						<div class="inner">
+							<ul>
+								<li><a href="#" class="on">전체</a></li>
+								<li><a href="#" class="">일반</a></li>
+								<li><a href="#" class="">연재</a></li>
+							</ul>
 						</div>
 					</div>
-                </div>
-				<div class="cmt_box clear">
-					<div class="comment_warp">
-						<div class="comment_num">
-							<div class="left num_box">
-								전체 리플 <span class="red">0</span> 개
-								<select class="comment_sort" name="sort">
-									<option value="1">등록순</option>
-									<option value="2">최신순</option>
-									<option value="3">답글순</option>
+					<div class="rightBox">
+						<div class="output">
+							<div class="selectBox">
+								<select class="" name="number">
+									<option value="30">30개</option>
+									<option value="50">50개</option>
+									<option value="100">100개</option>
 								</select>
-							</div>
-							<div class="right">
-								<button class="btn_cmt_close" type="button" name="button">댓글닫기<i class="fas fa-caret-up pdL6"></i></button>
-								<button class="btn_cmt_refresh" type="button" name="button">새고로침</button>
-							</div>
-						</div>
-					</div>
-					<div class="comment_box">
-						<ul class="cmt_list">
-							<li>
-								<div class="cmt_info clear">
-									<div class="cmt_nick">
-										<span class="writer">
-											<span class="cmt_nickname">
-												닉네임
-											</span>
-											<span class="cmt_ip">(IP)</span>
-										</span>
-									</div>
-									<div class="left">
-										<p class="user_txt">
-											<a href="#">
-												내용
-											</a>
-										</p>
-									</div>
-									<div class="right">
-										<span class="cmt_date">작성일자</span>
-									</div>
+								<!--<div class="selectArea">
+									<a href="#" onclick="showLayer(this, 'listSizeLayer');return false;">50개
+										<span class="blind">페이지당 게시물 노출 옵션</span>
+										<i class="fas fa-caret-down"></i>
+									</a>
 								</div>
-							</li>
-							<li>
-								<div class="reply show">
-									<div class="reply_box">
-										<ul class="reply_list">
-											<li>
-												<div class="reply_info">
-													<div class="cmt_nikbox">
-														<span class="writer">
-															<span class="cmt_nickname">
-																닉네임
-															</span>
-															<span class="cmt_ip">(IP)</span>
-														</span>
-													</div>
-													<div class="left">
-														<p class="user_txt">
-															<a href="#">
-																<i class="fas fa-level-up-alt fa-rotate-90" style="width:15px;"></i>내용
-															</a>
-														</p>
-													</div>
-													<div class="right">
-														<span class="cmt_date">작성일자</span>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="cmt_write_box">
-						<div class="left">
-							<div class="user_info_input">
-								<input type="text" name="name" placeholder="닉네임" value="" maxlength="20">
+								<ul id="listSizeLayer" class="option_box" style="left: 0px; top: 20px; display: none;">
+							  	  <li><a href="javascript:listDisp(30)">30개</a></li>
+								  <li><a href="javascript:listDisp(50)">50개</a></li>
+								  <li><a href="javascript:listDisp(100)">100개</a></li>
+							  </ul>-->
 							</div>
-							<div class="user_info_input">
-								<input type="text" name="password" placeholder="비밀번호" value="" maxlength="20">
-							</div>
-						</div>
-						<div class="cmt_txt right">
-							<div class="cmt_write">
-								<textarea name="name" maxlength="400" placeholder="타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률에 제재를 받을 수 있습니다.&#13;&#10;Shift+Enter 키를 동시에 누르면 줄바꿈이 됩니다."></textarea>
-							</div>
-							<div class="cmt_txt_bot">
-								<div class="right">
-									<button class="btn_save btn_blue" type="button" name="button">등록</button>
-									<button class="btn_save_good btn_lightBlue" type="button" name="button">등록+추천</button>
-								</div>
+							<div class="switchBtn">
+								<a href="#" class="writeBtn">
+									<i class="fas fa-pencil-alt"></i>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="cmt_btnbox">
-					<div class="left">
-						<button class="btn_view_all btn_blue" type="button" name="button">전체글</button>
-						<button class="btn_view_good btn_white" type="button" name="button">개념글</button>
-					</div>
-					<div class="right">
-						<button class="btn_update btn_gray" type="button" name="button">수정</button>
-						<button class="btn_delete btn_gray" type="button" name="button">삭제</button>
-						<button class="btn_create btn_blue" type="button" name="button">글쓰기</button>
-					</div>
-				</div>
-                <div class="mainLeft">
 				<div class="post_listWarp">
 					<table class="post_list">
 						<thead>
@@ -329,7 +248,7 @@
 								<td class="post_num">12131</td>
 								<td class="post_head"><b>공지</b></td>
 								<td class="post_title">
-									<a href="#">
+									<a href="post">
 										<i class="fas fa-info-circle red"></i>
 										<b>제목</b>
 									</a>

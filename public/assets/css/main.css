@@ -73,11 +73,17 @@ a {
 .nobr { /*H1 ,H2 등 태그 줄바꿈 없음*/
 	display: inline;
 }
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
 /* +-----------------------------------+-----------------------------------+----------*/
 
 .dropdown-menu a {
 	font-size: 13px;
-	
+
 }
 .etc {
 	width: 100%;

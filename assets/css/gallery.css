@@ -1,21 +1,73 @@
-.gallery {
-	padding-top: 20px;
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+* {
+    font-family: 'Nanum Gothic';
 }
-.gallery .gallery-top .title {
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+a:hover{
+    color: #333;
+}
+select{
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark-color(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: menulist;
+    box-sizing: border-box;
+    align-items: center;
+    white-space: pre;
+    -webkit-rtl-ordering: logical;
+    background-color: -internal-light-dark-color(white, black);
+    cursor: default;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    border-radius: 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(169, 169, 169);
+    border-image: initial;
+}
+option{
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+.red{
+    color: red;
+}
+.gold{
+    color: gold;
+}
+.gray{
+    color: gray;
+}
+.green{
+    color: green;
+}
+/*---------- 우측 ----------*/
+.gallery-top .title {
 	float:left;
 	margin-bottom: 0px;
 	color: #1379df;
 	text-align: bottom;
 }
-.gallery .gallery-top .sub {
+.gallery-top .sub {
 	float: right;
 	padding-top: 10px;
 	margin-bottom: 0px;
 	font-size: 13px;
-}
-.content{
-	float:left;
-	width: 70%;
 }
 .login_line {
 	border: 1px solid #1379df;
@@ -28,7 +80,6 @@
 	padding: 14px;
 }
 #login{
-
 	color: rgb(0, 0, 0);
 	text-decoration: none;
 }
@@ -53,4 +104,758 @@
 	border: none;
 	text-align: center;
 	margin-bottom: 15px;
+}
+ul {
+	padding-left: 17px;
+	margin-bottom: 10px;
+}
+.concept{
+	border-bottom-width: 1px;
+	margin-bottom: 15px;
+}
+.mar-b-5{
+	margin-bottom: 10px;
+}
+.dash-line {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	border-top: 1px dashed gray;
+}
+sm{
+	font-size: 12px;
+}
+.concept a{
+	color: black;
+}
+.concept-left{
+	float: left;
+}
+.concept-right{
+	float: right;
+}
+.blue{
+	color: rgb(71, 83, 158);
+}
+.opacity{
+	opacity: 0.5;
+}
+page{
+	font-size: 12px;
+	margin: 2px 5px 5px 0;
+}
+.ranking-left{
+    width: 80%;
+}
+li a{
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.issu-zoom{
+    position: relative;
+    border-bottom-width: 1px;
+	margin-bottom: 15px;
+}
+.new_icon{
+    position: absolute;
+    top: 1px;
+}
+.new_icon img{
+    height: 10px;
+    width: 10px;
+}
+.img-box{
+    display: block;
+    overflow: hidden;
+    height: 182px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+.img-box img{
+    width: 100%;
+    height: 100%;
+}
+.box .issu {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 28px;
+    margin-top: 0;
+    padding: 0 11px;
+    color: #fff;
+    z-index: 2;
+    width: 100%;
+}
+.issu a {
+	color: black;
+	font-size: 13px;
+}
+.issu-inner{
+    display: block;
+    position: absolute;
+    left: 1px;
+    bottom: 0;
+    width: 100%;
+    height: 38px;
+    background: #000;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    z-index: 1;
+}
+.issu strong{
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 13px;
+}
+.box{
+    display: block;
+    position: relative;
+    height: 100%;
+}
+.news{
+    position: relative;
+    border-bottom-width: 1px;
+    margin-bottom: 15px;
+}
+.news a:hover{
+    text-decoration: underline;
+    color: #333;
+}
+.news .news-title{
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+.news .news-content{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+.cho{
+    border-bottom-width: 1px;
+    margin-bottom: 15px;
+}
+.cho .secimg-box:first-child{
+    float: left;
+    margin-left: 0px;
+}
+.cho .secimg-box{
+    float: right;
+    width: 132px;
+    margin-left: 7px;
+}
+.img{
+    overflow: hidden;
+}
+.cho-img{
+    display: block;
+    overflow: hidden;
+    height: 88px;
+}
+.cho-img img{
+    width: 100%;
+    display: block;
+    min-height: 88px;
+}
+.cho-txt{
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 8px;
+}
+.cho-txt strong{
+    font-size: 12px;
+}
+.txt{
+    margin: 12px 0 1px;
+    padding-top: 13px;
+    border-top: 1px solid #eee;
+    line-height: 22px;
+}
+.txt li{
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+/*---------- 좌측 ----------*/
+.infomation{
+    width: 100%;
+    display: block;
+    margin-bottom: 15px;
+}
+.info-rank{
+    display: flex;
+}
+.info{
+    float: left;
+    width: 80%;
+    padding: 28px 0 0 2px;
+    display: inline-flex;
+}
+.img-info{
+    float: left;
+    width: 60%;
+    display: inline-flex;
+}
+.img-info img{
+    width: 154px;
+    height: 102px;
+}
+.txtbox{
+    overflow-y: auto;
+    width: 372px;
+    height: 104px;
+    padding-right: 5px;
+    margin: -1px 0 0 12px;
+    line-height: 20px;
+}
+.txtbox p{
+    font-size: 12px;
+}
+.m_list{
+    float: right;
+    overflow-y: auto;
+    position: relative;
+    width: 42%;
+    height: 104px;
+    margin-top: -3px;
+    margin-left: 4px;
+    z-index: 1;
+    font-size: 12px;
+}
+.member{
+    overflow: hidden;
+    line-height: 22px;
+}
+.member strong{
+    display: block;
+    text-align: left;
+    float: left;
+    width: 73px;
+}
+.member strong::before{
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    background: #333;
+    margin: 0 7px 0 1px;
+    vertical-align: 4px;
+}
+.member p{
+    float: left;
+    text-align: left;
+    width: auto;
+    padding: 0;
+    line-height: 20px;
+}
+.member span{
+    display: block;
+}
+.ranker{
+    width: 20%;
+    position: relative;
+    float: right;
+    height: 153px;
+    background: #f3f3f3;
+    border-left: 1px solid #d5d5d5;
+    text-align: center;
+}
+.rank{
+    margin: 29px auto 0;
+}
+.rank .red{
+    color: red;
+}
+.num{
+    padding: 7px 0 5px 1px;
+}
+.top-ad img{
+    width: 100%;
+}
+.rankBtn img{
+    width: 112px;
+    height: 21px;
+}
+.infomation .record{
+    position: relative;
+    display: inline-flex;
+    margin-top: 0;
+    border-width: 1px 1px 1px 1px;
+}
+.record{
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    padding: 10px 12px;
+    background: #f3f3f3;
+    border: 1px solid #d5d5d5;
+    border-width: 0 1px 1px 1px;
+}
+.record .gal-record{
+    float: left;
+    font-size: 12px;
+    color: #3c4790;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.toggle{
+    color: #3c4790;
+}
+.visit-gal{
+    overflow: hidden;
+    list-style: none;
+    position: relative;
+    display: inline-flex;
+    top: -11px;
+    float: left;
+    height: 37px;
+    padding: 0 0px 0 19px;
+    font-size: 12px;
+}
+.visit-gal li{
+    margin-left: 15px;
+}
+.visit-gal li a{
+    display: inline-flex;
+    width: 114px;
+    margin-right: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.visit-gal .del{
+    position: relative;
+    top: 10px;
+}
+.hide{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 20px;
+    vertical-align: baseline;
+    background: transparent;
+    font-style: normal;
+}
+.hide i{
+    position: relative;
+    top: -11px;
+}
+.grey{
+    color: grey;
+}
+.next{
+    position: absolute;
+    right: 10px;
+}
+.optionBar{
+    display: table;
+    width: 100%;
+    height: 32px;
+    margin: 15px 0 5px;
+}
+.optionBar .leftBox{
+    display: table-cell;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: top;
+}
+.leftBox .on{
+    border: 1px solid #3c4790;
+    background: #4a57a8;
+    color: #fff;
+    text-shadow: 0px -1px #343d8e;
+}
+.leftBox button:first-child{
+    margin-left: 0px;
+}
+.leftBox button:hover{
+    border: 1px solid #4a57a8;
+}
+.leftBox button{
+    width: 82px;
+    height: 32px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-left: -2px;
+    background-color: white;
+}
+.centerBox{
+    position: relative;
+    display: table-cell;
+    line-height: 0px;
+}
+.centerBox .inner{
+    position: relative;
+    display: inline-block;
+    height: 32px;
+}
+.centerBox .inner ul{
+    float: left;
+    overflow: hidden;
+    padding-top: 6px;
+    padding-right: 10px;
+    margin-left: 7px;
+    line-height: 32px;
+    list-style: none;
+}
+.centerBox .inner ul li{
+    display: inline-block;
+    padding-left: 14px;
+    font-size: 12px;
+}
+.centerBox .inner ul li .on{
+    font-weight: bold;
+}
+.rightBox{
+    float: right;
+    display: -ms-grid;
+    min-width: 90px;
+    width: max-content;
+    width: -moz-max-content;
+    -ms-grid-columns: max-content;
+    vertical-align: top;
+    padding-top: 11px;
+}
+.rightBox .output{
+    padding-top: 0;
+    display: table;
+    margin-left: 6px;
+}
+.rightBox .selectBox{
+    margin: 0 2px 0 0;
+    position: relative;
+    float: left;
+}
+.selectBox select{
+    /*display: none;*/
+    height: 20px;
+}
+.rightBox .selectArea{
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    width: 51px;
+    line-height: 21px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 11px;
+}
+.selectArea a{
+    display: inline-block;
+    width: 41px;
+    padding: 0 5px;
+}
+.selectArea i{
+    display: inline-block;
+    position: absolute;
+    right: 3px;
+    top: 6px;
+    width: 9px;
+    height: 5px;
+    background-position: -126px -43px;
+}
+.selectBox .option_box{
+    padding: 6px 5px 4px;
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+}
+.option_box{
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    background: #f3f3f3;
+    border: 1px #ccc solid;
+    padding: 6px 5px 4px;
+    z-index: 20;
+    list-style: none;
+}
+.selectBox .option_box li{
+    line-height: 16px;
+    font-size: 11px;
+    color: #555;
+}
+.option_box li{
+    line-height: 16px;
+    font-size: 11px;
+    color: #555;
+    font-weight: normal;
+    font-family: Dotum,'돋움';
+}
+.option_box li a{
+    display: inline-block;
+    width: 41px;
+    padding: 0 5px;
+}
+.blind{
+    position: absolute;
+    overflow: hidden;
+    visibility: hidden;
+    margin: -1px;
+    width: 0px;
+    height: 0px;
+    top: -9999px;
+    font-size: 0;
+}
+.switchBtn{
+    width: 1%;
+    white-space: nowrap;
+}
+.writeBtn{
+    width: 21px;
+    height: 21px;
+    display: inline-block;
+    background-position: -196px -337px;
+    border: 1.5px solid #3c4790;
+}
+.writeBtn i{
+    position: relative;
+    left: 2px;
+    top: -1px;
+    color: #3c4790;
+}
+.post_listWarp{
+    position: relative;
+}
+.post_listWarp table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+.post_list{
+    width: 100%;
+    border-bottom: 1px solid #3c4790;
+    font-family: '굴림',Gulim;
+}
+th{
+    font-size: 12px;
+    height: 37px;
+    border-width: 2px 0 1px;
+    border-style: solid;
+    border-color: #3c4790;
+    vertical-align: middle;
+    text-align: center;
+    color: #333;
+    font-family: Dotum,'돋움';
+}
+td{
+    padding: 2px 4px;
+    border-top: 1px solid #eee;
+    vertical-align: middle;
+    text-align: center;
+    color: #333;
+}
+.postArea:hover{
+    background-color: #f3f3f3;
+}
+.post_list td{
+    padding: 0px 4px;
+    height: 25px;
+}
+.post_num{
+    font-family: tahoma,sans-serif;
+    font-size: 11px;
+    padding-top: 1px;
+}
+.post_head{
+    position: relative;
+    padding: 2px 0px 0 0;
+    font-size: 13px;
+}
+.post_title{
+    padding: 0px 4px;
+    position: relative;
+    text-align: left;
+    font-size: 13px;
+}
+.post_title i{
+    display: inline-block;
+    vertical-align: 0px;
+    margin-right: 5px;
+}
+.post_title a{
+    height: 18px;
+    display: inline-block;
+    max-width: 85%;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-top: 1px;
+    line-height: 100%;
+}
+.comment_count{
+    width: auto;
+    vertical-align: bottom;
+    letter-spacing: -0.05em;
+}
+.post_user{
+    padding-top: 2px;
+    position: relative;
+    font-size: 13px;
+    cursor: pointer;
+}
+.post_user .nickname{
+    max-width: 66%;
+}
+.nickname{
+    display: inline-block;
+    max-width: 64%;
+    vertical-align: top;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.post_date,.post_view,.post_good{
+    font-family: tahoma,sans-serif;
+    font-size: 11px;
+    padding-top: 1px;
+}
+.post_date{
+
+}
+.post_view{
+
+}
+.post_good{
+
+}
+.tit-num{
+    width: 10%;
+}
+.tit-mal{
+    width: 10%;
+}
+.tit-tit{
+    width: 40%;
+}
+.tit-user{
+    width: 15%;
+}
+.tit-date{
+    width: 15%;
+}
+.tit-view{
+    width: 10%;
+}
+.tit-good{
+    width: 5%;
+}
+.bot button{
+    padding-right: 2px;
+    border-width: 1px 1px 3px 1px;
+    border-style: solid;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.write{
+    background: #4a57a8;
+    border-color: #3c4790;
+    text-shadow: 0px -1px #343d8e;
+    color: #fff;
+    width: 82px;
+    height: 32px;
+    padding-right: 2px;
+    margin-left: 3px;
+    border-width: 1px 1px 3px 1px;
+    border-style: solid;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.pagebox{
+    position: relative;
+    margin-top: 18px;
+    text-align: center;
+    line-height: 20px;
+}
+.pagebox a{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.pagebox em{
+    text-decoration: underline;
+    color: #d31900;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+}
+.bottom_search{
+    width: 451px;
+    margin: 20px auto 0;
+}
+.bottom_select{
+    width: 110px;
+    height: 36px;
+    border: 1px solid #3c4790;
+    background: #4a57a8;
+    position: relative;
+    float: left;
+}
+#search_type{
+    width: 90px;
+    height: 25px;
+    margin: 5px;
+}
+.search_content{
+    height: 36px;
+    margin-left: 5px;
+    border: 1px solid #3c4790;
+    background: #4a57a8;
+    float: left;
+}
+.inner_search{
+    margin: 3px 3px 0 3px;
+    width: 280px;
+    float: left;
+    background: #fff;
+}
+.inner_search .keyword{
+    width: 260px;
+    height: 27.5px;
+    line-height: 30px;
+}
+.keyword{
+    width: 336px;
+    height: 34px;
+    padding: 0 9px;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
+/*---------- 모바일 ----------*/
+@media(max-width: 1200px) {
+    .secimg-box{
+        display: none;
+    }
+    .info{
+        display: inline-flex;
+        width: 100%;
+    }
+    .ranker{
+        display: none;
+    }
 }

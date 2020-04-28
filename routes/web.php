@@ -60,6 +60,9 @@ Route::get('gallog', function () {
 	return view('gallog');
 });
 Route::get('gallery', function () {
+	return view('gallery');
+});
+Route::get('post', function () {
 	return view('gallery-post');
 });
 Route::get('gallery-plus', function () {
@@ -67,12 +70,6 @@ Route::get('gallery-plus', function () {
 });
 Route::get('gallery-plus-m', function () {
 	return view('gallery-plus-m');
-});
-Route::get('category-plus', function () {
-	return view('category-plus');
-});
-Route::get('category-plus-m', function () {
-	return view('category-plus-m');
 });
 
 Route::resource('test', 'TestController');
