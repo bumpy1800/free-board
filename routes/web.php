@@ -65,6 +65,9 @@ Route::get('gallery', function () {
 Route::get('post', function () {
 	return view('gallery-post');
 });
+Route::get('write', function () {
+	return view('gallery-post-write');
+});
 Route::get('gallery-plus', function () {
 	return view('gallery-plus');
 });

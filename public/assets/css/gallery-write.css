@@ -1,0 +1,108 @@
+ul li{
+    list-style: none;
+}
+.write_warp{
+    padding: 33px 68px 60px;
+    margin-top: 15px;
+    border: 2px solid #d5d5d5;
+}
+.input_infobox{
+    position: relative;
+}
+.input_infotxt{
+    float: left;
+    width: 230px;
+    margin: 10px 10px 0 0;
+}
+.infotxt{
+    width: 204px;
+    height: 33px;
+    padding: 0 12px;
+    line-height: 35px;
+    border: 1px solid #cecdce;
+    color: #333;
+}
+.infotxt, .input_infobox label{
+    font-family: Gulim;
+    color: #999;
+    font-size: 13px;
+    font-weight: bold;
+}
+.txt_placeholder{
+    position: absolute;
+    left: 13px;
+    top: 10px;
+}
+.write_sub{
+    clear: both;
+    display: inline-block;
+    min-width: 715px;
+    border: 1px solid #cecdce;
+    padding-right: 11px;
+    margin-top: 10px;
+}
+.write_sub > .tit{
+    display: block;
+    float: left;
+    width: 66px;
+    height: 33px;
+    background: #eee;
+    vertical-align: top;
+    line-height: 33px;
+    text-align: center;
+    font-family: '굴림',Gulim;
+    font-size: 13px;
+}
+.sub_list{
+    float: left;
+    margin: 5px 0 0 11px;
+    max-width: 930px;
+}
+.sub_list li:first-child {
+    margin-left: 0;
+}
+.write_sub .sub_list li {
+    max-width: 105px;
+    width: auto;
+}
+.sub_list li {
+    float: left;
+    height: 23px;
+    line-height: 24px;
+    font-size: 13px;
+    color: #666;
+    font-weight: bold;
+    margin-left: 26px;
+    cursor: pointer;
+    font-family: '굴림',Gulim;
+}
+.sub_list .sel {
+    background: #3c4790;
+    border-radius: 50px;
+    color: #fff;
+    padding: 0 10px 0 9px;
+    text-shadow: 0px -1px #2a326e;
+    cursor: default;
+}
+.input_tit{
+    float: left;
+    width: 728px;
+    margin: 10px 0 0 0PX;
+}
+.input_tit .infotxt{
+    width: 715px;
+}
+.write_info{
+    position: relative;
+    margin: 16px 0 14px;
+    font-size: 12px;
+    color: #666;
+}
+.write_info p{
+    line-height: 10px;
+}
+.btn_box{
+    position: relative;
+    margin-top: 6px;
+    margin-right: 150px;
+}

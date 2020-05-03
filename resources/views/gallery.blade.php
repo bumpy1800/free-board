@@ -854,7 +854,7 @@
 						<button type="button" name="button" class="">개념글</button>
 					</div>
 					<div style="float:right;">
-						<button type="button" name="button" class="on write">글쓰기</button>
+						<a href="write"><button type="button" name="button" class="on write">글쓰기</button></a>
 					</div>
 				</div>
 				<div class="pagebox">
