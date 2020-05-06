@@ -74,5 +74,8 @@ Route::get('gallery-plus', function () {
 Route::get('gallery-plus-m', function () {
 	return view('gallery-plus-m');
 });
+Route::get('admin', function () {
+	return view('admin.index');
+});
 
 Route::resource('test', 'TestController');
