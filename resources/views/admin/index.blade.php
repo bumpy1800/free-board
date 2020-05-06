@@ -8,14 +8,14 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>SJInside - Admin</title>
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/dist/css/styles.css') }}" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">Admin KSK & KJS</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button><!-- Navbar Search-->
+        <a class="navbar-brand" href="index.php">Admin KSK & KJS</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button><!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="검색어를 입력하세요." aria-label="Search" aria-describedby="basic-addon2" />
@@ -31,7 +31,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="#">접속기록</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="index.html">로그아웃</a>
+                    <a class="dropdown-item" href="index.php">로그아웃</a>
                 </div>
             </li>
         </ul>
@@ -41,20 +41,20 @@
             <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Home
                         </a>
                         <div class="sb-sidenav-menu-heading">기본설정</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-bookmark"></i></div>
                             &nbsp;공지사항
                         </a>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="far fa-image"></i></div>
                             팝업관리
                         </a>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="far fa-image"></i></i></div>
                             로고관리
                         </a>
@@ -66,11 +66,11 @@
                         </a>
                         <div class="collapse" id="board" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="layout-static.html">갤러리관리 </a>
-                              <a class="nav-link" href="layout-sidenav-light.html">갤러리통계</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">게시믈통합관리</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">코멘트통합관리</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">게시판통계</a>
+                              <a class="nav-link" href="layout-static.php">갤러리관리 </a>
+                              <a class="nav-link" href="layout-sidenav-light.php">갤러리통계</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">게시믈통합관리</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">코멘트통합관리</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">게시판통계</a>
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">회원관리</div>
@@ -81,12 +81,12 @@
                         </a>
                         <div class="collapse" id="member" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="layout-static.html">회원목록 </a>
-                              <a class="nav-link" href="layout-sidenav-light.html">회원등급</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">탈퇴회원</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">인증대기회원</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">회원통계</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">가입약관 및 개인정보 보호정책</a>
+                              <a class="nav-link" href="layout-static.php">회원목록 </a>
+                              <a class="nav-link" href="layout-sidenav-light.php">회원등급</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">탈퇴회원</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">인증대기회원</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">회원통계</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">가입약관 및 개인정보 보호정책</a>
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">접속통계</div>
@@ -97,10 +97,10 @@
                         </a>
                         <div class="collapse" id="visit" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="layout-static.html">접속자분석 </a>
-                              <a class="nav-link" href="layout-sidenav-light.html">접속경로분석</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">검색키워드분석</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">OS/브라우저</a>
+                              <a class="nav-link" href="layout-static.php">접속자분석 </a>
+                              <a class="nav-link" href="layout-sidenav-light.php">접속경로분석</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">검색키워드분석</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">OS/브라우저</a>
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">신고/QnA관리</div>
@@ -111,9 +111,9 @@
                         </a>
                         <div class="collapse" id="police" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="layout-static.html">신고목록</a>
-                              <a class="nav-link" href="layout-sidenav-light.html">보류목록</a>
-                              <a class="nav-link" href="layout-static.html">신고통계</a>
+                              <a class="nav-link" href="layout-static.php">신고목록</a>
+                              <a class="nav-link" href="layout-sidenav-light.php">보류목록</a>
+                              <a class="nav-link" href="layout-static.php">신고통계</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#qna" aria-expanded="false" aria-controls="collapseLayouts">
@@ -123,8 +123,8 @@
                         </a>
                         <div class="collapse" id="qna" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="layout-static.html">Q&A목록</a>
-                              <a class="nav-link" href="layout-static.html">Q&A통계</a>
+                              <a class="nav-link" href="layout-static.php">Q&A목록</a>
+                              <a class="nav-link" href="layout-static.php">Q&A통계</a>
                             </nav>
                         </div>
                     </div>
@@ -338,13 +338,13 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script src="{{ asset('assets/admin/dist/js/scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="{{ asset('assets/admin/dist/assets/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('assets/admin/dist/assets/demo/chart-bar-demo.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
+    <script src="{{ asset('assets/admin/dist/assets/demo/datatables-demo.js') }}"></script>
 </body>
 
 </html>
