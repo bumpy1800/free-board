@@ -1,7 +1,12 @@
-@extends('main')
+@extends('layouts.main')
+
 
 @section('title')
-	<p>김선규 & 김재성</p>
+	sj-inside
+@endsection
+
+@section('header')
+	@include('layouts.main_header')
 @endsection
 
 

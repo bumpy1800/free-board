@@ -19,13 +19,13 @@ class TestController extends Controller
     public function index()
     {
 		$this->insertTable();
-        return view('welcome');
+        return view('test');
     }
-	
+
 	public function insertTable(){
 		/*$a = 'Users1';                     //ORM
-		$a->create(['name' => 'John']);*/ 
-		
+		$a->create(['name' => 'John']);*/
+
 		/*$b = 'users1s';                    //쿼리빌더
 		DB::table($b)->insert(
 			['name' => 'John']
@@ -34,9 +34,9 @@ class TestController extends Controller
 		/*Schema::create('users1s', function (Blueprint $table) {
             $table->string('name');
 		});*/
-		
-			/*$db_host = "localhost"; 
-			$db_user = "doerksk"; 
+
+			/*$db_host = "localhost";
+			$db_user = "doerksk";
 			$db_passwd = "q1w2e3r4!";
 			$db_name = "doerksk";
 			$a = "123as";
@@ -51,9 +51,9 @@ class TestController extends Controller
 			}
 
 			// table 만들기
-			$sql = "CREATE TABLE $a 
+			$sql = "CREATE TABLE $a
 			(
-			PID bigint(20) unsigned not null auto_increment,  
+			PID bigint(20) unsigned not null auto_increment,
 			Name CHAR(255),
 			Address CHAR(255),
 			Age INT,
