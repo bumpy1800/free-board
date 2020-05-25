@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-//use App\Users1;                     //ORM
+use App\Gallery;                     //ORM
 
 class TestController extends Controller
 {
@@ -23,8 +23,28 @@ class TestController extends Controller
     }
 
 	public function insertTable(){
-		/*$a = 'Users1';                     //ORM
-		$a->create(['name' => 'John']);*/
+		Gallery::create([
+      's_name' => 'John22',
+      'name' => 'John',
+      'category_id' => 1,
+      'link' => 'John',
+      'contents' => 'John',
+      'reason' => 'John',
+      'heads' => 'John',
+      'agree' => 0,
+    ]);
+
+    /*Board::create([
+      'title' => '공지',
+      'author' => '관리자',
+      'content' => '공지입니다'
+    ]);
+    // DB 파사드로 생성하기
+    DB::table('board')->insert([
+      'title' => '공지',
+      'author' => '관리자',
+      'content' => '공지입니다'
+    ]);*/
 
 		/*$b = 'users1s';                    //쿼리빌더
 		DB::table($b)->insert(

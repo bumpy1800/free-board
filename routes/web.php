@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('main');
 });
 
+
 Route::get('login', function () {
 	return view('login');
 });
@@ -78,4 +79,12 @@ Route::get('admin', function () {
 	return view('admin.index');
 });
 
-Route::resource('test', 'TestController');
+Route::resource('admin/gallery-list', 'GalleryController');
+Route::get('admin/gallery-add-form', 'GalleryController@create');
+Route::post('admin/gallery-add', 'GalleryController@store');
+Route::get('admin/gallery-edit-form/{id}', 'GalleryController@edit');
+Route::post('admin/gallery-edit/{id}', 'GalleryController@update');
+Route::get('admin/gallery-destroy/{id}', 'GalleryController@destroy');
+Route::get('admin/gallery-show/{id}', 'GalleryController@show');
+
+//Route::resource('test', 'TestController');

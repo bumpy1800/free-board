@@ -1,4 +1,4 @@
-@extends('admin.layouts.index')
+@extends('admin.layouts.gallery-add-form')
 
 @section('title')
 	sj-inside Admin

@@ -16,17 +16,8 @@
 	</head>
 
 	<body>
-		<div class="container">
-			<div class="etc">
-				<a class="mb_menu" href="register">회원가입</a>
-				<a class="mb_menu" href="login">로그인</a>
-				<!-- 로그인 했을 때
-				<a class="mb_menu" href="login">로그아웃</a>
-				-->
-			</div>
-        </div>
-        
-			@yield('header')
+
+		@yield('header')
 
 		<div class="container">
 			<div class="mainLeft">
