@@ -27,11 +27,12 @@
                 </a>
                 <div class="collapse" id="board" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                      <a class="nav-link" href="/admin/gallery-list">갤러리관리 </a>
+                      <a class="nav-link" href="{{ route('admin_category.index') }}">카테고리관리</a>
+                      <a class="nav-link" href="/admin/gallery-list">갤러리관리</a>
                       <a class="nav-link" href="layout-sidenav-light.php">갤러리통계</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">게시믈통합관리</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">코멘트통합관리</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">게시판통계</a>
+                      <a class="nav-link" href="{{ route('admin_post.index') }}">게시물통합관리</a>
+                      <a class="nav-link" href="layout-sidenav-light.php">게시물통계</a>
+                      <a class="nav-link" href="{{ route('admin_comment.index') }}">코멘트통합관리</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">회원관리</div>

@@ -47,11 +47,9 @@
                                 <div class="form-group">
                                   <label for="category_id">카테고리</label>
                                   <select class="form-control" id="category_id" name="category_id">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    @foreach ($categorys as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                   </select>
                                   @error('category_id')
                                       <small style="color: red!important;" id="danger" class="form-text text-muted">{{ $message }}</small>
@@ -79,7 +77,7 @@
                                   @enderror
                                 </div>
                                 <div class="form-group">
-                                  <label for="heads">말머리</label>
+                                  <label for="heads">머리글</label>
                                   <input type="text" name="heads" class="form-control" id="heads" value="">
                                   @error('heads')
                                       <small style="color: red!important;" id="danger" class="form-text text-muted">{{ $message }}</small>

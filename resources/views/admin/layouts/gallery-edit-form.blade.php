@@ -43,11 +43,13 @@
                             <div class="form-group">
                               <label for="category_id">카테고리</label>
                               <select class="form-control" id="category_id" name="category_id">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                @foreach ($categorys as $category)
+                                  @if($gallery->category_id == $category->id)
+                                    <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                  @else
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                  @endif
+                                @endforeach
                               </select>
                               @error('category_id')
                                   <small style="color: red!important;" id="danger" class="form-text text-muted">{{ $message }}</small>
@@ -75,7 +77,7 @@
                               @enderror
                             </div>
                             <div class="form-group">
-                              <label for="heads">말머리</label>
+                              <label for="heads">머리글</label>
                               <input type="text" name="heads" class="form-control" id="heads" value="{{ $gallery->heads }}">
                               @error('heads')
                                   <small style="color: red!important;" id="danger" class="form-text text-muted">{{ $message }}</small>
@@ -83,14 +85,25 @@
                             </div>
                             <div class="form-group">
                               <div for="heads">승인여부</div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="agree" id="agree" value="1" checked>
-                                <label class="form-check-label" for="agree">승인</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="agree" id="noagree" value="0">
-                                <label class="form-check-label" for="noagree">거부</label>
-                              </div>
+                              @if($gallery->agree == 1)
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="agree" id="agree" value="1" checked>
+                                  <label class="form-check-label" for="agree">승인</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="agree" id="noagree" value="0">
+                                  <label class="form-check-label" for="noagree">거부</label>
+                                </div>
+                              @else
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="agree" id="agree" value="1">
+                                  <label class="form-check-label" for="agree">승인</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="agree" id="noagree" value="0" checked>
+                                  <label class="form-check-label" for="noagree">거부</label>
+                                </div>
+                              @endif
                               @error('agree')
                                   <small style="color: red!important;" id="danger" class="form-text text-muted">{{ $message }}</small>
                               @enderror

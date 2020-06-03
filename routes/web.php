@@ -79,12 +79,35 @@ Route::get('admin', function () {
 	return view('admin.index');
 });
 
-Route::resource('admin/gallery-list', 'GalleryController');
-Route::get('admin/gallery-add-form', 'GalleryController@create');
-Route::post('admin/gallery-add', 'GalleryController@store');
-Route::get('admin/gallery-edit-form/{id}', 'GalleryController@edit');
-Route::post('admin/gallery-edit/{id}', 'GalleryController@update');
-Route::get('admin/gallery-destroy/{id}', 'GalleryController@destroy');
-Route::get('admin/gallery-show/{id}', 'GalleryController@show');
+
+
+
+
+
+
+
+Route::get('admin_post/{link}/{id}', 'admin\PostController@show');
+
+Route::get('/admin/find', function () {
+	return view('find');
+});
+
+Route::resources([
+    'gallery-plus' => 'GalleryController',
+    'admin_post' => 'admin\PostController',
+    'admin_category' => 'admin\CategoryController',
+    'admin_comment' => 'admin\CommentController'
+]);
+
+Route::get('admin/galleryFind', 'admin\PostController@galleryFind');
+Route::post('admin/galleryFind', 'admin\PostController@galleryFind');
+
+Route::get('admin/gallery-list', 'admin\GalleryController@index');
+Route::get('admin/gallery-add-form', 'admin\GalleryController@create');
+Route::post('admin/gallery-add', 'admin\GalleryController@store');
+Route::get('admin/gallery-edit-form/{id}', 'admin\GalleryController@edit');
+Route::post('admin/gallery-edit/{id}', 'admin\GalleryController@update');
+Route::get('admin/gallery-destroy/{id}', 'admin\GalleryController@destroy');
+Route::get('admin/gallery-show/{id}', 'admin\GalleryController@show');
 
 //Route::resource('test', 'TestController');
