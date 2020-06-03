@@ -19,6 +19,7 @@
         @yield('sidenav_header')
         <div id="layoutSidenav_content">
             <main>
+              @foreach($gallery as $gallery)
                 <div class="container-fluid">
                     <h1 class="mt-4">관리자님 환영합니다.</h1>
                     <div class="card mb-4">
@@ -37,11 +38,7 @@
                             <div class="form-group">
                               <label for="category_id">카테고리</label>
                               <select class="form-control" id="category_id" name="category_id" disabled>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option>{{ $gallery->category_name }}</option>
                               </select>
                             </div>
                             <div class="form-group">
@@ -57,19 +54,30 @@
                               <textarea class="form-control" id="reason" rows="3" name="reason" disabled>{{ $gallery->reason }}</textarea>
                             </div>
                             <div class="form-group">
-                              <label for="heads">말머리</label>
+                              <label for="heads">머리글</label>
                               <input type="text" name="heads" class="form-control" id="heads" value="{{ $gallery->heads }}" disabled>
                             </div>
                             <div class="form-group">
                               <div for="heads">승인여부</div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="agree" id="agree" value="1" checked disabled>
-                                <label class="form-check-label" for="agree">승인</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="agree" id="noagree" value="0" disabled>
-                                <label class="form-check-label" for="noagree">거부</label>
-                              </div>
+                              @if($gallery->agree == 1)
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="agree" id="agree" value="1" checked>
+                                  <label class="form-check-label" for="agree">승인</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="agree" id="noagree" value="0">
+                                  <label class="form-check-label" for="noagree">거부</label>
+                                </div>
+                              @else
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="agree" id="agree" value="1">
+                                  <label class="form-check-label" for="agree">승인</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="agree" id="noagree" value="0" checked>
+                                  <label class="form-check-label" for="noagree">거부</label>
+                                </div>
+                              @endif
                             </div>
                             <a class="btn btn-warning" href="/admin/gallery-edit-form/{{ $gallery->id }}">수정</a>
                             <a class="btn btn-danger" href="/admin/gallery-destroy/{{ $gallery->id }}">삭제</a>
@@ -77,6 +85,7 @@
                         </div>
                     </div>
                 </div>
+              @endforeach
             </main>
             @yield('footer')
         </div>

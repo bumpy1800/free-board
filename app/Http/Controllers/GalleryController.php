@@ -20,7 +20,7 @@ class GalleryController extends Controller
     {
         //$users = DB::table('Gallery')->get();
         $gallerys = Gallery::all();
-        return view('admin.gallery-list', ['gallerys' => $gallerys]);
+        return view('gallery-plus', ['gallerys' => $gallerys]);
     }
 
     /**
@@ -179,8 +179,8 @@ class GalleryController extends Controller
           'heads' => $heads,
           'agree' => $agree,
       ]);
-
-        return redirect('admin/gallery-list');
+      exit($id);
+        return redirect('admin/gallery-show/' . $id);
     }
 
     /**

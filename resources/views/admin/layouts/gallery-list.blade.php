@@ -66,7 +66,7 @@
                                             <td>{{ $gallery->id }}</td>
                                             <td><a href="/admin/gallery-show/{{ $gallery->id }}">{{ $gallery->s_name }}</a></td>
                                             <td>{{ $gallery->name }}</td>
-                                            <td>{{ $gallery->category_id }}</td>
+                                            <td>{{ $gallery->category_name }}</td>
                                             <td>{{ $gallery->link }}</td>
                                             <td>{{ $gallery->contents }}</td>
                                             <td>{{ $gallery->reason }}</td>

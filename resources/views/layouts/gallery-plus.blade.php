@@ -534,45 +534,52 @@
 								<th></th>
 							</tr>
 						</thead>
+
+						@php
+						    $galleryArr = [];
+								$allcnt = count($gallerys);
+								$row = 7;
+								$col = ceil(count($gallerys)/70);
+								$cnt = 0;
+								$col_cnt = 0;
+								$row_cnt = 0;
+								$row_bool = 0;
+						@endphp
+
+
+						@foreach ($gallerys as $gallery)
+							@php
+								$galleryArr[$cnt] = $gallery->name;
+								$cnt ++;
+							@endphp
+						@endforeach
+
+						@for ($i = 0; $i < $col; $i++)
 						<tr>
-							<td width="14.2%">
-								<h6><a href="">스포츠</a></h6>
-								<h6><a href="">스포츠 스포츠</a></h6>
-								<h6><a href="">스포츠</a></h6>
-								<h6><a href="">스포츠</a></h6>
-								<h6><a href="">스포츠</a></h6>
-								<h6><a href="">스포츠</a></h6>
-								<h6><a href="">스포츠</a></h6>
-								<h6><a href="">스포츠</a></h6>
-								<h6><a href="">스포츠</a></h6>
-								<h6><a href="">스포츠</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6></h6>
-							</td>
-							<td width="14.2%">
-								<h6></h6>
-							</td>
-							<td width="14.2%">
-								<h6></h6>
-							</td>
-							<td width="14.2%">
-								<h6></h6>
-							</td>
-							<td width="14.2%">
-								<h6></h6>
-							</td>
-							<td width="14.2%">
-								<h6></h6>
-							</td>
+								@for ($j = 0; $j < $row; $j++)
+									<td width="14.2%">
+										@unless ($allcnt == 0)
+											@for ($p = $col_cnt; $p < $cnt; $p++)
+											<h6><a href="">{{ $galleryArr[$p] }}</a></h6>
+												@php
+													$allcnt --;
+													$col_cnt ++;
+												@endphp
+												@if($col_cnt/10 >= 1 && $col_cnt%10 == 0)
+													@break
+												@endif
+											@endfor
+										@endunless
+									</td>
+								@endfor
 						</tr>
+						@endfor
 					</table>
 					<div class="page">
 						1/7
 					</div>
 				</div>
 			</div>
-
 			@yield('footer')
 		</div>
 	</body>
