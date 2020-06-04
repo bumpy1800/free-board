@@ -43,12 +43,10 @@
                 </a>
                 <div class="collapse" id="member" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                      <a class="nav-link" href="layout-static.php">회원목록 </a>
-                      <a class="nav-link" href="layout-sidenav-light.php">회원등급</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">탈퇴회원</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">인증대기회원</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">회원통계</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">가입약관 및 개인정보 보호정책</a>
+                        <a class="nav-link" href="{{ route('user.index') }}">회원목록 </a>
+                        <a class="nav-link" href="{{ route('user_wait.index') }}">인증대기회원</a>
+                        <a class="nav-link" href="layout-sidenav-light.php">회원통계</a>
+                        <a class="nav-link" href="{{ route('policy.index') }}">가입약관 및 개인정보 보호정책</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">접속통계</div>

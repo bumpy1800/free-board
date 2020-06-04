@@ -78,18 +78,32 @@ Route::get('gallery-plus-m', function () {
 Route::get('admin', function () {
 	return view('admin.index');
 });
-
-
-
-
-
-
-
-
-
 Route::get('/admin/find', function () {
 	return view('find');
 });
+Route::resources([
+    'user' => 'UserController',
+    'admin/user-list' => 'UserController',
+    'user_wait' => 'UserWaitController',
+    'admin/user_wait-list' => 'UserWaitController'
+]);
+Route::get('admin/user-add-form', 'UserController@create');
+//Route::post('admin/user-add', 'UserController@store');
+Route::get('admin/user-edit-form/{id}', 'UserController@edit');
+//Route::post('admin/user-edit/{id}', 'UserController@update');
+Route::get('admin/user-destroy/{id}', 'UserController@destroy');
+Route::get('admin/user-show/{id}', 'UserController@show');
+
+Route::resources([
+    'policy' => 'PolicyController',
+    'admin/policy-list' => 'PolicyController',
+]);
+Route::get('admin/policy-add-form', 'PolicyController@create');
+//Route::post('admin/policy-add', 'PolicyController@store');
+Route::get('admin/policy-edit-form/{id}', 'PolicyController@edit');
+//Route::post('admin/policy-edit/{id}', 'PolicyController@update');
+Route::get('admin/policy-destroy/{id}', 'PolicyController@destroy');
+Route::get('admin/policy-show/{id}', 'PolicyController@show');
 
 Route::resources([
     'gallery-plus' => 'GalleryController',
