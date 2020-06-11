@@ -14,6 +14,12 @@
 
     <!-- smart editor -->
     <script type="text/javascript" src="{{ asset('assets/smarteditor2/js/HuskyEZCreator.js') }}"></script>
+    <script>
+    window.onload=function(){
+        console.log("window onload ");
+    }
+
+    </script>
 
     <link href="{{ asset('assets/css/gallery-post.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/gallery-write.css') }}" rel="stylesheet">
@@ -91,58 +97,16 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">관리자님 환영합니다.</h1>
                     <div class="card mb-4">
-                        <div class="card-header">
-                          <i class="fas fa-pencil-alt"></i>
-                          게시글 등록
-                        </div>
+                        <div class="card-header"><i class="far fa-edit"></i>게시글 수정</div>
                         <div class="card-body">
-                          <form name="content_form" action="{{ route('admin_post.store') }}" method="post">
-                            @method('POST')
+                          <form name="content_form" action="{{ route('admin_notice.update', $notice->id) }}" method="post">
+                            @method('PATCH')
                             @csrf
-    
                           <div class="write_warp">
                               <fieldset>
-                                  <div class="row">
-                                    <div class="input_infobox input_infotxt col">
-                                        <input id="txt" class="infotxt" type="text" maxlength="15" name="name" value="" placeholder="닉네임">
-                                    </div>
-                                    <div class="input_infobox input_infotxt col">
-                                        <input id="txt" class="infotxt" type="password" maxlength="20" name="password" value="" placeholder="비밀번호">
-                                    </div>
-                                    <div class="input_infobox input_infotxt col">
-                                        <input type="text" id="resultName" class="infotxt resultName" value="" placeholder="갤러리 검색" disabled>
-                                        <input type="hidden" name="idH" id="idH" value="">
-                                        <button type="button" class="gallerySearch" onclick="showFind();"><i class="fas fa-search"></i></button>
-                                    </div>
-                                    <script language="javascript">
-                                      function showFind() {
-                                        window.open("/admin/galleryFind", "galleryFind", "width=450, height=300, left=100, top=50");
-                                      }
-                                    </script>
-                                  </div>
-                                  <div class="write_sub">
-                                      <strong class="tit">말머리</strong>
-                                      <ul id="sub_list" class="sub_list">
-                                          <li id="sel1" class="sel" value="sel1" onclick="change('sel1');"><i id="head" class="fas fa-check"></i>없음</li>
-                                          <input id="sendHead" type="hidden" name="head" value="없음">
-                                      </ul>
-                                      <script>
-                                        function change(sel) {
-                                          var head = document.getElementById(sel);
-                                          $('#head').remove();
-                                          $('.sub_list').children().attr('class', '');
-
-                                          head.setAttribute('class', 'sel');
-                                          $('#'+sel).prepend("<i id='head' class='fas fa-check'></i>");
-
-                                          id = $('.sel').text();
-                                          $('#sendHead').attr('value', id);
-                                        }
-                                      </script>
-                                  </div>
                                   <div id="title" class="input_infobox input_tit">
                                       <!--<label id="tit" for="tit" class="txt_placeholder">제목을 작성해주세요</label>-->
-                                      <input id="txt"class="infotxt" type="text" maxlength="40" name="tit" value="" placeholder="제목을 입력해 주세요">
+                                      <input id="txt"class="infotxt" type="text" maxlength="40" name="tit" value="{{ $notice->title }}" placeholder="제목을 입력해 주세요">
                                   </div>
                               </fieldset>
                               <div class="write_info">
@@ -150,7 +114,9 @@
                                   <p>※ 음란물, 차별, 비하, 혐오 및 초상권, 저작권 침해 게시물은 민, 형사상의 책임을 질 수 있습니다.</p>
                               </div>
                               <div class=""><!--에디터-->
-                                <textarea name="content" style="width:100%; min-width:1px; height: 800px;" id="content"></textarea>
+                                <textarea name="content" style="width:100%; min-width:1px; height: 800px;" id="content">
+                                    {!! $notice->contents !!}
+                                </textarea>
                                 <script language="javascript">
                                   var oEditors = [];
                                   var sLang = "ko_KR"; // 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
@@ -159,7 +125,7 @@
                                   nhn.husky.EZCreator.createInIFrame({
                                    oAppRef: oEditors,
                                    elPlaceHolder: "content",
-                                   sSkinURI: "../assets/smarteditor2/SmartEditor2Skin.html",
+                                   sSkinURI: "../../assets/smarteditor2/SmartEditor2Skin.html",
                                    htParams : {
                                     bUseToolbar : true,    // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                     bUseVerticalResizer : true,  // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -231,8 +197,12 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/admin/dist/js/scripts.js') }}"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/admin/dist/assets/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('assets/admin/dist/assets/demo/chart-bar-demo.js') }}"></script>-->
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/admin/dist/assets/demo/datatables-demo.js') }}"></script>
 </body>
+
 </html>

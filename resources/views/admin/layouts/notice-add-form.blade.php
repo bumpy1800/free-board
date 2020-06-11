@@ -93,53 +93,15 @@
                     <div class="card mb-4">
                         <div class="card-header">
                           <i class="fas fa-pencil-alt"></i>
-                          게시글 등록
+                          공지사항 등록
                         </div>
                         <div class="card-body">
-                          <form name="content_form" action="{{ route('admin_post.store') }}" method="post">
+                          <form name="content_form" action="{{ route('admin_notice.store') }}" method="post">
                             @method('POST')
                             @csrf
-    
+
                           <div class="write_warp">
                               <fieldset>
-                                  <div class="row">
-                                    <div class="input_infobox input_infotxt col">
-                                        <input id="txt" class="infotxt" type="text" maxlength="15" name="name" value="" placeholder="닉네임">
-                                    </div>
-                                    <div class="input_infobox input_infotxt col">
-                                        <input id="txt" class="infotxt" type="password" maxlength="20" name="password" value="" placeholder="비밀번호">
-                                    </div>
-                                    <div class="input_infobox input_infotxt col">
-                                        <input type="text" id="resultName" class="infotxt resultName" value="" placeholder="갤러리 검색" disabled>
-                                        <input type="hidden" name="idH" id="idH" value="">
-                                        <button type="button" class="gallerySearch" onclick="showFind();"><i class="fas fa-search"></i></button>
-                                    </div>
-                                    <script language="javascript">
-                                      function showFind() {
-                                        window.open("/admin/galleryFind", "galleryFind", "width=450, height=300, left=100, top=50");
-                                      }
-                                    </script>
-                                  </div>
-                                  <div class="write_sub">
-                                      <strong class="tit">말머리</strong>
-                                      <ul id="sub_list" class="sub_list">
-                                          <li id="sel1" class="sel" value="sel1" onclick="change('sel1');"><i id="head" class="fas fa-check"></i>없음</li>
-                                          <input id="sendHead" type="hidden" name="head" value="없음">
-                                      </ul>
-                                      <script>
-                                        function change(sel) {
-                                          var head = document.getElementById(sel);
-                                          $('#head').remove();
-                                          $('.sub_list').children().attr('class', '');
-
-                                          head.setAttribute('class', 'sel');
-                                          $('#'+sel).prepend("<i id='head' class='fas fa-check'></i>");
-
-                                          id = $('.sel').text();
-                                          $('#sendHead').attr('value', id);
-                                        }
-                                      </script>
-                                  </div>
                                   <div id="title" class="input_infobox input_tit">
                                       <!--<label id="tit" for="tit" class="txt_placeholder">제목을 작성해주세요</label>-->
                                       <input id="txt"class="infotxt" type="text" maxlength="40" name="tit" value="" placeholder="제목을 입력해 주세요">

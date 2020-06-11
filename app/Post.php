@@ -12,7 +12,7 @@ class Post extends Model
     'contents',
     'user_id',
     'reg_date',
-    'image',
+    'ip',
     'view',
     'good',
     'bad',

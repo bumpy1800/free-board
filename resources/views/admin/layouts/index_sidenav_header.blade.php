@@ -7,11 +7,11 @@
                     Home
                 </a>
                 <div class="sb-sidenav-menu-heading">기본설정</div>
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="{{ route('admin_notice.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-bookmark"></i></div>
                     &nbsp;공지사항
                 </a>
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="{{ route('admin_popup.index') }}">
                     <div class="sb-nav-link-icon"><i class="far fa-image"></i></div>
                     팝업관리
                 </a>
@@ -83,7 +83,8 @@
                 </a>
                 <div class="collapse" id="qna" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                      <a class="nav-link" href="layout-static.php">Q&A목록</a>
+                      <a class="nav-link" href="{{ route('admin_qna_category.index') }}">Q&A종류</a>
+                      <a class="nav-link" href="{{ route('admin_qna.index') }}">Q&A목록</a>
                       <a class="nav-link" href="layout-static.php">Q&A통계</a>
                     </nav>
                 </div>

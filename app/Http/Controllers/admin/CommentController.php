@@ -42,6 +42,8 @@ class CommentController extends Controller
       * @param  \Illuminate\Http\Request  $request
       * @return \Illuminate\Http\Response
       */
+
+
      public function store(Request $request)
      {
        /*$messages = [
@@ -83,8 +85,7 @@ class CommentController extends Controller
        $post_id = $request->input('postId');
        $reg_date = date("Y-m-d");
        $user_id = 1;
-
-
+       $ip = $this->getUserIpAddr();
 
        $comment_id_rep = $request->input('commentId');
 
@@ -97,6 +98,8 @@ class CommentController extends Controller
                           ->get();
 
        $comment_id = 0;
+       $max_id = 0;
+       $min_id = 0;
 
        if(!$rep_co) {
          if(count($comment) <= 0)
@@ -121,22 +124,28 @@ class CommentController extends Controller
               $comment_id = $min_id + 1;
        }
 
-       Comment::create([
-           'id' => $comment_id,
-           'nouser_name' => $nouser_name,
-           'nouser_pw' => $nouser_pw,
-           'contents' => $contents,
-           'post_id' => $post_id,
-           'reg_date' => $reg_date,
-           'user_id' => 1
-       ]);
+       try {
+         Comment::create([
+             'id' => $comment_id,
+             'nouser_name' => $nouser_name,
+             'nouser_pw' => $nouser_pw,
+             'contents' => $contents,
+             'post_id' => $post_id,
+             'reg_date' => $reg_date,
+             'user_id' => 1,
+             'ip' => 123412
+         ]);
 
-       $post = Post::findOrFail($post_id);
-       Post::where('id', $post_id)->update([
-           'comments' => $post->comments + 1
-       ]);
+         $post = Post::findOrFail($post_id);
+         Post::where('id', $post_id)->update([
+             'comments' => $post->comments + 1
+         ]);
+         return redirect('admin_post/'.$post_gallery_link.'/'.$post_id);
+       } catch(Exception $e) {
+         return redirect('error');
+       }
 
-       return redirect('admin_post/'.$post_gallery_link.'/'.$post_id);
+
      }
 
     /**
@@ -188,13 +197,15 @@ class CommentController extends Controller
 
         $nouser_name = $request->input('name');
         $contents = $request->input('content');
+        $ip = $this->getUserIpAddr();
 
         comment::where('id', $id)->update([
           'nouser_name' => $nouser_name,
-          'contents' => $contents
-      ]);
+          'contents' => $contents,
+          'ip' => $ip
+        ]);
 
-      return redirect(route('admin_comment.index'));
+        return redirect(route('admin_comment.index'));
         //return redirect(route('admin_comment.show', $id));
     }
 
@@ -218,5 +229,42 @@ class CommentController extends Controller
       comment::where('id',  '=', $id)->delete();
 
       return redirect(route('admin_comment.index'));
+    }
+
+    /*public function get_client_ip() {
+      $ipaddress = '';
+      if (getenv('HTTP_CLIENT_IP'))
+          $ipaddress = getenv('HTTP_CLIENT_IP');
+      else if(getenv('HTTP_X_FORWARDED_FOR'))
+          $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+      else if(getenv('HTTP_X_FORWARDED'))
+          $ipaddress = getenv('HTTP_X_FORWARDED');
+      else if(getenv('HTTP_FORWARDED_FOR'))
+          $ipaddress = getenv('HTTP_FORWARDED_FOR');
+      else if(getenv('HTTP_FORWARDED'))
+          $ipaddress = getenv('HTTP_FORWARDED');
+      else if(getenv('REMOTE_ADDR'))
+          $ipaddress = getenv('REMOTE_ADDR');
+      else
+          $ipaddress = '0.0.0.0';
+      return $ipaddress;
+    }*/
+    public function getUserIpAddr(){
+       $ipaddress = '';
+       if (isset($_SERVER['HTTP_CLIENT_IP']))
+           $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+       else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+           $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+       else if(isset($_SERVER['HTTP_X_FORWARDED']))
+           $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+       else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+           $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+       else if(isset($_SERVER['HTTP_FORWARDED']))
+           $ipaddress = $_SERVER['HTTP_FORWARDED'];
+       else if(isset($_SERVER['REMOTE_ADDR']))
+           $ipaddress = $_SERVER['REMOTE_ADDR'];
+       else
+           $ipaddress = 'UNKNOWN';
+       return $ipaddress;
     }
 }

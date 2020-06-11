@@ -5,11 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Post;
-use App\Gallery;
-use App\Comment;
+use App\Notice;
 
-class PostController extends Controller
+
+class NoticeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +17,9 @@ class PostController extends Controller
      */
     public function index()
     {
-      //$posts = Post::all();
-      $posts = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
-                    /*->join('users', 'post.user_id', '=', 'user.id')
-                    ->select('post.*', 'gallery.name as gallery_name', 'user.name as user_name')*/
-                    ->select('post.*', 'gallery.name as gallery_name', 'gallery.link as gallery_link')
-                    ->get();
-
-      return view('admin.post-list', ['posts' => $posts]);
+      //$notices = notice::all();
+      $notices = Notice::all();
+      return view('admin.notice-list', ['notices' => $notices]);
     }
 
     /**
@@ -35,7 +29,7 @@ class PostController extends Controller
      */
      public function create()
      {
-         return view('admin.post-add-form');
+         return view('admin.notice-add-form');
      }
 
      /**
@@ -79,34 +73,16 @@ class PostController extends Controller
        }*/
        $title = $request->input('tit');
        $contents = $request->input('content');
-       $user_id = 1;
        $reg_date = date("Y-m-d");
-       $ip = $this->getUserIpAddr();
        $view = 0;
-       $good = 0;
-       $bad = 0;
-       $comments = 0;
-       $head = $request->input('head');
-       $notice = 0;
-       $gallery_id = $request->input('idH');
-       $password = $request->input('password');
 
-       Post::create([
+       Notice::create([
            'title' => $title,
            'contents' => $contents,
-           'user_id' => $user_id,
            'reg_date' => $reg_date,
-           'ip' => $ip,
-           'view' => $view,
-           'good' => $good,
-           'bad' => $bad,
-           'comments' => $comments,
-           'head' => $head,
-           'notice' => $notice,
-           'gallery_id' => $gallery_id,
-           'password' => $password
+           'view' => $view
        ]);
-       return redirect(route('admin_post.index'));
+       return redirect(route('admin_notice.index'));
      }
 
     /**
@@ -115,27 +91,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($link, $id)
+    public function show($id)
     {
-      $post = Post::findOrFail($id);
-
-      Post::where('id', $id)->update([
-          'view' => $post->view + 1
+      $notice = Notice::findOrFail($id);
+      notice::where('id', $id)->update([
+          'view' => $notice->view + 1
       ]);
 
-      $post = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
-                    //->join('comment', 'post.id', '=', 'comment.post_id')
-                    ->select('post.*', 'post.ip as post_ip', 'gallery.name as gallery_name', 'gallery.link as gallery_link')
-                    ->where('gallery.link', '=', $link)
-                    ->where('post.id', '=', $id)
-                    ->first();
-
-      $comments = Comment::join('post', 'comment.post_id', '=', 'post.id')
-                    ->select('comment.*')
-                    ->orderby('comment.id')
-                    ->get();
-
-      return view('admin.post-show', ['post' => $post], ['comments' => $comments]);
+      return view('admin.notice-show', ['notice' => $notice]);
     }
 
     /**
@@ -146,13 +109,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //$post = Post::findOrFail($id);
-        $post = Post::find($id)
-                      ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
-                      ->select('post.*' ,'gallery.id as gallery_id', 'gallery.name as gallery_name', 'gallery.heads as gallery_heads')
-                      ->first();
-        //exit($post);
-        return view('admin.post-edit-form', ['post' => $post]);
+        $notice = Notice::find($id);
+        return view('admin.notice-edit-form', ['notice' => $notice]);
     }
 
     /**
@@ -179,28 +137,16 @@ class PostController extends Controller
 
         $title = $request->input('tit');
         $contents = $request->input('content');
-        $user_id = 1;
         $reg_date = date("Y-m-d");
-        $ip = $this->getUserIpAddr();
-        $head = $request->input('head');
-        $notice = 0;
-        $gallery_id = $request->input('idH');
-        $password = $request->input('password');
 
-        Post::where('id', $id)->update([
+        notice::where('id', $id)->update([
           'title' => $title,
           'contents' => $contents,
-          'user_id' => $user_id,
           'reg_date' => $reg_date,
-          'ip' => $ip,
-          'head' => $head,
-          'notice' => $notice,
-          'gallery_id' => $gallery_id,
-          'password' => $password
-      ]);
+        ]);
 
-      return redirect(route('admin_post.index'));
-        //return redirect(route('admin_post.show', $id));
+        return redirect(route('admin_notice.index'));
+        //return redirect(route('admin_notice.show', $id));
     }
 
     /**
@@ -211,8 +157,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-      Post::destroy($id);
-      return redirect(route('admin_post.index'));
+      Notice::destroy($id);
+      return redirect(route('admin_notice.index'));
     }
 
     public function galleryFind(Request $request)

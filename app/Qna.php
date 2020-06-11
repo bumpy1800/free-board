@@ -4,19 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Qna extends Model
 {
   protected $fillable = [
     'id',
-    'user_id',
-    'nouser_name',
-    'nouser_pw',
+    'title',
     'contents',
-    'reg_date',
-    'post_id',
-    'ip'
+    'category',
+    'reg_date'
   ];
 
   public $timestamps = false;
-  protected $table = 'comment';
+  protected $table = 'qna';
 }

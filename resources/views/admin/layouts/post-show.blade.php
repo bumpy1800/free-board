@@ -71,7 +71,7 @@
                                               <div class="post_writer">
                                                   <div class="left">
                                                       <span class="post_nick">작성자</span>
-                                                      <span class="ip">(IP)</span>
+                                                      <span class="ip">(  {{ $post->post_ip }}  )</span>
                                                       <span class="view_date">{{ $post->reg_date }}</span>
                                                   </div>
                                                   <div class="right pdL6">
@@ -142,7 +142,7 @@
                       											<span class="cmt_nickname">
                       												{{ $comment->nouser_name }}
                       											</span>
-                      											<span class="cmt_ip">(IP)</span>
+                      											<span class="cmt_ip">({{ $comment->ip }} )</span>
                       										</span>
                       									</div>
                       									<div class="left">
@@ -187,7 +187,7 @@
                       															<span class="cmt_nickname">
                       																{{ $comment->nouser_name }}
                       															</span>
-                      															<span class="cmt_ip">(IP)</span>
+                      															<span class="cmt_ip">({{ $comment->ip }})</span>
                       														</span>
                       													</div>
                       													<div class="left">

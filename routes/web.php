@@ -85,12 +85,10 @@ Route::resources([
     'user' => 'UserController',
     'admin/user-list' => 'UserController',
     'user_wait' => 'UserWaitController',
-    'admin/user_wait-list' => 'UserWaitController'
+    'admin/user_wait-list' => 'UserWaitController',
 ]);
 Route::get('admin/user-add-form', 'UserController@create');
-//Route::post('admin/user-add', 'UserController@store');
 Route::get('admin/user-edit-form/{id}', 'UserController@edit');
-//Route::post('admin/user-edit/{id}', 'UserController@update');
 Route::get('admin/user-destroy/{id}', 'UserController@destroy');
 Route::get('admin/user-show/{id}', 'UserController@show');
 
@@ -99,9 +97,7 @@ Route::resources([
     'admin/policy-list' => 'PolicyController',
 ]);
 Route::get('admin/policy-add-form', 'PolicyController@create');
-//Route::post('admin/policy-add', 'PolicyController@store');
 Route::get('admin/policy-edit-form/{id}', 'PolicyController@edit');
-//Route::post('admin/policy-edit/{id}', 'PolicyController@update');
 Route::get('admin/policy-destroy/{id}', 'PolicyController@destroy');
 Route::get('admin/policy-show/{id}', 'PolicyController@show');
 
@@ -109,7 +105,12 @@ Route::resources([
     'gallery-plus' => 'GalleryController',
     'admin_post' => 'admin\PostController',
     'admin_category' => 'admin\CategoryController',
-    'admin_comment' => 'admin\CommentController'
+    'admin_comment' => 'admin\CommentController',
+    'admin_notice' => 'admin\NoticeController',
+    'admin_popup' => 'admin\PopupController',
+    'admin_popup_category' => 'admin\Popup_categoryController',
+    'admin_qna' => 'admin\QnaController',
+    'admin_qna_category' => 'admin\Qna_categoryController'
 ]);
 Route::get('admin_post/{link}/{id}', 'admin\PostController@show');
 
