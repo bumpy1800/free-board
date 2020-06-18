@@ -81,6 +81,7 @@ Route::get('admin', function () {
 Route::get('/admin/find', function () {
 	return view('find');
 });
+
 Route::resources([
     'user' => 'UserController',
     'admin/user-list' => 'UserController',

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use File;
 use App\Popup;
 use App\Popup_category;
 
@@ -86,7 +87,9 @@ class PopupController extends Controller
     public function show($id)
     {
       $popup = popup::findOrFail($id);
-      $image = Storage::url($popup->image);
+      $image = Storage::get($popup->image); //이미지 가져와서 text 변환
+      $image = base64_encode($image); //base64로 인코딩
+
       return view('admin.popup-show', ['popup' => $popup], ['image' => $image]);
     }
 

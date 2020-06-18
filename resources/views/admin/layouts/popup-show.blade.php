@@ -38,7 +38,7 @@
                             </div>
                             <div class="form-group">
                               <label for="image">파일</label>
-                              <img src="{{ asset($image) }}" id="image">
+                              <img src="data:image/png;base64,{{ $image }}" alt="title" />
                             </div>
                             <div class="form-group">
                               <div for="heads">상태여부</div>
