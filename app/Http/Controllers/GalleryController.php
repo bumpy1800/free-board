@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Gallery;                     //ORM
-
+use App\Category;                     //ORM
 
 class GalleryController extends Controller
 {
@@ -19,8 +19,9 @@ class GalleryController extends Controller
     public function index()
     {
         //$users = DB::table('Gallery')->get();
-        $gallerys = Gallery::all();
-        return view('gallery-plus', ['gallerys' => $gallerys]);
+        $categorys = Category::all();
+        $gallerys = Gallery::select('*')->orderby('category_id')->get();
+        return view('gallery-plus', ['gallerys' => $gallerys], ['categorys' => $categorys]);
     }
 
     /**
@@ -105,7 +106,7 @@ class GalleryController extends Controller
      */
     public function show($id)
     {
-        return view('admin.gallery-show', ['gallery' => Gallery::findOrFail($id)]);
+        return view('gallery', ['gallery' => Gallery::findOrFail($id)]);
     }
 
     /**

@@ -103,7 +103,7 @@ Route::get('admin/policy-destroy/{id}', 'PolicyController@destroy');
 Route::get('admin/policy-show/{id}', 'PolicyController@show');
 
 Route::resources([
-    'gallery-plus' => 'GalleryController',
+    'gallery' => 'GalleryController',
     'admin_post' => 'admin\PostController',
     'admin_category' => 'admin\CategoryController',
     'admin_comment' => 'admin\CommentController',
@@ -126,4 +126,5 @@ Route::post('admin/gallery-edit/{id}', 'admin\GalleryController@update');
 Route::get('admin/gallery-destroy/{id}', 'admin\GalleryController@destroy');
 Route::get('admin/gallery-show/{id}', 'admin\GalleryController@show');
 
-//Route::resource('test', 'TestController');
+Route::get('admin_gallery_stat', 'admin\GalleryController@stat_index');
+Route::post('admin_gallery_stat', 'admin\GalleryController@stat_change');

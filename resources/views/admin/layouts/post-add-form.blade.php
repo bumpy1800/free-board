@@ -99,7 +99,7 @@
                           <form name="content_form" action="{{ route('admin_post.store') }}" method="post">
                             @method('POST')
                             @csrf
-    
+
                           <div class="write_warp">
                               <fieldset>
                                   <div class="row">

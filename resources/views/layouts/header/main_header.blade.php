@@ -52,7 +52,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="gallery-plus"><b>갤러리</b></a>
+                    <a class="nav-link" href="{{ route('gallery.index') }}"><b>갤러리</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="gallog"><b>갤로그</b></a>

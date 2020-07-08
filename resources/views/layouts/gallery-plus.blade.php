@@ -327,258 +327,101 @@
 						1/7
 					</div>
 				</div>
-				<div class="game">
-					<div class="top m-hide"><b>게임</b><color> (140)</color></div>
-					<div class="top m-show mtop"><a href="/gallery-plus-m"><b>게임</b></a><color> (140)</color></div>
-					<table>
-						<thead>
-							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tr>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-						</tr>
-						<tr>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-							<td width="14.2%">
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-								<h6><a href="">게시물 신고</a></h6>
-								<h6><a href="">공지사항</a></h6>
-								<h6><a href="">게임</a></h6>
-							</td>
-						</tr>
-					</table>
-					<div class="page">
-						1/7
-					</div>
-				</div>
-				<div class="sports">
-					<div class="top m-hide"><b>스포츠</b><color> (16)</color></div>
-					<div class="top m-show mtop"><a href="/gallery-plus-m"><b>스포츠</b></a><color> (16)</color></div>
-					<table>
-						<thead>
-							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
 
+				@php
+						$allcnt = count($gallerys);
+						$row = 7;
+						$col = ceil($allcnt/70);
+						$cnt = 0;
+						$col_cnt = 0;
+						$row_cnt = 0;
+						$row_bool = 0;
+
+						$temp = 0;
+						$temp_category_id = 0;
+						$gallery_cnt = 0;
+						$galleryLinkArr = [];
+						$galleryArr = [];
+				@endphp
+
+				@foreach ($gallerys as $gallery)
+					@php
+						$temp = $gallery->category_id;
+					@endphp
+					@if($temp == $temp_category_id)
 						@php
-						    $galleryArr = [];
-								$allcnt = count($gallerys);
-								$row = 7;
-								$col = ceil(count($gallerys)/70);
-								$cnt = 0;
-								$col_cnt = 0;
-								$row_cnt = 0;
-								$row_bool = 0;
+							$galleryArr[$gallery->category_id][$gallery_cnt] = $gallery->name;
+							$galleryLinkArr[$gallery->category_id][$gallery_cnt] = $gallery->link;
+							$gallery_cnt ++;
 						@endphp
+					@else
+						@php
+							$temp_category_id = $gallery->category_id;
+							$gallery_cnt = 0;
+							$galleryArr[$gallery->category_id][$gallery_cnt] = $gallery->name;
+							$galleryLinkArr[$gallery->category_id][$gallery_cnt] = $gallery->link;
+							$gallery_cnt ++;
+						@endphp
+					@endif
+					@php
+						$cnt ++;
+					@endphp
+				@endforeach
 
+				@foreach($categorys as $category)
+					@if(empty($galleryArr[$category->id]))
+						@php
+							echo("is empty. error");
+						@endphp
+					@else
+						@php
+							$gallery_cnt = count($galleryArr[$category->id]);
+						@endphp
+						<div class="top m-hide"><b>{{ $category->name }}</b><color> ({{ count($galleryArr[$category->id]) }})</color></div>
+						<div class="top m-show mtop"><a href="/gallery-plus-m"><b>{{ $category->name }}</b></a><color> ({{ count($galleryArr[$category->id]) }})</color></div>
+						<table>
+							<thead>
+								<tr>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
 
-						@foreach ($gallerys as $gallery)
-							@php
-								$galleryArr[$cnt] = $gallery->name;
-								$cnt ++;
-							@endphp
-						@endforeach
+							@for ($i = 0; $i < $col; $i++)
+							<tr>
+									@for ($j = 0; $j < $row; $j++)
+										<td width="14.2%">
+											@unless ($allcnt == 0)
+												@for ($p = $col_cnt; $p < $gallery_cnt; $p++)
+												<h6><a href="{{ route('gallery.show', $galleryLinkArr[$category->id][$p]) }}">{{ $galleryArr[$category->id][$p] }}</a></h6>
+													@php
+														$allcnt --;
+														$col_cnt ++;
+													@endphp
+													@if($col_cnt/10 >= 1 && $col_cnt%10 == 0)
+														@break
+													@endif
+												@endfor
+											@endunless
+										</td>
+									@endfor
+							</tr>
+							@endfor
+						</table>
+						<div class="page">
+							1/7
+						</div>
+					@endif
 
-						@for ($i = 0; $i < $col; $i++)
-						<tr>
-								@for ($j = 0; $j < $row; $j++)
-									<td width="14.2%">
-										@unless ($allcnt == 0)
-											@for ($p = $col_cnt; $p < $cnt; $p++)
-											<h6><a href="">{{ $galleryArr[$p] }}</a></h6>
-												@php
-													$allcnt --;
-													$col_cnt ++;
-												@endphp
-												@if($col_cnt/10 >= 1 && $col_cnt%10 == 0)
-													@break
-												@endif
-											@endfor
-										@endunless
-									</td>
-								@endfor
-						</tr>
-						@endfor
-					</table>
-					<div class="page">
-						1/7
-					</div>
-				</div>
+					@php
+						$col_cnt = 0;
+					@endphp
+				@endforeach
 			</div>
 			@yield('footer')
 		</div>

@@ -106,6 +106,12 @@
                                       <!--<label id="tit" for="tit" class="txt_placeholder">제목을 작성해주세요</label>-->
                                       <input id="txt"class="infotxt" type="text" maxlength="40" name="tit" value="" placeholder="제목을 입력해 주세요">
                                   </div>
+                                  @error('tit')
+                                      <small style="color: red!important;" id="danger" class="form-text text-muted">{{ $message }}</small>
+                                  @enderror
+                                  @error('content')
+                                      <small style="color: red!important;" id="danger" class="form-text text-muted">{{ $messages->get('content') }}</small>
+                                  @enderror
                               </fieldset>
                               <div class="write_info">
                                   <p>※ 쉬운 비밀번호를 입력하면 타인의 수정, 삭제가 쉽습니다.</p>
@@ -113,6 +119,7 @@
                               </div>
                               <div class=""><!--에디터-->
                                 <textarea name="content" style="width:100%; min-width:1px; height: 800px;" id="content"></textarea>
+
                                 <script language="javascript">
                                   var oEditors = [];
                                   var sLang = "ko_KR"; // 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR

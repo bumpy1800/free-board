@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Notice;
 
 
@@ -40,39 +41,32 @@ class NoticeController extends Controller
       */
      public function store(Request $request)
      {
-       /*$messages = [
-           's_name.required'    => '갤러리 약자를 입력해주세요.',
-           'name.required'    => '갤러리 이름을 입력해주세요.',
-           'category_id.required' => '카테고리를 선택해주세요.',
-           'link.required'      => '주소를 입력해주세요.',
-           'contents.required'      => '설명을 입력해주세요.',
-           'reason.required'      => '사유를 입력해주세요.',
-           'heads.required'      => '말머리를 입력해주세요.',
-           'agree.required'      => '허가여부를 선택해주세요.',
-           's_name.max'    => '갤러리 약자의 글자 수가 초과하였습니다.',
-           'name.max'    => '갤러리 이름의 글자 수가 초과하였습니다.',
-           'link.max'      => '주소의 글자 수가 초과하였습니다.',
-           'contents.max'      => '설명의 글자 수가 초과하였습니다.',
-           'reason.max'      => '사유의 글자 수가 초과하였습니다.',
-           'heads.max'      => '말머리의 글자 수가 초과하였습니다.'
+       $messages = [
+         'tit.required'    => '제목을 입력해주세요.',
+         'content.required'    => '내용을 입력해주세요.'
        ];
        $validator = Validator::make($request->all(), [
-           's_name' => 'required|max:3',
-           'name' => 'required|max:10',
-           'category_id' => 'required',
-           'link' => 'required|max:10',
-           'contents' => 'required|max:10',
-           'reason' => 'required|max:10',
-           'heads' => 'required|max:10',
-           'agree' => 'required|max:10'
+           'tit' => 'required',
+           'content' => 'required'
        ], $messages);
        if ($validator->fails()) {
-           return redirect('admin/gallery-add-form')
+           return redirect(route('admin_notice.create'))
                ->withInput()
                ->withErrors($validator);
-       }*/
+       }
+       elseif ($request->input('content') == "<p>&nbsp;</p>") { // 컨텐츠 유효성검사 해결하기
+          return redirect(route('admin_notice.create'))->withInput()->withErrors($validator, 'content');
+       }
+
        $title = $request->input('tit');
+
        $contents = $request->input('content');
+       if ($contents == "<p>&nbsp;</p>") {
+            return $validator->errors()->add('field', 'Something is wrong with this field!')>withInput()
+            ->withErrors($validator);
+       }
+
+
        $reg_date = date("Y-m-d");
        $view = 0;
 
@@ -122,18 +116,19 @@ class NoticeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$messages = [
-            'name.required'    => '카테고리 이름을 입력해주세요.',
-            'name.max'    => '최대 글자 수는 10글자 입니다.'
+        $messages = [
+            'tit.required'    => '제목을 입력해주세요.',
+            'content.required'    => '내용을 입력해주세요.'
         ];
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:10'
+            'title' => 'required',
+            'contents' => 'required'
         ], $messages);
         if ($validator->fails()) {
-            return redirect(route('admin_category.edit',$id))
+            return redirect(route('admin_noitce.edit', $id))
                 ->withInput()
                 ->withErrors($validator);
-        }*/
+        }
 
         $title = $request->input('tit');
         $contents = $request->input('content');
@@ -171,24 +166,5 @@ class NoticeController extends Controller
 
 
       return view('find', ['results' => $results]);
-    }
-
-    public function getUserIpAddr(){
-       $ipaddress = '';
-       if (isset($_SERVER['HTTP_CLIENT_IP']))
-           $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-       else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-           $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-       else if(isset($_SERVER['HTTP_X_FORWARDED']))
-           $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-       else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-           $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-       else if(isset($_SERVER['HTTP_FORWARDED']))
-           $ipaddress = $_SERVER['HTTP_FORWARDED'];
-       else if(isset($_SERVER['REMOTE_ADDR']))
-           $ipaddress = $_SERVER['REMOTE_ADDR'];
-       else
-           $ipaddress = 'UNKNOWN';
-       return $ipaddress;
     }
 }

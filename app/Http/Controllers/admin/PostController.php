@@ -46,37 +46,24 @@ class PostController extends Controller
       */
      public function store(Request $request)
      {
-       /*$messages = [
-           's_name.required'    => '갤러리 약자를 입력해주세요.',
-           'name.required'    => '갤러리 이름을 입력해주세요.',
-           'category_id.required' => '카테고리를 선택해주세요.',
-           'link.required'      => '주소를 입력해주세요.',
-           'contents.required'      => '설명을 입력해주세요.',
-           'reason.required'      => '사유를 입력해주세요.',
-           'heads.required'      => '말머리를 입력해주세요.',
-           'agree.required'      => '허가여부를 선택해주세요.',
-           's_name.max'    => '갤러리 약자의 글자 수가 초과하였습니다.',
-           'name.max'    => '갤러리 이름의 글자 수가 초과하였습니다.',
-           'link.max'      => '주소의 글자 수가 초과하였습니다.',
-           'contents.max'      => '설명의 글자 수가 초과하였습니다.',
-           'reason.max'      => '사유의 글자 수가 초과하였습니다.',
-           'heads.max'      => '말머리의 글자 수가 초과하였습니다.'
+       $messages = [
+           'title.required'    => '제목을 입력해주세요.',
+           'contents.required'    => '내용을 입력해주세요.',
+           'gallery_id.required' => '갤러리를 선택해주세요.',
+           'password.required'      => '암호를 입력해주세요.'
        ];
        $validator = Validator::make($request->all(), [
-           's_name' => 'required|max:3',
-           'name' => 'required|max:10',
-           'category_id' => 'required',
-           'link' => 'required|max:10',
-           'contents' => 'required|max:10',
-           'reason' => 'required|max:10',
-           'heads' => 'required|max:10',
-           'agree' => 'required|max:10'
+           'title' => 'required',
+           'contents' => 'required',
+           'gallery_id' => 'required',
+           'password' => 'required'
        ], $messages);
        if ($validator->fails()) {
-           return redirect('admin/gallery-add-form')
+           return redirect('admin/post-add-form')
                ->withInput()
                ->withErrors($validator);
-       }*/
+       }
+
        $title = $request->input('tit');
        $contents = $request->input('content');
        $user_id = 1;
@@ -164,18 +151,23 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$messages = [
-            'name.required'    => '카테고리 이름을 입력해주세요.',
-            'name.max'    => '최대 글자 수는 10글자 입니다.'
+        $messages = [
+            'title.required'    => '제목을 입력해주세요.',
+            'contents.required'    => '내용을 입력해주세요.',
+            'gallery_id.required' => '갤러리를 선택해주세요.',
+            'password.required'      => '암호를 입력해주세요.'
         ];
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:10'
+            'title' => 'required',
+            'contents' => 'required',
+            'gallery_id' => 'required',
+            'password' => 'required'
         ], $messages);
         if ($validator->fails()) {
-            return redirect(route('admin_category.edit',$id))
+            return redirect(route('admin_post.edit', $id))
                 ->withInput()
                 ->withErrors($validator);
-        }*/
+        }
 
         $title = $request->input('tit');
         $contents = $request->input('content');
