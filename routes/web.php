@@ -114,6 +114,8 @@ Route::resources([
     'admin_qna_category' => 'admin\Qna_categoryController'
 ]);
 Route::get('admin_post/{link}/{id}', 'admin\PostController@show');
+Route::get('admin_post_stat', 'admin\PostController@stat_index');
+Route::post('admin_post_stat', 'admin\PostController@stat_change');
 
 Route::get('admin/galleryFind', 'admin\PostController@galleryFind');
 Route::post('admin/galleryFind', 'admin\PostController@galleryFind');

@@ -31,7 +31,7 @@
                       <a class="nav-link" href="/admin/gallery-list">갤러리관리</a>
                       <a class="nav-link" href="{{ url('admin_gallery_stat') }}">갤러리통계</a>
                       <a class="nav-link" href="{{ route('admin_post.index') }}">게시물통합관리</a>
-                      <a class="nav-link" href="{{ route('admin_post.index') }}">게시물통계</a>
+                      <a class="nav-link" href="{{ url('admin_post_stat') }}">게시물통계</a>
                       <a class="nav-link" href="{{ route('admin_comment.index') }}">코멘트통합관리</a>
                     </nav>
                 </div>

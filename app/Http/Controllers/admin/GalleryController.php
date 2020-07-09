@@ -231,7 +231,7 @@ class GalleryController extends Controller
 
     public function stat_change(Request $request)
     {
-        $statChangeBool = $request->input('statChangeBool'); //날짜 선택하면 1 첫 페이지이면 0
+        $statChangeBool = $request->input('statChangeBool'); //카테고리선택 2. 날짜 선택하면 1 첫 페이지이면 0
         $nowMonth = $request->input('nowMonth');
         $nowMonthDayCount = date('t', strtotime($nowMonth));
         $category_id = 0; //카테고리id 값이 없을 때
