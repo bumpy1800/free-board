@@ -11,6 +11,7 @@ var dayAreaChartMax;
 
 var ctx;
 var myLineChart;
+var pieChart;
 
 var nowMonth = $('.nowMonth').val();
 var nowMonthDayCount = $('.nowMonthDayCount').val();
@@ -28,6 +29,10 @@ $.ajax({
      success: function(data) {
           console.log(data['dayAreaChartData']);
 
+          selectAreaChartLabel = data['selectAreaChartLabel'];
+          selectAreaChartData = data['selectAreaChartData'];
+          selectAreaChartMax = data['selectAreaChartMax'];
+
           dayAreaChartLabel = data['dayAreaChartLabel'];
           dayAreaChartData = data['dayAreaChartData'];
           dayAreaChartMax = data['dayAreaChartMax'];
@@ -36,19 +41,20 @@ $.ajax({
           monthBarChartData = data['monthBarChartData'];
           monthBarChartMax = data['monthBarChartMax'];
 
-          selectAreaChartLabel = data['selectAreaChartLabel'];
-          selectAreaChartData = data['selectAreaChartData'];
-          selectAreaChartMax = data['selectAreaChartMax'];
+          categoryPieChartLabel = data['categoryPieChartLabel'];
+          categoryPieChartData = data['categoryPieChartData'];
+
           gDayAreaChart(dayAreaChartLabel, dayAreaChartData, dayAreaChartMax);
           gMonthBarChart(monthBarChartLabel, monthBarChartData, monthBarChartMax);
           gSelectAreaChart(selectAreaChartLabel, selectAreaChartData, selectAreaChartMax);//가장 마지막에 myLineChart을 생성하고 destory가 되게
+          gCategoryPieChart(categoryPieChartLabel, categoryPieChartData); //카테고리 설정차트
      },
      error: function(data) {
           console.log("error" +data);
      }
 });
 
-$('.nowMonth').change(function() {
+$('.nowMonth').change(function() { //날짜 선택
   nowMonth = $('.nowMonth').val();
   $.ajax({
        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -60,11 +66,34 @@ $('.nowMonth').change(function() {
          'statChangeBool': 1
        },
        success: function(data) {
-            myLineChart.destroy(); //마지막에 생성된 myLineChart를 삭제함
+            myLineChart.destroy(); //마지막에 그려진  myLineChart를 삭제함
             selectAreaChartLabel = data['selectAreaChartLabel'];
             selectAreaChartData = data['selectAreaChartData'];
             selectAreaChartMax = data['selectAreaChartMax'];
             gSelectAreaChart(selectAreaChartLabel, selectAreaChartData, selectAreaChartMax); //가장 마지막에 myLineChart을 생성하고 destory가 되게 함
+       },
+       error: function(data) {
+            console.log("error" +data);
+       }
+  });
+});
+
+$('.category_id').change(function() { //날짜 선택
+  var category_id = $('.category_id').val();
+  $.ajax({
+       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+       type: 'post',
+       url: '/admin_gallery_stat',
+       dataType: 'json',
+       data: {
+         'category_id': category_id,
+         'statChangeBool': 2
+       },
+       success: function(data) {
+            pieChart.destroy();
+            categoryPieChartLabel = data['categoryPieChartLabel'];
+            categoryPieChartData = data['categoryPieChartData'];
+            gCategoryPieChart(categoryPieChartLabel, categoryPieChartData); //카테고리 설정차트
        },
        error: function(data) {
             console.log("error" +data);
@@ -217,5 +246,19 @@ function gMonthBarChart(labels, data, max) {
         display: false
       }
     }
+  });
+}
+
+function gCategoryPieChart(labels, data) {
+  ctx = document.getElementById("pieChart");
+  pieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745','#f07bdc', '#d96681', '#964059', '#d0671c','#fae477', '#b6c154'],
+      }],
+    },
   });
 }

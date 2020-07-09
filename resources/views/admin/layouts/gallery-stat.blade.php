@@ -28,13 +28,37 @@
             <main>
                 <div class="container-fluid">
                     <h1 class="mt-4">관리자님 환영합니다.</h1>
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">{{ $galleryTotalCnt }}</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white">전체 갤러리 수</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">{{ $galleryTodayCnt }}</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white">오늘 갤러리 생성 수</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">{{ $galleryNoAgreeCnt }}</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white">갤러리 승인대기 수</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card mb-4">
                         <div class="card-header">
-                          <i class="fas fa-chart-area mr-1"></i>한 달간 갤러리 생성 수
-
+                          <i class="fas fa-chart-area mr-1"></i>최근 한 달간 갤러리 생성 수
                             <input type="hidden" class="nowMonthDayCount" value="{{ $nowMonthDayCount }}">
                             <input type="month" class="nowMonth" value="{{ $nowMonth }}" style="float:right;">
-
                         </div>
                         <div class="card-body"><canvas id="gSelectAreaChart" width="100%" height="40"></canvas></div>
                     </div>
@@ -51,6 +75,19 @@
                                 <div class="card-body"><canvas id="gMonthBarChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                          <i class="fas fa-chart-bar mr-1"></i>카테고리별 갤러리 수
+                          <small>(갤러리 수가 가장 높은 순으로 10개만 보여집니다.)</small>
+                          <select style="float: right;" class="category_id">
+                            @foreach ($categorys as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                        <div class="card-body"><canvas id="pieChart" width="100%" height="40"></canvas></div>
+
                     </div>
                 </div>
             </main>

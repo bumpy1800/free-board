@@ -176,7 +176,7 @@ class GalleryController extends Controller
         $reason = $request->input('reason');
         $heads = $request->input('heads');
         $agree = $request->input('agree');
-        $agree_date = 0;
+        $agree_date = '';
         if($agree == 1) {
           $agree_date = date('Y-m-d', time());
         }
@@ -212,51 +212,88 @@ class GalleryController extends Controller
     {
         $nowMonth = date('Y-m', time());
         $nowMonthDayCount = date('t', strtotime($nowMonth));
-        return view('admin.gallery-stat', ['nowMonth' => $nowMonth, 'nowMonthDayCount' => $nowMonthDayCount]);
+
+        $categorys = Category::all();
+        $galleryTotalCnt = Gallery::count();
+        $galleryToday = date('Y-m-d', time());
+        $galleryTodayCnt = Gallery::where('agree_date', $galleryToday)->count();
+        $galleryNoAgreeCnt = Gallery::where('agree', 0)->count();
+
+        return view('admin.gallery-stat', [
+          'nowMonth' => $nowMonth,
+          'nowMonthDayCount' => $nowMonthDayCount,
+          'categorys' => $categorys,
+          'galleryTotalCnt' => $galleryTotalCnt,
+          'galleryTodayCnt' => $galleryTodayCnt,
+          'galleryNoAgreeCnt' => $galleryNoAgreeCnt
+        ]);
     }
 
     public function stat_change(Request $request)
     {
-        $statChangeBool = $request->input('statChangeBool');
-
+        $statChangeBool = $request->input('statChangeBool'); //날짜 선택하면 1 첫 페이지이면 0
         $nowMonth = $request->input('nowMonth');
         $nowMonthDayCount = date('t', strtotime($nowMonth));
-        $selectAreaChart = $this->selectAreaChart($nowMonth, $nowMonthDayCount);
-        $selectAreaChartLabel = $selectAreaChart[0];
-        $selectAreaChartData = $selectAreaChart[1];
-        $selectAreaChartMax = $selectAreaChart[2];
+        $category_id = 0; //카테고리id 값이 없을 때
 
-        if($statChangeBool == 0) {
-          $dayAreaChart = $this->dayAreaChart();
-          $dayAreaChartLabel = $dayAreaChart[0];
-          $dayAreaChartData = $dayAreaChart[1];
-          $dayAreaChartMax = $dayAreaChart[2];
+        switch ($statChangeBool) {
+          case 1: //날짜선택 차트
+            $selectAreaChart = $this->selectAreaChart($nowMonth, $nowMonthDayCount);
+            $selectAreaChartLabel = $selectAreaChart[0];
+            $selectAreaChartData = $selectAreaChart[1];
+            $selectAreaChartMax = $selectAreaChart[2];
+            return response()->json([
+              'selectAreaChartLabel'=>$selectAreaChartLabel,
+              'selectAreaChartData'=>$selectAreaChartData,
+              'selectAreaChartMax'=>$selectAreaChartMax
+            ]);
+            break;
+          case 2: //카테고리 파이차트
+            $category_id = $request->input('category_id'); //카테고리 값 받음
+            $categoryPieChart = $this->categoryPieChart($category_id);
+            $categoryPieChartLabel = $categoryPieChart[0];
+            $categoryPieChartData = $categoryPieChart[1];
+            return response()->json([
+              'categoryPieChartLabel'=>$categoryPieChartLabel,
+              'categoryPieChartData'=>$categoryPieChartData
+            ]);
+            break;
+          default: //첫 페이지
+            $selectAreaChart = $this->selectAreaChart($nowMonth, $nowMonthDayCount);
+            $selectAreaChartLabel = $selectAreaChart[0];
+            $selectAreaChartData = $selectAreaChart[1];
+            $selectAreaChartMax = $selectAreaChart[2];
 
-          $monthBarChart = $this->monthBarChart();
-          $monthBarChartLabel = $monthBarChart[0];
-          $monthBarChartData = $monthBarChart[1];
-          $monthBarChartMax = $monthBarChart[2];
+            $dayAreaChart = $this->dayAreaChart();
+            $dayAreaChartLabel = $dayAreaChart[0];
+            $dayAreaChartData = $dayAreaChart[1];
+            $dayAreaChartMax = $dayAreaChart[2];
 
-          return response()->json([
-            'dayAreaChartLabel'=>$dayAreaChartLabel,
-            'dayAreaChartData'=>$dayAreaChartData,
-            'dayAreaChartMax'=>$dayAreaChartMax,
-            'monthBarChartLabel'=>$monthBarChartLabel,
-            'monthBarChartData'=>$monthBarChartData,
-            'monthBarChartMax'=>$monthBarChartMax,
-            'selectAreaChartLabel'=>$selectAreaChartLabel,
-            'selectAreaChartData'=>$selectAreaChartData,
-            'selectAreaChartMax'=>$selectAreaChartMax
-          ]);
+            $monthBarChart = $this->monthBarChart();
+            $monthBarChartLabel = $monthBarChart[0];
+            $monthBarChartData = $monthBarChart[1];
+            $monthBarChartMax = $monthBarChart[2];
+
+            $categoryPieChart = $this->categoryPieChart($category_id);
+            $categoryPieChartLabel = $categoryPieChart[0];
+            $categoryPieChartData = $categoryPieChart[1];
+
+            return response()->json([
+              'dayAreaChartLabel'=>$dayAreaChartLabel,
+              'dayAreaChartData'=>$dayAreaChartData,
+              'dayAreaChartMax'=>$dayAreaChartMax,
+              'monthBarChartLabel'=>$monthBarChartLabel,
+              'monthBarChartData'=>$monthBarChartData,
+              'monthBarChartMax'=>$monthBarChartMax,
+              'selectAreaChartLabel'=>$selectAreaChartLabel,
+              'selectAreaChartData'=>$selectAreaChartData,
+              'selectAreaChartMax'=>$selectAreaChartMax,
+              'categoryPieChartLabel'=>$categoryPieChartLabel,
+              'categoryPieChartData'=>$categoryPieChartData
+            ]);
         }
-        else {
-          return response()->json([
-            'selectAreaChartLabel'=>$selectAreaChartLabel,
-            'selectAreaChartData'=>$selectAreaChartData,
-            'selectAreaChartMax'=>$selectAreaChartMax
-          ]);
-      }
     }
+
     public function selectAreaChart($nowMonth, $nowMonthDayCount) {
       for($i = 0; $i < $nowMonthDayCount; $i ++) {
         $selectAreaChartLabel[$i] = $i+1 . "일";
@@ -309,5 +346,32 @@ class GalleryController extends Controller
       }
       $monthBarChartMax = max($monthBarChartData);
       return [$monthBarChartLabel, $monthBarChartData, $monthBarChartMax];
+    }
+
+    public function categoryPieChart($category_id) {
+      $categoryPieChartLabel = [];
+      $categoryPieChartData = [];
+
+      if($category_id == 0) { // 카테고리값이 없을 경우
+        $categoryGroupCnt = Gallery::join('category', 'gallery.category_id', '=', 'category.id')
+                                    ->groupBy('category_id')
+                                    ->selectRaw('category.name as category_name, count(*) as total')
+                                    ->orderby('total', 'desc')
+                                    ->limit(10)
+                                    ->get();
+        $i = 0;
+        foreach($categoryGroupCnt as $cGC) {
+          $categoryPieChartLabel[$i] = $cGC->category_name;
+          $categoryPieChartData[$i] = $cGC->total;
+          $i ++;
+        }
+      } else {
+        $categoryName = Category::where('id', $category_id)->first();
+        $categoryGroupCnt = Gallery::where('category_id', $category_id)->count();
+
+        $categoryPieChartLabel[0] = $categoryName->name;
+        $categoryPieChartData[0] = $categoryGroupCnt;
+      }
+      return [$categoryPieChartLabel, $categoryPieChartData];
     }
 }
