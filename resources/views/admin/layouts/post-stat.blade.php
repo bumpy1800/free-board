@@ -70,7 +70,7 @@
                             <span class="tab_menu_post">최근 한 달간 게시글 생성 수</span>
                             <span style="display:none;" class="tab_menu_comment">최근 한 달간 댓글 생성 수</span>
                             <input type="hidden" class="nowMonthDayCount" value="{{ $nowMonthDayCount }}">
-                            <input type="month" class="nowMonth" value="{{ $nowMonth }}" style="float: right;">
+                            <input type="month" class="nowMonth" value="{{ $nowMonth }}" max="9999-12" style="float: right;">
                         </div>
                         <div class="card-body"><canvas id="gSelectAreaChart" width="100%" height="40"></canvas></div>
                     </div>
@@ -109,7 +109,7 @@
                           <select style="float: right;" class="gallery_id">
                             <option value="0">전체</option>
                             @foreach ($gallerys as $gallery)
-                            <option value="{{ $gallery->id }}">{{ $gallery->name }}</option>
+                              <option value="{{ $gallery->id }}">{{ $gallery->name }}</option>
                             @endforeach
                           </select>
                         </div>

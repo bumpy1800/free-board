@@ -57,10 +57,10 @@
                 </a>
                 <div class="collapse" id="visit" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                      <a class="nav-link" href="layout-static.php">접속자분석 </a>
-                      <a class="nav-link" href="layout-sidenav-light.php">접속경로분석</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">검색키워드분석</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">OS/브라우저</a>
+                      <a class="nav-link" href="{{ url('admin_visitor_stat') }}">접속자분석 </a>
+                      <a class="nav-link" href="{{ url('admin_visitor_route_stat') }}">접속경로분석</a>
+                      <a class="nav-link" href="{{ url('admin_keyword_stat') }}">검색키워드분석</a>
+                      <a class="nav-link" href="{{ url('admin_browser_stat') }}">OS/브라우저</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">신고/QnA관리</div>
