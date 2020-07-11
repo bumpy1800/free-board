@@ -98,7 +98,7 @@ class VisitController extends Controller
     return [$selectAreaChartLabel, $selectAreaChartData, $selectAreaChartMax];
   }
 
-  public function visitor_refer_stat_index(Request $request)
+  public function refer_stat_index(Request $request)
   {
       $nowMonth = null;
       if($request->input('nowMonth')) {
@@ -115,7 +115,7 @@ class VisitController extends Controller
           'nowMonthDayCount' => $nowMonthDayCount
         ]);
       } else {
-        $selectPieChart = $this->selectPieChart($nowMonth, $nowMonthDayCount);
+        $selectPieChart = $this->selectReferPieChart($nowMonth, $nowMonthDayCount);
         $chartLabel = $selectPieChart[0];
         $chartData = $selectPieChart[1];
 
@@ -126,7 +126,8 @@ class VisitController extends Controller
       }
   }
 
-  public function selectPieChart($nowMonth, $nowMonthDayCount) {
+  public function selectReferPieChart($nowMonth, $nowMonthDayCount)
+  {
     $referData = array(
       'Naver' => 0,
       'Daum' => 0,
@@ -141,7 +142,7 @@ class VisitController extends Controller
 
     $visitorTodayFrom = date($nowMonth.'-1'.' '.'00-00-00', time());
     $visitorTodayTo = date($nowMonth.'-'.$nowMonthDayCount.' '.'23-59-59', time());
-    $visitors = Visitor::whereBetween('time', [$visitorTodayFrom, $visitorTodayTo])->get();
+    $visitors = Visitor::select('refer')->whereBetween('time', [$visitorTodayFrom, $visitorTodayTo])->get();
 
     foreach($visitors as $visitor) {
         if(strpos($visitor->refer, 'naver')) {
@@ -154,7 +155,7 @@ class VisitController extends Controller
             $referData['Yahoo'] ++;
         } else if(strpos($visitor->refer, 'zum')) {
             $referData['Zum'] ++;
-        } else if(strpos($visitor->refer, 'MSbing')) {
+        } else if(strpos($visitor->refer, 'bing')) {
             $referData['MSbing'] ++;
         } else if(strpos($visitor->refer, 'kakao')) {
             $referData['Kakao'] ++;
@@ -173,5 +174,74 @@ class VisitController extends Controller
         $i ++;
     }
     return [$chartLabel, $chartData];
+  }
+
+  public function browser_stat_index(Request $request)
+  {
+      $nowMonth = null;
+      if($request->input('nowMonth')) {
+        $nowMonth = date($request->input('nowMonth'), time());
+      }
+      else {
+        $nowMonth = date('Y-m', time());
+      }
+      $nowMonthDayCount = date('t', strtotime($nowMonth));
+
+      if($request->isMethod('get')) {
+        return view('admin.visitor-browser-stat', [
+          'nowMonth' => $nowMonth,
+          'nowMonthDayCount' => $nowMonthDayCount
+        ]);
+      } else {
+        $selectPieChart = $this->selectBrowserPieChart($nowMonth, $nowMonthDayCount);
+        $chartLabel = $selectPieChart[0];
+        $chartData = $selectPieChart[1];
+
+        return response()->json([
+          'chartLabel'=>$chartLabel,
+          'chartData'=>$chartData
+        ]);
+      }
+  }
+
+  public function selectBrowserPieChart($nowMonth, $nowMonthDayCount)
+  {
+      $data = array(
+        'Chrome' => 0,
+        'IEedge' => 0,
+        'IE' => 0,
+        'Whale' => 0,
+        'Firefox' => 0,
+        'Safari' => 0
+      );
+
+      $visitorTodayFrom = date($nowMonth.'-1'.' '.'00-00-00', time());
+      $visitorTodayTo = date($nowMonth.'-'.$nowMonthDayCount.' '.'23-59-59', time());
+      $visitors = Visitor::select('agent')->whereBetween('time', [$visitorTodayFrom, $visitorTodayTo])->get();
+
+      foreach($visitors as $visitor) {
+          if($visitor->agent == 'Chrome') {
+              $data['Chrome'] ++;
+          } else if($visitor->agent == 'IEedge') {
+              $data['IEedge'] ++;
+          } else if($visitor->agent == 'IE') {
+              $data['IE'] ++;
+          } else if($visitor->agent == 'Whale') {
+              $data['Whale'] ++;
+          } else if($visitor->agent == 'Firefox') {
+              $data['Firefox'] ++;
+          } else {
+              $data['Safari'] ++;
+          }
+      }
+      arsort($data);
+
+      $i = 0;
+      foreach ($data as $key=>$value) {
+          $chartLabel[$i] = $key;
+          $chartData[$i] = $value;
+          $i ++;
+      }
+      return [$chartLabel, $chartData];
   }
 }
