@@ -58,7 +58,7 @@
                 <div class="collapse" id="visit" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                       <a class="nav-link" href="{{ url('admin_visitor_stat') }}">접속자분석 </a>
-                      <a class="nav-link" href="{{ url('admin_visitor_route_stat') }}">접속경로분석</a>
+                      <a class="nav-link" href="{{ url('admin_visitor_refer_stat') }}">접속경로분석</a>
                       <a class="nav-link" href="{{ url('admin_keyword_stat') }}">검색키워드분석</a>
                       <a class="nav-link" href="{{ url('admin_browser_stat') }}">OS/브라우저</a>
                     </nav>

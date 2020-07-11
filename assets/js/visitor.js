@@ -10,7 +10,7 @@ if(userAgent.indexOf('edge')>-1){
 }else if(userAgent.indexOf('firefox')>-1){
   browser='Firefox';
 }else if(userAgent.indexOf('safari')>-1){
-  browser='safari';
+  browser='Safari';
 }else{
   browser='IE';
 }

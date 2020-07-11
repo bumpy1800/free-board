@@ -17,10 +17,8 @@ class VisitController extends Controller
       $keyword = $request->input('keyword');
       $date = $request->input('date');
       $logCnt = 0;
-
-      $visitorTodayFrom = date($date.' '.'00-00-00', time()); //오늘날짜 범위
-      $visitorTodayTo = date($date.' '.'23-59-59', time()); //오늘날짜 범위
-
+      $visitorTodayFrom = date($date.' '.'00-00-00', time());
+      $visitorTodayTo = date($date.' '.'23-59-59', time());
 
       if($keyword && $date) {
           $visitors = Visitor::select('*')
@@ -44,6 +42,8 @@ class VisitController extends Controller
       }
       $visitors->withPath('admin_visitor_stat?keyword='.$keyword.'&date='.$date); //페이지네이션 url 설정
 
+      $visitorTodayFrom = date('Y-m-d'.' '.'00-00-00', time()); //오늘날짜 범위
+      $visitorTodayTo = date('Y-m-d'.' '.'23-59-59', time()); //오늘날짜 범위
       $visitorTotalCnt = Visitor::select('*')->count();
       $visitorTodayCnt = Visitor::whereBetween('time', [$visitorTodayFrom, $visitorTodayTo])->count();
 
@@ -98,24 +98,80 @@ class VisitController extends Controller
     return [$selectAreaChartLabel, $selectAreaChartData, $selectAreaChartMax];
   }
 
-  public function visitor_stat_search(Request $request)
+  public function visitor_refer_stat_index(Request $request)
   {
-      $keyword = $request->input('keyword');
-      /*$nowMonth = date('2020-05', time());
+      $nowMonth = null;
+      if($request->input('nowMonth')) {
+        $nowMonth = date($request->input('nowMonth'), time());
+      }
+      else {
+        $nowMonth = date('Y-m', time());
+      }
       $nowMonthDayCount = date('t', strtotime($nowMonth));
 
-      $selectAreaChart = $this->selectAreaChart($nowMonth, $nowMonthDayCount);
-      $selectAreaChartLabel = $selectAreaChart[0];
-      $selectAreaChartData = $selectAreaChart[1];
-      $selectAreaChartMax = $selectAreaChart[2];*/
-      $visitors = Visitor::select('*')->where('ip', 'like', '%'.$keyword.'%')->paginate(15);
-      return view('admin.visitor-stat', [
-        //'nowMonth' => $nowMonth,
-        'visitors' => $visitors,
-        /*'nowMonthDayCount' => $nowMonthDayCount,
-        'visitorTotalCnt' => $visitorTotalCnt,
-        'visitorTodayCnt' => $visitorTodayCnt,
-        'visitorLiveCnt' => $visitorLiveCnt*/
-      ]);
+      if($request->isMethod('get')) {
+        return view('admin.visitor-refer-stat', [
+          'nowMonth' => $nowMonth,
+          'nowMonthDayCount' => $nowMonthDayCount
+        ]);
+      } else {
+        $selectPieChart = $this->selectPieChart($nowMonth, $nowMonthDayCount);
+        $chartLabel = $selectPieChart[0];
+        $chartData = $selectPieChart[1];
+
+        return response()->json([
+          'chartLabel'=>$chartLabel,
+          'chartData'=>$chartData
+        ]);
+      }
+  }
+
+  public function selectPieChart($nowMonth, $nowMonthDayCount) {
+    $referData = array(
+      'Naver' => 0,
+      'Daum' => 0,
+      'Google' => 0,
+      'Yahoo' => 0,
+      'Zum' => 0,
+      'MSbing' => 0,
+      'Etc' => 0,
+      'Kakao' => 0,
+      'N/A' => 0
+    );
+
+    $visitorTodayFrom = date($nowMonth.'-1'.' '.'00-00-00', time());
+    $visitorTodayTo = date($nowMonth.'-'.$nowMonthDayCount.' '.'23-59-59', time());
+    $visitors = Visitor::whereBetween('time', [$visitorTodayFrom, $visitorTodayTo])->get();
+
+    foreach($visitors as $visitor) {
+        if(strpos($visitor->refer, 'naver')) {
+            $referData['Naver'] ++;
+        } else if(strpos($visitor->refer, 'daum')) {
+            $referData['Daum'] ++;
+        } else if(strpos($visitor->refer, 'google')) {
+            $referData['Google'] ++;
+        } else if(strpos($visitor->refer, 'yahoo')) {
+            $referData['Yahoo'] ++;
+        } else if(strpos($visitor->refer, 'zum')) {
+            $referData['Zum'] ++;
+        } else if(strpos($visitor->refer, 'MSbing')) {
+            $referData['MSbing'] ++;
+        } else if(strpos($visitor->refer, 'kakao')) {
+            $referData['Kakao'] ++;
+        } else if($visitor->refer) {
+            $referData['Etc'] ++;
+        } else {
+            $referData['N/A'] ++;
+        }
+    }
+    arsort($referData);
+
+    $i = 0;
+    foreach ($referData as $key=>$value) {
+        $chartLabel[$i] = $key;
+        $chartData[$i] = $value;
+        $i ++;
+    }
+    return [$chartLabel, $chartData];
   }
 }
