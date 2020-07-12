@@ -62,7 +62,7 @@ function gSelectAreaChart(labels, data, max) {
     data: {
       labels: labels,
       datasets: [{
-        label: "개설 수",
+        label: "방문자 수",
         lineTension: 0.3,
         backgroundColor: "rgba(0, 253, 0, 0.2)",
         borderColor: "rgba(0, 253, 0, 1)",

@@ -17,7 +17,7 @@ var nowMonthDayCount = $('.nowMonthDayCount').val();
 $.ajax({
      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
      type: 'post',
-     url: '/admin_refer_stat',
+     url: '/admin_browser_stat',
      dataType: 'json',
      data: {
        'nowMonth': nowMonth
@@ -38,7 +38,7 @@ $('.nowMonth').change(function() { //날짜 선택
   $.ajax({
        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
        type: 'post',
-       url: '/admin_refer_stat',
+       url: '/admin_browser_stat',
        dataType: 'json',
        data: {
          'nowMonth': nowMonth

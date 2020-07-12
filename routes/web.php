@@ -118,6 +118,9 @@ Route::get('admin_post/{link}/{id}', 'admin\PostController@show');
 Route::get('admin_post_stat', 'admin\PostController@stat_index');
 Route::post('admin_post_stat', 'admin\PostController@stat_change');
 
+Route::get('admin_qna_stat', 'admin\QnaController@stat_index');
+Route::post('admin_qna_stat', 'admin\QnaController@stat_index');
+
 Route::get('admin/galleryFind', 'admin\PostController@galleryFind');
 Route::post('admin/galleryFind', 'admin\PostController@galleryFind');
 
@@ -135,7 +138,6 @@ Route::post('admin_gallery_stat', 'admin\GalleryController@stat_change');
 Route::get('admin_visitor_stat', 'admin\VisitController@visitor_stat_index');
 Route::get('admin_visitor_stat/{keyword}/{date}', 'admin\VisitController@visitor_stat_index');
 Route::post('admin_visitor_stat_change', 'admin\VisitController@visitor_stat_change');
-
 Route::any('admin_refer_stat', 'admin\VisitController@refer_stat_index');
 Route::any('admin_browser_stat', 'admin\VisitController@browser_stat_index');
 

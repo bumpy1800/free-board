@@ -84,7 +84,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                       <a class="nav-link" href="{{ route('admin_qna_category.index') }}">Q&A종류</a>
                       <a class="nav-link" href="{{ route('admin_qna.index') }}">Q&A목록</a>
-                      <a class="nav-link" href="layout-static.php">Q&A통계</a>
+                      <a class="nav-link" href="{{ url('admin_qna_stat') }}">Q&A통계</a>
                     </nav>
                 </div>
             </div>
