@@ -20,7 +20,8 @@ class Post extends Model
     'head',
     'notice',
     'gallery_id',
-    'password'
+    'password',
+    'thumbnail'
   ];
 
   public $timestamps = false;

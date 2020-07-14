@@ -114,12 +114,13 @@ Route::resources([
     'admin_qna' => 'admin\QnaController',
     'admin_qna_category' => 'admin\Qna_categoryController'
 ]);
+Route::get('gallery_cookiedelete/{id}', 'GalleryController@cookieDelete');
+
 Route::get('admin_post/{link}/{id}', 'admin\PostController@show');
 Route::get('admin_post_stat', 'admin\PostController@stat_index');
 Route::post('admin_post_stat', 'admin\PostController@stat_change');
 
-Route::get('admin_qna_stat', 'admin\QnaController@stat_index');
-Route::post('admin_qna_stat', 'admin\QnaController@stat_index');
+Route::any('admin_qna_stat', 'admin\QnaController@stat_index');
 
 Route::get('admin/galleryFind', 'admin\PostController@galleryFind');
 Route::post('admin/galleryFind', 'admin\PostController@galleryFind');

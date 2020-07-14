@@ -171,7 +171,7 @@ class QnaController extends Controller
                 ]);
             }
             else {
-                $selectAreaChart = $this->selectAreaChart($nowMonth, $nowMonthDayCount, 0);
+                $selectAreaChart = $this->selectAreaChart($nowMonth, $nowMonthDayCount, '0');
                 $selectAreaChartLabel = $selectAreaChart[0];
                 $selectAreaChartData = $selectAreaChart[1];
                 $selectAreaChartMax = $selectAreaChart[2];
@@ -270,7 +270,7 @@ class QnaController extends Controller
       $pieChartData = [];
 
       if($category_id == '0') { // 카테고리값이 없을 경우
-          $categoryGroupCnt = Qna::join('qna_category', 'Qna.category', '=', 'qna_category.id')
+          $categoryGroupCnt = Qna::join('qna_category', 'qna.category', '=', 'qna_category.id')
                                       ->groupBy('category')
                                       ->selectRaw('qna_category.id as qna_category_id, count(*) as total')
                                       ->orderby('total', 'desc')

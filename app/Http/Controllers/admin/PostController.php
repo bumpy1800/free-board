@@ -79,6 +79,14 @@ class PostController extends Controller
        $notice = 0;
        $gallery_id = $request->input('idH');
        $password = $request->input('password');
+       $thumbnail = '';
+
+       $startPos = strpos($contents, '<img src="');
+       if($startPos || $startPos >= 0) {
+           $startPos = $startPos + 10;
+           $endPos = strpos($contents, '"', $startPos);
+           $thumbnail = substr($contents, $startPos, $endPos-$startPos);
+       }
 
        Post::create([
            'title' => $title,
@@ -93,7 +101,8 @@ class PostController extends Controller
            'head' => $head,
            'notice' => $notice,
            'gallery_id' => $gallery_id,
-           'password' => $password
+           'password' => $password,
+           'thumbnail' => $thumbnail
        ]);
        return redirect(route('admin_post.index'));
      }
@@ -113,7 +122,6 @@ class PostController extends Controller
       ]);
 
       $post = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
-                    //->join('comment', 'post.id', '=', 'comment.post_id')
                     ->select('post.*', 'post.ip as post_ip', 'gallery.name as gallery_name', 'gallery.link as gallery_link')
                     ->where('gallery.link', '=', $link)
                     ->where('post.id', '=', $id)
@@ -121,6 +129,7 @@ class PostController extends Controller
 
       $comments = Comment::join('post', 'comment.post_id', '=', 'post.id')
                     ->select('comment.*')
+                    ->where('comment.post_id', '=', $id)
                     ->orderby('comment.id')
                     ->get();
 
@@ -136,11 +145,10 @@ class PostController extends Controller
     public function edit($id)
     {
         //$post = Post::findOrFail($id);
-        $post = Post::find($id)
-                      ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
-                      ->select('post.*' ,'gallery.id as gallery_id', 'gallery.name as gallery_name', 'gallery.heads as gallery_heads')
+        $post = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                      ->select('post.*', 'post.id as post_id' ,'gallery.id as gallery_id', 'gallery.name as gallery_name', 'gallery.heads as gallery_heads')
+                      ->where('post.id', $id)
                       ->first();
-        //exit($post);
         return view('admin.post-edit-form', ['post' => $post]);
     }
 
@@ -153,7 +161,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $messages = [
+        /*$messages = [
             'title.required'    => '제목을 입력해주세요.',
             'contents.required'    => '내용을 입력해주세요.',
             'gallery_id.required' => '갤러리를 선택해주세요.',
@@ -169,7 +177,7 @@ class PostController extends Controller
             return redirect(route('admin_post.edit', $id))
                 ->withInput()
                 ->withErrors($validator);
-        }
+        }*/
 
         $title = $request->input('tit');
         $contents = $request->input('content');
@@ -180,6 +188,14 @@ class PostController extends Controller
         $notice = 0;
         $gallery_id = $request->input('idH');
         $password = $request->input('password');
+        $thumbnail = '';
+
+        $startPos = strpos($contents, '<img src="');
+        if($startPos || $startPos >= 0) {
+            $startPos = $startPos + 10;
+            $endPos = strpos($contents, '"', $startPos);
+            $thumbnail = substr($contents, $startPos, $endPos-$startPos);
+        }
 
         Post::where('id', $id)->update([
           'title' => $title,
@@ -190,7 +206,8 @@ class PostController extends Controller
           'head' => $head,
           'notice' => $notice,
           'gallery_id' => $gallery_id,
-          'password' => $password
+          'password' => $password,
+          'thumbnail' => $thumbnail
       ]);
 
       return redirect(route('admin_post.index'));

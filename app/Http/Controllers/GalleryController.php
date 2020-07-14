@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
 use App\Gallery;                     //ORM
 use App\Category;                     //ORM
+use App\Post;
+use App\Popup;
 
 class GalleryController extends Controller
 {
@@ -16,12 +20,90 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //$users = DB::table('Gallery')->get();
         $categorys = Category::all();
-        $gallerys = Gallery::select('*')->orderby('category_id')->get();
-        return view('gallery-plus', ['gallerys' => $gallerys], ['categorys' => $categorys]);
+
+        foreach($categorys as $category) {
+            $gallerys[$category->id] = Gallery::select('link', 'name')->where('category_id', $category->id)->paginate(140);
+            $gallerys[$category->id]->withPath('?id='.$category->id);
+        }
+
+        if($request->input('id') && $request->input('page')) {
+            $gallerys[$request->input('id')] = Gallery::select('link', 'name')->where('category_id', $request->input('id'))->paginate(140);
+            $gallerys[$request->input('id')]->withPath('?id='.$request->input('id'));
+            return response()->json([
+                'id'=>$request->input('id'),
+                'page'=>$request->input('page'),
+                'gallerys'=>$gallerys[$request->input('id')]
+            ]);
+        }
+
+        $imgPosts = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                          ->select('post.id as post_id', 'post.title as post_title', 'thumbnail', 'gallery.s_name as gallery_s_name', 'gallery.link as gallery_link')
+                          ->where('post.contents', 'like', '%<img%')
+                          ->orderby('post.id', 'desc')
+                          ->limit(3)
+                          ->get();
+        $notIn = [];
+        if(count($imgPosts) > 0) { //imgPosts 와 중복되지 않기 위함  ``
+            $i = 0;
+            foreach ($imgPosts as $imgPost) {
+              $notIn[$i] = $imgPost->post_id;
+              $i ++;
+            }
+        }
+        $posts = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                      ->select('post.id as post_id', 'post.title as post_title', 'gallery.s_name as gallery_s_name', 'gallery.link as gallery_link')
+                      ->whereNotIn('post.id', $notIn) //포함하지 않는 것만 추출
+                      ->orderby('post.id', 'desc')
+                      ->limit(14)
+                      ->get();
+
+        $todayTo = date('Y-m-d');
+        $todayFrom = date('Y-m-d', strtotime($todayTo.'-7days'));
+        $weekGallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                      ->groupby('post.gallery_id')
+                      ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                      ->whereBetween('reg_date', [$todayFrom, $todayTo])
+                      ->limit(20)
+                      ->get();
+
+        $newGallerys = Gallery::select('name', 'link')
+                      ->whereBetween('agree_date', [$todayFrom, $todayTo])
+                      ->get();
+
+        $list = Cookie::get('recentVisitGallery');
+        $recentGallerys = explode('/', $list);
+
+        $liveGallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                              ->groupBy('gallery_id')
+                              ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                              ->whereBetween('reg_date', [date('Y-m-d', strtotime(date('Y-m-d').'-6days')), date('Y-m-d')])
+                              ->orderby('total', 'desc')
+                              ->limit(50)
+                              ->paginate(10);
+        $liveGallerys->withPath('/rank');
+
+        $popup = Popup::select('image')
+                ->where('status', 1)
+                ->where('category', '갤러리 우측')
+                ->inRandomOrder()
+                ->first();
+        $image = Storage::get($popup->image); //이미지 가져와서 text 변환
+        $image = base64_encode($image); //base64로 인코딩
+
+        return view('gallery-plus', [
+            'gallerys' => $gallerys,
+            'categorys' => $categorys,
+            'imgPosts' => $imgPosts,
+            'weekGallerys' => $weekGallerys,
+            'newGallerys' => $newGallerys,
+            'recentGallerys' => $recentGallerys,
+            'liveGallerys' => $liveGallerys,
+            'image' => $image,
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -106,7 +188,17 @@ class GalleryController extends Controller
      */
     public function show($id)
     {
-        return view('gallery', ['gallery' => Gallery::findOrFail($id)]);
+        $list = Cookie::get('recentVisitGallery');
+        $gallery = Gallery::select('name')->where('link', $id)->first();
+        $list = $list . $gallery->name . '/';
+        $listArr = explode('/', $list);
+
+        if(count($listArr) > 6) {
+            array_splice($listArr, 0, 1);
+        }
+        $list = implode('/', $listArr);
+        Cookie::queue('recentVisitGallery', $list, 60);
+        return view('gallery');
     }
 
     /**
@@ -194,5 +286,17 @@ class GalleryController extends Controller
     {
         Gallery::destroy($id);
         return redirect('admin/gallery-list');
+    }
+
+    public function cookieDelete($id)
+    {
+        $list = Cookie::get('recentVisitGallery');
+        $listArr = explode('/', $list);
+        array_splice($listArr, $id, 1);
+        $list = implode('/', $listArr);
+        Cookie::queue('recentVisitGallery', $list, 60);
+        return response()->json([
+            'list'=>$list,
+        ]);
     }
 }

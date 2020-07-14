@@ -99,7 +99,7 @@
                     <div class="card mb-4">
                         <div class="card-header"><i class="far fa-edit"></i>게시글 수정</div>
                         <div class="card-body">
-                          <form name="content_form" action="{{ route('admin_post.update', $post->id) }}" method="post">
+                          <form name="content_form" action="{{ route('admin_post.update', $post->post_id) }}" method="post">
                             @method('PATCH')
                             @csrf
                           <div class="write_warp">

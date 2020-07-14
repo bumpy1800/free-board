@@ -83,7 +83,7 @@
     padding-right: 3px;
     padding-left: 3px;
 	background-color: white;
-	color: #1379df;	
+	color: #1379df;
 }
 .week-gallery .left span{
 	float: right;
@@ -125,10 +125,6 @@
 .week-gallery .right .nav-link{
 	float:right;
 	padding: 0px;
-}
-.week-gallery .right .dropdown-menu{
-	left: -410px;
-	width: 527px; 
 }
 .week-gallery .right{
 	width: 30%;
@@ -238,13 +234,29 @@
 	font-size: 13px;
 	margin-left: 15px;
 }
+.cg-live .badge-in{
+	font-size: 10px;
+	margin-left: 0px;
+  margin-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
 .cg-live i{
 	margin-left: 15px;
 }
 .cg-live .cg-live-name{
 	display:inline-block;
-	width:120px;
+	/*width:100px;*/
 }
+
+.cg-live .liveGallery{
+	border: 1px solid rgb(19, 121, 223);
+}
+.liveGallery .badge-drop-a{
+	padding-left: 10px;
+  padding-right: 10px;
+}
+
 .category {
 	border-top: 3px solid #1379df;
 	margin-bottom: 50px;
@@ -309,7 +321,7 @@
 	}
 	.row .col-4 {
 		flex: 0 0 50%;
-		max-width: 50%;	
+		max-width: 50%;
 	}
 	.m-hide {
 		display: none;
@@ -330,7 +342,7 @@
 	}
 	.recently-visit .visitlist .col{
 		flex: 0 0 50%;
-		max-width: 50%;	
+		max-width: 50%;
 	}
 	.week-gallery .left{
 		border: 1px solid #999;
@@ -343,7 +355,7 @@
 	}
 	.gallery-list .row .col-3{
 		flex: 0 0 50%;
-		max-width: 50%;	
+		max-width: 50%;
 	}
 	.mgL14 {
 		margin-left: 0px;
@@ -358,8 +370,3 @@
 		display: none;
 	}
 }
-
-
-
-
-
