@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="mainLeft">
 				<div class="newPost">
-					<h6 class="title "><b>최신글</b></h6>
+					<h6 class="title "><b>@yield('category-name') 최신글</b></h6>
 					<hr class="line">
 					<div class="row">
 							@forEach($imgPosts as $imgPost)
@@ -34,7 +34,10 @@
 											<div class="card">
 													<img src="{{ $imgPost->thumbnail }}" class="card-img-top" alt="...">
 													<div class="card-body">
-															<p class="card-title"><b><a href="{{ route('gallery.show', $imgPost->gallery_link) }}">[{{ $imgPost->gallery_s_name }}]</a></b> <a href="">{{ $imgPost->post_title }}</a></p>
+															<p class="card-title">
+																	<b><a href="{{ route('gallery.show', $imgPost->gallery_link) }}">[{{ $imgPost->gallery_s_name }}]</a></b>
+																	<a href="">{{ $imgPost->post_title }}</a>
+															</p>
 													</div>
 											</div>
 									</div>
@@ -45,16 +48,28 @@
 						<div class="row">
 								@php
 										$i = 0;
+										$posts_cnt = count($posts);
 								@endphp
 								@forEach($posts as $post)
 										@if($i % 7 == 0)
 												<div class="col-6">
-												<p><b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b> <a href="">{{ $post->post_title }}</a></p>
+												<p>
+														<b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b>
+														<a href="">{{ $post->post_title }}</a>
+												</p>
 										@else
-												<p><b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b> <a href="">{{ $post->post_title }}</a></p>
+												<p>
+														<b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b>
+														<a href="">{{ $post->post_title }}</a>
+												</p>
 										@endif
+
 										@if($i % 7 == 6)
 												</div>
+										@else
+												@if($i == $posts_cnt-1)
+														</div>
+												@endif
 										@endif
 
 										@php
@@ -64,6 +79,7 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="recently-visit">
 					<div class="fir">
 						<b>최근 방문 갤러리</b>
@@ -96,7 +112,11 @@
 					<div class="left">
 						<div class="top">
 							<h6 class="nobr"><b><color>HOT </color>주간 흥한 갤러리</b></h6>
-							<span><button class="btn allrank">전체순위</button></span>
+							<span>
+								<button type="button" class="btn allrank" data-container="body" data-toggle="popover" data-placement="bottom" data-original-title="" data-content="">
+								  전체순위
+								</button>
+							</span>
 							<div class="clear"></div>
 						</div>
 						<div class="gallery-list">
@@ -125,9 +145,12 @@
 											<span class="badge badge-mycolor">▼</span>
 										</a>
 										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-												@forEach($categorys as $category)
-														<a class="dropdown-item" href="gallery">{{ $category->name }}</a>
-												@endforEach
+											<a class="dropdown-item" href="game-gallery">게임</a>
+					                        <a class="dropdown-item" href="enter-gallery">연예/방송</a>
+					                        <a class="dropdown-item" href="sports-gallery">스포츠</a>
+					                        <a class="dropdown-item" href="edu-gallery">교육/금융/IT</a>
+					                        <a class="dropdown-item" href="travel-gallery">여행/음식/생물</a>
+					                        <a class="dropdown-item" href="hobby-gallery">취미/생활</a>
 										</div>
 										<div class="clear"></div>
 								</div>
@@ -145,7 +168,6 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -184,26 +206,32 @@
 				</div>
 				<div class="cg-live">
 					<span class="btn"><b>실시간 북적 갤러리</b></span>
-					<span class="badge badge-cg-live"><b>1</b></span>
-
-					<a class="nav-link" style="display: inline;" href="/" id="liveGallery" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="cg-live-name">리그 오브 레전드</span>
-							<i class="fas fa-chevron-down"></i>
-					</a>
-					<div class="dropdown-menu liveGallery" aria-labelledby="liveGallery">
-							@php
-									$i = 1;
-							@endphp
-							@forEach($liveGallerys as $liveGallery)
-									<a class="dropdown-item badge-drop-a" href="{{ route('gallery.show', $liveGallery->gallery_link) }}">
-											<span class="badge badge-cg-live badge-in">{{ $i }}</span>{{ $liveGallery->gallery_name }}
-									</a>
+					<span id="change_rank" class="badge badge-cg-live"><b>1</b></span>
+					<span class="cg-live-name">
+							<a class="nav-link" style="display: inline; padding-bottom: 0px;padding-top: 0px;" href="/" id="liveGallery" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<span class="change_name"></span>
+									<i class="fas fa-chevron-down"></i>
+							</a>
+							<div style="padding-bottom: 0px;" id="lg-dropdown"class="dropdown-menu liveGallery" aria-labelledby="liveGallery">
 									@php
-											$i ++;
+											$i = 1;
 									@endphp
-							@endforEach
-							{{ $liveGallerys->links() }}
-					</div>
+									@forEach($liveGallerys as $liveGallery)
+											<a class="dropdown-item badge-drop-a" href="{{ route('gallery.show', $liveGallery->gallery_link) }}">
+													<span class="badge badge-cg-live badge-in">{{ $i }}</span>{{ $liveGallery->gallery_name }}
+											</a>
+											@php
+													$i ++;
+											@endphp
+									@endforEach
+									<div class="live-pagination">
+											<div id="live-pagination" style="float: right;">
+													{{ $liveGallerys->links('vendor.pagination.gallery-plus-pagination2') }}
+											</div>
+											<div class="clear"></div>
+									</div>
+							</div>
+					</span>
 				</div>
 				<div class="clear"></div>
 			</div>
@@ -244,7 +272,7 @@
 
 				@forEach($categorys as $category)
 						<div class="special">
-								<div class="top m-hide"><b>{{ $category->name }}</b><color> (3)</color></div>
+								<div class="top m-hide"><b>{{ $category->name }}</b><color> ({{ $gallerys[$category->id]->total() }})</color></div>
 								<div class="top m-show mtop"><a href="/gallery-plus-m"><b>스페셜</b></a><color> (16)</color></div>
 								<table id="table{{ $category->id }}">
 										<thead>
@@ -283,7 +311,7 @@
 										@endphp
 								</table>
 								<div id="page{{ $category->id }}" class="page" style="border-top-width: 1px;">
-											{{ $gallerys[$category->id]->links('vendor.pagination.simple-default') }}
+											{{ $gallerys[$category->id]->links('vendor.pagination.gallery-plus-pagination') }}
 								</div>
 						</div>
 				@endforEach

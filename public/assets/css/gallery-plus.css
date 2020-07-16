@@ -96,6 +96,29 @@
 .week-gallery .left color{
     color: red;
 }
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+}
+.popTitle {
+	color: #1379df;
+}
+.week-gallery-rank {
+	list-style:none;
+	padding-left:0px;
+	float: left;
+	margin-left: 0px;
+	font-size: 13px;
+}
+
+.week-gallery-rank-next {
+	margin-left: 60px;
+}
+
+.margin20 {
+	list-style:none;
+	padding-left:20px;
+	float: left;
+}
 
 .gallery-list {
 	font-size: 13px;
@@ -115,9 +138,6 @@
 .gallery-list .row .col-3 .badge-danger{
     background: #f03c23;
 }
-
-
-
 
 .mgL14 {
 	margin-left: 14px;
@@ -223,6 +243,7 @@
 	color: white;
 	font-size: 13px;
 	background-color: #1379df;
+	cursor: auto;
 }
 .cg-top color{
 	color: #1379df;
@@ -233,6 +254,7 @@
 	color: white;
 	font-size: 13px;
 	margin-left: 15px;
+	width: 26.4px;
 }
 .cg-live .badge-in{
 	font-size: 10px;
@@ -244,9 +266,9 @@
 .cg-live i{
 	margin-left: 15px;
 }
-.cg-live .cg-live-name{
+.cg-live .change_name{
 	display:inline-block;
-	/*width:100px;*/
+	width:100px;
 }
 
 .cg-live .liveGallery{
@@ -255,6 +277,13 @@
 .liveGallery .badge-drop-a{
 	padding-left: 10px;
   padding-right: 10px;
+}
+
+.live-pagination {
+	background-color: #f3f3f3;
+	margin-top: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .category {

@@ -82,6 +82,7 @@ class PostController extends Controller
        $thumbnail = '';
 
        $startPos = strpos($contents, '<img src="');
+
        if($startPos || $startPos >= 0) {
            $startPos = $startPos + 10;
            $endPos = strpos($contents, '"', $startPos);
@@ -191,10 +192,13 @@ class PostController extends Controller
         $thumbnail = '';
 
         $startPos = strpos($contents, '<img src="');
-        if($startPos || $startPos >= 0) {
-            $startPos = $startPos + 10;
-            $endPos = strpos($contents, '"', $startPos);
-            $thumbnail = substr($contents, $startPos, $endPos-$startPos);
+
+        if($startPos) {
+            if($startPos || $startPos >= 0) {
+                $startPos = $startPos + 10;
+                $endPos = strpos($contents, '"', $startPos);
+                $thumbnail = substr($contents, $startPos, $endPos-$startPos);
+            }
         }
 
         Post::where('id', $id)->update([

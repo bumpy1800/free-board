@@ -114,7 +114,15 @@ Route::resources([
     'admin_qna' => 'admin\QnaController',
     'admin_qna_category' => 'admin\Qna_categoryController'
 ]);
+Route::get('game-gallery', 'GalleryController@index');
+Route::get('enter-gallery', 'GalleryController@index');
+Route::get('sports-gallery', 'GalleryController@index');
+Route::get('edu-gallery', 'GalleryController@index');
+Route::get('travel-gallery', 'GalleryController@index');
+Route::get('hobby-gallery', 'GalleryController@index');
+Route::post('week-gallerys', 'GalleryController@week_gallerys');
 Route::get('gallery_cookiedelete/{id}', 'GalleryController@cookieDelete');
+
 
 Route::get('admin_post/{link}/{id}', 'admin\PostController@show');
 Route::get('admin_post_stat', 'admin\PostController@stat_index');
@@ -141,5 +149,3 @@ Route::get('admin_visitor_stat/{keyword}/{date}', 'admin\VisitController@visitor
 Route::post('admin_visitor_stat_change', 'admin\VisitController@visitor_stat_change');
 Route::any('admin_refer_stat', 'admin\VisitController@refer_stat_index');
 Route::any('admin_browser_stat', 'admin\VisitController@browser_stat_index');
-
-//Route::get('admin_browser_stat', 'admin\VisitController@browser_stat_index');

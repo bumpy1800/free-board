@@ -43,12 +43,12 @@
                         <b>카테고리+</b>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="gallery">게임</a>
-                        <a class="dropdown-item" href="gallery">연예/방송</a>
-                        <a class="dropdown-item" href="gallery">스포츠</a>
-                        <a class="dropdown-item" href="gallery">교육/금융/IT</a>
-                        <a class="dropdown-item" href="gallery">여행/음식/생물</a>
-                        <a class="dropdown-item" href="gallery">취미/생활</a>
+                        <a class="dropdown-item" href="game-gallery">게임</a>
+                        <a class="dropdown-item" href="enter-gallery">연예/방송</a>
+                        <a class="dropdown-item" href="sports-gallery">스포츠</a>
+                        <a class="dropdown-item" href="edu-gallery">교육/금융/IT</a>
+                        <a class="dropdown-item" href="travel-gallery">여행/음식/생물</a>
+                        <a class="dropdown-item" href="hobby-gallery">취미/생활</a>
                     </div>
                 </li>
                 <li class="nav-item">
