@@ -15,7 +15,7 @@
                     <div class="sb-nav-link-icon"><i class="far fa-image"></i></div>
                     팝업관리
                 </a>
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="{{ route('admin_logo.index') }}">
                     <div class="sb-nav-link-icon"><i class="far fa-image"></i></i></div>
                     로고관리
                 </a>
@@ -70,8 +70,8 @@
                 </a>
                 <div class="collapse" id="police" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                      <a class="nav-link" href="layout-static.php">신고목록</a>
-                      <a class="nav-link" href="layout-sidenav-light.php">보류목록</a>
+                      <a class="nav-link" href="{{ route('admin_singo.index') }}">신고목록</a>
+                      <a class="nav-link" href="{{ route('admin_singo_wait.index') }}">보류목록</a>
                       <a class="nav-link" href="layout-static.php">신고통계</a>
                     </nav>
                 </div>

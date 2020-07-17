@@ -84,24 +84,33 @@ Route::get('/admin/find', function () {
 });
 
 Route::resources([
-    'user' => 'UserController',
-    'admin/user-list' => 'UserController',
-    'user_wait' => 'UserWaitController',
-    'admin/user_wait-list' => 'UserWaitController',
+    'user' => 'admin\UserController',
+    'user_wait' => 'admin\UserWaitController',
+    'admin_logo' => 'admin\LogoController',
+    'admin_singo' => 'admin\SingoController',
+    'admin_singo_wait' => 'admin\SingoWaitController'
 ]);
-Route::get('admin/user-add-form', 'UserController@create');
-Route::get('admin/user-edit-form/{id}', 'UserController@edit');
-Route::get('admin/user-destroy/{id}', 'UserController@destroy');
-Route::get('admin/user-show/{id}', 'UserController@show');
+Route::PATCH('admin/singo-wait/{id}', 'admin\SingoController@wait');
+
+Route::get('admin/logo-add-form', 'admin\LogoController@create');
+Route::get('admin/logo-edit-form/{id}', 'admin\LogoController@edit');
+Route::get('admin/logo-destroy/{id}', 'admin\LogoController@destroy');
+Route::get('admin/logo-show/{id}', 'admin\LogoController@show');
+
+Route::get('admin/user-add-form', 'admin\UserController@create');
+Route::get('admin/user-edit-form/{id}', 'admin\UserController@edit');
+Route::get('admin/user-destroy/{id}', 'admin\UserController@destroy');
+Route::get('admin/user-show/{id}', 'admin\UserController@show');
 
 Route::resources([
-    'policy' => 'PolicyController',
-    'admin/policy-list' => 'PolicyController',
+    'policy' => 'admin\PolicyController',
+    'admin/policy-list' => 'admin\PolicyController',
 ]);
-Route::get('admin/policy-add-form', 'PolicyController@create');
-Route::get('admin/policy-edit-form/{id}', 'PolicyController@edit');
-Route::get('admin/policy-destroy/{id}', 'PolicyController@destroy');
-Route::get('admin/policy-show/{id}', 'PolicyController@show');
+Route::get('admin/policy-add-form', 'admin\PolicyController@create');
+Route::get('admin/policy-edit-form/{id}', 'admin\PolicyController@edit');
+Route::get('admin/policy-destroy/{id}', 'admin\PolicyController@destroy');
+Route::get('admin/policy-show/{id}', 'admin\PolicyController@show');
+
 
 Route::resources([
     'gallery' => 'GalleryController',
