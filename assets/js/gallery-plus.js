@@ -51,9 +51,9 @@ $(document).on("click", ".delete", function(){
               $("#visitlist").html("");
               for(var i = recentGallerys.length-2; i >= 0; i--) {
                   if(i != 0) {
-                      $("#visitlist").append("<div class='col'><span>"+ recentGallerys[i] +"</span><button id='"+ i +"' class='delete'>X</button></div><div class='clear'></div>");
+                      $("#visitlist").append("<div class='col'><span>"+ recentGallerys[i] +"</span><button id='"+ i +"' class='delete'><i class='fas fa-times grey'></i></button></div><div class='clear'></div>");
                   } else {
-                      $("#visitlist").append("<div class='col m-hide'><span>"+ recentGallerys[i] +"</span><button id='"+ i +"' class='delete'>X</button></div><div class='clear'></div>");
+                      $("#visitlist").append("<div class='col m-hide'><span>"+ recentGallerys[i] +"</span><button id='"+ i +"' class='delete'><i class='fas fa-times grey'></i></button></div><div class='clear'></div>");
 
                   }
               }
@@ -132,7 +132,6 @@ $(document).on("click", "#next, #prev", function(){
          }
     });
 });
-
 
 $(document).on("click", ".lg-next", function(e){
     var href = $(this).attr("href");

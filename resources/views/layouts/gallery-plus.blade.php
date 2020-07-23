@@ -91,13 +91,13 @@
 												@if($i != 0)
 														<div class="col">
 															<span>{{ $recentGallerys[$i] }}</span>
-															<button id="{{ $i }}" class="delete">X</button>
+															<button id="{{ $i }}" class="delete"><i class="fas fa-times grey"></i></button>
 														</div>
 														<div class="clear"></div>
 												@else
 														<div class="col m-hide">
 															<span>{{ $recentGallerys[$i] }}</span>
-															<button id="{{ $i }}" class="delete">X</button>
+															<button id="{{ $i }}" class="delete"><i class="fas fa-times grey"></i></button>
 														</div>
 														<div class="clear"></div>
 												@endif
@@ -208,29 +208,29 @@
 					<span class="btn"><b>실시간 북적 갤러리</b></span>
 					<span id="change_rank" class="badge badge-cg-live"><b>1</b></span>
 					<span class="cg-live-name">
-							<a class="nav-link" style="display: inline; padding-bottom: 0px;padding-top: 0px;" href="/" id="liveGallery" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<span class="change_name"></span>
-									<i class="fas fa-chevron-down"></i>
-							</a>
-							<div style="padding-bottom: 0px;" id="lg-dropdown"class="dropdown-menu liveGallery" aria-labelledby="liveGallery">
+						<a class="nav-link" style="display: inline; padding-bottom: 0px;padding-top: 0px;" href="/" id="liveGallery" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="change_name"></span>
+							<i class="fas fa-chevron-down"></i>
+						</a>
+						<div style="padding-bottom: 0px;" id="lg-dropdown"class="dropdown-menu liveGallery" aria-labelledby="liveGallery">
+							@php
+									$i = 1;
+							@endphp
+							@forEach($liveGallerys as $liveGallery)
+									<a class="dropdown-item badge-drop-a" href="{{ route('gallery.show', $liveGallery->gallery_link) }}">
+											<span class="badge badge-cg-live badge-in">{{ $i }}</span>{{ $liveGallery->gallery_name }}
+									</a>
 									@php
-											$i = 1;
+											$i ++;
 									@endphp
-									@forEach($liveGallerys as $liveGallery)
-											<a class="dropdown-item badge-drop-a" href="{{ route('gallery.show', $liveGallery->gallery_link) }}">
-													<span class="badge badge-cg-live badge-in">{{ $i }}</span>{{ $liveGallery->gallery_name }}
-											</a>
-											@php
-													$i ++;
-											@endphp
-									@endforEach
-									<div class="live-pagination">
-											<div id="live-pagination" style="float: right;">
-													{{ $liveGallerys->links('vendor.pagination.gallery-plus-pagination2') }}
-											</div>
-											<div class="clear"></div>
+							@endforEach
+							<div class="live-pagination">
+									<div id="live-pagination" style="float: right;">
+											{{ $liveGallerys->links('vendor.pagination.gallery-plus-pagination2') }}
 									</div>
+									<div class="clear"></div>
 							</div>
+						</div>
 					</span>
 				</div>
 				<div class="clear"></div>
@@ -272,9 +272,9 @@
 
 				@forEach($categorys as $category)
 						<div class="special">
-								<div class="top m-hide"><b>{{ $category->name }}</b><color> ({{ $gallerys[$category->id]->total() }})</color></div>
-								<div class="top m-show mtop"><a href="/gallery-plus-m"><b>스페셜</b></a><color> (16)</color></div>
-								<table id="table{{ $category->id }}">
+								<div class="top m-hide"><b>{{ $category->category_name }}</b><color> ({{ $gallerys[$category->category_id]->total() }})</color></div>
+								<div class="top m-show mtop"><a href="/gallery-plus-m/{{ $category->category_id }}"><b>{{ $category->category_name }}</b></a><color> ({{ $gallerys[$category->category_id]->total() }})</color></div>
+								<table id="table{{ $category->category_id }}">
 										<thead>
 											<tr>
 												<th></th>
@@ -286,7 +286,7 @@
 												<th></th>
 											</tr>
 										</thead>
-										@forEach($gallerys[$category->id] as $gallery)
+										@forEach($gallerys[$category->category_id] as $gallery)
 												@if($i % 70 == 0)
 														<tr>
 												@endif
@@ -310,8 +310,8 @@
 												$j = 0;
 										@endphp
 								</table>
-								<div id="page{{ $category->id }}" class="page" style="border-top-width: 1px;">
-											{{ $gallerys[$category->id]->links('vendor.pagination.gallery-plus-pagination') }}
+								<div id="page{{ $category->category_id }}" class="page" style="border-top-width: 1px;">
+									{{ $gallerys[$category->category_id]->links('vendor.pagination.gallery-plus-pagination') }}
 								</div>
 						</div>
 				@endforEach

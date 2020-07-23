@@ -3,12 +3,16 @@
 
 <html lang="kr">
 	<head>
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>@yield('title', '없음')</title>
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
 		<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+		<script src="{{ asset('assets/js/gallery.js') }}"></script>
 		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/gallery.css') }}" rel="stylesheet">
@@ -16,150 +20,380 @@
 	</head>
 
 	<body>
-
         @yield('header')
-
 		<div class="container">
 			<div class="mainLeft">
 				<div class="gallery-top">
-					<h4 class="title"><b>테스트갤러리</b></h4>
+					<h4 class="title" id="{{ $gallery->link }}"><b>{{ $gallery->name }}</b></h4>
 					<div class="sub">
-						<span><a href="">연관 갤러리(0/5)</a></span>
+						<span class="lf">
+							<a type="button" id="link-gallery" data-container="body" data-toggle="popover" data-placement="bottom" data-original-title="연관 갤러리" data-content="">
+							  연관 갤러리({{ $link_gallerys }}/5)
+						  	</a>
+						</span>
 						<span class="mLine">|</span>
-						<span><a href="">갤주소 복사</a></span>
+						<span><a href="" onclick="copy_trackback(this.href); return false;">갤주소 복사</a></span>
 						<span class="mLine">|</span>
-						<span><a href="">차단설정</a></span>
+						<span class="lf"><a href="#" data-toggle="modal" data-target="#block" id="blockConfig">차단설정</a></span>
 						<span class="mLine">|</span>
-						<span><a href="">갤러리 이용안내</a></span>
+						<span><a href="#" data-toggle="modal" data-target="#infouse">갤러리 이용안내</a></span>
 					</div>
 				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="infouse" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="infouseLabel">갤러리 이용 안내</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        @yield('infouse')
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="modal fade" id="block" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="blockLabel">차단설정</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+					  <div class="block-info">차단설정을 통해 게시물을 걸러서 볼 수 있습니다.</div>
+				      <div class="modal-body">
+					  	<ul class="nav nav-tabs">
+						  <li class="nav-item">
+						    <a class="nav-link active" data-toggle="tab" href="#allblock">전체설정</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" data-toggle="tab" href="#galleryblock">갤러리별 설정</a>
+						  </li>
+						</ul>
+						<div class="tab-content">
+							  <div class="tab-pane fade show active" id="allblock">
+								  <div class="block-info">
+									  <h6>[전체 갤러리]</h6>
+									  차단 등록은 20자 이내, 최대 10개까지 가능합니다.
+								  </div>
+								  <form>
+									    <div class="form-group">
+											<label for="recipient-name" class="col-form-label">차단 단어</label>
+											<div>
+												<div class="input">
+											  		<input type="text" class="form-control" id="block-keyword">
+												</div>
+												<div class="button">
+													<button type="button" class="btn" id="block-keyword"><span>등록</span></button>
+												</div>
+												<div class="clear"></div>
+											</div>
+									    </div>
+										<ul class="keyword-list list"></ul>
+										<hr>
+										<div class="form-group">
+											<label for="recipient-name" class="col-form-label">차단 ID</label>
+											<div>
+												<div class="input">
+											  		<input type="text" class="form-control" id="block-id">
+												</div>
+												<div class="button">
+													<button type="button" class="btn" id="block-id">등록</button>
+												</div>
+												<div class="clear"></div>
+											</div>
+									    </div>
+										<ul class="id-list list"></ul>
+										<hr>
+										<div class="form-group">
+											<label for="recipient-name" class="col-form-label">차단 닉네임</label>
+											<div>
+												<div class="input">
+											  		<input type="text" class="form-control" id="block-nick">
+												</div>
+												<div class="button">
+													<button type="button" class="btn" id="block-nick">등록</button>
+												</div>
+												<div class="clear"></div>
+											</div>
+									    </div>
+										<ul class="nick-list list"></ul>
+										<hr>
+										<div class="form-group">
+											<label for="recipient-name" class="col-form-label">차단 IP</label>
+											<div>
+												<div class="input">
+											  		<input type="text" class="form-control" id="block-ip">
+												</div>
+												<div class="button">
+													<button type="button" class="btn" id="block-ip">등록</button>
+												</div>
+												<div class="clear"></div>
+											</div>
+									    </div>
+										<ul class="ip-list list"></ul>
+								  </form>
+							  </div>
+							  <div class="tab-pane fade" id="galleryblock">
+								  <div class="block-info">
+									  <h6>설정된 갤러리</h6>
+									  <ul id="cookie-gallery"></ul>
+									  <ul style="display: none;" id="cookie-delete-gallery"></ul>
+								  </div>
+								  <form>
+									    <div class="form-group">
+											<label for="recipient-name" class="col-form-label">갤러리 선택</label>
+											<div>
+												<div class="input">
+											  		<input type="text" class="form-control" id="gallery-name">
+												</div>
+												<div class="button">
+													<button type="button" class="btn" id="gallery-select">검색</button>
+												</div>
+												<div class="clear"></div>
+											</div>
+									    </div>
+										<ul id="gallery-list">
+
+											<div class="clear"></div>
+										</ul>
+										<hr>
+										<div class="block-info">
+		  									<h6 id="gallery-select-name">[갤러리]</h6>
+											전체 설정과는 별개 적용됩니다.
+		  								</div>
+										<div class="form-group">
+											<label for="recipient-name" class="col-form-label">차단 단어</label>
+											<div>
+												<div class="input">
+											  		<input type="text" class="form-control" id="block-keyword" disabled>
+												</div>
+												<div class="button">
+													<button type="button" class="btn" id="block-keyword"><span>등록</span></button>
+												</div>
+												<div class="clear"></div>
+											</div>
+									    </div>
+										<ul class="keyword-list list"></ul>
+										<hr>
+										<div class="form-group">
+											<label for="recipient-name" class="col-form-label">차단 ID</label>
+											<div>
+												<div class="input">
+											  		<input type="text" class="form-control" id="block-id" disabled>
+												</div>
+												<div class="button">
+													<button type="button" class="btn" id="block-id">등록</button>
+												</div>
+												<div class="clear"></div>
+											</div>
+									    </div>
+										<ul class="id-list list"></ul>
+										<hr>
+										<div class="form-group">
+											<label for="recipient-name" class="col-form-label">차단 닉네임</label>
+											<div>
+												<div class="input">
+											  		<input type="text" class="form-control" id="block-nick" disabled>
+												</div>
+												<div class="button">
+													<button type="button" class="btn" id="block-nick">등록</button>
+												</div>
+												<div class="clear"></div>
+											</div>
+									    </div>
+										<ul class="nick-list list"></ul>
+										<hr>
+										<div class="form-group">
+											<label for="recipient-name" class="col-form-label">차단 IP</label>
+											<div>
+												<div class="input">
+											  		<input type="text" class="form-control" id="block-ip" disabled>
+												</div>
+												<div class="button">
+													<button type="button" class="btn" id="block-ip">등록</button>
+												</div>
+												<div class="clear"></div>
+											</div>
+									    </div>
+										<ul class="ip-list list"></ul>
+								  </form>
+							  </div>
+						</div>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+				        <button id="block-save" type="button" class="btn btn-primary">저장</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
 				<div class="clear"></div>
 				<hr class="line" style="margin-bottom:0px;">
 				<div class="infomation"><!--제일 큰박스-->
 					<div class="info-rank"><!--정보와 랭킹-->
-						<div class="info"><!--정보-->
+
+						@if($rank != 0)
+							<div class="info"><!--정보-->
+						@else
+							<div class="info" style="width: 100%;"><!--정보-->
+						@endif
 							<div class="img-info"><!--대표이미와 설명-->
-								<img src="https://static.wixstatic.com/media/0410f9_31769bd99aed4496b8a99667f7425f06~mv2.jpg/v1/fill/w_1600,h_900,al_c,q_90/file.jpg" alt="대표이미지">
+								<img class="m-hide" src="https://static.wixstatic.com/media/0410f9_31769bd99aed4496b8a99667f7425f06~mv2.jpg/v1/fill/w_1600,h_900,al_c,q_90/file.jpg" alt="대표이미지">
 								<div class="txtbox">
-									<p>이곳에 갤러리에대한 설명이 들어갑니다</p>
+									<p>{{ $gallery->contents }}</p>
 								</div>
 							</div>
 							<div class="m_list"><!--매니저 리스트-->
-								<div class="member">
-									<strong>매니저</strong>
-									<p>
-										<span>이름(아이디)</span>
-									</p>
-								</div>
-								<div class="member">
-									<strong>부매니저</strong>
-									<p>
-										<span>이름(아이디)</span>
-										<span>이름(아이디)</span>
-										<span>이름(아이디)</span>
-										<span>이름(아이디)</span>
-										<span>이름(아이디)</span>
-										<span>이름(아이디)</span>
+								@forEach($users as $user)
+									@if($user->status == 1)
+										<div class="member">
+											<strong>매니저</strong>
+											<p style="margin-bottom: 0px;">
+												<span>{{ $user->nick }}({{ $user->uid }})</span>
+											</p>
+										</div>
+										<div class="member">
+											<strong>부매니저</strong>
+											<p style="margin-bottom: 0px;">
+									@else
+											<span>{{ $user->nick }}({{ $user->uid }})</span>
+									@endif
+								@endforEach
 									</p>
 								</div>
 								<div class="member">
 									<strong>개설일</strong>
-									<p><span>날짜(1111-11-11)</span></p>
+									<p><span>{{ $gallery->agree_date }}</span></p>
 								</div>
 							</div>
 						</div>
-						<div class="ranker"><!--랭킹-->
-							<div class="rank">
-								<h4><i class="fas fa-sun red"></i>대흥갤</h4>
+						@if($rank != 0)
+							<div class="ranker"><!--랭킹-->
+								<div class="rank">
+									<h4><i class="fas fa-sun red"></i>주흥갤</h4>
+								</div>
+								<div class="num">
+									<h3>{{ $rank }}위</h3>
+								</div>
+								<a type="button" class="rankBtn allrank" data-container="body" data-toggle="popover" data-placement="bottom"
+								data-original-title="<b class='popTitle'>주간 흥한갤 전체 순위</b>&nbsp;
+					            <small>(전체 갤러리 순위에서 100위 내에 해당될 경우 흥한갤이 됩니다.)</small>"
+								data-content="">
+									<img src="/assets/img/rank.png" alt="순위버튼">
+								</a>
 							</div>
-							<div class="num">
-								<h3>n위</h3>
-							</div>
-							<a href="#" class="rankBtn">
-								<img src="/assets/img/rank.png" alt="순위버튼">
-							</a>
+						@endif
+					</div>
+
+					@if($c_image != '')
+						<div class="top-ad"><!--상단광고-->
+							<img src="data:image/png;base64,{{ $c_image }}" alt="광고">
 						</div>
-					</div>
-					<div class="top-ad"><!--상단광고-->
-						<img src="https://nstatic.dcinside.com/ad/2020/banner/200212_AFKarena_84090.jpg" alt="광고">
-					</div>
-					<div class="record"><!--방문기록-->
-						<h3 class="gal-record">최근 방문 갤러리</h3>
-						<button type="button" class="hide prev">
-							<i class="fas fa-caret-left"></i>
-						</button>
-						<ul class="visit-gal">
-							<li>
-								<a href="#">
-									방문한 갤
-								</a>
-								<button type="button" class="hide del"><i class="fas fa-times grey"></i></button>
-							</li>
-							<li>
-								<a href="#">
-									방문한 갤
-								</a>
-								<button type="button" class="hide del"><i class="fas fa-times grey"></i></button>
-							</li>
-							<li>
-								<a href="#">
-									방문한 갤
-								</a>
-								<button type="button" class="hide del"><i class="fas fa-times grey"></i></button>
-							</li>
-							<li>
-								<a href="#">
-									방문한 갤
-								</a>
-								<button type="button" class="hide del"><i class="fas fa-times grey"></i></button>
-							</li>
-						</ul>
-						<button type="button" class="hide next">
-							<i class="fas fa-caret-right toggle"></i>
-						</button>
+					@endif
+					<div class="recently-visit">
+						<div class="fir">
+							<b>최근 방문 갤러리</b>
+						</div>
+						<div class="visitlist">
+							<div class="row" id="visitlist">
+									@for($i = count($recentGallerys)-1; $i >= 0; $i--)
+											@if($j = $recentGallerys[$i]) {{-- 값 유무 확인 --}}
+													@if($i != 0)
+															<div class="col">
+																<span>{{ $recentGallerys[$i] }}</span>
+																<button id="{{ $i }}" class="delete"><i class="fas fa-times grey"></i></button>
+															</div>
+															<div class="clear"></div>
+													@else
+															<div class="col m-hide">
+																<span>{{ $recentGallerys[$i] }}</span>
+																<button id="{{ $i }}" class="delete"><i class="fas fa-times grey"></i></button>
+															</div>
+															<div class="clear"></div>
+													@endif
+											@endif
+									@endfor
+							</div>
+						</div>
+						<div class="clear"></div>
 					</div>
 				</div>
 				<div class="optionBar">
 					<div class="leftBox">
-						<button type="button" name="button" class="on">전체글</button>
-						<button type="button" name="button" class="">개념글</button>
-						<button type="button" name="button" class="">공지</button>
+						@if($select_head == '개념')
+							<button type="button" id="all-post" name="button" class="">전체글</button>
+							<button type="button" id="concept-post" name="button" class="on">개념글</button>
+							<button type="button" id="notice" name="button" class="">공지</button>
+						@elseif($select_head == '공지')
+							<button type="button" id="all-post" name="button" class="">전체글</button>
+							<button type="button" id="concept-post" name="button" class="">개념글</button>
+							<button type="button" id="notice" name="button" class="on">공지</button>
+						@else
+							<button type="button" id="all-post" name="button" class="on">전체글</button>
+							<button type="button" id="concept-post" name="button" class="">개념글</button>
+							<button type="button" id="notice" name="button" class="">공지</button>
+						@endif
 					</div>
-					<div class="centerBox">
-						<div class="inner">
+					<script>
+						$(document).on("click", "#all-post", function(){
+							location.href="?showCnt={{ $showCnt }}";
+						});
+						$(document).on("click", "#concept-post", function(){
+							location.href="?showCnt={{ $showCnt }}&head=개념";
+						});
+						$(document).on("click", "#notice", function(){
+							location.href="?showCnt={{ $showCnt }}&head=공지";
+						});
+					</script>
+					<div class="clear"></div>
+					<div class="m-hide heads">
+						<div class="heads-list">
 							<ul>
-								<li><a href="#" class="on">전체</a></li>
-								<li><a href="#" class="">일반</a></li>
-								<li><a href="#" class="">연재</a></li>
+								<li><b><a href="?showCnt={{ $showCnt }}" class="on">전체</a></b></li>
+								<li class="mg20"><a href="?showCnt={{ $showCnt }}&head=일반" class="">일반</a></li>
+								@forEach($heads as $head)
+									<li class="mg20"><a href="?showCnt={{ $showCnt }}&head={{ $head }}">{{ $head }}</a></li>
+								@endforEach
+								<div class="clear"></div>
 							</ul>
 						</div>
-					</div>
-					<div class="rightBox">
-						<div class="output">
-							<div class="selectBox">
-								<select class="" name="number">
-									<option value="30">30개</option>
-									<option value="50">50개</option>
-									<option value="100">100개</option>
-								</select>
-								<!--<div class="selectArea">
-									<a href="#" onclick="showLayer(this, 'listSizeLayer');return false;">50개
-										<span class="blind">페이지당 게시물 노출 옵션</span>
-										<i class="fas fa-caret-down"></i>
+						<div class="rightBox" style="padding-top: 0px;">
+							<div class="output">
+								<div class="selectBox">
+									<select id="post_cnt" name="number" onchange="if(this.value) location.href='?showCnt='+(this.value);">
+										@if($showCnt == 30)
+											<option value="30" selected>30개</option>
+											<option value="50">50개</option>
+											<option value="100">100개</option>
+										@elseif($showCnt == 50)
+											<option value="30">30개</option>
+											<option value="50" selected>50개</option>
+											<option value="100">100개</option>
+										@else
+											<option value="30">30개</option>
+											<option value="50">50개</option>
+											<option value="100" selected>100개</option>
+										@endif
+									</select>
+								</div>
+								<div class="switchBtn">
+									<a href="#" class="writeBtn">
+										<i class="fas fa-pencil-alt"></i>
 									</a>
 								</div>
-								<ul id="listSizeLayer" class="option_box" style="left: 0px; top: 20px; display: none;">
-							  	  <li><a href="javascript:listDisp(30)">30개</a></li>
-								  <li><a href="javascript:listDisp(50)">50개</a></li>
-								  <li><a href="javascript:listDisp(100)">100개</a></li>
-							  </ul>-->
-							</div>
-							<div class="switchBtn">
-								<a href="#" class="writeBtn">
-									<i class="fas fa-pencil-alt"></i>
-								</a>
 							</div>
 						</div>
+						<div class="clear"></div>
 					</div>
 				</div>
 				<div class="post_listWarp">
@@ -167,664 +401,139 @@
 						<thead>
 							<tr>
 								<th scope="col" class="tit-num">번호</th>
-								<th scope="col" class="tit-mal">말머리</th>
+								<th scope="col" class="tit-mal m-hide">말머리</th>
 								<th scope="col" class="tit-tit">제목</th>
 								<th scope="col" class="tit-user">글쓴이</th>
 								<th scope="col" class="tit-date">작성일</th>
-								<th scope="col" class="tit-view">조회</th>
-								<th scope="col" class="tit-good">추천</th>
+								<th scope="col" class="tit-view m-hide">조회</th>
+								<th scope="col" class="tit-good m-hide">추천</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="postArea">
-								<td class="post_num">12131</td>
-								<td class="post_head"><b>공지</b></td>
-								<td class="post_title">
-									<a href="post">
-										<i class="fas fa-info-circle red"></i>
-										<b>제목</b>
-									</a>
-									<a href="#" class="comment_count">[312]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피">범피</span>
-									<a href="#" class="nickon">
-										<i class="fas fa-crown gold"></i>
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">12131</td>
-								<td class="post_head"><b>공지</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-info-circle red"></i>
-										<b>제목</b>
-									</a>
-									<a href="#" class="comment_count">[312]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피">범피</span>
-									<a href="#" class="nickon">
-										<i class="fas fa-crown gold"></i>
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">12131</td>
-								<td class="post_head"><b>공지</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-info-circle red"></i>
-										<b>제목</b>
-									</a>
-									<a href="#" class="comment_count">[312]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피">범피</span>
-									<a href="#" class="nickon">
-										<i class="fas fa-crown gold"></i>
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-image green"></i>
-										제목(부매니저)
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피동생">범피동생</span>
-									<a href="#" class="nickon">
-										<i class="fas fa-crown gray"></i>
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-							<tr class="postArea">
-								<td class="post_num">112331</td>
-								<td class="post_head"><b>일반글</b></td>
-								<td class="post_title">
-									<a href="#">
-										<i class="fas fa-comment-dots sliver"></i>
-										제목
-									</a>
-									<a href="#" class="comment_count">[222]</a>
-								</td>
-								<td class="post_user">
-									<span class="nickname" title="범피형">범피형</span>
-									<a href="#" class="nickon">
-
-									</a>
-								</td>
-								<td class="post_date">20.02.16</td>
-								<td class="post_view">123213</td>
-								<td class="post_good">32</td>
-							</tr>
-
+							@php $i=0; @endphp
+							@forEach($n_posts as $n_post)
+								<tr class="postArea" id="p{{ $i }}">
+									<td class="post_num">{{ $n_post->post_id }}</td>
+									<td class="post_head m-hide"><b>공지</b></td>
+									<td class="post_title">
+										<a href="post">
+											<i class="fas fa-info-circle red"></i>
+											<b>{{ $n_post->post_title }}</b>
+										</a>
+										<a href="#" class="comment_count">[{{ $n_post->post_comments }}]</a>
+									</td>
+									<td class="post_user">
+										<span class="nickname">{{ $n_post->user_nick }}</span>
+										<a href="#" class="nickon">
+											<i class="fas fa-crown gold"></i>
+										</a>
+									</td>
+									<td class="post_date">{{ date('y-m-d', strtotime($n_post->post_reg_date)) }}</td>
+									<td class="post_view m-hide">{{ $n_post->post_view }}</td>
+									<td class="post_good m-hide">{{ $n_post->post_good }}</td>
+								</tr>
+								@php $i++; @endphp
+							@endforEach
+							@forEach($posts as $post)
+								<tr class="postArea" id="p{{ $i }}">
+									<td class="post_num">{{ $post->post_id }}</td>
+									<td class="post_head m-hide"><b>{{ $post->post_head }}</b></td>
+									<td class="post_title">
+										<a href="#" id="title">
+											@if($post->post_thumbnail)
+												<i class="fas fa-image green"></i>
+											@else
+												<i class="fas fa-comment-dots sliver"></i>
+											@endif
+											{{ $post->post_title }}
+										</a>
+										<a href="#" class="comment_count">[{{ $post->post_comments }}]</a>
+									</td>
+									<td class="post_user">
+										<span class="uid" style="display:none;">{{ $post->user_uid }}"</span>
+										<span class="nickname" title="">{{ $post->user_nick }}
+										<span class="ip">({{ $post->post_ip }})</span></span>
+										@if($post->user_status == 1)
+											<i class="fas fa-crown gold"></i>
+										@elseif($post->user_status == 2)
+											<i class="fas fa-crown gray"></i>
+										@endif
+									</td>
+									<td class="post_date">{{ date('y-m-d', strtotime($post->post_reg_date)) }}</td>
+									<td class="post_view m-hide">{{ $post->post_view }}</td>
+									<td class="post_good m-hide">{{ $post->post_good }}</td>
+								</tr>
+								@php $i++; @endphp
+							@endforEach
 						</tbody>
 					</table>
 				</div>
 				<div class="optionBar bot">
 					<div class="leftBox">
-						<button type="button" name="button" class="on">전체글</button>
-						<button type="button" name="button" class="">개념글</button>
+						@if($select_head == '개념')
+							<button type="button" id="all-post" name="button" class="">전체글</button>
+							<button type="button" id="concept-post" name="button" class="on">개념글</button>
+						@else
+							<button type="button" id="all-post" name="button" class="on">전체글</button>
+							<button type="button" id="concept-post" name="button" class="">개념글</button>
+						@endif
 					</div>
 					<div style="float:right;">
 						<a href="write"><button type="button" name="button" class="on write">글쓰기</button></a>
 					</div>
 				</div>
 				<div class="pagebox">
-					<em>1</em>
-					<a href="#">2</a>
-					<a href="#">3</a>
-					<a href="#">4</a>
-					<a href="#">5</a>
-					<a href="#">6</a>
-					<a href="#">7</a>
-					<a href="#">8</a>
-					<a href="#">9</a>
-					<a href="#">10</a>
-					<a href="#">11</a>
-					<a href="#">12</a>
-					<a href="#">13</a>
-					<a href="#">14</a>
-					<a href="#">15</a>
-					<a href="#">다음</a>
-					<a href="#">끝</a>
+					@if($posts != null && $posts != '')
+						{{ $posts->links('vendor/pagination/gallery-post-pagination') }}
+					@endif
 				</div>
-				<div class="bottom_search">
-					<div class="bottom_select">
-						<select id="search_type" name="search_type">
-		    			  <option value="search_all">전체</option>
-		    			  <option value="search_subject">제목</option>
-		    			  <option value="search_memo">내용</option>
-		    			  <option value="search_name">글쓴이</option>
-		    			  <option value="search_subject_memo">제목+내용</option>
-		    			</select>
-					</div>
-					<div class="search_content">
-						<div class="inner_search">
-							<input type="text" class="keyword" name="search_keyword" value="" title="검색어 입력">
+				<form action="?showCnt={{ $showCnt }}&head={{ $head }}" method="get">
+					<input type="hidden" name="showCnt" value="{{ $showCnt }}">
+					<div class="bottom_search">
+						<div class="bottom_select">
+							<select id="search_type" name="search_type">
+								@if($search_type == 'search_subject')
+									<option value="search_all">전체</option>
+								  	<option value="search_subject" selected>제목</option>
+								  	<option value="search_memo">내용</option>
+								  	<option value="search_name">글쓴이</option>
+								  	<option value="search_subject_memo">제목+내용</option>
+								@elseif($search_type == 'search_memo')
+									<option value="search_all">전체</option>
+									<option value="search_subject">제목</option>
+									<option value="search_memo" selected>내용</option>
+									<option value="search_name">글쓴이</option>
+									<option value="search_subject_memo">제목+내용</option>
+								@elseif($search_type == 'search_name')
+									<option value="search_all">전체</option>
+									<option value="search_subject">제목</option>
+									<option value="search_memo" >내용</option>
+									<option value="search_name" selected>글쓴이</option>
+									<option value="search_subject_memo">제목+내용</option>
+								@elseif($search_type == 'search_subject_memo')
+									<option value="search_all">전체</option>
+									<option value="search_subject">제목</option>
+									<option value="search_memo">내용</option>
+									<option value="search_name">글쓴이</option>
+									<option value="search_subject_memo" selected>제목+내용</option>
+								@else
+									<option value="search_all" selected>전체</option>
+									<option value="search_subject">제목</option>
+									<option value="search_memo">내용</option>
+									<option value="search_name">글쓴이</option>
+									<option value="search_subject_memo">제목+내용</option>
+							  	@endif
+			    			</select>
 						</div>
-						<button type="button" class="searchBtn btn" name="button"><i class="fas fa-search"></i></button>
+						<div class="search_content">
+							<div class="inner_search">
+								<input type="text" class="keyword" name="search_keyword" value="" title="검색어 입력">
+								<button type="submit" class="searchBtn btn"><i class="fas fa-search"></i></button>
+							</div>
+							<div class="clear"></div>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 			<div class="mainRight">
 				<div class="login_line login">
@@ -847,9 +556,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="right_ad">
-					<img src="https://tpc.googlesyndication.com/simgad/12871765273756679647?sqp=4sqPyQQ7QjkqNxABHQAAtEIgASgBMAk4A0DwkwlYAWBfcAKAAQGIAQGdAQAAgD-oAQGwAYCt4gS4AV_FAS2ynT4&rs=AOga4qmFBbjMJZsu2LGHX2Wwb1VR_TOVrg" alt="우측광고">
-				</div>
+				@if($r_image != '')
+					<div class="right_ad"><!--상단광고-->
+						<img style="width: 100%" src="data:image/png;base64,{{ $r_image }}" alt="광고">
+					</div>
+				@endif
 				<div class="boxline liveRanking concept">
 					<div class="concept-left">
 						<h6><a href="#"><strong>개념글</strong><sm>[소제목]</sm></a></h6>

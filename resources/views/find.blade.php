@@ -84,8 +84,8 @@
           @php
             $headArr = explode("/", $result->heads);
           @endphp
-          <li id="sel0" class="sel" value="sel0" onclick="change('sel0');"><i id="head" class="fas fa-check"></i>없음</li>
-          <input id="sendHead" type="hidden" name="head" value="없음">
+          <li id="sel0" class="sel" value="sel0" onclick="change('sel0');"><i id="head" class="fas fa-check"></i>일반</li>
+          <input id="sendHead" type="hidden" name="head" value="일반">
           @for($i = 0; $i < count($headArr) ; $i++)
             <li id="sel{{ $i+1 }}" value="sel{{ $i+1 }}" onclick="change('sel{{ $i+1 }}');">{{ $headArr[$i] }}</li>
           @endfor

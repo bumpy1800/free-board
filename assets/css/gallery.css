@@ -69,6 +69,76 @@ option{
 	margin-bottom: 0px;
 	font-size: 13px;
 }
+
+.modal-content {
+    border: 0px;
+}
+.modal-header {
+    background: #1379df;
+    color: white;
+}
+.modal .block-info {
+    background: #eee;
+    font-size: 13px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.modal .block-info ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.modal .block-info ul li{
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+.modal p{
+    margin-bottom: 0px;
+}
+.modal form .form-group{
+    margin-bottom: 4px;
+}
+
+.modal form .list{
+    border: 0px;
+    height: auto;
+}
+.modal form .list li{
+    text-align: left;
+}
+
+.modal form ul{
+    padding: 5px;
+    border: 1px solid #ced4da;
+    list-style: none;
+    overflow: auto;
+    height: 150px;
+    font-size: 13px;
+}
+.modal form ul li{
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+.modal .input{
+    width: 75%;
+    float: left;
+}
+.modal .button{
+    width: 25%;
+    float: right;
+}
+.modal .button button{
+    background: #eee;
+    float: right;
+}
+
 .login_line {
 	border: 1px solid #1379df;
 	margin-bottom: 15px;
@@ -296,6 +366,7 @@ li a{
 }
 .info-rank{
     display: flex;
+    margin-bottom: 10px;
 }
 .info{
     float: left;
@@ -388,6 +459,58 @@ li a{
     width: 112px;
     height: 21px;
 }
+.week-gallery-rank {
+	list-style:none;
+	padding-left:0px;
+	float: left;
+	margin-left: 0px;
+	font-size: 13px;
+}
+.week-gallery-rank-next {
+	margin-left: 60px;
+}
+.popTitle {
+	color: #1379df;
+}
+
+.recently-visit {
+	border: 1px solid #999;
+	background-color: #f3f3f3;
+	margin-top: 14px;
+	margin-bottom: 14px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+.recently-visit b{
+	font-size: 13px;
+	color: #1379df;
+}
+.recently-visit .fir{
+	width: 15%;
+	float: left;
+}
+.recently-visit .visitlist{
+	width: 80%;
+	float: right;
+}
+.recently-visit .visitlist .col span{
+	padding-top: 3px;
+	float: left;
+	font-size: 13px;
+}
+
+.recently-visit .visitlist .col button{
+	float: right;
+	border: 0px;
+	padding: 0px;
+	height: 24px;
+	font-size: 13px;
+	color: #666;
+	background-color: #f3f3f3;
+}
+
 .infomation .record{
     position: relative;
     display: inline-flex;
@@ -475,7 +598,7 @@ li a{
 }
 .leftBox .on{
     border: 1px solid #3c4790;
-    background: #4a57a8;
+    background: #1379df;
     color: #fff;
     text-shadow: 0px -1px #343d8e;
 }
@@ -496,6 +619,25 @@ li a{
     margin-left: -2px;
     background-color: white;
 }
+
+.heads {
+    position: relative; bottom: -11px;
+}
+.heads .heads-list {
+    font-size: 13px;
+    float:left;
+}
+.heads .heads-list ul {
+    list-style:none;
+}
+.heads .heads-list ul li {
+    float:left;
+}
+.heads .heads-list ul .mg20{
+    margin-left: 20px;
+}
+
+
 .centerBox{
     position: relative;
     display: table-cell;
@@ -509,7 +651,7 @@ li a{
 .centerBox .inner ul{
     float: left;
     overflow: hidden;
-    padding-top: 6px;
+    padding-top: 3px;
     padding-right: 10px;
     margin-left: 7px;
     line-height: 32px;
@@ -740,19 +882,19 @@ td{
     width: 10%;
 }
 .tit-mal{
-    width: 10%;
+    width: 7%;
 }
 .tit-tit{
-    width: 40%;
+    width: 32%;
 }
 .tit-user{
-    width: 15%;
+    width: 23%;
 }
 .tit-date{
     width: 15%;
 }
 .tit-view{
-    width: 10%;
+    width: 8%;
 }
 .tit-good{
     width: 5%;
@@ -766,8 +908,8 @@ td{
     font-weight: bold;
 }
 .write{
-    background: #4a57a8;
-    border-color: #3c4790;
+    background: #1379df;
+    border-color: #1379df;
     text-shadow: 0px -1px #343d8e;
     color: #fff;
     width: 82px;
@@ -781,25 +923,20 @@ td{
     font-weight: bold;
 }
 .pagebox{
-    position: relative;
-    margin-top: 18px;
     text-align: center;
-    line-height: 20px;
 }
-.pagebox a{
+.pagebox nav {
     display: inline-block;
+}
+.pagebox a, .pagebox span{
     margin-left: 5px;
-    font-size: 14px;
-    font-weight: bold;
+    margin-right: 5px;
 }
-.pagebox em{
-    text-decoration: underline;
+.pagebox .active{
+    font-weight: bold;
     color: #d31900;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: bold;
-    font-style: normal;
 }
+
 .bottom_search{
     width: 451px;
     margin: 20px auto 0;
@@ -807,8 +944,8 @@ td{
 .bottom_select{
     width: 110px;
     height: 36px;
-    border: 1px solid #3c4790;
-    background: #4a57a8;
+    border: 1px solid #1379df;
+    background: #1379df;
     position: relative;
     float: left;
 }
@@ -820,24 +957,32 @@ td{
 .search_content{
     height: 36px;
     margin-left: 5px;
-    border: 1px solid #3c4790;
-    background: #4a57a8;
+    background: #1379df;
     float: left;
 }
 .inner_search{
-    margin: 3px 3px 0 3px;
-    width: 280px;
+    /*margin: 3px 3px 0 3px;*/
+    padding: 5px;
+    width: 310px;
     float: left;
-    background: #fff;
+    /*background: #fff;*/
 }
 .inner_search .keyword{
-    width: 260px;
+    display: inline-block;
+    width: 250px;
     height: 27.5px;
     line-height: 30px;
+    background: white;
+}
+.inner_search button{
+    display: inline-block;
+    float: right;
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 .keyword{
     width: 336px;
-    height: 34px;
+    height: auto;
     padding: 0 9px;
     border: none;
     background: transparent;
@@ -846,8 +991,33 @@ td{
     font-size: 14px;
     font-weight: bold;
 }
+
+.popover {
+    max-width: 100%;
+}
+.pagination {
+    float:right;
+}
+
+.link-gallery-top {
+    padding: 10px;
+    background: #eee;
+    text-align: center;
+}
+.link-gallery-left {
+    width: 50%;
+}
+.link-gallery {
+    list-style: none;
+    margin-bottom: 0px;
+    padding: 10px;
+}
+.link-gallery li{
+    float: left;
+    width: 25%;
+}
 /*---------- 모바일 ----------*/
-@media(max-width: 1200px) {
+@media(max-width: 1199px) {
     .secimg-box{
         display: none;
     }
@@ -857,5 +1027,110 @@ td{
     }
     .ranker{
         display: none;
+    }
+
+    .optionBar .leftBox{
+        display: inline;
+        width: 100%;
+        white-space: normal;
+    }
+    .optionBar .leftBox button{
+        width: 100%;
+        margin: 0px;
+    }
+
+    .bot .leftBox{
+        display: none;
+    }
+
+@media(max-width: 991px) {
+    .right_ad img {
+        display: none;
+    }
+
+    .bottom_search{
+        width: 100%;
+    }
+    .bottom_search .bottom_select{
+        width: 100%;
+        padding: 5px;
+        height: auto;
+        float: none;
+        border: 0px;
+    }
+    .bottom_search .bottom_select #search_type{
+        width: 100%;
+        margin: 0px;
+        padding: 5px;
+        height: auto;
+    }
+    .bottom_search .search_content{
+        width: 100%;
+        padding: 5px;
+        margin: 0px;
+        height: auto;
+        float: none;
+        padding-top: 0px;
+    }
+    .bottom_search .search_content .inner_search{
+        width: 100%;
+        margin: 0px;
+        height: auto;
+        float: left;
+        padding: 0px;
+    }
+    .bottom_search .search_content .inner_search .keyword{
+        width: 95%;
+        /*float: left*/;
+        height: auto;
+        background: white;
+    }
+    .bottom_search .search_content .inner_search button{
+        width: 5%;
+        padding: 0px;
+        float: right;
+    }
+}
+
+@media(max-width: 767px) {
+    .m-hide {
+		display: none;
+	}
+
+    .gallery-top .sub {
+        width: 100%;
+    }
+    .gallery-top .sub span{
+        display: inline-block;
+        width: 50%;
+    }
+    .gallery-top .sub .lf{
+        float: left;
+    }
+    .gallery-top .sub .mLine{
+        display: none;
+    }
+
+    .modal .block-info ul li{
+        width: 50%;
+    }
+    .modal form ul li{
+        width: 50%;
+    }
+
+    .recently-visit .fir{
+		width: 100%;
+		float: none;
+	}
+	.recently-visit .visitlist{
+		width: 100%;
+		float: none;
+	}
+	.recently-visit .visitlist .col{
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+    .m_list .member strong {
+        width: 100%;
     }
 }

@@ -159,7 +159,7 @@ class GalleryController extends Controller
             'link' => 'required|max:10',
             'contents' => 'required|max:10',
             'reason' => 'required|max:10',
-            'heads' => 'max:20',
+            'heads' => 'max:40',
             'agree' => 'required|max:10'
         ], $messages);
         if ($validator->fails()) {

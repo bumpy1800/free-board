@@ -123,8 +123,8 @@
                                   <div class="write_sub">
                                       <strong class="tit">말머리</strong>
                                       <ul id="sub_list" class="sub_list">
-                                          <li id="sel1" class="sel" value="sel1" onclick="change('sel1');"><i id="head" class="fas fa-check"></i>없음</li>
-                                          <input id="sendHead" type="hidden" name="head" value="없음">
+                                          <li id="sel1" class="sel" value="sel1" onclick="change('sel1');"><i id="head" class="fas fa-check"></i>일반</li>
+                                          <input id="sendHead" type="hidden" name="head" value="일반">
                                       </ul>
                                       <script>
                                         function change(sel) {

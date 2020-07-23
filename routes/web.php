@@ -130,7 +130,10 @@ Route::get('edu-gallery', 'GalleryController@index');
 Route::get('travel-gallery', 'GalleryController@index');
 Route::get('hobby-gallery', 'GalleryController@index');
 Route::post('week-gallerys', 'GalleryController@week_gallerys');
+Route::get('gallery-plus-m/{id}', 'GalleryController@m_gallery_index');
 Route::get('gallery_cookiedelete/{id}', 'GalleryController@cookieDelete');
+Route::get('gallery_search/{name}', 'GalleryController@gallery_search');
+Route::any('gallery_link_gallery', 'GalleryController@link_gallery');
 
 
 Route::get('admin_post/{link}/{id}', 'admin\PostController@show');
