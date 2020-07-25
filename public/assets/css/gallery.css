@@ -600,7 +600,7 @@ li a{
     border: 1px solid #3c4790;
     background: #1379df;
     color: #fff;
-    text-shadow: 0px -1px #343d8e;
+    text-shadow: 0px -1px #1379df;
 }
 .leftBox button:first-child{
     margin-left: 0px;
@@ -901,7 +901,7 @@ td{
 }
 .bot button{
     padding-right: 2px;
-    border-width: 1px 1px 3px 1px;
+    border-width: 1px 1px 1px 1px;
     border-style: solid;
     border-radius: 2px;
     font-size: 14px;

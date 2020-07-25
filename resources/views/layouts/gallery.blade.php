@@ -359,10 +359,22 @@
 					<div class="m-hide heads">
 						<div class="heads-list">
 							<ul>
-								<li><b><a href="?showCnt={{ $showCnt }}" class="on">전체</a></b></li>
-								<li class="mg20"><a href="?showCnt={{ $showCnt }}&head=일반" class="">일반</a></li>
+								@if($select_head == '')
+									<li><b><a href="?showCnt={{ $showCnt }}">전체</a></b></li>
+								@else
+									<li><a href="?showCnt={{ $showCnt }}">전체</a></li>
+								@endif
+								@if($select_head == "일반")
+									<li class="mg20"><b><a href="?showCnt={{ $showCnt }}&head=일반" class="">일반</a></b></li>
+								@else
+									<li class="mg20"><a href="?showCnt={{ $showCnt }}&head=일반" class="">일반</a></li>
+								@endif
 								@forEach($heads as $head)
-									<li class="mg20"><a href="?showCnt={{ $showCnt }}&head={{ $head }}">{{ $head }}</a></li>
+									@if($head == $select_head)
+										<li class="mg20"><b><a href="?showCnt={{ $showCnt }}&head={{ $head }}">{{ $head }}</a></b></li>
+									@else
+										<li class="mg20"><a href="?showCnt={{ $showCnt }}&head={{ $head }}">{{ $head }}</a></li>
+									@endif
 								@endforEach
 								<div class="clear"></div>
 							</ul>
@@ -413,10 +425,10 @@
 							@php $i=0; @endphp
 							@forEach($n_posts as $n_post)
 								<tr class="postArea" id="p{{ $i }}">
-									<td class="post_num">{{ $n_post->post_id }}</td>
+									<td class="post_num">{{ $post->post_id }}</td>
 									<td class="post_head m-hide"><b>공지</b></td>
 									<td class="post_title">
-										<a href="post">
+										<a href="{{ route('gallery-post.show', $post->post_id) }}">
 											<i class="fas fa-info-circle red"></i>
 											<b>{{ $n_post->post_title }}</b>
 										</a>
@@ -439,7 +451,7 @@
 									<td class="post_num">{{ $post->post_id }}</td>
 									<td class="post_head m-hide"><b>{{ $post->post_head }}</b></td>
 									<td class="post_title">
-										<a href="#" id="title">
+										<a href="{{ url('gallery-post/'.$gallery->link.'/'.$post->post_id) }}" id="title">
 											@if($post->post_thumbnail)
 												<i class="fas fa-image green"></i>
 											@else
@@ -463,7 +475,9 @@
 									<td class="post_view m-hide">{{ $post->post_view }}</td>
 									<td class="post_good m-hide">{{ $post->post_good }}</td>
 								</tr>
-								@php $i++; @endphp
+								@php
+								 	$i++;
+								@endphp
 							@endforEach
 						</tbody>
 					</table>

@@ -1,20 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cookie;
 use App\Comment;
 use App\Post;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
       //$comments = comment::all();
@@ -25,24 +21,6 @@ class CommentController extends Controller
                         ->get();
       return view('admin.comment-list', ['comments' => $comments]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-     public function create()
-     {
-         return view('admin.comment-add-form');
-     }
-
-     /**
-      * Store a newly created resource in storage.
-      *
-      * @param  \Illuminate\Http\Request  $request
-      * @return \Illuminate\Http\Response
-      */
-
 
      public function store(Request $request)
      {
@@ -77,6 +55,8 @@ class CommentController extends Controller
                ->withInput()
                ->withErrors($validator);
        }*/
+
+
        $post_gallery_link = $request->input('post_gallery_link');
 
        $nouser_name = $request->input('name');
@@ -133,27 +113,29 @@ class CommentController extends Controller
              'post_id' => $post_id,
              'reg_date' => $reg_date,
              'user_id' => 1,
-             'ip' => 123412
+             'ip' => $this->getUserIpAddr()
          ]);
 
-         $post = Post::findOrFail($post_id);
-         Post::where('id', $post_id)->update([
-             'comments' => $post->comments + 1
-         ]);
-         return redirect('admin_post/'.$post_gallery_link.'/'.$post_id);
+         if($request->input('type') == null) { // 등록+추천
+
+             $list = Cookie::get('goodBadPointList');
+             if(strpos($list, $post_id . '/') === false) {
+                 $list = $list . $post_id . '/';
+                 Post::where('id', $post_id)->increment('good');
+                 Cookie::queue('goodBadPointList', $list, 1440);
+             }
+             Post::where('id', $post_id)->increment('comments');
+         } else {   // 등록, type=register(GET)
+             Post::where('id', $post_id)->increment('comments');
+         }
+
+         return redirect('gallery-post/'.$post_gallery_link.'/'.$post_id);
        } catch(Exception $e) {
          return redirect('error');
        }
+    }
 
 
-     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
       return view('');
@@ -231,24 +213,6 @@ class CommentController extends Controller
       return redirect(route('admin_comment.index'));
     }
 
-    /*public function get_client_ip() {
-      $ipaddress = '';
-      if (getenv('HTTP_CLIENT_IP'))
-          $ipaddress = getenv('HTTP_CLIENT_IP');
-      else if(getenv('HTTP_X_FORWARDED_FOR'))
-          $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-      else if(getenv('HTTP_X_FORWARDED'))
-          $ipaddress = getenv('HTTP_X_FORWARDED');
-      else if(getenv('HTTP_FORWARDED_FOR'))
-          $ipaddress = getenv('HTTP_FORWARDED_FOR');
-      else if(getenv('HTTP_FORWARDED'))
-          $ipaddress = getenv('HTTP_FORWARDED');
-      else if(getenv('REMOTE_ADDR'))
-          $ipaddress = getenv('REMOTE_ADDR');
-      else
-          $ipaddress = '0.0.0.0';
-      return $ipaddress;
-    }*/
     public function getUserIpAddr(){
        $ipaddress = '';
        if (isset($_SERVER['HTTP_CLIENT_IP']))

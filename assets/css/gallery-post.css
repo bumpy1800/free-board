@@ -14,6 +14,30 @@ a:hover{
 header{
     display: block;
 }
+
+.popover ul{
+    padding: 0px;
+    text-align: center;
+    list-style: none;
+}
+.popover ul li{
+    width: 25%;
+    float: left;
+    padding: 5px;
+}
+
+.popover ul li img{
+    width: 50px;
+}
+
+.gallery-top .sub {
+    padding-top: 19px;
+}
+
+#rep_box {
+  border: 0px;
+}
+
 .blue{
     color: blue;
 }
@@ -123,6 +147,17 @@ header{
     background: transparent;
     font-style: normal;
 }
+
+#rep_box .left{
+    width: 20%;
+}
+#rep_box .cmt_txt{
+    width: 80%;
+}
+#rep_box .cmt_txt textarea{
+    width: 100%!important;
+}
+
 .btn_cmt_close, .btn_cmt_refresh{
     font-family: '굴림',Gulim;
     font-size: 13px;
@@ -141,8 +176,8 @@ header{
 .cmt_write_box{
     padding: 12px 12px 12px;
     background: #fafafa;
-    border-top: 2px solid #525eaa;
-    border-bottom: 2px solid #525eaa;
+    border-top: 2px solid #1379df;
+    border-bottom: 2px solid #1379df;
     height: 180px;
 }
 .user_info_input input{
@@ -332,21 +367,21 @@ header{
     font-weight: bold;
 }
 .btn_blue{
-    background: #4a57a8!important;
-    border-color: #3c4790!important;
-    text-shadow: 0px -1px #343d8e;
+    background: #1379df!important;
+    border-color: #1379df!important;
+    text-shadow: 0px -1px #1379df;
     color: #fff;
 }
 .btn_lightBlue{
-    background: #6c7bb4!important;
-    border-color: #525eaa!important;
-    text-shadow: 0px -1px #4b559c;
+    background: #1379dfb0!important;
+    border-color: #1379dfb0!important;
+    text-shadow: 0px -1px #1379dfb0;
     color: #fff;
 }
 .btn_white{
     background: #fff!important;
-    border-color: #3c4790!important;
-    color: #3c4790;
+    border-color: #1379df!important;
+    color: #1379df;
     margin-left: 0;
 }
 .btn_gray{
@@ -377,6 +412,9 @@ header{
     padding-bottom: 20px;
     margin-top: 12px;
 }
+.cmt_btnbox .leftBox{
+    float: left;
+}
 .cmt_btnbox .left button{
     margin-left: 3px;
 }
@@ -396,7 +434,7 @@ header{
 }
 .comment_box{
     position: relative;
-    border-top: 2px solid #525eaa;
+    border-top: 2px solid #1379df;
 }
 .cmt_list{
     list-style: none;

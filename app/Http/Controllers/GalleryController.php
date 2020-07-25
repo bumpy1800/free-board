@@ -154,13 +154,14 @@ class GalleryController extends Controller
         $list = Cookie::get('recentVisitGallery');
         $gallery = Gallery::select('*')->where('link', $id)->first();
 
-        $list = $list . $gallery->name . '/';
-        $listArr = explode('/', $list);
-
-        if(count($listArr) > 6) {
-            array_splice($listArr, 0, 1);
+        if(strpos($list, $gallery->name . '/') === false) {
+            $list = $list . $gallery->name . '/';
+            $listArr = explode('/', $list);
+            if(count($listArr) > 6) {
+                array_splice($listArr, 0, 1);
+            }
+            $list = implode('/', $listArr);
         }
-        $list = implode('/', $listArr);
         Cookie::queue('recentVisitGallery', $list, 60);
 
         $todayTo = date('Y-m-d');
@@ -191,8 +192,6 @@ class GalleryController extends Controller
               ->where('category', '갤러리 우측')
               ->inRandomOrder()
               ->first();
-        $image = Storage::get($popup->image); //이미지 가져와서 text 변환
-        $r_image = base64_encode($image); //base64로 인코딩
         if($popup) {
             $image = Storage::get($popup->image); //이미지 가져와서 text 변환
             $r_image = base64_encode($image); //base64로 인코딩
@@ -364,7 +363,6 @@ class GalleryController extends Controller
     }
 
     public function link_gallery(Request $request) {
-
         if($request->isMethod('get')) {
             $id = $request->input('id');
             $page = $request->input('page');
