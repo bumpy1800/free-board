@@ -425,7 +425,7 @@
 							@php $i=0; @endphp
 							@forEach($n_posts as $n_post)
 								<tr class="postArea" id="p{{ $i }}">
-									<td class="post_num">{{ $post->post_id }}</td>
+									<td class="post_num">{{ $n_post->post_id }}</td>
 									<td class="post_head m-hide"><b>공지</b></td>
 									<td class="post_title">
 										<a href="{{ route('gallery-post.show', $post->post_id) }}">
@@ -493,7 +493,7 @@
 						@endif
 					</div>
 					<div style="float:right;">
-						<a href="write"><button type="button" name="button" class="on write">글쓰기</button></a>
+						<a href="{{ route('gallery-post.create',) }}?link={{ $gallery->link }}"><button type="button" name="button" class="on write">글쓰기</button></a>
 					</div>
 				</div>
 				<div class="pagebox">

@@ -31,20 +31,86 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $gallery_link = $request->input('link');
+        $gallery = Gallery::select('id','link','heads', 'name')
+            ->where('link', $gallery_link)
+            ->first();
+
+        $link_gallerys = Link_gallery::where('gallery_id', $gallery->id)->count();
+
+        $list = Cookie::get('recentVisitGallery');
+        $recentGallerys = explode('/', $list);
+
+        $heads = explode('/', $gallery->heads);
+
+        $popup = Popup::select('image')
+              ->where('status', 1)
+              ->where('category', '글쓰기 중앙')
+              ->inRandomOrder()
+              ->first();
+        if($popup) {
+            $image = Storage::get($popup->image); //이미지 가져와서 text 변환
+            $image = base64_encode($image); //base64로 인코딩
+        } else {
+            $image = '';
+        }
+
+        return view('gallery-post-write', [
+            'gallery_name' => $gallery->name,
+            'gallery_id' => $gallery->id,
+            'gallery_link' => $gallery->link,
+            'heads' => $heads,
+            'image' => $image,
+            'link_gallerys' => $link_gallerys,
+            'recentGallerys' => $recentGallerys,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $title = $request->input('tit');
+        $contents = $request->input('content');
+        $user_id = 1;
+        $reg_date = date("Y-m-d");
+        $ip = $this->getUserIpAddr();
+        $view = 0;
+        $good = 0;
+        $bad = 0;
+        $comments = 0;
+        $head = $request->input('head');
+        $notice = 0;
+        $gallery_id = $request->input('idH');
+        $password = $request->input('password');
+        $thumbnail = '';
+
+        $gallery_link = $request->input('link');
+
+        $startPos = strpos($contents, '<img src="');
+        if($startPos !== false) {
+            $startPos = $startPos + 10;
+            $endPos = strpos($contents, '"', $startPos);
+            $thumbnail = substr($contents, $startPos, $endPos-$startPos);
+        }
+
+        Post::create([
+            'title' => $title,
+            'contents' => $contents,
+            'user_id' => $user_id,
+            'reg_date' => $reg_date,
+            'ip' => $ip,
+            'view' => $view,
+            'good' => $good,
+            'bad' => $bad,
+            'comments' => $comments,
+            'head' => $head,
+            'notice' => $notice,
+            'gallery_id' => $gallery_id,
+            'password' => $password,
+            'thumbnail' => $thumbnail
+        ]);
+        return redirect(route('gallery.show', $gallery_link));
     }
 
     /**
@@ -294,5 +360,24 @@ class PostController extends Controller
                 'status' => false
             ]);
         }
+    }
+
+    public function getUserIpAddr(){
+       $ipaddress = '';
+       if (isset($_SERVER['HTTP_CLIENT_IP']))
+           $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+       else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+           $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+       else if(isset($_SERVER['HTTP_X_FORWARDED']))
+           $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+       else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+           $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+       else if(isset($_SERVER['HTTP_FORWARDED']))
+           $ipaddress = $_SERVER['HTTP_FORWARDED'];
+       else if(isset($_SERVER['REMOTE_ADDR']))
+           $ipaddress = $_SERVER['REMOTE_ADDR'];
+       else
+           $ipaddress = 'UNKNOWN';
+       return $ipaddress;
     }
 }

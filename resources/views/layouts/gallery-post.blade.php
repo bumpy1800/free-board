@@ -327,7 +327,7 @@
 								<button class="hitgal" type="button" id="hit-button"><i class="fas fa-crown gray pdR6 fa-lg"></i>힛추</button>
 								<button class="share" type="button" id="share-button" data-container="body" data-toggle="popover" data-placement="bottom" data-original-title="공유"
 								data-content="
-									<ul>
+									<ul class='share_list'>
 										<li>
 											<a id='kakao-share-btn'>
 												<img src='{{ asset('assets/img/kakaolink_btn_medium.png') }}'/>
@@ -662,7 +662,7 @@
 					</div>
 				</div>
 				<div class="right_ad">
-					<img src="data:image/png;base64,{{ $r_image }}" alt="우측광고">
+					<img width="100%" src="data:image/png;base64,{{ $r_image }}" alt="우측광고">
 				</div>
 				<div class="boxline liveRanking concept">
 					<div class="concept-left">

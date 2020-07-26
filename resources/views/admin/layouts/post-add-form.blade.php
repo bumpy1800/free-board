@@ -189,7 +189,18 @@
                                     alert("showHTML실행");
                                    var sHTML = oEditors.getById["content"].getIR();
                                    alert(sHTML);
-                                 }*/
+                                 }
+                                 function setDefaultFont() {
+                                   alert("setDefaultFont");
+                                  var sDefaultFont = '궁서';
+                                  var nFontSize = 24;
+                                  oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
+                                 }
+                                 function writeReset() {
+                                   alert("writeReset");
+                                  document.f.reset();
+                                  oEditors.getById["content"].exec("SET_IR", [""]);
+                                }*/
 
                                   function submitContents(elClickedObj) {
                                      oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
@@ -197,22 +208,6 @@
                                        elClickedObj.form.submit();
                                      } catch(e) {alert(e);}
                                   }
-
-
-
-                                  /*function setDefaultFont() {
-                                    alert("setDefaultFont");
-                                   var sDefaultFont = '궁서';
-                                   var nFontSize = 24;
-                                   oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
-                                  }
-
-
-                                  function writeReset() {
-                                    alert("writeReset");
-                                   document.f.reset();
-                                   oEditors.getById["content"].exec("SET_IR", [""]);
-                                 }*/
                                   </script>
                                   <div class="btn_box right">
                                       <button class="btn_gray" type="button" name="button">취소</button>

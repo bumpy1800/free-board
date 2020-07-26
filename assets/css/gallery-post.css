@@ -15,18 +15,18 @@ header{
     display: block;
 }
 
-.popover ul{
+.popover .share_list{
     padding: 0px;
     text-align: center;
     list-style: none;
 }
-.popover ul li{
+.popover .share_list li{
     width: 25%;
     float: left;
     padding: 5px;
 }
 
-.popover ul li img{
+.popover .share_list li img{
     width: 50px;
 }
 

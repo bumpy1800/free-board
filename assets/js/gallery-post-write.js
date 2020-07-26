@@ -478,41 +478,17 @@ $(document).on("click", ".link-gallery-top #next, .link-gallery-top #prev", func
     });
 });
 
-$(document).ready(function(){
-    $.ajax({
-         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-         type: 'post',
-         url: '/week-gallerys',
-         dataType: 'json',
-         success: function(data) {
-             var i = 0;
-             var cnt = data['weekGallerys'].length;
-             var content = '';
-             var rank = 0;
-             $.each(data['weekGallerys'], function(index, item) {
-                 rank = i + 1;
-                 if(i % 20 == 0) {
-                     if(i == 0) {
-                         content += '<ul class="week-gallery-rank">';
-                     } else {
-                         content += '<ul class="week-gallery-rank week-gallery-rank-next">';
-                     }
-                 }
-                 content += '<li><a href="gallery/'+ item.gallery_link +'">'+ rank +'. '+ item.gallery_name +'</a></li>';
-                 if(i % 20 == 19) {
-                     content += '</ul>';
-                 } else if(i == cnt-1) {
-                     content += '</ul>';
-                 }
-                 i ++;
-             });
-             $('.allrank').attr("data-content",content);
-         },
-         error: function(data) {
-              console.log("error" +data);
-         }
-    });
+function copy_trackback(address) {
+	var IE=(document.all)?true:false;
+	if (IE) {
+		if(confirm("해당 글의 주소를 클립보드에 복사하시겠습니까?"))
+			window.clipboardData.setData("Text", address);
+	} else {
+		temp = prompt("해당 글의 주소입니다. \nCtrl+C를 눌러 클립보드로 복사하세요", address);
+	}
+}
 
+$(document).ready(function(){
     $.ajax({
          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
          type: 'post',
@@ -562,16 +538,13 @@ $(document).ready(function(){
          }
     });
 
-    $(function () {
-        $('[data-toggle="popover"]').popover({
-            html: true
-        })
+    $('[data-toggle="popover"]').popover({
+        html: true
     })
 
-    var post_cnt = $("#post_cnt option:selected").val();
+    var post_cnt = 30;
     var title = $(".mainLeft .gallery-top .title").text();
     var text = '';
-
 
     if($.cookie('['+title+']')) {
         var cookie = $.cookie('['+title+']').split('/');
@@ -628,7 +601,6 @@ $(document).ready(function(){
                 }
             }
         }
-
         if($.cookie('all_id')) {
             var all_id = $.cookie('all_id');
             all_id = all_id.split(" ");
@@ -641,7 +613,6 @@ $(document).ready(function(){
                 }
             }
         }
-
         if($.cookie('all_nick')) {
             var all_nick = $.cookie('all_nick');
             all_nick = all_nick.split(" ");
@@ -655,7 +626,6 @@ $(document).ready(function(){
                 }
             }
         }
-
         if($.cookie('all_ip')) {
             var all_ip = $.cookie('all_ip');
             all_ip = all_ip.split(" ");
@@ -671,13 +641,3 @@ $(document).ready(function(){
         }
     }
 });
-
-function copy_trackback(address) {
-	var IE=(document.all)?true:false;
-	if (IE) {
-		if(confirm("해당 글의 주소를 클립보드에 복사하시겠습니까?"))
-			window.clipboardData.setData("Text", address);
-	} else {
-		temp = prompt("해당 글의 주소입니다. \nCtrl+C를 눌러 클립보드로 복사하세요", address);
-	}
-}

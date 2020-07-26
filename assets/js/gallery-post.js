@@ -317,10 +317,10 @@ $(document).on("click", "#block-save", function(){
     var all_ip = $("#allblock .ip-list").text();
     var block_gallery = $('#gallery-select-name').text();
 
-    $.cookie('all_keyword', all_keyword);
-    $.cookie('all_id', all_id);
-    $.cookie('all_nick', all_nick);
-    $.cookie('all_ip', all_ip);
+    $.cookie('all_keyword', all_keyword, { path : '/' });
+    $.cookie('all_id', all_id, { path : '/' });
+    $.cookie('all_nick', all_nick, { path : '/' });
+    $.cookie('all_ip', all_ip, { path : '/' });
 
     if(block_gallery != '' && block_gallery != null) {
         var cookie_gallery = $('#cookie-gallery').text();
@@ -341,7 +341,7 @@ $(document).on("click", "#block-save", function(){
             gallery_names = $.cookie('gallery_names').split(' ');
 
             for(var i = 0; i < cookie_delete_gallery.length; i++) {
-                $.removeCookie(cookie_delete_gallery[i]);
+                $.removeCookie(cookie_delete_gallery[i], { path : '/' });
                 for(var j = 0; j < gallery_names.length; j++) {
                     if(cookie_delete_gallery[i] == gallery_names[j]) {
                         gallery_names[j] = '';
@@ -349,7 +349,7 @@ $(document).on("click", "#block-save", function(){
                 }
             }
             gallery_names = gallery_names.join(' ');
-            $.cookie('gallery_names', gallery_names);
+            $.cookie('gallery_names', gallery_names, { path : '/' });
         }
 
         if($.cookie('gallery_names')) {
@@ -362,8 +362,8 @@ $(document).on("click", "#block-save", function(){
             gallery_names = block_gallery;
         }
 
-        $.cookie('gallery_names', gallery_names);
-        $.cookie(block_gallery, gallery);
+        $.cookie('gallery_names', gallery_names, { path : '/' });
+        $.cookie(block_gallery, gallery, { path : '/' });
     }
     location.reload();
 });
