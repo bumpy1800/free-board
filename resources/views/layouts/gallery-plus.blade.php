@@ -36,7 +36,7 @@
 													<div class="card-body">
 															<p class="card-title">
 																	<b><a href="{{ route('gallery.show', $imgPost->gallery_link) }}">[{{ $imgPost->gallery_s_name }}]</a></b>
-																	<a href="">{{ $imgPost->post_title }}</a>
+																	<a href="{{ url('gallery-post/'.$imgPost->gallery_link.'/'.$imgPost->post_id) }}">{{ $imgPost->post_title }}</a>
 															</p>
 													</div>
 											</div>
@@ -55,12 +55,12 @@
 												<div class="col-6">
 												<p>
 														<b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b>
-														<a href="">{{ $post->post_title }}</a>
+														<a href="{{ url('gallery-post/'.$post->gallery_link.'/'.$post->post_id) }}">{{ $post->post_title }}</a>
 												</p>
 										@else
 												<p>
 														<b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b>
-														<a href="">{{ $post->post_title }}</a>
+														<a href="{{ url('gallery-post/'.$post->gallery_link.'/'.$post->post_id) }}">{{ $post->post_title }}</a>
 												</p>
 										@endif
 

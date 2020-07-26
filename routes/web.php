@@ -137,6 +137,7 @@ Route::get('gallery_cookiedelete/{id}', 'GalleryController@cookieDelete');
 Route::get('gallery_search/{name}', 'GalleryController@gallery_search');
 Route::any('gallery_link_gallery', 'GalleryController@link_gallery');
 
+//Route::get('gallery-post/{link}/{id}', 'PostController@show');
 Route::get('gallery-post/{link}/{id}', 'PostController@show');
 Route::post('plusBadPoint', 'PostController@plusBadPoint');
 Route::post('plusGoodPoint', 'PostController@plusGoodPoint');

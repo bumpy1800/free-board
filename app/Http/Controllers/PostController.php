@@ -13,6 +13,7 @@ use App\Link_gallery;
 use App\Category;
 use App\Comment;
 use App\Popup;
+use App\User;
 
 class PostController extends Controller
 {
@@ -298,21 +299,86 @@ class PostController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        //$post = Post::findOrFail($id);
+        $gallery_link = $request->input('link');
+        $gallery = Gallery::select('id','link','heads', 'name')
+            ->where('link', $gallery_link)
+            ->first();
+
+        $link_gallerys = Link_gallery::where('gallery_id', $gallery->id)->count();
+
+        $list = Cookie::get('recentVisitGallery');
+        $recentGallerys = explode('/', $list);
+
+        $heads = explode('/', $gallery->heads);
+
+        $popup = Popup::select('image')
+              ->where('status', 1)
+              ->where('category', '글쓰기 중앙')
+              ->inRandomOrder()
+              ->first();
+        if($popup) {
+            $image = Storage::get($popup->image); //이미지 가져와서 text 변환
+            $image = base64_encode($image); //base64로 인코딩
+        } else {
+            $image = '';
+        }
+
+        $post = Post::select('*')
+                      ->where('post.id', $id)
+                      ->first();
+        $user = User::select('*')
+            ->where('id', $post->user_id)
+            ->first();
+        return view('gallery-post-edit', [
+            'gallery_name' => $gallery->name,
+            'gallery_id' => $gallery->id,
+            'gallery_link' => $gallery->link,
+            'heads' => $heads,
+            'image' => $image,
+            'link_gallerys' => $link_gallerys,
+            'recentGallerys' => $recentGallerys,
+            'post' => $post,
+            'user' => $user,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $title = $request->input('tit');
+        $contents = $request->input('content');
+        $user_id = 1;
+        $ip = $this->getUserIpAddr();
+        $head = $request->input('head');
+        $notice = 0;
+        $gallery_id = $request->input('idH');
+        $password = $request->input('password');
+        $thumbnail = '';
+
+        $gallery_link = $request->input('link');
+
+        $startPos = strpos($contents, '<img src="');
+        if($startPos !== false) {
+            $startPos = $startPos + 10;
+            $endPos = strpos($contents, '"', $startPos);
+            $thumbnail = substr($contents, $startPos, $endPos-$startPos);
+        }
+
+        Post::where('id', $id)->update([
+          'title' => $title,
+          'contents' => $contents,
+          'user_id' => $user_id,
+          'ip' => $ip,
+          'head' => $head,
+          'notice' => $notice,
+          'gallery_id' => $gallery_id,
+          'password' => $password,
+          'thumbnail' => $thumbnail
+      ]);
+      return redirect(url('gallery-post/'.$gallery_link.'/'.$id));
     }
 
     /**
@@ -321,9 +387,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        Post::destroy($id);
+        Comment::where('post_id', $id)->delete();
+        $gallery_link = $request->input('link');
+        return redirect(route('gallery.show', $gallery_link));
     }
 
     public function plusGoodPoint(Request $request) {

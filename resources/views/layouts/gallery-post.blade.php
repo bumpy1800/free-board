@@ -288,7 +288,12 @@
 							<div class="post_writer">
 								<div class="left">
 									<span class="post_nick">{{ $post->user_nick }}</span>
-									<span class="ip">(  {{ $post->ip }}  )</span>
+									@php
+										$pos = strpos($post->ip, '.');
+										$pos = strpos($post->ip, '.', $pos+1);
+										$ip = substr($post->ip, 0, $pos ) . '.*';
+									@endphp
+									<span class="ip">(  {{ $ip }}  )</span>
 									<span class="view_date">{{ $post->reg_date }}</span>
 								</div>
 								<div class="right pdL6">
@@ -387,7 +392,12 @@
 												<span class="cmt_nickname">
 													{{ $comment->nouser_name }}
 												</span>
-												<span class="cmt_ip">({{ $comment->ip }})</span>
+												@php
+													$pos = strpos($comment->ip, '.');
+													$pos = strpos($comment->ip, '.', $pos+1);
+													$ip = substr($comment->ip, 0, $pos ) . '.*';
+												@endphp
+												<span class="cmt_ip">({{ $ip }})</span>
 											</span>
 										</div>
 										<div class="left">
@@ -422,7 +432,12 @@
 																<span class="cmt_nickname">
 																	{{ $comment->nouser_name }}
 																</span>
-																<span class="cmt_ip">({{ $comment->ip }})</span>
+																@php
+																	$pos = strpos($comment->ip, '.');
+																	$pos = strpos($comment->ip, '.', $pos+1);
+																	$ip = substr($comment->ip, 0, $pos ) . '.*';
+																@endphp
+																<span class="cmt_ip">({{ $ip }})</span>
 															</span>
 														</div>
 														<div class="left">
@@ -494,10 +509,16 @@
 						@endif
 					</div>
 					<div class="right">
-						<button class="btn_update btn_gray" type="button" name="button">수정</button>
-						<button class="btn_delete btn_gray" type="button" name="button">삭제</button>
-						<button class="btn_create btn_blue" type="button" name="button">글쓰기</button>
+						<a href="{{ route('gallery-post.edit', $post->id) }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
+						<form action="{{ route('gallery-post.destroy', $post->id) }}?link={{ $gallery->link }}" method="POST" style="float:left;">
+							@method('DELETE')
+							@csrf
+							<button class="btn_delete btn_gray" type="submit" name="button">삭제</button>
+						</form>
+						<a href="{{ route('gallery-post.create') }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_create btn_blue" type="button" name="button">글쓰기</button></a>
+						<div class="clear"></div>
 					</div>
+					<div class="clear"></div>
 				</div>
                 <div class="mainLeft">
 				<div class="post_listWarp">
@@ -556,7 +577,12 @@
 									<td class="post_user">
 										<span class="uid" style="display:none;">{{ $post->user_uid }}"</span>
 										<span class="nickname" title="">{{ $post->user_nick }}
-										<span class="ip">({{ $post->post_ip }})</span></span>
+										@php
+											$pos = strpos($post->post_ip, '.');
+											$pos = strpos($post->post_ip, '.', $pos+1);
+											$ip = substr($post->post_ip, 0, $pos ) . '.*';
+										@endphp
+										<span class="ip">({{ $ip }})</span></span>
 										@if($post->user_status == 1)
 											<i class="fas fa-crown gold"></i>
 										@elseif($post->user_status == 2)

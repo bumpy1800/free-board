@@ -428,7 +428,7 @@
 									<td class="post_num">{{ $n_post->post_id }}</td>
 									<td class="post_head m-hide"><b>공지</b></td>
 									<td class="post_title">
-										<a href="{{ route('gallery-post.show', $post->post_id) }}">
+										<a href="{{ url('gallery-post/'.$gallery->link.'/'.$n_post->post_id) }}">
 											<i class="fas fa-info-circle red"></i>
 											<b>{{ $n_post->post_title }}</b>
 										</a>
@@ -464,7 +464,12 @@
 									<td class="post_user">
 										<span class="uid" style="display:none;">{{ $post->user_uid }}"</span>
 										<span class="nickname" title="">{{ $post->user_nick }}
-										<span class="ip">({{ $post->post_ip }})</span></span>
+										@php
+											$pos = strpos($post->post_ip, '.');
+											$pos = strpos($post->post_ip, '.', $pos+1);
+											$ip = substr($post->post_ip, 0, $pos ) . '.*';
+										@endphp
+										<span class="ip">({{ $ip }})</span></span>
 										@if($post->user_status == 1)
 											<i class="fas fa-crown gold"></i>
 										@elseif($post->user_status == 2)
