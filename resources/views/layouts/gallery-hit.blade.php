@@ -3,10 +3,6 @@
 
 <html lang="kr">
 	<head>
-		<meta property="og:title" content="{{ $post->title }}" />
-		<meta name="og:url" property="og:url" content="" />
-		<meta name="og:description" property="og:description" content="" />
-		<meta property="og:image" content="{{ $post->thumbnail }}" />
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,29 +11,21 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
-		<script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 		<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-		<script src="{{ asset('assets/js/gallery-post.js') }}"></script>
-
+		<script src="{{ asset('assets/js/gallery-hit.js') }}"></script>
 		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/gallery.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/gallery-post.css') }}" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	</head>
 
 	<body>
-		@yield('header')
+        @yield('header')
 		<div class="container">
+			<div class="mainLeft">
 				<div class="gallery-top">
-					<h4 class="title" id="{{ $gallery->link }}"><b>{{ $gallery->name }}</b></h4>
+					<h4 class="title" id="hit"><b>HIT 갤러리</b></h4>
 					<div class="sub">
-						<span class="lf">
-							<a type="button" id="link-gallery" data-container="body" data-toggle="popover" data-placement="bottom" data-original-title="연관 갤러리" data-content="">
-							  연관 갤러리({{ $link_gallerys }}/5)
-						  	</a>
-						</span>
-						<span class="mLine">|</span>
 						<span><a href="" onclick="copy_trackback(this.href); return false;">갤주소 복사</a></span>
 						<span class="mLine">|</span>
 						<span class="lf"><a href="#" data-toggle="modal" data-target="#block" id="blockConfig">차단설정</a></span>
@@ -45,7 +33,6 @@
 						<span><a href="#" data-toggle="modal" data-target="#infouse">갤러리 이용안내</a></span>
 					</div>
 				</div>
-
 				<!-- Modal -->
 				<div class="modal fade" id="infouse" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-scrollable modal-xl">
@@ -247,6 +234,16 @@
 				<div class="clear"></div>
 				<hr class="line" style="margin-bottom:0px;">
 				<div class="infomation"><!--제일 큰박스-->
+					<div class="info-rank"><!--정보와 랭킹-->
+
+
+					</div>
+
+					@if($c_image != '')
+						<div class="top-ad"><!--상단광고-->
+							<img src="data:image/png;base64,{{ $c_image }}" alt="광고">
+						</div>
+					@endif
 					<div class="recently-visit">
 						<div class="fir">
 							<b>최근 방문 갤러리</b>
@@ -275,296 +272,107 @@
 						<div class="clear"></div>
 					</div>
 				</div>
-                <div class="post_view">
-                    <header>
-						<div class="view_head">
-							<h3 class="view_title">
-								<span class="view_headtext" id="{{ $post->id }}">[{{ $post->head }}]</span>
-								<span class="view_subtitle">{{ $post->title }}</span>
-								<!--<span class="post_device">
-									<i class="fas fa-mobile-alt blue"></i>
-								</span>-->
-							</h3>
-							<div class="post_writer">
-								<div class="left">
-									<span class="post_nick">{{ $post->user_nick }}</span>
-									@php
-										$pos = strpos($post->ip, '.');
-										$pos = strpos($post->ip, '.', $pos+1);
-										$ip = substr($post->ip, 0, $pos ) . '.*';
-									@endphp
-									<span class="ip">(  {{ $ip }}  )</span>
-									<span class="view_date">{{ $post->reg_date }}</span>
-								</div>
-								<div class="right pdL6">
-									<span class="view_count">조회 수 {{ $post->view }}</span>
-									<span class="view_good">추천 수 {{ $post->good }}</span>
-									<span class="view_comment">댓글 수 {{ $post->comments }}</span>
-								</div>
-							</div>
-						</div>
-                    </header>
-					<div class="post_content">
-						<div class="inner_content">
-							<div class="view_content" style="overflow:hidden;">
-								<div>
-									<input type="hidden" id="thumbnail" value="{{ $post->thumbnail }}">
-									<span id="view_content">{!! $post->contents !!}</span>
-								</div>
-								<!--<span>-모바일로 작성</span>-->
-							</div>
-							<div class="right"></div>
-						</div>
-						<div class="recommend_box clear">
-							<div class="inner left">
-								<div class="up_box">
-									<p class="red">{{ $post->good }}</p>
-								</div>
-								<button class="up_btn" type="button" id="good-button"><img src="/assets/img/good.png" alt="추천"></button>
-							</div>
-							<div class="inner right">
-								<button class="down_btn" type="button" id="bad-button"><img src="/assets/img/bad.png" alt="비추"></button>
-								<div class="down_box">
-									<p>{{ $post->bad }}</p>
-								</div>
-							</div>
-							<div class="recom_bottom_box">
-								<button class="hitgal" type="button" id="hit-button"><i class="fas fa-crown gray pdR6 fa-lg"></i>힛추</button>
-								<button class="share" type="button" id="share-button" data-container="body" data-toggle="popover" data-placement="bottom" data-original-title="공유"
-								data-content="
-									<ul class='share_list'>
-										<li>
-											<a id='kakao-share-btn'>
-												<img src='{{ asset('assets/img/kakaolink_btn_medium.png') }}'/>
-											</a>
-										</li>
-										<li>
-											<a target='_blank' id='fb-share-btn'>
-												<img src='{{ asset('assets/img/facebook-square-color.png') }}'/>
-											</a>
-										</li>
-										<li>
-											<a id='twitter-share-btn'>
-												<img src='{{ asset('assets/img/twitter.png') }}'/>
-											</a>
-										</li>
-										<li>
-											<a id='band-share-btn'>
-												<img src='{{ asset('assets/img/band.png') }}'/>
-											</a>
-										</li>
-										<div class='clear'></div>
-									</ul>
-									">
-									<i class="fas fa-share-alt gray pdR6 fa-lg"></i>공유
-								</button>
-								<button class="report" type="button" id="police-button"><i class="fas fa-concierge-bell gray pdR6 fa-lg"></i>신고</button>
-							</div>
-						</div>
-						<div class="clear"></div>
-					</div>
-                </div>
-				<div class="cmt_box clear">
-					<div class="comment_warp">
-						<div class="comment_num">
-							<div class="left num_box">
-								전체 리플 <span class="red">{{ $post->comments }}</span> 개
-								<!--<select class="comment_sort" name="sort">
-									<option value="1">등록순</option>
-									<option value="2">최신순</option>
-									<option value="3">답글순</option>
-								</select>-->
-							</div>
-							<div class="right">
-								<button class="btn_cmt_close" type="button" name="button">댓글닫기<i class="fas fa-caret-up pdL6"></i></button>
-								<button class="btn_cmt_refresh" type="button" name="button">새고로침</button>
-							</div>
-						</div>
-					</div>
-					<div class="comment_box">
-						<ul class="cmt_list">
-							@foreach($comments as $comment)
-							  @if($comment->id % 100 == 0)
-								<li>
-									<div class="cmt_info clear">
-										<div class="cmt_nick">
-											<span class="writer">
-												<span class="cmt_nickname">
-													{{ $comment->nouser_name }}
-												</span>
-												@php
-													$pos = strpos($comment->ip, '.');
-													$pos = strpos($comment->ip, '.', $pos+1);
-													$ip = substr($comment->ip, 0, $pos ) . '.*';
-												@endphp
-												<span class="cmt_ip">({{ $ip }})</span>
-											</span>
-										</div>
-										<div class="left">
-											<p class="user_txt">
-												<a onclick="rep_form({{ $comment->id }});">
-													{{ $comment->contents }}
-												</a>
-											</p>
-										</div>
-										<div class="right">
-											<span class="cmt_date">{{ $comment->reg_date }}</span>
-										</div>
-									</div>
-								</li>
-								<form method="post" action="{{ route('comment.store') }}">
-								  @method('POST')
-								  @csrf
-								  <input type="hidden" name="post_gallery_link" value="{{ $gallery->link }}">
-								  <input type="hidden" name="postId" value="{{ $post->id }}">
-								  <input type="hidden" name="commentId" value="{{ $comment->id }}">
-								  <div class="reply_box" style="display:none;" id="{{ $comment->id }}"></div>
-								</form>
-							  @else
-								<li>
-									<div class="reply show">
-										<div class="reply_box">
-											<ul class="reply_list">
-												<li>
-													<div class="reply_info">
-														<div class="cmt_nikbox">
-															<span class="writer">
-																<span class="cmt_nickname">
-																	{{ $comment->nouser_name }}
-																</span>
-																@php
-																	$pos = strpos($comment->ip, '.');
-																	$pos = strpos($comment->ip, '.', $pos+1);
-																	$ip = substr($comment->ip, 0, $pos ) . '.*';
-																@endphp
-																<span class="cmt_ip">({{ $ip }})</span>
-															</span>
-														</div>
-														<div class="left">
-															<p class="user_txt">
-																<a onclick="rep_form({{ $comment->id }});">
-																	<i class="fas fa-level-up-alt fa-rotate-90" style="width:15px;"></i>{{ $comment->contents }}
-																</a>
-															</p>
-														</div>
-														<div class="right">
-															<span class="cmt_date">{{ $comment->reg_date }}</span>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li>
-								  <form method="post" action="{{ route('comment.store') }}">
-									@method('POST')
-									@csrf
-									<input type="hidden" name="post_gallery_link" value="{{ $gallery->link }}">
-									<input type="hidden" name="postId" value="{{ $post->id }}">
-									<input type="hidden" name="commentId" value="{{ $comment->id }}">
-									<div class="reply_box" style="display:none;" id="{{ $comment->id }}"></div>
-								  </form>
-								</li>
-							  @endif
-							@endforeach
-						</ul>
-					</div>
-					<form method="post" action="{{ route('comment.store') }}">
-					  @method('POST')
-					  @csrf
-					  <input type="hidden" name="post_gallery_link" value="{{ $gallery->link }}">
-					  <input type="hidden" name="postId" value="{{ $post->id }}">
-						<div class="cmt_write_box">
-							<div class="left">
-								<div class="user_info_input">
-									<input type="text" name="name" placeholder="닉네임" value="" maxlength="20">
-								</div>
-								<div class="user_info_input">
-									<input type="password" name="password" placeholder="비밀번호" value="" maxlength="20">
-								</div>
-							</div>
-							<div class="cmt_txt right">
-								<div class="cmt_write">
-									<textarea name="content" maxlength="400" placeholder="타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률에 제재를 받을 수 있습니다.&#13;&#10;Shift+Enter 키를 동시에 누르면 줄바꿈이 됩니다."></textarea>
-								</div>
-								<div class="cmt_txt_bot">
-									<div class="right">
-										<button class="btn_save btn_blue" type="submit" onClick="this.form.action='{{ route('comment.store') }}?type=register';">등록</button>
-										<button class="btn_save_good btn_lightBlue" type="submit">등록+추천</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="cmt_btnbox">
+				<div class="optionBar">
 					<div class="leftBox">
 						@if($select_head == '개념')
 							<button type="button" id="all-post" name="button" class="">전체글</button>
 							<button type="button" id="concept-post" name="button" class="on">개념글</button>
+							<button type="button" id="notice" name="button" class="">공지</button>
+						@elseif($select_head == '공지')
+							<button type="button" id="all-post" name="button" class="">전체글</button>
+							<button type="button" id="concept-post" name="button" class="">개념글</button>
+							<button type="button" id="notice" name="button" class="on">공지</button>
 						@else
 							<button type="button" id="all-post" name="button" class="on">전체글</button>
 							<button type="button" id="concept-post" name="button" class="">개념글</button>
+							<button type="button" id="notice" name="button" class="">공지</button>
 						@endif
 					</div>
-					<div class="right">
-						<a href="{{ route('gallery-post.edit', $post->id) }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
-						<form action="{{ route('gallery-post.destroy', $post->id) }}?link={{ $gallery->link }}" method="POST" style="float:left;">
-							@method('DELETE')
-							@csrf
-							<button class="btn_delete btn_gray" type="submit" name="button">삭제</button>
-						</form>
-						<a href="{{ route('gallery-post.create') }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_create btn_blue" type="button" name="button">글쓰기</button></a>
+					<script>
+						$(document).on("click", "#all-post", function(){
+							location.href="?showCnt={{ $showCnt }}";
+						});
+						$(document).on("click", "#concept-post", function(){
+							location.href="?showCnt={{ $showCnt }}&head=개념";
+						});
+						$(document).on("click", "#notice", function(){
+							location.href="?showCnt={{ $showCnt }}&head=공지";
+						});
+					</script>
+					<div class="clear"></div>
+					<div class="m-hide heads">
+						<div class="heads-list">
+							<ul>
+								<div class="clear"></div>
+							</ul>
+						</div>
+						<div class="rightBox" style="padding-top: 0px;">
+							<div class="output">
+								<div class="selectBox">
+									<select id="post_cnt" name="number" onchange="if(this.value) location.href='?showCnt='+(this.value);">
+										@if($showCnt == 30)
+											<option value="30" selected>30개</option>
+											<option value="50">50개</option>
+											<option value="100">100개</option>
+										@elseif($showCnt == 50)
+											<option value="30">30개</option>
+											<option value="50" selected>50개</option>
+											<option value="100">100개</option>
+										@else
+											<option value="30">30개</option>
+											<option value="50">50개</option>
+											<option value="100" selected>100개</option>
+										@endif
+									</select>
+								</div>
+								<div class="switchBtn">
+									<a href="#" class="writeBtn">
+										<i class="fas fa-pencil-alt"></i>
+									</a>
+								</div>
+							</div>
+						</div>
 						<div class="clear"></div>
 					</div>
-					<div class="clear"></div>
 				</div>
-                <div class="mainLeft">
 				<div class="post_listWarp">
 					<table class="post_list">
 						<thead>
 							<tr>
 								<th scope="col" class="tit-num">번호</th>
-								<th scope="col" class="tit-mal">말머리</th>
 								<th scope="col" class="tit-tit">제목</th>
 								<th scope="col" class="tit-user">글쓴이</th>
 								<th scope="col" class="tit-date">작성일</th>
-								<th scope="col" class="tit-view">조회</th>
-								<th scope="col" class="tit-good">추천</th>
+								<th scope="col" class="tit-view m-hide">조회</th>
+								<th scope="col" class="tit-good m-hide">추천</th>
 							</tr>
 						</thead>
 						<tbody>
 							@php $i=0; @endphp
 							@forEach($n_posts as $n_post)
 								<tr class="postArea" id="p{{ $i }}">
-									<td class="post_num">{{ $n_post->post_id }}</td>
 									<td class="post_head m-hide"><b>공지</b></td>
 									<td class="post_title">
-										<a href="{{ url('gallery-post/'.$gallery->link.'/'.$n_post->post_id) }}">
+										<a href="{{ route('notice.show', $n_post->id) }}">
 											<i class="fas fa-info-circle red"></i>
-											<b>{{ $n_post->post_title }}</b>
+											<b>{{ $n_post->title }}</b>
 										</a>
-										<a href="#" class="comment_count">[{{ $n_post->post_comments }}]</a>
+										<a href="#" class="comment_count">[{{ $n_post->comments }}]</a>
 									</td>
 									<td class="post_user">
-										<span class="nickname">{{ $n_post->user_nick }}</span>
-										<a href="#" class="nickon">
-											<i class="fas fa-crown gold"></i>
-										</a>
+										<span class="nickname"><b>운영자</b></span>
 									</td>
-									<td class="post_date">{{ date('y-m-d', strtotime($n_post->post_reg_date)) }}</td>
-									<td class="post_view m-hide">{{ $n_post->post_view }}</td>
-									<td class="post_good m-hide">{{ $n_post->post_good }}</td>
+									<td class="post_date">{{ date('y-m-d', strtotime($n_post->reg_date)) }}</td>
+									<td class="post_view m-hide">{{ $n_post->view }}</td>
+									<td class="post_good m-hide"></td>
 								</tr>
 								@php $i++; @endphp
 							@endforEach
 							@forEach($posts as $post)
 								<tr class="postArea" id="p{{ $i }}">
 									<td class="post_num">{{ $post->post_id }}</td>
-									<td class="post_head m-hide"><b>{{ $post->post_head }}</b></td>
 									<td class="post_title">
-										<a href="{{ url('gallery-post/'.$gallery->link.'/'.$post->post_id) }}" id="title">
+										<a href="{{ route('gallery-hit.show', $post->post_id) }}" id="title">
 											@if($post->post_thumbnail)
 												<i class="fas fa-image green"></i>
 											@else
@@ -610,16 +418,14 @@
 							<button type="button" id="concept-post" name="button" class="">개념글</button>
 						@endif
 					</div>
-					<div style="float:right;">
-						<button type="button" name="button" class="on write">글쓰기</button>
-					</div>
 				</div>
 				<div class="pagebox">
 					@if($posts != null && $posts != '')
 						{{ $posts->links('vendor/pagination/gallery-post-pagination') }}
 					@endif
 				</div>
-				<form action="?head={{ $select_head }}" method="get">
+				<form action="?showCnt={{ $showCnt }}&head={{ $select_head }}" method="get">
+					<input type="hidden" name="showCnt" value="{{ $showCnt }}">
 					<div class="bottom_search">
 						<div class="bottom_select">
 							<select id="search_type" name="search_type">
@@ -687,9 +493,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="right_ad">
-					<img width="100%" src="data:image/png;base64,{{ $r_image }}" alt="우측광고">
-				</div>
+				@if($r_image != '')
+					<div class="right_ad"><!--상단광고-->
+						<img style="width: 100%" src="data:image/png;base64,{{ $r_image }}" alt="광고">
+					</div>
+				@endif
 				<div class="boxline liveRanking concept">
 					<div class="concept-left">
 						<h6><a href="#"><strong>개념글</strong><sm>[소제목]</sm></a></h6>
@@ -814,7 +622,7 @@
 
 		</div>
 		<div class="container">
-            @yield('footer')
+			@yield('footer')
 		</div>
 	</body>
 </html>

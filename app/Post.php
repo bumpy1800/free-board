@@ -17,6 +17,7 @@ class Post extends Model
     'good',
     'bad',
     'comments',
+    'hits',
     'head',
     'notice',
     'gallery_id',

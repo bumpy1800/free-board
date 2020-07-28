@@ -426,58 +426,6 @@ $(document).on("click", "#blockConfig", function(){
     }
 });
 
-$(document).on("click", ".link-gallery-top #next, .link-gallery-top #prev", function(e){
-    e.preventDefault(); //a태그 이벤트 중지
-
-    var href = $(this).attr("href");
-    href = href.split('&');
-    var id = href[0].substring(4, 99);
-    var page = href[1].substring(5, 99);
-
-    $.ajax({
-         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-         type: 'get',
-         url: '/gallery_link_gallery?id='+id+'&page='+page,
-         dataType: 'json',
-         success: function(data) {
-              var content = '';
-              var add_link_gallerys_data = data['add_link_gallerys']['data'];
-              var pagination = '';
-              var prev_page_url = data['add_link_gallerys']['prev_page_url'];
-              var next_page_url = data['add_link_gallerys']['next_page_url'];
-              var current_page = data['add_link_gallerys']['current_page'];
-              var last_page = data['add_link_gallerys']['last_page'];
-
-              pagination += '해당 갤러리를 연관 갤러리로 추가한 갤러리';
-              pagination += '<ul class="pagination" style="margin-bottom: 0px;">';
-              if(prev_page_url != null) {
-                  pagination += '<li class=".prev"><a id="prev" href="'+ prev_page_url +'" rel="prev" onclick="return false;"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>';
-              } else {
-                  pagination += '<li class="disabled" aria-disabled="true"><span><i class="fa fa-arrow-left" aria-hidden="true"></i></span></li>';
-              }
-              pagination += '&nbsp;<li class="currentPage">' + current_page + '/' + last_page + '</li>&nbsp;';
-              if(next_page_url != null) {
-                  pagination += '<li class=".next"><a id="next" href="' + next_page_url + '" rel="next" onclick="return false;"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>';
-              } else {
-                  pagination += '<li class="disabled" aria-disabled="true"><span><i class="fa fa-arrow-right" aria-hidden="true"></i></span></li>';
-              }
-              pagination += '</ul>';
-
-              $.each(add_link_gallerys_data, function(index, item) {
-                  content += '<li>'+ item.gallery_name +'</li>';
-              });
-              content += '<div class="clear"></div>';
-
-              $('.in-page').html(pagination);
-              $('.add-gallery').html(content);
-
-         },
-         error: function(data) {
-              console.log("error" +data);
-         }
-    });
-});
-
 function rep_form(id) {
     $('#'+id).html("<div id='rep_box' class='cmt_write_box'> <div class='left'> <div class='user_info_input'> <input type='text' name='name' placeholder='닉네임' value='' maxlength='20'> </div> <div class='user_info_input'> <input type='password' name='password' placeholder='비밀번호' value='' maxlength='20'> </div> </div> <div class='cmt_txt right'> <div class='cmt_write'> <textarea name='content' maxlength='400' placeholder='타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률에 제재를 받을 수 있습니다.&#13;&#10;Shift+Enter 키를 동시에 누르면 줄바꿈이 됩니다.'></textarea> </div> <div class='cmt_txt_bot'> <div class='right'> <button class='btn_save btn_blue' type='submit' name='button'>등록</button> </div> </div> </div> </div>");
     if($('#'+id).css("display") == "none") {
@@ -670,55 +618,6 @@ $(document).on("click", ".btn_cmt_close", function(){
 });
 
 $(document).ready(function(){
-    $.ajax({
-         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-         type: 'post',
-         url: '/gallery_link_gallery',
-         dataType: 'json',
-         data: {
-             'link': $('.title').attr('id'),
-         },
-         success: function(data) {
-              var link_gallerys = data['link_gallerys'];
-              var add_link_gallerys = data['add_link_gallerys']['data'];
-              var content = '';
-              content += '<div class="link-gallery-top">해당 갤러리가 연관 갤러리로 추가한 갤러리</div>';
-              content += '<ul class="link-gallery">';
-              $.each(link_gallerys, function(index, item) {
-                  content += '<li>'+ item.gallery_name +'</li>';
-              });
-              content += '<div class="clear"></div>';
-              content += '</ul>';
-              content += '</div>';
-              content += '<div style="float:left;" class="link-gallery-top in-page">해당 갤러리를 연관 갤러리로 추가한 갤러리';
-              content += '<ul class="pagination" style="margin-bottom: 0px;">';
-              if(data['add_link_gallerys']['prev_page_url'] != null) {
-                  content += '<li class=".prev"><a id="prev" href="'+ data['add_link_gallerys']['prev_page_url'] +'" rel="prev" onclick="return false;"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>';
-              } else {
-                  content += '<li class="disabled" aria-disabled="true"><span><i class="fa fa-arrow-left" aria-hidden="true"></i></span></li>';
-              }
-              content += '&nbsp;<li class="currentPage">' + data['add_link_gallerys']['current_page'] + '/' + data['add_link_gallerys']['last_page'] + '</li>&nbsp;';
-              if(data['add_link_gallerys']['next_page_url'] != null) {
-                  content += '<li class=".next"><a id="next" href="' + data['add_link_gallerys']['next_page_url'] + '" rel="next" onclick="return false;"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>';
-              } else {
-                  content += '<li class="disabled" aria-disabled="true"><span><i class="fa fa-arrow-right" aria-hidden="true"></i></span></li>';
-              }
-              content += '</ul></div>';
-
-              content += '<ul class="link-gallery add-gallery">';
-              $.each(add_link_gallerys, function(index, item) {
-                  content += '<li>'+ item.gallery_name +'</li>';
-              });
-              content += '<div class="clear"></div>';
-              content += '</ul>';
-              content += '</div>';
-              $('#link-gallery').attr("data-content",content);
-         },
-         error: function(data) {
-              console.log("error" +data);
-         }
-    });
-
     $('[data-toggle="popover"]').popover({
         html: true
     })

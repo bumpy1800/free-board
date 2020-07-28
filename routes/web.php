@@ -115,7 +115,9 @@ Route::get('admin/policy-show/{id}', 'admin\PolicyController@show');
 Route::resources([
     'gallery' => 'GalleryController',
 	'gallery-post' => 'PostController',
+	'gallery-hit' => 'Post_hitController',
 	'comment' => 'CommentController',
+	'notice' => 'NoticeController',
     'admin_post' => 'admin\PostController',
     'admin_category' => 'admin\CategoryController',
     'admin_comment' => 'admin\CommentController',
@@ -139,8 +141,11 @@ Route::any('gallery_link_gallery', 'GalleryController@link_gallery');
 
 //Route::get('gallery-post/{link}/{id}', 'PostController@show');
 Route::get('gallery-post/{link}/{id}', 'PostController@show');
+Route::post('plusHitPoint', 'PostController@plusHitPoint');
 Route::post('plusBadPoint', 'PostController@plusBadPoint');
 Route::post('plusGoodPoint', 'PostController@plusGoodPoint');
+
+Route::post('notice-comment', 'CommentController@notice_store');
 
 Route::get('admin_post/{link}/{id}', 'admin\PostController@show');
 Route::get('admin_post_stat', 'admin\PostController@stat_index');

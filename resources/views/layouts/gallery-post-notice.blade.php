@@ -3,10 +3,10 @@
 
 <html lang="kr">
 	<head>
-		<meta property="og:title" content="{{ $post->title }}" />
+		<meta property="og:title" content="{{ $notice->title }}" />
 		<meta name="og:url" property="og:url" content="" />
 		<meta name="og:description" property="og:description" content="" />
-		<meta property="og:image" content="{{ $post->thumbnail }}" />
+		<meta property="og:image" content="{{ $notice->thumbnail }}" />
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,14 +30,8 @@
 		@yield('header')
 		<div class="container">
 				<div class="gallery-top">
-					<h4 class="title" id="{{ $gallery->link }}"><b>{{ $gallery->name }}</b></h4>
+					<h4 class="title" id="hit"><b>HIT 갤러리</b></h4>
 					<div class="sub">
-						<span class="lf">
-							<a type="button" id="link-gallery" data-container="body" data-toggle="popover" data-placement="bottom" data-original-title="연관 갤러리" data-content="">
-							  연관 갤러리({{ $link_gallerys }}/5)
-						  	</a>
-						</span>
-						<span class="mLine">|</span>
 						<span><a href="" onclick="copy_trackback(this.href); return false;">갤주소 복사</a></span>
 						<span class="mLine">|</span>
 						<span class="lf"><a href="#" data-toggle="modal" data-target="#block" id="blockConfig">차단설정</a></span>
@@ -279,27 +273,21 @@
                     <header>
 						<div class="view_head">
 							<h3 class="view_title">
-								<span class="view_headtext" id="{{ $post->id }}">[{{ $post->head }}]</span>
-								<span class="view_subtitle">{{ $post->title }}</span>
+								<span class="view_headtext" id="{{ $notice->id }}">[공지]</span>
+								<span class="view_subtitle">{{ $notice->title }}</span>
 								<!--<span class="post_device">
 									<i class="fas fa-mobile-alt blue"></i>
 								</span>-->
 							</h3>
 							<div class="post_writer">
 								<div class="left">
-									<span class="post_nick">{{ $post->user_nick }}</span>
-									@php
-										$pos = strpos($post->ip, '.');
-										$pos = strpos($post->ip, '.', $pos+1);
-										$ip = substr($post->ip, 0, $pos ) . '.*';
-									@endphp
-									<span class="ip">(  {{ $ip }}  )</span>
-									<span class="view_date">{{ $post->reg_date }}</span>
+									<span class="post_nick">운영자</span>
+									<span class="ip"></span>
+									<span class="view_date">{{ $notice->reg_date }}</span>
 								</div>
 								<div class="right pdL6">
-									<span class="view_count">조회 수 {{ $post->view }}</span>
-									<span class="view_good">추천 수 {{ $post->good }}</span>
-									<span class="view_comment">댓글 수 {{ $post->comments }}</span>
+									<span class="view_count">조회 수 {{ $notice->view }}</span>
+									<span class="view_comment">댓글 수 {{ $notice->comments }}</span>
 								</div>
 							</div>
 						</div>
@@ -308,29 +296,16 @@
 						<div class="inner_content">
 							<div class="view_content" style="overflow:hidden;">
 								<div>
-									<input type="hidden" id="thumbnail" value="{{ $post->thumbnail }}">
-									<span id="view_content">{!! $post->contents !!}</span>
+									<input type="hidden" id="thumbnail" value="{{ $notice->thumbnail }}">
+									<span id="view_content">{!! $notice->contents !!}</span>
 								</div>
 								<!--<span>-모바일로 작성</span>-->
 							</div>
 							<div class="right"></div>
 						</div>
-						<div class="recommend_box clear">
-							<div class="inner left">
-								<div class="up_box">
-									<p class="red">{{ $post->good }}</p>
-								</div>
-								<button class="up_btn" type="button" id="good-button"><img src="/assets/img/good.png" alt="추천"></button>
-							</div>
-							<div class="inner right">
-								<button class="down_btn" type="button" id="bad-button"><img src="/assets/img/bad.png" alt="비추"></button>
-								<div class="down_box">
-									<p>{{ $post->bad }}</p>
-								</div>
-							</div>
+						<div class="recommend_box clear" style=" padding-top: 0px; ">
 							<div class="recom_bottom_box">
-								<button class="hitgal" type="button" id="hit-button"><i class="fas fa-crown gray pdR6 fa-lg"></i>힛추</button>
-								<button class="share" type="button" id="share-button" data-container="body" data-toggle="popover" data-placement="bottom" data-original-title="공유"
+								<button style="width:50%" class="share" type="button" id="share-button" data-container="body" data-toggle="popover" data-placement="bottom" data-original-title="공유"
 								data-content="
 									<ul class='share_list'>
 										<li>
@@ -358,7 +333,7 @@
 									">
 									<i class="fas fa-share-alt gray pdR6 fa-lg"></i>공유
 								</button>
-								<button class="report" type="button" id="police-button"><i class="fas fa-concierge-bell gray pdR6 fa-lg"></i>신고</button>
+								<button style="width:50%" class="report" type="button" id="police-button"><i class="fas fa-concierge-bell gray pdR6 fa-lg"></i>신고</button>
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -368,7 +343,7 @@
 					<div class="comment_warp">
 						<div class="comment_num">
 							<div class="left num_box">
-								전체 리플 <span class="red">{{ $post->comments }}</span> 개
+								전체 리플 <span class="red">{{ $notice->comments }}</span> 개
 								<!--<select class="comment_sort" name="sort">
 									<option value="1">등록순</option>
 									<option value="2">최신순</option>
@@ -412,11 +387,10 @@
 										</div>
 									</div>
 								</li>
-								<form method="post" action="{{ route('comment.store') }}">
+								<form method="post" action="{{ url('notice-comment') }}">
 								  @method('POST')
 								  @csrf
-								  <input type="hidden" name="post_gallery_link" value="{{ $gallery->link }}">
-								  <input type="hidden" name="postId" value="{{ $post->id }}">
+								  <input type="hidden" name="postId" value="{{ $notice->id }}">
 								  <input type="hidden" name="commentId" value="{{ $comment->id }}">
 								  <div class="reply_box" style="display:none;" id="{{ $comment->id }}"></div>
 								</form>
@@ -457,11 +431,10 @@
 									</div>
 								</li>
 								<li>
-								  <form method="post" action="{{ route('comment.store') }}">
+								  <form method="post" action="{{ url('notice-comment') }}">
 									@method('POST')
 									@csrf
-									<input type="hidden" name="post_gallery_link" value="{{ $gallery->link }}">
-									<input type="hidden" name="postId" value="{{ $post->id }}">
+									<input type="hidden" name="postId" value="{{ $notice->id }}">
 									<input type="hidden" name="commentId" value="{{ $comment->id }}">
 									<div class="reply_box" style="display:none;" id="{{ $comment->id }}"></div>
 								  </form>
@@ -470,11 +443,10 @@
 							@endforeach
 						</ul>
 					</div>
-					<form method="post" action="{{ route('comment.store') }}">
+					<form method="post" action="{{ url('notice-comment') }}">
 					  @method('POST')
 					  @csrf
-					  <input type="hidden" name="post_gallery_link" value="{{ $gallery->link }}">
-					  <input type="hidden" name="postId" value="{{ $post->id }}">
+					  <input type="hidden" name="postId" value="{{ $notice->id }}">
 						<div class="cmt_write_box">
 							<div class="left">
 								<div class="user_info_input">
@@ -490,8 +462,7 @@
 								</div>
 								<div class="cmt_txt_bot">
 									<div class="right">
-										<button class="btn_save btn_blue" type="submit" onClick="this.form.action='{{ route('comment.store') }}?type=register';">등록</button>
-										<button class="btn_save_good btn_lightBlue" type="submit">등록+추천</button>
+										<button class="btn_save btn_blue" type="submit" onClick="this.form.action='{{ url('notice-comment') }}?type=register';">등록</button>
 									</div>
 								</div>
 							</div>
@@ -509,13 +480,12 @@
 						@endif
 					</div>
 					<div class="right">
-						<a href="{{ route('gallery-post.edit', $post->id) }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
-						<form action="{{ route('gallery-post.destroy', $post->id) }}?link={{ $gallery->link }}" method="POST" style="float:left;">
+						<a href="{{ route('gallery-post.edit', $notice->id) }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
+						<form action="{{ route('gallery-post.destroy', $notice->id) }}" method="POST" style="float:left;">
 							@method('DELETE')
 							@csrf
 							<button class="btn_delete btn_gray" type="submit" name="button">삭제</button>
 						</form>
-						<a href="{{ route('gallery-post.create') }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_create btn_blue" type="button" name="button">글쓰기</button></a>
 						<div class="clear"></div>
 					</div>
 					<div class="clear"></div>
@@ -526,7 +496,6 @@
 						<thead>
 							<tr>
 								<th scope="col" class="tit-num">번호</th>
-								<th scope="col" class="tit-mal">말머리</th>
 								<th scope="col" class="tit-tit">제목</th>
 								<th scope="col" class="tit-user">글쓴이</th>
 								<th scope="col" class="tit-date">작성일</th>
@@ -538,33 +507,29 @@
 							@php $i=0; @endphp
 							@forEach($n_posts as $n_post)
 								<tr class="postArea" id="p{{ $i }}">
-									<td class="post_num">{{ $n_post->post_id }}</td>
 									<td class="post_head m-hide"><b>공지</b></td>
 									<td class="post_title">
-										<a href="{{ url('gallery-post/'.$gallery->link.'/'.$n_post->post_id) }}">
+										<a href="{{ route('notice.show', $n_post->id) }}">
 											<i class="fas fa-info-circle red"></i>
-											<b>{{ $n_post->post_title }}</b>
+											<b>{{ $n_post->title }}</b>
 										</a>
-										<a href="#" class="comment_count">[{{ $n_post->post_comments }}]</a>
+										<a href="#" class="comment_count">[{{ $n_post->comments }}]</a>
 									</td>
 									<td class="post_user">
-										<span class="nickname">{{ $n_post->user_nick }}</span>
-										<a href="#" class="nickon">
-											<i class="fas fa-crown gold"></i>
-										</a>
+										<span class="nickname"><b>운영자</b></span>
 									</td>
-									<td class="post_date">{{ date('y-m-d', strtotime($n_post->post_reg_date)) }}</td>
-									<td class="post_view m-hide">{{ $n_post->post_view }}</td>
-									<td class="post_good m-hide">{{ $n_post->post_good }}</td>
+									<td class="post_date">{{ date('y-m-d', strtotime($n_post->reg_date)) }}</td>
+									<td class="post_view m-hide">{{ $n_post->view }}</td>
+									<td class="post_good m-hide"></td>
 								</tr>
 								@php $i++; @endphp
 							@endforEach
+
 							@forEach($posts as $post)
 								<tr class="postArea" id="p{{ $i }}">
 									<td class="post_num">{{ $post->post_id }}</td>
-									<td class="post_head m-hide"><b>{{ $post->post_head }}</b></td>
 									<td class="post_title">
-										<a href="{{ url('gallery-post/'.$gallery->link.'/'.$post->post_id) }}" id="title">
+										<a href="{{ route('gallery-hit.show', $post->post_id) }}" id="title">
 											@if($post->post_thumbnail)
 												<i class="fas fa-image green"></i>
 											@else
@@ -609,9 +574,6 @@
 							<button type="button" id="all-post" name="button" class="on">전체글</button>
 							<button type="button" id="concept-post" name="button" class="">개념글</button>
 						@endif
-					</div>
-					<div style="float:right;">
-						<button type="button" name="button" class="on write">글쓰기</button>
 					</div>
 				</div>
 				<div class="pagebox">

@@ -494,6 +494,29 @@ $(document).on("click", "#concept-post", function(){
     location.href="?head=개념";
 });
 
+$(document).on("click", "#hit-button", function(){
+    $.ajax({
+         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+         type: 'post',
+         url: '/plusHitPoint',
+         dataType: 'json',
+         data: {
+             'id': $('.view_headtext').attr('id'),
+         },
+         success: function(data) {
+             if(data['status']) {
+                 alert(data['test']);
+                 location.reload();
+             } else {
+                 alert("이미 등록한 게시물 입니다.")
+             }
+         },
+         error: function(data) {
+              console.log("error" +data);
+         }
+    });
+});
+
 $(document).on("click", "#good-button", function(){
     $.ajax({
          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

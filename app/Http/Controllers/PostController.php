@@ -14,6 +14,7 @@ use App\Category;
 use App\Comment;
 use App\Popup;
 use App\User;
+use App\Post_hit;
 
 class PostController extends Controller
 {
@@ -80,6 +81,7 @@ class PostController extends Controller
         $good = 0;
         $bad = 0;
         $comments = 0;
+        $hits = 0;
         $head = $request->input('head');
         $notice = 0;
         $gallery_id = $request->input('idH');
@@ -105,6 +107,7 @@ class PostController extends Controller
             'good' => $good,
             'bad' => $bad,
             'comments' => $comments,
+            'hits' => $hits,
             'head' => $head,
             'notice' => $notice,
             'gallery_id' => $gallery_id,
@@ -393,6 +396,36 @@ class PostController extends Controller
         Comment::where('post_id', $id)->delete();
         $gallery_link = $request->input('link');
         return redirect(route('gallery.show', $gallery_link));
+    }
+
+    public function plusHitPoint(Request $request) {
+        $post_id = $request->input('id');
+        $list = Cookie::get('hitPointList');
+
+        if(strpos($list, $post_id . '/') === false) {
+            $list = $list . $post_id . '/';
+            $post = Post::select('hits')->where('id', $post_id)->first();
+
+            if($post->hits > 5) {
+                $post_hit = Post_hit::select('post_id')->where('post_id', $post_id)->first();
+                if($post_hit == null) {
+                    Post_hit::create([
+                      'post_id' => $post_id,
+                    ]);
+                }
+            }
+
+            Post::where('id', $post_id)->increment('hits');
+            Cookie::queue('hitPointList', $list, 1440);
+            return response()->json([
+                'status' => true,
+                'test' => $post_hit
+            ]);
+        } else {
+            return response()->json([
+                'status' => false
+            ]);
+        }
     }
 
     public function plusGoodPoint(Request $request) {

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use App\Comment;
 use App\Post;
+use App\Notice;
 
 class CommentController extends Controller
 {
@@ -56,8 +57,10 @@ class CommentController extends Controller
                ->withErrors($validator);
        }*/
 
-
-       $post_gallery_link = $request->input('post_gallery_link');
+       $post_gallery_link = '';
+       if( $request->input('post_gallery_link')) {
+           $post_gallery_link = $request->input('post_gallery_link');
+       }
 
        $nouser_name = $request->input('name');
        $nouser_pw = $request->input('password');
@@ -129,12 +132,113 @@ class CommentController extends Controller
              Post::where('id', $post_id)->increment('comments');
          }
 
-         return redirect('gallery-post/'.$post_gallery_link.'/'.$post_id);
+         if($post_gallery_link != '') {
+             return redirect('gallery-post/'.$post_gallery_link.'/'.$post_id);
+         }
+         else {
+             return redirect('gallery-hit/'.$post_id);
+         }
        } catch(Exception $e) {
          return redirect('error');
        }
     }
 
+    public function notice_store(Request $request)
+    {
+      /*$messages = [
+          's_name.required'    => '갤러리 약자를 입력해주세요.',
+          'name.required'    => '갤러리 이름을 입력해주세요.',
+          'category_id.required' => '카테고리를 선택해주세요.',
+          'link.required'      => '주소를 입력해주세요.',
+          'contents.required'      => '설명을 입력해주세요.',
+          'reason.required'      => '사유를 입력해주세요.',
+          'heads.required'      => '말머리를 입력해주세요.',
+          'agree.required'      => '허가여부를 선택해주세요.',
+          's_name.max'    => '갤러리 약자의 글자 수가 초과하였습니다.',
+          'name.max'    => '갤러리 이름의 글자 수가 초과하였습니다.',
+          'link.max'      => '주소의 글자 수가 초과하였습니다.',
+          'contents.max'      => '설명의 글자 수가 초과하였습니다.',
+          'reason.max'      => '사유의 글자 수가 초과하였습니다.',
+          'heads.max'      => '말머리의 글자 수가 초과하였습니다.'
+      ];
+      $validator = Validator::make($request->all(), [
+          's_name' => 'required|max:3',
+          'name' => 'required|max:10',
+          'category_id' => 'required',
+          'link' => 'required|max:10',
+          'contents' => 'required|max:10',
+          'reason' => 'required|max:10',
+          'heads' => 'required|max:10',
+          'agree' => 'required|max:10'
+      ], $messages);
+      if ($validator->fails()) {
+          return redirect('admin/gallery-add-form')
+              ->withInput()
+              ->withErrors($validator);
+      }*/
+      $nouser_name = $request->input('name');
+      $nouser_pw = $request->input('password');
+      $contents = $request->input('content');
+      $notice_id = $request->input('postId');
+      $reg_date = date("Y-m-d");
+      $user_id = 1;
+      $ip = $this->getUserIpAddr();
+
+      $comment_id_rep = $request->input('commentId');
+
+      $rep_co = Comment::select('id')
+                         ->where('id', '=' , $comment_id_rep)
+                         ->first();
+
+      $comment = Comment::select('*')
+                         ->where('notice_id', '=' , $notice_id)
+                         ->get();
+
+      $comment_id = 0;
+      $max_id = 0;
+      $min_id = 0;
+
+      if(!$rep_co) {
+        if(count($comment) <= 0)
+           $comment_id = 100;
+        else
+           $max_id = Comment::where('notice_id', '=' , $notice_id)->max('id');
+           $max_id = substr($max_id, -8, -2);
+           //$comment_id = Comment::max('id') + 100;//$comment->id;
+           $comment_id = ((int)$max_id + 1) * 100;
+      }
+      else {
+         //  $max_id = Comment::where('', '', '')->max('id');
+           $max_id = substr($rep_co->id, -8, -2);
+           $min_id = ((int)$max_id) * 100;
+           $max_id = $min_id + 100;
+
+           $max = Comment::whereBetween('id', [$min_id+1, $max_id-1])->max('id');
+
+           if($max)
+             $comment_id = (int)$max + 1;
+           else
+             $comment_id = $min_id + 1;
+      }
+
+      try {
+        Comment::create([
+            'id' => $comment_id,
+            'nouser_name' => $nouser_name,
+            'nouser_pw' => $nouser_pw,
+            'contents' => $contents,
+            'post_id' => 0,
+            'notice_id' => $notice_id,
+            'reg_date' => $reg_date,
+            'user_id' => 1,
+            'ip' => $this->getUserIpAddr()
+        ]);
+        Notice::where('id', $notice_id)->increment('comments');
+        return redirect('notice/'.$notice_id);
+      } catch(Exception $e) {
+        return redirect('error');
+      }
+   }
 
     public function show($id)
     {

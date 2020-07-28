@@ -23,14 +23,14 @@
 		<div class="container">
 			<div class="mainLeft">
 				<div class="hit">
-					<h6 class="title "><b>HIT 갤러리</b></h6>
+					<a href="{{ route('gallery-hit.index') }}"><h6 class="title "><b>HIT 갤러리</b></h6></a>
 					<hr class="line">
 					<div class="row">
 						<div class="col-3">
 							<div class="card">
 							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
 							  <div class="card-body" style="">
-								<p class="card-title"><b>RX570 새척했다 ㅋㅋㅋㅋ</b></p>
+								<p class="card-title"><a href="{{ route('gallery-hit.index') }}"><b>RX570 새척했다 ㅋㅋㅋㅋ</b></a></p>
 								<p class="card-gallery">컴퓨터 본체</p>
 								<p class="card-count"><b>댓글</b> 100개 <b>추천</b> 999개</p>
 							  </div>

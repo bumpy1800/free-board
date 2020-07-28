@@ -68,13 +68,13 @@ class NoticeController extends Controller
 
 
        $reg_date = date("Y-m-d");
-       $view = 0;
 
        Notice::create([
            'title' => $title,
            'contents' => $contents,
            'reg_date' => $reg_date,
-           'view' => $view
+           'view' => 0,
+           'comments' => 0,
        ]);
        return redirect(route('admin_notice.index'));
      }

@@ -14,6 +14,7 @@ class Comment extends Model
     'contents',
     'reg_date',
     'post_id',
+    'notice_id',
     'ip'
   ];
 

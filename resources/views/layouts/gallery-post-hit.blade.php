@@ -17,7 +17,7 @@
 		<script type="text/javascript" src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
 		<script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 		<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-		<script src="{{ asset('assets/js/gallery-post.js') }}"></script>
+		<script src="{{ asset('assets/js/gallery-post-hit.js') }}"></script>
 
 		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
@@ -30,14 +30,8 @@
 		@yield('header')
 		<div class="container">
 				<div class="gallery-top">
-					<h4 class="title" id="{{ $gallery->link }}"><b>{{ $gallery->name }}</b></h4>
+					<h4 class="title" id="hit"><b>HIT 갤러리</b></h4>
 					<div class="sub">
-						<span class="lf">
-							<a type="button" id="link-gallery" data-container="body" data-toggle="popover" data-placement="bottom" data-original-title="연관 갤러리" data-content="">
-							  연관 갤러리({{ $link_gallerys }}/5)
-						  	</a>
-						</span>
-						<span class="mLine">|</span>
 						<span><a href="" onclick="copy_trackback(this.href); return false;">갤주소 복사</a></span>
 						<span class="mLine">|</span>
 						<span class="lf"><a href="#" data-toggle="modal" data-target="#block" id="blockConfig">차단설정</a></span>
@@ -415,7 +409,6 @@
 								<form method="post" action="{{ route('comment.store') }}">
 								  @method('POST')
 								  @csrf
-								  <input type="hidden" name="post_gallery_link" value="{{ $gallery->link }}">
 								  <input type="hidden" name="postId" value="{{ $post->id }}">
 								  <input type="hidden" name="commentId" value="{{ $comment->id }}">
 								  <div class="reply_box" style="display:none;" id="{{ $comment->id }}"></div>
@@ -460,7 +453,6 @@
 								  <form method="post" action="{{ route('comment.store') }}">
 									@method('POST')
 									@csrf
-									<input type="hidden" name="post_gallery_link" value="{{ $gallery->link }}">
 									<input type="hidden" name="postId" value="{{ $post->id }}">
 									<input type="hidden" name="commentId" value="{{ $comment->id }}">
 									<div class="reply_box" style="display:none;" id="{{ $comment->id }}"></div>
@@ -473,7 +465,6 @@
 					<form method="post" action="{{ route('comment.store') }}">
 					  @method('POST')
 					  @csrf
-					  <input type="hidden" name="post_gallery_link" value="{{ $gallery->link }}">
 					  <input type="hidden" name="postId" value="{{ $post->id }}">
 						<div class="cmt_write_box">
 							<div class="left">
@@ -509,13 +500,12 @@
 						@endif
 					</div>
 					<div class="right">
-						<a href="{{ route('gallery-post.edit', $post->id) }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
-						<form action="{{ route('gallery-post.destroy', $post->id) }}?link={{ $gallery->link }}" method="POST" style="float:left;">
+						<a href="{{ route('gallery-post.edit', $post->id) }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
+						<form action="{{ route('gallery-post.destroy', $post->id) }}" method="POST" style="float:left;">
 							@method('DELETE')
 							@csrf
 							<button class="btn_delete btn_gray" type="submit" name="button">삭제</button>
 						</form>
-						<a href="{{ route('gallery-post.create') }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_create btn_blue" type="button" name="button">글쓰기</button></a>
 						<div class="clear"></div>
 					</div>
 					<div class="clear"></div>
@@ -526,7 +516,6 @@
 						<thead>
 							<tr>
 								<th scope="col" class="tit-num">번호</th>
-								<th scope="col" class="tit-mal">말머리</th>
 								<th scope="col" class="tit-tit">제목</th>
 								<th scope="col" class="tit-user">글쓴이</th>
 								<th scope="col" class="tit-date">작성일</th>
@@ -538,33 +527,29 @@
 							@php $i=0; @endphp
 							@forEach($n_posts as $n_post)
 								<tr class="postArea" id="p{{ $i }}">
-									<td class="post_num">{{ $n_post->post_id }}</td>
 									<td class="post_head m-hide"><b>공지</b></td>
 									<td class="post_title">
-										<a href="{{ url('gallery-post/'.$gallery->link.'/'.$n_post->post_id) }}">
+										<a href="{{ route('notice.show', $n_post->id) }}">
 											<i class="fas fa-info-circle red"></i>
-											<b>{{ $n_post->post_title }}</b>
+											<b>{{ $n_post->title }}</b>
 										</a>
-										<a href="#" class="comment_count">[{{ $n_post->post_comments }}]</a>
+										<a href="#" class="comment_count">[{{ $n_post->comments }}]</a>
 									</td>
 									<td class="post_user">
-										<span class="nickname">{{ $n_post->user_nick }}</span>
-										<a href="#" class="nickon">
-											<i class="fas fa-crown gold"></i>
-										</a>
+										<span class="nickname"><b>운영자</b></span>
 									</td>
-									<td class="post_date">{{ date('y-m-d', strtotime($n_post->post_reg_date)) }}</td>
-									<td class="post_view m-hide">{{ $n_post->post_view }}</td>
-									<td class="post_good m-hide">{{ $n_post->post_good }}</td>
+									<td class="post_date">{{ date('y-m-d', strtotime($n_post->reg_date)) }}</td>
+									<td class="post_view m-hide">{{ $n_post->view }}</td>
+									<td class="post_good m-hide"></td>
 								</tr>
 								@php $i++; @endphp
 							@endforEach
+
 							@forEach($posts as $post)
 								<tr class="postArea" id="p{{ $i }}">
 									<td class="post_num">{{ $post->post_id }}</td>
-									<td class="post_head m-hide"><b>{{ $post->post_head }}</b></td>
 									<td class="post_title">
-										<a href="{{ url('gallery-post/'.$gallery->link.'/'.$post->post_id) }}" id="title">
+										<a href="{{ route('gallery-hit.show', $post->post_id) }}" id="title">
 											@if($post->post_thumbnail)
 												<i class="fas fa-image green"></i>
 											@else
@@ -609,9 +594,6 @@
 							<button type="button" id="all-post" name="button" class="on">전체글</button>
 							<button type="button" id="concept-post" name="button" class="">개념글</button>
 						@endif
-					</div>
-					<div style="float:right;">
-						<button type="button" name="button" class="on write">글쓰기</button>
 					</div>
 				</div>
 				<div class="pagebox">
