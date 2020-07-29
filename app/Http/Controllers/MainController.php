@@ -10,22 +10,118 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 use App\Visitor;
+use App\Post;
+use App\Post_hit;
+use App\Gallery;
 
 class MainController extends Controller
 {
     public function index(Request $request)
     {
+        if($request->input('rank') && $request->input('page')) {
+            $liveGallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                                ->groupBy('gallery_id')
+                                ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                                ->orderby('total', 'desc')
+                                ->limit(50)
+                                ->paginate(10);
+            $liveGallerys->withPath('?rank='.$request->input('rank'));
+
+            return response()->json([
+                'rank'=>$request->input('rank'),
+                'page'=>$request->input('page'),
+                'liveGallerys'=>$liveGallerys
+            ]);
+        }
+        if($request->input('changeGallery') == 1) {
+            $liveChanges = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                                ->groupBy('gallery_id')
+                                ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                                ->orderby('total', 'desc')
+                                ->limit(50)
+                                ->paginate(50);
+            return response()->json([
+                'liveChanges'=>$liveChanges
+            ]);
+        }
+
+        $liveGallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                            ->groupBy('gallery_id')
+                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                            ->orderby('total', 'desc')
+                            ->limit(50)
+                            ->paginate(10);
+        $liveGallerys->withPath('?rank=11');
+
+        $todayTo = date('Y-m-d');
+        $todayFrom = date('Y-m-d', strtotime($todayTo.'-7days'));
+        $newGallerys = Gallery::select('name', 'link')
+                      ->whereBetween('agree_date', [$todayFrom, $todayTo])
+                      ->get();
+
         $visitorIp = $this->getUserIpAddr();
         $visitorArr = $request->session()->get('visitor');
         if($visitorArr == null) {
           $visitorArr = [];
         }
-        if (in_array($visitorIp, $visitorArr)) {
-          return view('main');
-        } else {
-          $request->session()->push('visitor', $visitorIp);
-          return view('main');
+        if (!in_array($visitorIp, $visitorArr)) {
+            $request->session()->push('visitor', $visitorIp);
         }
+
+        $hitPosts = Post::join('post_hit', 'post.id', '=', 'post_hit.post_id')
+            ->join('user', 'post.user_id', '=', 'user.id')
+            ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
+            ->select('post.id as post_id', 'post.head as post_head', 'post.title as post_title', 'post.comments as post_comments',
+            'post.reg_date as post_reg_date', 'post.view as post_view', 'post.good as post_good', 'post.thumbnail as post_thumbnail',
+            'post.ip as post_ip',
+            'user.nick as user_nick','user.status as user_status', 'user.uid as user_uid',
+            'gallery.name as gallery_name','gallery.link as gallery_link')
+            ->orderby('post.id', 'desc')
+            ->limit(4)
+            ->get();
+
+        $imgPosts = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                          ->select('post.id as post_id', 'post.title as post_title', 'thumbnail',
+                           'gallery.s_name as gallery_s_name', 'gallery.link as gallery_link')
+                          ->where('post.contents', 'like', '%<img%')
+                          ->orderby('post.id', 'desc')
+                          ->limit(8)
+                          ->get();
+        $notIn = [];
+        if(count($imgPosts) > 0) { //imgPosts 와 중복되지 않기 위함  ``
+            $i = 0;
+            foreach ($imgPosts as $imgPost) {
+              $notIn[$i] = $imgPost->post_id;
+              $i ++;
+            }
+        }
+        $posts = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                      ->select('post.id as post_id', 'post.title as post_title',
+                       'gallery.s_name as gallery_s_name', 'gallery.link as gallery_link')
+                      ->whereNotIn('post.id', $notIn) //포함하지 않는 것만 추출
+                      ->orderby('post.id', 'desc')
+                      ->limit(10)
+                      ->get();
+
+        $footer_gallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                            ->groupBy('gallery_id')
+                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                            ->orderby('total', 'desc')
+                            ->limit(10)
+                            ->get();
+
+        return view('main', [
+            'hitPosts' => $hitPosts,
+            'imgPosts' => $imgPosts,
+            'posts' => $posts,
+            'footer_gallerys' => $footer_gallerys,
+            'liveGallerys' => $liveGallerys,
+            'newGallerys' => $newGallerys
+        ]);
+    }
+
+    public function selectPosts() {
+
     }
 
     public function visitor_save(Request $request)

@@ -188,6 +188,9 @@ a {
 .hit {
 	margin-bottom: 30px;
 }
+.hit .card img{
+	height: 138px;
+}
 .hit .card-body {
 	padding-top: 12px;
 	padding-left: 5px;
@@ -351,9 +354,7 @@ input#user_security:checked + label.security:before {
 
 .newGallery {
 	border-color: gray;
-	padding-bottom: 0px;
 	margin-bottom: 0px;
-	border-bottom-width: 0px;
 }
 .newGallery ul {
 	list-style: none;
@@ -361,6 +362,8 @@ input#user_security:checked + label.security:before {
 	margin-bottom: 0px;
 	padding-bottom: 12px;
 	font-size: 13px;
+	max-height: 220px;
+	overflow: auto;
 }
 .newGallery li {
 	margin-bottom: 3px;
@@ -377,6 +380,9 @@ input#user_security:checked + label.security:before {
 	text-decoration: none;
 	color: #1379df;
 }
+.mainFoot .table .notice th a {
+	 color: #1379df;
+}
 .mainFoot .table .notice .fir {
 	border-left : 1px solid #dee2e6;
 	font-size: 14px;
@@ -387,6 +393,10 @@ input#user_security:checked + label.security:before {
 
 .mainFoot .table {
 	margin-bottom: 0px;
+}
+
+.mainFoot .table tr td a{
+	display: block;
 }
 
 .table .LRline {

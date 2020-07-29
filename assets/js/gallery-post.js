@@ -505,7 +505,6 @@ $(document).on("click", "#hit-button", function(){
          },
          success: function(data) {
              if(data['status']) {
-                 alert(data['test']);
                  location.reload();
              } else {
                  alert("이미 등록한 게시물 입니다.")

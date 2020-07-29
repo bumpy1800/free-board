@@ -12,8 +12,7 @@ class Notice extends Model
       'contents',
       'reg_date',
       'view',
-      'comments',
-      'good'
+      'comments'
     ];
 
     public $timestamps = false;

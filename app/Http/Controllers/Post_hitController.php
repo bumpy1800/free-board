@@ -80,6 +80,31 @@ class Post_hitController extends Controller
         $n_posts = $showPost['n_posts'];
         $posts = $showPost['posts'];
 
+        $top_imgPosts = Post::join('post_hit', 'post.id', '=', 'post_hit.post_id')
+            ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
+            ->select('post.id as post_id', 'post.title as post_title', 'post.contents as post_contents', 'thumbnail',
+            'gallery.s_name as gallery_s_name', 'gallery.link as gallery_link')
+            ->where('post.contents', 'like', '%<img%')
+            ->orderby('post.id', 'desc')
+            ->limit(1)
+            ->get();
+        $notIn = [];
+        if(count($top_imgPosts) > 0) { //imgPosts 와 중복되지 않기 위함  ``
+            $i = 0;
+            foreach ($top_imgPosts as $imgPost) {
+              $notIn[$i] = $imgPost->post_id;
+              $i ++;
+            }
+        }
+        $top_posts = Post::join('post_hit', 'post.id', '=', 'post_hit.post_id')
+            ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
+            ->select('post.id as post_id', 'post.title as post_title',
+            'gallery.s_name as gallery_s_name', 'gallery.link as gallery_link')
+            ->whereNotIn('post.id', $notIn) //포함하지 않는 것만 추출
+            ->orderby('post.id', 'desc')
+            ->limit(5)
+            ->get();
+
         return view('gallery-hit', [
             'r_image' => $r_image,
             'c_image' => $c_image,
@@ -89,6 +114,8 @@ class Post_hitController extends Controller
             'n_posts' => $n_posts,
             'posts' => $posts,
             'search_type' => $search_type,
+            'top_imgPosts' => $top_imgPosts,
+            'top_posts' => $top_posts,
         ]);
     }
 
@@ -104,9 +131,10 @@ class Post_hitController extends Controller
         ]);
 
         $post = Post::join('user', 'post.user_id', '=', 'user.id')
-                      ->select('post.*', 'post.ip as post_ip', 'user.nick as user_nick')
-                      ->where('post.id', '=', $id)
-                      ->first();
+            ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
+            ->select('post.*', 'post.ip as post_ip', 'user.nick as user_nick', 'gallery.link as gallery_link')
+            ->where('post.id', '=', $id)
+            ->first();
 
         $comments = Comment::join('post', 'comment.post_id', '=', 'post.id')
                       ->select('comment.*')

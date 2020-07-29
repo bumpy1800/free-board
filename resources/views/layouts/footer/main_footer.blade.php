@@ -2,31 +2,33 @@
     <table class="table">
         <thead class="notice">
             <tr>
-            <th scope="col" class="fir">공지사항</th>
+            <th scope="col" class="fir"><a class="" href="{{ route('notice.index') }}">공지사항</a></th>
             <th scope="col"></th>
             <th scope="col" class="las"></th>
             </tr>
         </thead>
         <tbody>
             <tr class="LRline">
-                <th class="pdB6 Rline" scope="row"><a href=""><b>갤러리</b></a></th>
-                <th class="pdB6 Rline" scope="row"><a href=""><b>인기갤러리</b></a></th>
-                <th class="pdB6 Rline" scope="row"><a href=""><b>주요서비스</b></a></th>
+                <th class="pdB6 Rline" scope="row"><b>갤러리</b></th>
+                <th class="pdB6 Rline" scope="row"><b>인기갤러리</b></th>
+                <th class="pdB6 Rline" scope="row"><b>주요서비스</b></th>
             </tr>
             <tr class="LRline">
-                <td class="pdT0 pdB6 Rline"><a href="">HIT 갤러리</a></td>
-                <td class="pdT0 pdB6 Rline"><a href="">국내야구</a></td>
-                <td class="pdT0 pdB6 Rline"><a href="">갤로그</a></td>
-            </tr>
-            <tr class="LRline">
-                <td class="pdT0 pdB6 Rline"><a href="">초개념 갤러리</a></td>
-                <td class="pdT0 pdB6 Rline"><a href="">편의점</a></td>
-                <td class="pdT0 pdB6 Rline"><a href="">디시위키</a></td>
-            </tr>
-            <tr class="LRline endline">
-                <td class="pdT0 pdB6 Rline"><a href="">이슈줌 갤러리</a></td>
-                <td class="pdT0 pdB6 Rline"><a href="">리그 오브 레전드</a></td>
-                <td class="pdT0 pdB6 Rline"><a href="">이벤트</a></td>
+                <td class="pdT0 pdB6 Rline">
+                    <a href="{{ route('gallery-hit.index') }}">HIT 갤러리</a>
+                    <a href="{{ route('notice.index') }}">공지사항</a>
+                </td>
+                <td class="pdT0 pdB6 Rline">
+                    {{--@foreach($footer_gallerys as $footer_gallery)
+                        <a href="{{ route('gallery.show', $footer_gallery->gallery_link) }}">{{ $footer_gallery->gallery_name }}</a>
+                    @endforEach --}}
+                </td>
+                <td class="pdT0 pdB6 Rline">
+                    <a href="">갤로그</a>
+                    <a href="">신고</a>
+                    <a href="">Q&A</a>
+                    <a href="">이벤트</a>
+                </td>
             </tr>
         </tbody>
     </table>

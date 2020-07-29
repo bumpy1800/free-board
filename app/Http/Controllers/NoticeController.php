@@ -16,16 +16,49 @@ use App\Popup;
 
 class NoticeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-      //$notices = notice::all();
-      $notices = Notice::all();
-      return view('admin.notice-list', ['notices' => $notices]);
+        $list = Cookie::get('recentVisitGallery');
+        $recentGallerys = explode('/', $list);
+
+        $showCnt = 30;
+        if($request->input('showCnt')) {
+            $showCnt = $request->input('showCnt');
+        }
+
+        $search_keyword = '';
+        $showPost = '';
+        if($request->input('search_keyword')) {
+            $search_keyword = $request->input('search_keyword');
+            $n_posts = Notice::select('*')
+              ->where(function($query) use ($search_keyword) {
+                  $query->where('title', 'like', '%'.$search_keyword.'%')
+                        ->orWhere('contents', 'like', '%'.$search_keyword.'%');
+              })
+              ->orderby('id', 'desc')
+              ->paginate($showCnt);
+        } else {
+            $n_posts = Notice::select('*')
+                ->orderby('id', 'desc')
+                ->paginate($showCnt);
+        }
+
+        $popup = Popup::select('image')
+              ->where('status', 1)
+              ->where('category', '갤러리 우측')
+              ->inRandomOrder()
+              ->first();
+        if($popup) {
+            $image = Storage::get($popup->image); //이미지 가져와서 text 변환
+            $r_image = base64_encode($image); //base64로 인코딩
+        } else {
+            $r_image = '';
+        }
+        return view('gallery-notice', [
+            'n_posts' => $n_posts,
+            'showCnt' => $showCnt,
+            'r_image' => $r_image
+        ]);
     }
 
     public function show(Request $request, $id)

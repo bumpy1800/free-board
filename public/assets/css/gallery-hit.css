@@ -1,0 +1,40 @@
+.infomation .info-rank .info .m_list {
+    overflow-y: visible;
+    width: 100%;
+}
+
+.infomation .info-rank .info .txtbox {
+    height: auto;
+    width: 100%;
+}
+
+.infomation .info-rank .info .m_list .txtbox {
+    margin: 0px;
+    max-height: 100%;
+    overflow-y: hidden;
+}
+.infomation .info-rank .info .m_list .txtbox img {
+    float: left;
+    width: 50%;
+    padding-right: 5px;
+    height: 100px;
+}
+.infomation .info-rank .info .m_list .txtbox ul {
+    list-style: none;
+}
+
+.infomation .info-rank .info .img-info .txtbox ul {
+    padding-right: 5px;
+}
+
+.infomation .info-rank .info .txtbox ul li p {
+    margin: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.infomation .info-rank .info .txtbox ul li #contents {
+    max-height: 60px;
+    white-space: normal;
+}

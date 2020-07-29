@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 		<script src="{{ asset('assets/js/jquery-3.4.1.js') }}"></script>
 		<script src="{{ asset('assets/js/visitor.js') }}"></script>
+		<script src="{{ asset('assets/js/main.js') }}"></script>
 	</head>
 	<body>
 
@@ -26,46 +27,22 @@
 					<a href="{{ route('gallery-hit.index') }}"><h6 class="title "><b>HIT 갤러리</b></h6></a>
 					<hr class="line">
 					<div class="row">
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><a href="{{ route('gallery-hit.index') }}"><b>RX570 새척했다 ㅋㅋㅋㅋ</b></a></p>
-								<p class="card-gallery">컴퓨터 본체</p>
-								<p class="card-count"><b>댓글</b> 100개 <b>추천</b> 999개</p>
-							  </div>
+						@foreach($hitPosts as $hitPost)
+							<div class="col-3">
+								<div class="card">
+									@if($hitPost->post_thumbnail == '' || $hitPost->post_thumbnail == null)
+								  		<img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
+								  	@else
+										<img src="{{ $hitPost->post_thumbnail }}" class="card-img-top" alt="...">
+									@endif
+									<div class="card-body">
+										<p class="card-title"><a href="{{ route('gallery-hit.show', $hitPost->post_id) }}"><b>{{ $hitPost->post_title }}</b></a></p>
+										<a href="{{ route('gallery.show', $hitPost->gallery_link) }}"><p class="card-gallery">{{ $hitPost->gallery_name }}</p></a>
+										<p class="card-count"><b>댓글</b> {{ $hitPost->post_comments }}개 <b>추천</b> {{ $hitPost->post_good }}개</p>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>RX570 새척했다 ㅋㅋㅋㅋ</b></p>
-								<p class="card-gallery">컴퓨터 본체</p>
-								<p class="card-count"><b>댓글</b> 100개 <b>추천</b> 999개</p>
-							  </div>
-							</div>
-						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>RX570 새척했다 ㅋㅋㅋㅋ</b></p>
-								<p class="card-gallery">컴퓨터 본체</p>
-								<p class="card-count"><b>댓글</b> 100개 <b>추천</b> 999개</p>
-							  </div>
-							</div>
-						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>RX570 새척했다 ㅋㅋㅋㅋ</b></p>
-								<p class="card-gallery">컴퓨터 본체</p>
-								<p class="card-count"><b>댓글</b> 100개 <b>추천</b> 999개</p>
-							  </div>
-							</div>
-						</div>
+						@endforeach
 					</div>
 				</div>
 
@@ -73,88 +50,53 @@
 					<h6 class="title "><b>최신글</b></h6>
 					<hr class="line">
 					<div class="row">
+						@foreach($imgPosts as $imgPost)
 						<div class="col-3">
 							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
+							  <img src="{{ $imgPost->thumbnail }}" class="card-img-top" alt="...">
 							  <div class="card-body">
-								<p class="card-title"><b>[초갤]</b> <a href="">가나ddddddddddddd다라가나다라가나다라가나다라</a></p>
+								<p class="card-title">
+									<a href="{{ route('gallery.show', $imgPost->gallery_link)}}"><b>[{{ $imgPost->gallery_s_name }}]</b> </a>
+									<a href="{{ url('gallery-post/'.$imgPost->gallery_link.'/'.$imgPost->post_id) }}">{{ $imgPost->post_title }}</a>
+								</p>
 							  </div>
 							</div>
 						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>[초갤]</b> <a href="">가나다라</a></p>
-							  </div>
-							</div>
-						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>[초갤]</b> <a href="">가나다라</a></p>
-							  </div>
-							</div>
-						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>[초갤]</b> <a href="">가나다라</a></p>
-							  </div>
-							</div>
-						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>[초갤]</b> <a href="">가나다라</a></p>
-							  </div>
-							</div>
-						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>[초갤]</b> <a href="">가나다라</a></p>
-							  </div>
-							</div>
-						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>[초갤]</b> <a href="">가나다라</a></p>
-							  </div>
-							</div>
-						</div>
-						<div class="col-3">
-							<div class="card">
-							  <img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-							  <div class="card-body" style="">
-								<p class="card-title"><b>[초갤]</b> <a href="">가나다라</a></p>
-							  </div>
-							</div>
-						</div>
+						@endforeach
 					</div>
 					<hr class="dot-line">
 					<div class="newPost-more">
 						<div class="row">
-							<div class="col-6">
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라ddddddddddddddddddddddddddddd</a></p>
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라</a></p>
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라</a></p>
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라</a></p>
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라</a></p>
-							</div>
-							<div class="col-6">
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라</a></p>
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라</a></p>
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라</a></p>
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라</a></p>
-								<p><b>[초갤]</b> <a href="">가나다ㅏ라</a></p>
-							</div>
+							@php
+								$i = 0;
+								$posts_cnt = count($posts);
+							@endphp
+							@forEach($posts as $post)
+								@if($i % 5 == 0)
+										<div class="col-6">
+										<p>
+												<b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b>
+												<a href="{{ url('gallery-post/'.$post->gallery_link.'/'.$post->post_id) }}">{{ $post->post_title }}</a>
+										</p>
+								@else
+										<p>
+												<b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b>
+												<a href="{{ url('gallery-post/'.$post->gallery_link.'/'.$post->post_id) }}">{{ $post->post_title }}</a>
+										</p>
+								@endif
+
+								@if($i % 5 == 4)
+										</div>
+								@else
+										@if($i == $posts_cnt-1)
+												</div>
+										@endif
+								@endif
+
+								@php
+										$i ++;
+								@endphp
+							@endforEach
 						</div>
 					</div>
 				</div>
@@ -216,145 +158,34 @@
 						<h6><strong>실북갤</strong></h6>
 					</div>
 					<hr class="dot-line">
-						<div class="ranking">
-							<div class="ranking-left">
-								<h6>
-									<a href="gallery-post" class="badge badge-primary">1</a>
-									<a href="gallery-post">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-							<div class="ranking-left">
-								<h6>
-									<a href="#" class="badge badge-primary">2</a>
-									<a href="#">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-							<div class="ranking-left">
-								<h6>
-									<a href="#" class="badge badge-primary">3</a>
-									<a href="#">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-							<div class="ranking-left">
-								<h6>
-									<a href="#" class="badge badge-primary">4</a>
-									<a href="#">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-							<div class="ranking-left">
-								<h6>
-									<a href="#" class="badge badge-primary">5</a>
-									<a href="#">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-							<div class="ranking-left">
-								<h6>
-									<a href="#" class="badge badge-primary">6</a>
-									<a href="#">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-							<div class="ranking-left">
-								<h6>
-									<a href="#" class="badge badge-primary">7</a>
-									<a href="#">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-							<div class="ranking-left">
-								<h6>
-									<a href="#" class="badge badge-primary">8</a>
-									<a href="#">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-							<div class="ranking-left">
-								<h6>
-									<a href="#" class="badge badge-primary">9</a>
-									<a href="#">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-							<div class="ranking-left">
-								<h6>
-									<a href="#" class="badge badge-primary">10</a>
-									<a href="#">겨울왕국</a>
-								</h6>
-							</div>
-							<div class="ranking-right">
-								<h6>
-									10
-									<a href="#" class="badge badge-danger">▲</a>
-								</h6>
-							</div>
-							<div class="clear"></div>
-
+						<div id="lg-dropdown" class="ranking">
+							@php
+									$i = 1;
+							@endphp
+							@forEach($liveGallerys as $liveGallery)
+								<div class="ranking-left">
+									<h6>
+										<a href="gallery-post" class="badge badge-primary">{{ $i }}</a>
+										<a href="gallery-post">{{ $liveGallery->gallery_name }}</a>
+									</h6>
+								</div>
+								<div class="clear"></div>
+								@php
+									$i ++;
+								@endphp
+							@endforEach
 						</div>
 					<div class="clear"></div>
 				</div>
 
 				<div class="ranking-more">
 					<div id="ranking-more">
-						<a href="/"><b>더보기</b></a>
+						<div class="live-pagination">
+								<div id="live-pagination">
+									{{ $liveGallerys->links('vendor.pagination.gallery-plus-pagination2') }}
+								</div>
+								<div class="clear"></div>
+						</div>
 					</div>
 				</div>
 
@@ -365,25 +196,12 @@
 					<hr class="dot-line">
 						<div class="list">
 							<ul>
-								<li>가나다</li>
-								<li>가나다</li>
-								<li>가나다</li>
-								<li>가나다</li>
-								<li>가나다</li>
-								<li>가나다</li>
-								<li>가나다</li>
-								<li>가나다</li>
-								<li>가나다</li>
-								<li>가나다</li>
+								@forEach($newGallerys as $newGallery)
+									<li><a href="{{ route('gallery.show', $newGallery->link) }}">{{ $newGallery->name }}</a></li>
+								@endforEach
 							</ul>
 						</div>
 					<div class="clear"></div>
-				</div>
-
-				<div class="ranking-more">
-					<div id="ranking-more">
-						<a href="/"><b>더보기</b></a>
-					</div>
 				</div>
 			</div>
 

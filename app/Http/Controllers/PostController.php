@@ -392,6 +392,7 @@ class PostController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        Post_hit::where('post_id', $id)->delete();
         Post::destroy($id);
         Comment::where('post_id', $id)->delete();
         $gallery_link = $request->input('link');
@@ -406,7 +407,7 @@ class PostController extends Controller
             $list = $list . $post_id . '/';
             $post = Post::select('hits')->where('id', $post_id)->first();
 
-            if($post->hits > 5) {
+            if($post->hits >= 5) {
                 $post_hit = Post_hit::select('post_id')->where('post_id', $post_id)->first();
                 if($post_hit == null) {
                     Post_hit::create([
@@ -418,8 +419,7 @@ class PostController extends Controller
             Post::where('id', $post_id)->increment('hits');
             Cookie::queue('hitPointList', $list, 1440);
             return response()->json([
-                'status' => true,
-                'test' => $post_hit
+                'status' => true
             ]);
         } else {
             return response()->json([

@@ -156,7 +156,7 @@
 								</div>
 								<div class="edu-list">
 									<div class="li"><a href="">게시물 신고</a></div>
-									<div class="li"><a href="">공지사항</a></div>
+									<div class="li"><a href="{{ route('notice.index') }}">공지사항</a></div>
 								</div>
 								<div class="top borST1">
 									<h6 class="nobr"><b>신설 갤러리</b><color> ({{ count($newGallerys) }})</color></h6>

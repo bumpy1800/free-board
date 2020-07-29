@@ -500,8 +500,8 @@
 						@endif
 					</div>
 					<div class="right">
-						<a href="{{ route('gallery-post.edit', $post->id) }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
-						<form action="{{ route('gallery-post.destroy', $post->id) }}" method="POST" style="float:left;">
+						<a href="{{ route('gallery-post.edit', $post->id) }}?link={{ $post->gallery_link }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
+						<form action="{{ route('gallery-post.destroy', $post->id) }}?link={{ $post->gallery_link }}" method="POST" style="float:left;">
 							@method('DELETE')
 							@csrf
 							<button class="btn_delete btn_gray" type="submit" name="button">삭제</button>
