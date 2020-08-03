@@ -507,7 +507,11 @@ $(document).on("click", "#hit-button", function(){
              if(data['status']) {
                  location.reload();
              } else {
-                 alert("이미 등록한 게시물 입니다.")
+                 if(data['needLogin']) {
+                     alert("로그인이 필요한 서비스입니다.");
+                 }else {
+                     alert("이미 등록한 게시물 입니다.");
+                 }
              }
          },
          error: function(data) {
@@ -529,7 +533,11 @@ $(document).on("click", "#good-button", function(){
              if(data['status']) {
                  location.reload();
              } else {
-                 alert("이미 등록한 게시물 입니다.")
+                 if(data['needLogin']) {
+                     alert("로그인이 필요한 서비스입니다.");
+                 }else {
+                     alert("이미 등록한 게시물 입니다.");
+                 }
              }
          },
          error: function(data) {
@@ -551,7 +559,11 @@ $(document).on("click", "#bad-button", function(){
              if(data['status']) {
                  location.reload();
              } else {
-                 alert("이미 등록한 게시물 입니다.")
+                 if(data['needLogin']) {
+                     alert("로그인이 필요한 서비스입니다.");
+                 }else {
+                     alert("이미 등록한 게시물 입니다.");
+                 }
              }
          },
          error: function(data) {

@@ -498,7 +498,7 @@
 						@endif
 					</div>
 					<div style="float:right;">
-						<a href="{{ route('gallery-post.create',) }}?link={{ $gallery->link }}"><button type="button" name="button" class="on write">글쓰기</button></a>
+						<a href="{{ route('gallery-post.create') }}?link={{ $gallery->link }}"><button type="button" name="button" class="on write">글쓰기</button></a>
 					</div>
 				</div>
 				<div class="pagebox">

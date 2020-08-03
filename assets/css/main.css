@@ -510,7 +510,7 @@ input#user_security:checked + label.security:before {
 		margin-bottom: 3px;
 	}
 	.newPost img {
-		height: 100%;
+		height: 100px;
 	}
 }
 

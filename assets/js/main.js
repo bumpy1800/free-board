@@ -17,6 +17,14 @@ function change() {
     rank ++;
 }
 
+$(document).on("click", "#user_save, #user_security", function(){
+    if($(this).val() == 0) {
+        $(this).val('1');
+    } else {
+        $(this).val('0');
+    }
+});
+
 $.ajax({
      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
      type: 'get',

@@ -15,192 +15,156 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	</head>
 
-	<script>
-		var el = document.getElementById('gallog');
-		el.class = "btn active";
-	</script>
-
 	<body>
 		<div class="container">
 			@yield('header')
 			<div class="middle">
 				<div class="mypost">
-					<span class="title"><b>- 내 게시글</b>(0)</span>
-					<span class="all"><button class="btn">전체보기</button></span>
+					<span class="title"><b>- 내 게시글</b>({{ $posts->total() }})</span>
+					<span class="all">
+						<a href="{{ url('gallog-post') }}/{{ $user->uid }}">
+							<button class="btn">전체보기</button>
+						</a>
+					</span>
 					<div class="clear"></div>
 					<hr class="line">
 					<div>
-						<div class="have">
-							<div class="row">
-								<div class="user-title col-4">
-									<p><b>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</b></p>
-								</div>
-								<div class="test user-content col-5">
-									<p>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p><b>갤러리이름</b></p>
-									<p>2020.01.27 16:50:42</p>
-								</div>
-								<div class="user-title col-4">
-									<p><b>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</b></p>
-								</div>
-								<div class="user-content col-5">
-									<p>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p><b>갤러리이름</b></p>
-									<p>2020.01.27 16:50:42</p>
-								</div>
-								<div class="user-title col-4">
-									<p><b>제목</b></p>
-								</div>
-								<div class="user-content col-5">
-									<p>ㅈㄷㄱㅈㄱㄷㄱㅈ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p><b>갤러리이름</b></p>
-									<p>2020.01.27 16:50:42</p>
+						@if(!empty($posts->items()))
+							<div class="have">
+								<div class="row">
+									@foreach($posts as $post)
+										<div class="user-title col-4">
+											<p><b>{{ $post->post_title }}</b></p>
+										</div>
+										<div class="test user-content col-5">
+											<p>{{ strip_tags($post->post_contents) }}</p>
+										</div>
+										<div class="user-writeday col-3">
+											<p><b>{{ $post->gallery_name }}</b></p>
+											<p>{{ $post->post_reg_date }}</p>
+										</div>
+									@endforeach
 								</div>
 							</div>
-						</div>
-						<!--<div class="none">
-							<b>등록된 게시글이 없습니다.</b>
-						</div>-->
+						@else
+							<div class="none">
+								<b>등록된 게시글이 없습니다.</b>
+							</div>
+						@endif
+					</div>
+					<div class="pagination" style="justify-content: center;">
+						{{ $posts->links('vendor.pagination.gallog-pagination') }}
 					</div>
 					<hr class="hr1">
 				</div>
 				<div class="mycomment">
-					<span class="title"><b>- 내 댓글</b>(0)</span>
-					<span class="all"><button class="btn">전체보기</button></span>
+					<span class="title"><b>- 내 댓글</b>({{ $comments->total() }})</span>
+					<span class="all">
+						<a href="{{ url('gallog-comment') }}/{{ $user->uid }}">
+							<button class="btn">전체보기</button>
+						</a>
+					</span>
 					<div class="clear"></div>
 					<hr class="line">
-					<div class="have">
-						<div class="row">
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>댓글내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p><b>갤러리이름</b></p>
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>댓글내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p><b>갤러리이름</b></p>
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>댓글내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p><b>갤러리이름</b></p>
-								<p>2020.01.27 16:50:42</p>
+					@if(!empty($comments->items()))
+						<div class="have">
+							<div class="row">
+								@foreach($comments as $comment)
+									<div class="user-title col-4">
+										<p><b>{{ $comment->post_title }}</b></p>
+									</div>
+									<div class="test user-content col-5">
+										<p>{{ $comment->comment_contents }}</p>
+									</div>
+									<div class="user-writeday col-3">
+										<p><b>{{ $comment->gallery_name }}</b></p>
+										<p>{{ $comment->comment_reg_date }}</p>
+									</div>
+								@endforeach
 							</div>
 						</div>
+					@else
+						<div class="none">
+							<b>등록된 게시글이 없습니다.</b>
+						</div>
+					@endif
+					<div class="pagination" style="justify-content: center;">
+						{{ $comments->links('vendor.pagination.gallog-pagination') }}
 					</div>
-					<!--<div class="none">
-						<b>등록된 댓글이 없습니다.</b>
-					</div>-->
 					<hr class="hr1">
 				</div>
 				<div class="myscrap">
-					<span class="title"><b>- 스크랩</b>(0)</span>
-					<span class="all"><button class="btn">전체보기</button></span>
+					<span class="title"><b>- 스크랩</b>({{ $scraps->total() }})</span>
+					<span class="all">
+						<a href="{{ url('gallog-scrap') }}/{{ $user->uid }}">
+							<button class="btn">전체보기</button>
+						</a>
+					</span>
 					<div class="clear"></div>
 					<hr class="line">
-					<div class="have">
-						<div class="row">
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>스크랩내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p><b>갤러리이름</b></p>
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>스크랩내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p><b>갤러리이름</b></p>
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>스크랩내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p><b>갤러리이름</b></p>
-								<p>2020.01.27 16:50:42</p>
+					@if(!empty($scraps->items()))
+						<div class="have">
+							<div class="row">
+								@foreach($scraps as $scrap)
+									<div class="user-title col-4">
+										<p><b>{{ $scrap->post_title }}</b></p>
+									</div>
+									<div class="test user-content col-5">
+										<p>{{ $scrap->post_contents }}</p>
+									</div>
+									<div class="user-writeday col-3">
+										<p><b>{{ $scrap->gallery_name }}</b></p>
+										<p>{{ $scrap->post_reg_date }}</p>
+									</div>
+								@endforeach
 							</div>
 						</div>
+					@else
+						<div class="none">
+							<b>등록된 게시글이 없습니다.</b>
+						</div>
+					@endif
+					<div class="pagination" style="justify-content: center;">
+						{{ $scraps->links('vendor.pagination.gallog-pagination') }}
 					</div>
-					<!--<div class="none">
-						<b>등록된 스크랩이 없습니다.</b>
-					</div>-->
 					<hr class="hr1">
 				</div>
 				<div class="mybook">
-					<span class="title"><b>- 방명록</b>(0)</span>
-					<span class="all"><button class="btn">전체보기</button></span>
+					<span class="title"><b>- 방명록</b>({{ $guestbooks->total() }})</span>
+					<span class="all">
+						<a href="{{ url('gallog-guestbook') }}/{{ $user->uid }}">
+							<button class="btn">전체보기</button>
+						</a>
+					</span>
 					<div class="clear"></div>
 					<hr class="line">
-					<div class="have">
-						<div class="row">
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>방명록내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>방명록내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>방명록내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p>2020.01.27 16:50:42</p>
+					@if(!empty($guestbooks->items()))
+						<div class="have">
+							<div class="row">
+								@foreach($guestbooks as $guestbook)
+									<div class="user-title col-4">
+										<p><b>{{ $guestbook->user_nick }}</b></p>
+									</div>
+									<div class="user-content col-5">
+										<p>{{ $guestbook->guestbook_contents }}</p>
+									</div>
+									<div class="user-writeday col-3">
+										<p>{{ $guestbook->guestbook_reg_date }}</p>
+									</div>
+								@endforeach
 							</div>
 						</div>
+					@else
+						<div class="none">
+							<b>등록된 방명록이 없습니다.</b>
+						</div>
+					@endif
+					<div class="pagination" style="justify-content: center;">
+						{{ $guestbooks->links('vendor.pagination.gallog-pagination') }}
 					</div>
-					<!--<div class="none">
-						<b>등록된 방명록이 없습니다.</b>
-					</div>-->
 					<hr class="hr1">
 				</div>
 			</div>
-
 			@yield('footer')
 	</body>
 </html>

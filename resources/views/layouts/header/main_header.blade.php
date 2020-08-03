@@ -55,7 +55,11 @@
                     <a class="nav-link" href="{{ route('gallery.index') }}"><b>갤러리</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="gallog"><b>갤로그</b></a>
+                    @if(Auth::check())
+                        <a class="nav-link" href="{{ url('gallog') }}/{{ Auth::user()->nick }}"><b>갤로그</b></a>
+                    @else
+                        <button style="background-color: transparent; border: 0px;" class="nav-link"><b>갤로그</b></button>
+                    @endif
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="report"><b>신고/Q&amp;A</b></a>
@@ -67,3 +71,10 @@
         </div>
     </div>
 </nav>
+
+<script>
+    $(document).on("click", ".nav-item button", function(){
+        alert("로그인이 필요한 서비스입니다.");
+        return false;
+    });
+</script>

@@ -13,31 +13,35 @@
 	</head>
 	<body>
 		@yield('header')
-		<div class="loginbox">
-			<div class="login">
-				<div class="input_box">
-					<div class="input_login">
-						<input type="text" name="user_id" id="user_id" value="" placeholder="아이디">
-						<input type="password" name="user_pw" id="user_pw" value="" placeholder="비밀번호">
-						<button type="submit" name="login" id="login" class="btn btn_blue">로그인</button>
+		<form action="{{ url('auth/login') }}" method="post">
+			@method('POST')
+			@csrf
+			<div class="loginbox">
+				<div class="login">
+					<div class="input_box">
+						<div class="input_login">
+							<input type="text" name="user_id" id="user_id" value="" placeholder="아이디">
+							<input type="password" name="user_pw" id="user_pw" value="" placeholder="비밀번호">
+							<button type="submit" name="login" id="login" class="btn btn_blue">로그인</button>
+						</div>
+						<div class="input_check">
+							<input name="user_save" id="user_save" type="checkbox" hidden>
+							<label style="text-align: center;" for="user_save" class="save left"> ID 저장</label>
+							<input name="user_security" id="user_security" type="checkbox" hidden>
+							<label for="user_security" class="security right"> 보안접속</label>
+						</div>
+						<div class="help_box">
+							<a href="#" class="">아이디 찾기</a>
+							<a href="#" class="middle">비밀번호 찾기</a>
+							<a href="/register" class="sign_up">회원가입</a>
+						</div>
 					</div>
-					<div class="input_check">
-						<input name="user_save" id="user_save" type="checkbox" hidden>
-						<label style="text-align: center;" for="user_save" class="save left"> ID 저장</label>
-						<input name="user_security" id="user_security" type="checkbox" hidden>
-						<label for="user_security" class="security right"> 보안접속</label>
+					<div class="ad_box">
+						<img src="https://t1.daumcdn.net/b2/creative/50392/7ca769e0abf642681af8dc0c7117dea5.jpg" alt="광고">
 					</div>
-					<div class="help_box">
-						<a href="#" class="">아이디 찾기</a>
-						<a href="#" class="middle">비밀번호 찾기</a>
-						<a href="/register" class="sign_up">회원가입</a>
-					</div>
-				</div>
-				<div class="ad_box">
-					<img src="https://t1.daumcdn.net/b2/creative/50392/7ca769e0abf642681af8dc0c7117dea5.jpg" alt="광고">
 				</div>
 			</div>
-		</div>
+		</form>
 		@yield('footer')
   </body>
 </html>

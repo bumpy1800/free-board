@@ -20,24 +20,12 @@ use Illuminate\Http\Request;
 Route::get('/', 'MainController@index');
 Route::post('visitor_save', 'MainController@visitor_save');
 
+//로그인 인증
+Route::post('auth/login', 'Auth\LoginController@login');
+Route::any('auth/logout', 'Auth\LoginController@logout');
+
 Route::get('login', function () {
 	return view('login');
-});
-
-Route::get('gallog', function () {
-	return view('gallog');
-});
-Route::get('gallog2', function () {
-	return view('gallog2');
-});
-Route::get('gallog3', function () {
-	return view('gallog3');
-});
-Route::get('gallog4', function () {
-	return view('gallog4');
-});
-Route::get('gallog5', function () {
-	return view('gallog5');
 });
 
 Route::get('report', function () {
@@ -58,9 +46,7 @@ Route::get('register3', function () {
 Route::get('register4', function () {
 	return view('register4');
 });
-Route::get('gallog', function () {
-	return view('gallog');
-});
+
 Route::get('gallery', function () {
 	return view('gallery');
 });
@@ -111,7 +97,6 @@ Route::get('admin/policy-edit-form/{id}', 'admin\PolicyController@edit');
 Route::get('admin/policy-destroy/{id}', 'admin\PolicyController@destroy');
 Route::get('admin/policy-show/{id}', 'admin\PolicyController@show');
 
-
 Route::resources([
     'gallery' => 'GalleryController',
 	'gallery-post' => 'PostController',
@@ -127,26 +112,43 @@ Route::resources([
     'admin_qna' => 'admin\QnaController',
     'admin_qna_category' => 'admin\Qna_categoryController'
 ]);
+
+
+//로그인이 필요한 경로들
+Route::middleware(['guest'])->group(function() {
+	Route::get('gallog/{uid}', 'GallogController@index');
+	Route::get('gallog-post/{uid}', 'GallogController@post_index');
+	Route::get('gallog-comment/{uid}', 'GallogController@comment_index');
+	Route::get('gallog-scrap/{uid}', 'GallogController@scrap_index');
+	Route::get('gallog-guestbook/{uid}', 'GallogController@guestbook_index');
+	Route::post('gallog-guestbook/{uid}/store', 'GallogController@guestbook_store');
+	Route::post('gallog-guestbook/{uid}/update', 'GallogController@guestbook_update');
+	Route::post('gallog-guestbook/{uid}/destroy', 'GallogController@guestbook_destroy');
+	Route::post('gallog-guestbook/{uid}/hidden', 'GallogController@guestbook_hidden');
+	Route::post('gallog-guestbook/{uid}/open', 'GallogController@guestbook_open');
+});
+
+//카테고리 관련
 Route::get('game-gallery', 'GalleryController@index');
 Route::get('enter-gallery', 'GalleryController@index');
 Route::get('sports-gallery', 'GalleryController@index');
 Route::get('edu-gallery', 'GalleryController@index');
 Route::get('travel-gallery', 'GalleryController@index');
 Route::get('hobby-gallery', 'GalleryController@index');
+//갤러리 관련
 Route::post('week-gallerys', 'GalleryController@week_gallerys');
 Route::get('gallery-plus-m/{id}', 'GalleryController@m_gallery_index');
 Route::get('gallery_cookiedelete/{id}', 'GalleryController@cookieDelete');
 Route::get('gallery_search/{name}', 'GalleryController@gallery_search');
 Route::any('gallery_link_gallery', 'GalleryController@link_gallery');
-
-//Route::get('gallery-post/{link}/{id}', 'PostController@show');
+//게시글 관련
 Route::get('gallery-post/{link}/{id}', 'PostController@show');
 Route::post('plusHitPoint', 'PostController@plusHitPoint');
 Route::post('plusBadPoint', 'PostController@plusBadPoint');
 Route::post('plusGoodPoint', 'PostController@plusGoodPoint');
-
+//공지사항 댓글
 Route::post('notice-comment', 'CommentController@notice_store');
-
+//관리자
 Route::get('admin_post/{link}/{id}', 'admin\PostController@show');
 Route::get('admin_post_stat', 'admin\PostController@stat_index');
 Route::post('admin_post_stat', 'admin\PostController@stat_change');

@@ -68,7 +68,7 @@ class UserController extends Controller
 
       $uid = $request->input('uid');
       $nick = $request->input('nick');
-      $pwd = $request->input('pwd');
+      $pwd = bcrypt($request->input('pwd')); //로그인 테스트를 위한 해시
       $name = $request->input('name');
       $email = $request->input('email');
       $chk_email = 0;
