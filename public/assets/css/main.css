@@ -497,9 +497,6 @@ ul {
 }
 
 /*---------- 오른쪽 ---------- */
-.login {
-
-}
 
 .login .id, .pw {
 	width: 100%;
@@ -1302,6 +1299,7 @@ input#user_security:checked + label.security:before {
 		cursor: pointer;
 		margin: 25px 0;
 	}
+<<<<<<< HEAD
 
 	.contact-title {
 		font-size: 1.2rem;
@@ -1317,6 +1315,10 @@ input#user_security:checked + label.security:before {
 		width: 86%;
 		max-width: 900px;
 		margin: 20px 0;
+=======
+	.newPost img {
+		height: 100px;
+>>>>>>> 4560334f26bf8d3d561ce8e315c1de2a8371b9db
 	}
 }
 

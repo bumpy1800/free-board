@@ -479,7 +479,7 @@
 							<button type="button" id="concept-post" name="button" class="">개념글</button>
 						@endif
 					</div>
-					<div class="right">
+					<!--<div class="right">
 						<a href="{{ route('gallery-post.edit', $notice->id) }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
 						<form action="{{ route('gallery-post.destroy', $notice->id) }}" method="POST" style="float:left;">
 							@method('DELETE')
@@ -487,7 +487,7 @@
 							<button class="btn_delete btn_gray" type="submit" name="button">삭제</button>
 						</form>
 						<div class="clear"></div>
-					</div>
+					</div>-->
 					<div class="clear"></div>
 				</div>
                 <div class="mainLeft">

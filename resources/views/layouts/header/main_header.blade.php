@@ -57,6 +57,7 @@
             </div>
         </div>
 
+<!--<<<<<<< HEAD-->
         <div class="header-category-container">
             <div class="use-space">
                 <ul class="header-menu">
@@ -82,42 +83,68 @@
             </div>
         </div>
 
+<!--
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <b>카테고리+</b>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ url('game-gallery') }}">게임</a>
+                        <a class="dropdown-item" href="{{ url('enter-gallery') }}">연예/방송</a>
+                        <a class="dropdown-item" href="{{ url('sports-gallery') }}">스포츠</a>
+                        <a class="dropdown-item" href="{{ url('edu-gallery') }}">교육/금융/IT</a>
+                        <a class="dropdown-item" href="{{ url('travel-gallery') }}">여행/음식/생물</a>
+                        <a class="dropdown-item" href="{{ url('hobby-gallery') }}">취미/생활</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('gallery.index') }}"><b>갤러리</b></a>
+                </li>
+                <li class="nav-item">
+                    @if(Auth::check())
+                        <a class="nav-link" href="{{ url('gallog') }}/{{ Auth::user()->nick }}"><b>갤로그</b></a>
+                    @else
+                        <button style="background-color: transparent; border: 0px;" class="nav-link"><b>갤로그</b></button>
+                    @endif
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="report"><b>신고/Q&amp;A</b></a>
+                </li>
+            </ul>
+            <span class="yesterday" id="yPost">
+                어제 <b class="number">{{ number_format($yPostCnt) }}</b> 게시글 등록
+            </span>
+            <span style="display: none;" class="yesterday" id="yComment">
+                어제 <b class="number" style="color:#4bdeff; ">{{ number_format($yCommentCnt) }}</b> 댓글 등록
+            </span>
+        </div>
+    </div>
+</nav>
 
-        <!--
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <b>카테고리+</b>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('game-gallery') }}">게임</a>
-                                <a class="dropdown-item" href="{{ url('enter-gallery') }}">연예/방송</a>
-                                <a class="dropdown-item" href="{{ url('sports-gallery') }}">스포츠</a>
-                                <a class="dropdown-item" href="{{ url('edu-gallery') }}">교육/금융/IT</a>
-                                <a class="dropdown-item" href="{{ url('travel-gallery') }}">여행/음식/생물</a>
-                                <a class="dropdown-item" href="{{ url('hobby-gallery') }}">취미/생활</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('gallery.index') }}"><b>갤러리</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="gallog"><b>갤로그</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="report"><b>신고/Q&amp;A</b></a>
-                        </li>
-                    </ul>
-                    <span class="yesterday">
-                        어제 <B class="number">201,320,135개</B> 게시글 등록
-                    </span>
-                </div>
-            </div>
-        </nav>
+<script>
+    $(document).on("click", ".nav-item button", function(){
+        alert("로그인이 필요한 서비스입니다.");
+        return false;
+    });
+    setInterval('headerChange()', 3000);
+    function headerChange(){
+        if($("#yPost").css("display") == "none") {
+            $("#yComment").fadeOut(1000);
+            $("#yComment").hide();
+            $("#yPost").fadeIn(1000);
+        } else {
+            $("#yPost").fadeOut(1000);
+            $("#yPost").hide();
+            $("#yComment").fadeIn(1000);
+        }
+    };
+</script>
+>>>>>>> 4560334f26bf8d3d561ce8e315c1de2a8371b9db
 -->

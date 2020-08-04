@@ -83,39 +83,46 @@
 
 			<div class="mainRight">
 				<div class="boxline login">
-					<form>
-						<div class="row">
-							<div class="col-7">
-								<div class="input_box">
-									<input name="user_id" class="id form-control" type="text">
+					@if(!Auth::check())
+						<form action="{{ url('auth/login') }}" method="post">
+							@method('POST')
+		  				  	@csrf
+							<div class="row">
+								<div class="col-7">
+									<div class="input_box">
+										<input name="user_id" class="id form-control" type="text" value="{{ Cookie::get('save_id') }}">
+									</div>
+									<div class="input_box">
+										<input name="user_pw" class="pw form-control" type="password" value="">
+									</div>
 								</div>
-								<div class="input_box">
-									<input name="user_pw" class="pw form-control" type="password">
+								<div class="col-5">
+									<div class="service">
+										<div>
+											<input name="user_save" id="user_save" value="0" type="checkbox" hidden>
+											<label style="text-align: center;" for="user_save" class="save"> ID 저장</label>
+										</div>
+										<div>
+											<input name="user_security" id="user_security" value="0" type="checkbox" hidden>
+											<label for="user_security" class="security"> 보안접속</label>
+										</div>
+										<div>
+											<button type="submit" class="loginBtn btn"><b style="color: white;">로그인</b></button>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="col-5">
-								<div class="service">
-									<div>
-										<input name="user_save" id="user_save" type="checkbox" hidden>
-										<label style="text-align: center;" for="user_save" class="save"> ID 저장</label>
-									</div>
-									<div>
-										<input name="user_security" id="user_security" type="checkbox" hidden>
-										<label for="user_security" class="security"> 보안접속</label>
-									</div>
-									<div>
-										<button type="submit" class="loginBtn btn"><b style="color: white;">로그인</b></button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 로그인 했을 때
-							<b style="color: blue">범피</b>님
-							<button style="background-color: blue; color: white;" class="btn">로그아웃</button>
+						</form>
+					@else
+						<form action="{{ url('auth/logout') }}" method="post">
+							@method('POST')
+		  				  	@csrf
+							<b style="color: blue">{{ Auth::user()->nick }}</b>님
+							<button type="submit" style="background-color: blue; color: white;" class="btn">로그아웃</button>
 							<br>
-						글 1 댓글 1 방명록 1
-						-->
-					</form>
+							글 1 댓글 1 방명록 1
+						</form>
+					@endif
 					<hr class="dot-line">
 					<div class="service">
 						<div class="row">
@@ -144,8 +151,8 @@
 							@forEach($liveGallerys as $liveGallery)
 								<div class="ranking-left">
 									<h6>
-										<a href="gallery-post" class="badge badge-primary">{{ $i }}</a>
-										<a href="gallery-post">{{ $liveGallery->gallery_name }}</a>
+										<a href="{{ url('gallery/'.$liveGallery->gallery_link) }}" class="badge badge-primary">{{ $i }}</a>
+										<a href="{{ url('gallery/'.$liveGallery->gallery_link) }}">{{ $liveGallery->gallery_name }}</a>
 									</h6>
 								</div>
 								<div class="clear"></div>

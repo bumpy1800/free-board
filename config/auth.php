@@ -46,6 +46,12 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        //Add Admin Guard
+        'admin' => [
+            'driver'   => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -75,6 +81,12 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        //Add Admins Provider
+        'admins' => [
+            'driver' => 'eloquent',
+            'model'  => App\User::class,
+        ],
     ],
 
     /*

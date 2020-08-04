@@ -16,6 +16,20 @@ use App\Popup;
 
 class NoticeController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Seoul');
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+        $this->yPostCnt = Post::where('reg_date', $yesterday)->count();
+        $this->yCommentCnt = Comment::where('reg_date', $yesterday)->count();
+        $this->footer_gallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                            ->groupBy('gallery_id')
+                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                            ->orderby('total', 'desc')
+                            ->limit(10)
+                            ->get();
+    }
+
     public function index(Request $request)
     {
         $list = Cookie::get('recentVisitGallery');
@@ -57,7 +71,10 @@ class NoticeController extends Controller
         return view('gallery-notice', [
             'n_posts' => $n_posts,
             'showCnt' => $showCnt,
-            'r_image' => $r_image
+            'r_image' => $r_image,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
     }
 
@@ -116,6 +133,9 @@ class NoticeController extends Controller
             'n_posts' => $n_posts,
             'posts' => $posts,
             'r_image' => $r_image,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
     }
 

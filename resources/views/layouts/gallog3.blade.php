@@ -21,56 +21,34 @@
 			@yield('header')
 			<div class="middle">
 				<div class="mycomment">
-					<span class="title"><b>- 내 댓글</b>(0)</span>
-					<span class="all"><button class="btn">전체보기</button></span>
+					<span class="title"><b>- 내 댓글</b>({{ $comments->total() }})</span>
 					<div class="clear"></div>
 					<hr class="line">
-					<div class="have">
-						<div class="row">
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>댓글내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p>
-									<b>갤러리이름</b>
-									<button class="btn">삭제</button>
-								</p>
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>댓글내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p>
-									<b>갤러리이름</b>
-									<button class="btn">삭제</button>
-								</p>
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>댓글내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p>
-									<b>갤러리이름</b>
-									<button class="btn">삭제</button>
-								</p>
-								<p>2020.01.27 16:50:42</p>
+					@if(!empty($comments->items()))
+						<div class="have">
+							<div class="row">
+								@foreach($comments as $comment)
+									<div class="user-title col-4">
+										<p><b>{{ $comment->post_title }}</b></p>
+									</div>
+									<div class="test user-content col-5">
+										<p>{{ $comment->comment_contents }}</p>
+									</div>
+									<div class="user-writeday col-3">
+										<p><b>{{ $comment->gallery_name }}</b></p>
+										<p>{{ $comment->comment_reg_date }}</p>
+									</div>
+								@endforeach
 							</div>
 						</div>
+					@else
+						<div class="none">
+							<b>등록된 게시글이 없습니다.</b>
+						</div>
+					@endif
+					<div class="pagination" style="justify-content: center;">
+						{{ $comments->links('vendor.pagination.gallog-pagination') }}
 					</div>
-					<!--<div class="none">
-						<b>등록된 댓글이 없습니다.</b>
-					</div>-->
 					<hr class="hr1">
 				</div>
 			</div>

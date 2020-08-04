@@ -22,57 +22,35 @@
 			@yield('header')
 			<div class="middle">
 				<div class="mypost">
-					<span class="title"><b>- 내 게시글</b>(0)</span>
-					<span class="all"><button class="btn">전체보기</button></span>
+					<span class="title"><b>- 내 게시글</b>({{ $posts->total() }})</span>
 					<div class="clear"></div>
 					<hr class="line">
 					<div>
-						<div class="have">
-							<div class="row">
-								<div class="user-title col-4">
-									<p><b>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</b></p>
-								</div>
-								<div class="test user-content col-5">
-									<p>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p>
-										<b>갤러리이름</b>
-										<button class="btn">삭제</button>
-									</p>
-									<p>2020.01.27 16:50:42</p>
-								</div>
-								<div class="user-title col-4">
-									<p><b>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</b></p>
-								</div>
-								<div class="user-content col-5">
-									<p>제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p>
-										<b>갤러리이름</b>
-										<button class="btn">삭제</button>
-									</p>
-									<p>2020.01.27 16:50:42</p>
-								</div>
-								<div class="user-title col-4">
-									<p><b>제목</b></p>
-								</div>
-								<div class="user-content col-5">
-									<p>ㅈㄷㄱㅈㄱㄷㄱㅈ</p>
-								</div>
-								<div class="user-writeday col-3">
-									<p>
-										<b>갤러리이름갤러리이름갤러리이름갤러리이름</b>
-										<button class="btn">삭제</button>
-									</p>
-									<p>2020.01.27 16:50:42</p>
+						@if(!empty($posts->items()))
+							<div class="have">
+								<div class="row">
+									@foreach($posts as $post)
+										<div class="user-title col-4">
+											<p><b>{{ $post->post_title }}</b></p>
+										</div>
+										<div class="test user-content col-5">
+											<p>{{ strip_tags($post->post_contents) }}</p>
+										</div>
+										<div class="user-writeday col-3">
+											<p><b>{{ $post->gallery_name }}</b></p>
+											<p>{{ $post->post_reg_date }}</p>
+										</div>
+									@endforeach
 								</div>
 							</div>
-						</div>
-						<!--<div class="none">
-							<b>등록된 게시글이 없습니다.</b>
-						</div>-->
+						@else
+							<div class="none">
+								<b>등록된 게시글이 없습니다.</b>
+							</div>
+						@endif
+					</div>
+					<div class="pagination" style="justify-content: center;">
+						{{ $posts->links('vendor.pagination.gallog-pagination') }}
 					</div>
 					<hr class="hr1">
 				</div>

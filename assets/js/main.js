@@ -1,43 +1,10 @@
-var rank = 0;
-var changeData = [];
-var length;
-
-function liveGalleryChange(){
-    var change_box = $("#change_rank, .change_name");
-    change_box.fadeOut('fast', change());
-    change_box.fadeIn(1000);
-};
-
-function change() {
-    if(rank >= length) {
-        rank = 0;
+$(document).on("click", "#user_save, #user_security", function(){
+    if($(this).val() == 0) {
+        $(this).val('1');
+    } else {
+        $(this).val('0');
     }
-    $("#change_rank").html(rank + 1);
-    $(".change_name").html(changeData[rank]);
-    rank ++;
-}
-
-$.ajax({
-     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-     type: 'get',
-     url: 'gallery?changeGallery=1',
-     dataType: 'json',
-     success: function(data) {
-          var i = 0;
-          $.each(data['liveChanges']['data'], function(index, item) {
-              changeData[i] = item.gallery_name;
-              i ++;
-          });
-          length = changeData.length;
-          $("#change_rank").html(rank + 1);
-          $(".change_name").html(changeData[rank]);
-          rank ++;
-     },
-     error: function(data) {
-          console.log("error" +data);
-     }
 });
-setInterval('liveGalleryChange()', 3000);
 
 $(document).on("click", ".lg-next", function(e){
     var href = $(this).attr("href");

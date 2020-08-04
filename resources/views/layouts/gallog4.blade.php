@@ -21,55 +21,33 @@
 			<div class="middle">
 				<div class="myscrap">
 					<span class="title"><b>- 스크랩</b>(0)</span>
-					<span class="all"><button class="btn">전체보기</button></span>
 					<div class="clear"></div>
 					<hr class="line">
-					<div class="have">
-						<div class="row">
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>스크랩내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p>
-									<b>갤러리이름</b>
-									<button class="btn">삭제</button>
-								</p>
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>스크랩내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p>
-									<b>갤러리이름</b>
-									<button class="btn">삭제</button>
-								</p>
-								<p>2020.01.27 16:50:42</p>
-							</div>
-							<div class="user-title col-4">
-								<p><b>제목</b></p>
-							</div>
-							<div class="user-content col-5">
-								<p>스크랩내용</p>
-							</div>
-							<div class="user-writeday col-3">
-								<p>
-									<b>갤러리이름</b>
-									<button class="btn">삭제</button>
-								</p>
-								<p>2020.01.27 16:50:42</p>
+					@if(!empty($scraps->items()))
+						<div class="have">
+							<div class="row">
+								@foreach($scraps as $scrap)
+									<div class="user-title col-4">
+										<p><b>{{ $scrap->post_title }}</b></p>
+									</div>
+									<div class="test user-content col-5">
+										<p>{{ strip_tags($scrap->post_contents) }}</p>
+									</div>
+									<div class="user-writeday col-3">
+										<p><b>{{ $scrap->gallery_name }}</b></p>
+										<p>{{ $scrap->post_reg_date }}</p>
+									</div>
+								@endforeach
 							</div>
 						</div>
+					@else
+						<div class="none">
+							<b>등록된 게시글이 없습니다.</b>
+						</div>
+					@endif
+					<div class="pagination" style="justify-content: center;">
+						{{ $scraps->links('vendor.pagination.gallog-pagination') }}
 					</div>
-					<!--<div class="none">
-						<b>등록된 스크랩이 없습니다.</b>
-					</div>-->
 					<hr class="hr1">
 				</div>
 			</div>

@@ -18,21 +18,21 @@ use App\Post_hit;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-
+        $this->middleware('guest')->except(['show']);
+        date_default_timezone_set('Asia/Seoul');
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+        $this->yPostCnt = Post::where('reg_date', $yesterday)->count();
+        $this->yCommentCnt = Comment::where('reg_date', $yesterday)->count();
+        $this->footer_gallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                            ->groupBy('gallery_id')
+                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                            ->orderby('total', 'desc')
+                            ->limit(10)
+                            ->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
         $gallery_link = $request->input('link');
@@ -67,6 +67,9 @@ class PostController extends Controller
             'image' => $image,
             'link_gallerys' => $link_gallerys,
             'recentGallerys' => $recentGallerys,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
     }
 
@@ -138,7 +141,7 @@ class PostController extends Controller
         ]);
 
         $post = Post::join('user', 'post.user_id', '=', 'user.id')
-                      ->select('post.*', 'post.ip as post_ip', 'user.nick as user_nick')
+                      ->select('post.*', 'post.ip as post_ip', 'user.nick as user_nick', 'user.id as user_id')
                       ->where('post.id', '=', $id)
                       ->first();
 
@@ -189,6 +192,9 @@ class PostController extends Controller
             'n_posts' => $n_posts,
             'posts' => $posts,
             'r_image' => $r_image,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
     }
 
@@ -345,6 +351,9 @@ class PostController extends Controller
             'recentGallerys' => $recentGallerys,
             'post' => $post,
             'user' => $user,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
     }
 

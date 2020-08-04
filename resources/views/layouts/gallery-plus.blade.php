@@ -176,7 +176,18 @@
 			<div class="mainRight">
 				<div class="boxline login">
 					<div class="nologin">
-						<b>로그인을 해 주시기 바랍니다.</b>
+						@if(!Auth::check())
+							<b>로그인을 해 주시기 바랍니다.</b>
+						@else
+							<form action="{{ url('auth/logout') }}" method="post">
+								@method('POST')
+								@csrf
+								<b style="color: blue">{{ Auth::user()->nick }}</b>님
+								<button type="submit" style="background-color: blue; color: white;" class="btn">로그아웃</button>
+								<br>
+								글 1 댓글 1 방명록 1
+							</form>
+						@endif
 					</div>
 					<div class="nologin-service">
 						<div class="row">
