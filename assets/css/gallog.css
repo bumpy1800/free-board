@@ -28,7 +28,7 @@ body {
 }
 .top .sub .btn {
 	margin-left: 6px;
-	background-color: #1379df;
+	background-color: #4a56a9;
 	color: white;
 	padding-left: 4px;
 	padding-right: 4px;
@@ -40,7 +40,7 @@ body {
 .top-box {
 	padding-top: 25px;
 	padding-bottom: 25px;
-	background-color: #1379df;
+	background-color: #4a56a9;
 }
 .top-box .who {
 	background-color: black;
@@ -81,14 +81,14 @@ body {
 	padding-bottom: 40px;
 }
 .menus .btn{
-	border: 1px solid #1379df;
+	border: 1px solid #4a56a9;
 	border-radius: 0px;
     padding-left: 30px;
     padding-right: 30px;
 	font-size: 15px;
 }
 .menus .active{
-	background-color: #1379df;
+	background-color: #4a56a9;
 	color: white;
 }
 
@@ -110,7 +110,7 @@ body {
 }
 .middle .btn {
 	margin-left: 6px;
-	background-color: #1379df;
+	background-color: #4a56a9;
 	color: white;
 	padding-left: 12px;
 	padding-right: 12px;
@@ -147,7 +147,7 @@ body {
     padding-top: 91.6px;
 }
 .middle .hr1 {
-	border-top: 1px solid #1379df;
+	border-top: 1px solid #4a56a9;
 	margin-bottom: 35px;
     margin-top: 20px;
 }

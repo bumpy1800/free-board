@@ -82,6 +82,12 @@ Route::get('admin', function () {
 Route::get('/admin/find', function () {
 	return view('find');
 });
+Route::get('display-ad', function () {
+	return view('display-ad');
+});
+Route::get('display-ad/contact', function () {
+	return view('display-ad-contact');
+});
 
 Route::resources([
     'user' => 'admin\UserController',

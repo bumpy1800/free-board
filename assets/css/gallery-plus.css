@@ -40,7 +40,7 @@
 }
 .recently-visit b{
 	font-size: 13px;
-	color: #1379df;
+	color: #4a56a9;
 }
 .recently-visit .fir{
 	width: 15%;
@@ -83,7 +83,7 @@
     padding-right: 3px;
     padding-left: 3px;
 	background-color: white;
-	color: #1379df;
+	color: #4a56a9;
 }
 .week-gallery .left span{
 	float: right;
@@ -100,7 +100,7 @@
     max-width: 100%; /* Max Width of the popover (depending on the container!) */
 }
 .popTitle {
-	color: #1379df;
+	color: #4a56a9;
 }
 .week-gallery-rank {
 	list-style:none;
@@ -157,7 +157,7 @@
 	padding-right: 10px;
 }
 .week-gallery .right .top h6{
-	color: #1379df;
+	color: #4a56a9;
 	font-size: 13px;
 }
 .week-gallery .right .top h6 color{
@@ -182,7 +182,7 @@
 .badge-mycolor {
 	padding: 1px;
 	margin-top: 4px;
-	color: #1379df;
+	color: #4a56a9;
 	background-color: white;
 	border: 1px solid #999;
 }
@@ -206,7 +206,7 @@
 	width: 100%;
 }
 .nologin {
-    color: #1379df;
+    color: #4a56a9;
 	padding-left: 14px;
     padding-right: 14px;
 	padding-bottom: 14px;
@@ -242,15 +242,15 @@
 	padding-right: 10px;
 	color: white;
 	font-size: 13px;
-	background-color: #1379df;
+	background-color: #4a56a9;
 	cursor: auto;
 }
 .cg-top color{
-	color: #1379df;
+	color: #4a56a9;
     padding-left: 6px;
 }
 .cg-live .badge-cg-live{
-	background-color: #1379df;
+	background-color: #4a56a9;
 	color: white;
 	font-size: 13px;
 	margin-left: 15px;
@@ -287,7 +287,7 @@
 }
 
 .category {
-	border-top: 3px solid #1379df;
+	border-top: 3px solid #4a56a9;
 	margin-bottom: 50px;
 }
 .category table {
@@ -310,17 +310,17 @@
 	padding: 8px;
 	background-color: #f3f3f3;
 	font-size: 13px;
-	color: #1379df;
+	color: #4a56a9;
 }
 .category .mtop{
 	text-align: center;
-	border-bottom: 1px solid #1379df;
+	border-bottom: 1px solid #4a56a9;
 }
 .category .page{
 	text-align: center;
 	border: 1px solid #ccc;
 	border-top-width: 0px;
-	border-bottom: 1px solid #1379df;
+	border-bottom: 1px solid #4a56a9;
 	padding: 8px;
 	font-size: 12px;
 	color: black;

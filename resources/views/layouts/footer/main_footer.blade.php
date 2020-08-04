@@ -34,11 +34,11 @@
     </table>
     <div class="ad">
         <span class="ad-info"><a href="/"><b>광고 안내</b></a></span>
-        <span class="ad-display"><a href="/">디스플레이광고</a></span>
+        <span class="ad-display"><a href="/display-ad">디스플레이광고</a></span>
         <span class="mLine">|</span>
         <span class="ad-promotion"><a href="/">프로모션</a></span>
         <span class="mLine">|</span>
-        <span class="ad-question"><a href="/">광고문의</a></span>
+        <span class="ad-question"><a href="/display-ad">광고문의</a></span>
     </div>
 
     <div class="biz">

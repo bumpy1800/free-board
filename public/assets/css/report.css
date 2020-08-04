@@ -13,7 +13,7 @@ header{
 	padding-right: 85px;
 }
 .header_bg {
-  background-color: #1379df;
+  background-color: #4a56a9;
 }
 .report_header{
   margin: 0 auto;
@@ -63,7 +63,7 @@ header{
 }
 .content .col-3 .mem{
     width: 176px;
-	background-color: #1379df;
+	background-color: #4a56a9;
 	color: white;
 	margin-bottom: 10px;
 }
@@ -85,14 +85,14 @@ header{
 	font-size: 13px;
 }
 .content .col-9 li .f{
-	color: #1379df;
+	color: #4a56a9;
 	font-size: 16px;
 	margin-top: 0px;
 }
 .content .active{
-	color: #1379df;
+	color: #4a56a9;
 	background-color: white;
-	border: 2px solid #1379df;
+	border: 2px solid #4a56a9;
 }
 .dot-line {
     margin-top: 15px;
@@ -104,7 +104,7 @@ header{
 }
 .select-report li{
 	margin-top: 5px;
-	color: #1379df;
+	color: #4a56a9;
 }
 .select-report li p{
 	color: black;
@@ -116,7 +116,7 @@ header{
 	font-size: 13px;
 }
 .select-report li .f{
-	color: #1379df;
+	color: #4a56a9;
 	font-size: 16px;
 	margin-top: 0px;
 }
@@ -134,7 +134,7 @@ header{
 	width: 45%;
 	height: 100%;
 	color: white;
-	background-color: #1379df;
+	background-color: #4a56a9;
 	text-align: center;
 	padding: 20px;
 }
@@ -167,7 +167,7 @@ header{
 	}
 	.content .col-3 .mem{
 		width: 136px;
-		background-color: #1379df;
+		background-color: #4a56a9;
 		color: white;
 		margin-bottom: 10px;
 	}

@@ -60,7 +60,7 @@ option{
 .gallery-top .title {
 	float:left;
 	margin-bottom: 0px;
-	color: #1379df;
+	color: #4a56a9;
 	text-align: bottom;
 }
 .gallery-top .sub {
@@ -74,7 +74,7 @@ option{
     border: 0px;
 }
 .modal-header {
-    background: #1379df;
+    background: #4a56a9;
     color: white;
 }
 .modal .block-info {
@@ -140,7 +140,7 @@ option{
 }
 
 .login_line {
-	border: 1px solid #1379df;
+	border: 1px solid #4a56a9;
 	margin-bottom: 15px;
 }
 .user_box{
@@ -470,7 +470,7 @@ li a{
 	margin-left: 60px;
 }
 .popTitle {
-	color: #1379df;
+	color: #4a56a9;
 }
 
 .recently-visit {
@@ -485,7 +485,7 @@ li a{
 }
 .recently-visit b{
 	font-size: 13px;
-	color: #1379df;
+	color: #4a56a9;
 }
 .recently-visit .fir{
 	width: 15%;
@@ -598,9 +598,9 @@ li a{
 }
 .leftBox .on{
     border: 1px solid #3c4790;
-    background: #1379df;
+    background: #4a56a9;
     color: #fff;
-    text-shadow: 0px -1px #1379df;
+    text-shadow: 0px -1px #4a56a9;
 }
 .leftBox button:first-child{
     margin-left: 0px;
@@ -908,8 +908,8 @@ td{
     font-weight: bold;
 }
 .write{
-    background: #1379df;
-    border-color: #1379df;
+    background: #4a56a9;
+    border-color: #4a56a9;
     text-shadow: 0px -1px #343d8e;
     color: #fff;
     width: 82px;
@@ -944,8 +944,8 @@ td{
 .bottom_select{
     width: 110px;
     height: 36px;
-    border: 1px solid #1379df;
-    background: #1379df;
+    border: 1px solid #4a56a9;
+    background: #4a56a9;
     position: relative;
     float: left;
 }
@@ -957,7 +957,7 @@ td{
 .search_content{
     height: 36px;
     margin-left: 5px;
-    background: #1379df;
+    background: #4a56a9;
     float: left;
 }
 .inner_search{
