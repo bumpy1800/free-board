@@ -65,8 +65,11 @@
                     <a class="nav-link" href="report"><b>신고/Q&amp;A</b></a>
                 </li>
             </ul>
-            <span class="yesterday">
-                어제 <B class="number">201,320,135개</B> 게시글 등록
+            <span class="yesterday" id="yPost">
+                어제 <b class="number">{{ number_format($yPostCnt) }}</b> 게시글 등록
+            </span>
+            <span style="display: none;" class="yesterday" id="yComment">
+                어제 <b class="number" style="color:#4bdeff; ">{{ number_format($yCommentCnt) }}</b> 댓글 등록
             </span>
         </div>
     </div>
@@ -77,4 +80,16 @@
         alert("로그인이 필요한 서비스입니다.");
         return false;
     });
+    setInterval('headerChange()', 3000);
+    function headerChange(){
+        if($("#yPost").css("display") == "none") {
+            $("#yComment").fadeOut(1000);
+            $("#yComment").hide();
+            $("#yPost").fadeIn(1000);
+        } else {
+            $("#yPost").fadeOut(1000);
+            $("#yPost").hide();
+            $("#yComment").fadeIn(1000);
+        }
+    };
 </script>

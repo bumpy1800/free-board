@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
@@ -13,9 +14,24 @@ use App\Visitor;
 use App\Post;
 use App\Post_hit;
 use App\Gallery;
+use App\Comment;
 
 class MainController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Seoul');
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+        $this->yPostCnt = Post::where('reg_date', $yesterday)->count();
+        $this->yCommentCnt = Comment::where('reg_date', $yesterday)->count();
+        $this->footer_gallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                            ->groupBy('gallery_id')
+                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                            ->orderby('total', 'desc')
+                            ->limit(10)
+                            ->get();
+    }
+
     public function index(Request $request)
     {
         if($request->input('rank') && $request->input('page')) {
@@ -103,25 +119,16 @@ class MainController extends Controller
                       ->limit(10)
                       ->get();
 
-        $footer_gallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
-                            ->groupBy('gallery_id')
-                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
-                            ->orderby('total', 'desc')
-                            ->limit(10)
-                            ->get();
-
         return view('main', [
             'hitPosts' => $hitPosts,
             'imgPosts' => $imgPosts,
             'posts' => $posts,
-            'footer_gallerys' => $footer_gallerys,
             'liveGallerys' => $liveGallerys,
-            'newGallerys' => $newGallerys
+            'newGallerys' => $newGallerys,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
-    }
-
-    public function selectPosts() {
-
     }
 
     public function visitor_save(Request $request)

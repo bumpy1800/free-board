@@ -62,12 +62,13 @@ Route::get('gallery-plus', function () {
 Route::get('gallery-plus-m', function () {
 	return view('gallery-plus-m');
 });
-Route::get('admin', function () {
-	return view('admin.index');
-});
+
+//어드민
+Route::any('admin', 'admin\MainController@index');
 Route::get('/admin/find', function () {
 	return view('find');
 });
+
 
 Route::resources([
     'user' => 'admin\UserController',

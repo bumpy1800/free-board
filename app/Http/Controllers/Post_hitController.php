@@ -18,6 +18,20 @@ use App\Notice;
 
 class Post_hitController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Seoul');
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+        $this->yPostCnt = Post::where('reg_date', $yesterday)->count();
+        $this->yCommentCnt = Comment::where('reg_date', $yesterday)->count();
+        $this->footer_gallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                            ->groupBy('gallery_id')
+                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                            ->orderby('total', 'desc')
+                            ->limit(10)
+                            ->get();
+    }
+
     public function index(Request $request)
     {
         $list = Cookie::get('recentVisitGallery');
@@ -116,6 +130,9 @@ class Post_hitController extends Controller
             'search_type' => $search_type,
             'top_imgPosts' => $top_imgPosts,
             'top_posts' => $top_posts,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
     }
 
@@ -132,7 +149,7 @@ class Post_hitController extends Controller
 
         $post = Post::join('user', 'post.user_id', '=', 'user.id')
             ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
-            ->select('post.*', 'post.ip as post_ip', 'user.nick as user_nick', 'gallery.link as gallery_link')
+            ->select('post.*', 'post.ip as post_ip', 'user.nick as user_nick', 'user.id as user_id', 'gallery.link as gallery_link')
             ->where('post.id', '=', $id)
             ->first();
 
@@ -181,6 +198,9 @@ class Post_hitController extends Controller
             'n_posts' => $n_posts,
             'posts' => $posts,
             'r_image' => $r_image,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
     }
 

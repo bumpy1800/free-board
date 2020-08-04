@@ -19,9 +19,9 @@
                     <a href="{{ route('notice.index') }}">공지사항</a>
                 </td>
                 <td class="pdT0 pdB6 Rline">
-                    {{--@foreach($footer_gallerys as $footer_gallery)
+                    @foreach($footer_gallerys as $footer_gallery)
                         <a href="{{ route('gallery.show', $footer_gallery->gallery_link) }}">{{ $footer_gallery->gallery_name }}</a>
-                    @endforEach --}}
+                    @endforEach
                 </td>
                 <td class="pdT0 pdB6 Rline">
                     <a href="">갤로그</a>

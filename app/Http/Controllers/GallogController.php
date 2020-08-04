@@ -19,6 +19,12 @@ use App\Scrap;
 
 class GallogController extends Controller
 {
+    public function __construct()
+    {
+        //한국시간으로 설정
+        date_default_timezone_set('Asia/Seoul');
+    }
+
     public function index(Request $request, $uid)
     {
         $posts = [];

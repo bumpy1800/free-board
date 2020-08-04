@@ -14,14 +14,24 @@ use App\Post;
 use App\User;
 use App\Popup;
 use App\Link_gallery;
+use App\Comment;
 
 class GalleryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Seoul');
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+        $this->yPostCnt = Post::where('reg_date', $yesterday)->count();
+        $this->yCommentCnt = Comment::where('reg_date', $yesterday)->count();
+        $this->footer_gallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                            ->groupBy('gallery_id')
+                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                            ->orderby('total', 'desc')
+                            ->limit(10)
+                            ->get();
+    }
+
     public function index(Request $request)
     {
         if($request->input('id') && $request->input('page')) {
@@ -132,7 +142,10 @@ class GalleryController extends Controller
             'recentGallerys' => $recentGallerys,
             'liveGallerys' => $liveGallerys,
             'image' => $image,
-            'posts' => $posts
+            'posts' => $posts,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
     }
 
@@ -251,6 +264,9 @@ class GalleryController extends Controller
             'n_posts' => $n_posts,
             'posts' => $posts,
             'search_type' => $search_type,
+            'yPostCnt' => $this->yPostCnt,
+            'yCommentCnt' => $this->yCommentCnt,
+            'footer_gallerys' => $this->footer_gallerys,
         ]);
     }
 

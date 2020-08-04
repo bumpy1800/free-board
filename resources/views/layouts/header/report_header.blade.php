@@ -2,7 +2,7 @@
   <div class="container">
     <div class="report_header">
       <div class="header_logo">
-        <a href="http://doerksk2.dothome.co.kr"><img src="https://nstatic.dcinside.com/dc/w/images/dcin_logo2.png"></a>
+        <a href="/"><img src="https://nstatic.dcinside.com/dc/w/images/dcin_logo2.png"></a>
         <a href="http://doerksk2.dothome.co.kr/register"><img src="https://nstatic.dcinside.com/dc/w/images/tit_report_a.png"></a>
       </div>
       <div class="header_nav">

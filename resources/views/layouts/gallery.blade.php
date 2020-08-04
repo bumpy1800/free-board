@@ -558,7 +558,18 @@
 				<div class="login_line login">
 					<div class="user_box">
 						<div class="login_box">
-							<a href="login" id="login"><b>로그인을 해 주시기바랍니다</b></a>
+							@if(!Auth::check())
+								<a href="login" id="login"><b>로그인을 해 주시기바랍니다</b></a>
+							@else
+								<form action="{{ url('auth/logout') }}" method="post">
+									@method('POST')
+				  				  	@csrf
+									<b style="color: blue">{{ Auth::user()->nick }}</b>님
+									<button type="submit" style="background-color: blue; color: white;" class="btn">로그아웃</button>
+									<br>
+									글 1 댓글 1 방명록 1
+								</form>
+							@endif
 						</div>
 						<div class="help">
 							<div class="row">

@@ -508,16 +508,18 @@
 							<button type="button" id="concept-post" name="button" class="">개념글</button>
 						@endif
 					</div>
-					<div class="right">
-						<a href="{{ route('gallery-post.edit', $post->id) }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
-						<form action="{{ route('gallery-post.destroy', $post->id) }}?link={{ $gallery->link }}" method="POST" style="float:left;">
-							@method('DELETE')
-							@csrf
-							<button class="btn_delete btn_gray" type="submit" name="button">삭제</button>
-						</form>
-						<a href="{{ route('gallery-post.create') }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_create btn_blue" type="button" name="button">글쓰기</button></a>
-						<div class="clear"></div>
-					</div>
+					@if(Auth::user()->id == $post->user_id)
+						<div class="right">
+							<a href="{{ route('gallery-post.edit', $post->id) }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_update btn_gray" type="button" name="button">수정</button></a>
+							<form action="{{ route('gallery-post.destroy', $post->id) }}?link={{ $gallery->link }}" method="POST" style="float:left;">
+								@method('DELETE')
+								@csrf
+								<button class="btn_delete btn_gray" type="submit" name="button">삭제</button>
+							</form>
+							<a href="{{ route('gallery-post.create') }}?link={{ $gallery->link }}" style="float:left;"><button class="btn_create btn_blue" type="button" name="button">글쓰기</button></a>
+							<div class="clear"></div>
+						</div>
+					@endif
 					<div class="clear"></div>
 				</div>
                 <div class="mainLeft">
