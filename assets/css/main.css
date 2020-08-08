@@ -55,12 +55,12 @@ ul {
 .line {
 	margin-top: 12px;
 	margin-bottom: 12px;
-	border-top: 3px solid #4a56a9;
+	border-top: 2px solid #4a56a9;
 }
 .dot-line {
 	margin-top: 12px;
 	margin-bottom: 12px;
-	border-top: 3px dotted gray;
+	border-top: 1px dashed rgb(187, 187, 187);
 }
 .title {
 	color: #4a56a9;
@@ -119,6 +119,9 @@ ul {
 }
 .right{
 	float: right;
+}
+.lc1{
+	letter-spacing: 1px;
 }
 /* +-----------------------------------+-----------------------------------+----------*/
 
@@ -349,12 +352,6 @@ ul {
 	background-color: #4a56a9;
 }
 
-.yesterday-writing {
-}
-
-.yesterday-comment {
-}
-
 .yesterday-comment.down, .yesterday-writing.down {
 	transform: translateY(50px);
 	z-index: 10;
@@ -410,6 +407,21 @@ ul {
 
 .mainLeft, .mainRight {
 	padding-top: 20px;
+}
+
+.mobile-login-box {
+	width: 100%;
+	padding: 5px 20px;
+	display: none;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bold;
+	font-size: .95rem;
+	text-align: right;
+	color: #4a56a9;
+}
+
+.mobile-login-box span {
+	cursor: pointer;
 }
 
 /*---------- 왼쪽 ---------- */
@@ -475,10 +487,6 @@ ul {
 	white-space: nowrap;
 }
 
-.newPost img {
-	height: 125px;
-}
-
 .newPost .card-title{
 	margin-top: 0px;
 	margin-bottom: 0px;
@@ -488,8 +496,9 @@ ul {
 .newPost-more {
 	margin-top: 21px;
 }
+
 .newPost-more p {
-	font-size: 13px;
+	font-size: 0.9em;
 	margin-bottom: 0px;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -498,13 +507,16 @@ ul {
 
 /*---------- 오른쪽 ---------- */
 
-.login .id, .pw {
+.input-id, .input-pw {
 	width: 100%;
 	height: 37px;
-	background: transparent;
+	background-color: #ececec;
+	border: 0;
+	padding-left: 10px;
 }
-.login .pw {
-	letter-spacing: -5px;
+
+.col-4.btn-box {
+	padding-left: 0;
 }
 
 .input_box {
@@ -540,6 +552,13 @@ input#user_security:checked + label.security:before {
 .service .loginBtn {
 	width: 100%;
 	background-color: #4a56a9;
+	border-radius: 0;
+}
+
+.login-bottom {
+	font-size: .9rem;
+	display: flex;
+	justify-content: space-around;
 }
 
 .liveRanking {
@@ -600,6 +619,16 @@ input#user_security:checked + label.security:before {
 
 
 /*푸터*/
+.mainFoot-notice-title {
+	color: #4a56a9;
+	border-left : 1px solid #dee2e6;
+	border-right : 1px solid #dee2e6;
+	border-top: 3px solid #4a56a9;
+	border-bottom: 0;
+	padding: 10px 25px;
+	font-size: 15px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
 .mainFoot .table .notice th {
 	border-top: 3px solid #4a56a9;
 	text-decoration: none;
@@ -663,6 +692,7 @@ input#user_security:checked + label.security:before {
 }
 
 .ad {
+	display: flex;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	border: 1px solid #dee2e6;
@@ -677,13 +707,16 @@ input#user_security:checked + label.security:before {
 	margin-right: 10px;
 }
 
-.ad  .ad-info {
-	font-size: 13px;
+.ad .ad-info {
+	font-size: 15px;
+	font-family: 'Noto Sans KR', sans-serif;
 	color: #4a56a9;
 	margin-right: 25px;
 }
 .ad  .ad-info a {
 	color: #4a56a9;
+	font-size: 15px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .ad span {
@@ -697,6 +730,7 @@ input#user_security:checked + label.security:before {
 .biz {
 	margin-bottom: 50px;
 	text-align: center;
+	word-break: keep-all;
 }
 .biz span {
 	font-size: 13px;
@@ -709,6 +743,75 @@ input#user_security:checked + label.security:before {
 .biz .copy {
 	margin-top: 10px;
 	font-size: 13px;
+}
+
+/* 메인 hit 갤러리 */
+.gallery-card-container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.gallery-card-box {
+	width: 24%;
+}
+
+.gallery-card-img-box {
+	width: 100%;
+	height: 170px;
+	overflow: hidden;
+	border: 1px solid #dddddd;
+}
+
+.gallery-card-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.gallery-card-info {
+	margin-top: 10px;
+}
+
+.gallery-card-info.new {
+	display: flex;
+}
+
+.gallery-card-info-title {
+	color: #2e2e2e;
+	font-weight: bold;
+	font-size: .95em;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gallery-card-info-title.new {
+	font-weight: unset;
+}
+
+.gallery-card-info-gallery {
+	color: #4a56a9;
+	font-size: .9em;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gallery-card-info-gallery.new {
+	margin-right: 6px;
+	color: black;
+}
+
+.gallery-card-info-etc {
+	margin-top: 3px;
+	display: flex;
+	font-size: .85em;
+}
+
+.gallery-card-info-etc .comment {
+	margin-right: 7px;
 }
 
 /* 광고문의 페이지 */
@@ -1277,6 +1380,99 @@ input#user_security:checked + label.security:before {
 	background-color: #5a5a5a;
 }
 
+/*--------모바일 로그인 창---------*/
+.back-cover {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 1000;
+}
+
+.mobile-login-form {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 90%;
+	max-width: 500px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.mobile-login-form .fas {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	font-size: 1.7rem;
+	color: #cecece;
+	cursor: pointer;
+}
+
+.mobile-login-title {
+	font-size: 1.6rem;
+	font-family: 'Gothic A1', sans-serif;
+	margin: 30px 0;
+	color: #4a56a9;
+}
+
+.mobile-login-input {
+	width: 85%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.mobile-login-id, .mobile-login-pw {
+	width: 100%;
+	padding: 8px 15px;
+	border-radius: 5px;
+	border: 1px solid #e0e0e0;
+	margin-bottom: 10px;
+}
+
+.mobile-login-save-box {
+	width: 85%;
+	text-align: left;
+	margin-top: 5px;
+	margin-bottom: 13px;
+}
+
+.btn-mobile-idcheck {
+	margin-right: 5px;
+}
+
+.btn-mobile-login {
+	width: 85%;
+	padding: 10px 0;
+	background-color: #4a56a9;
+	color: white;
+	border-radius: 5px;
+	border: 0;
+}
+
+.mobile-login-etc {
+	margin: 20px 0;
+	font-size: .9rem;
+	width: 85%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.mobile-login-etc button {
+	border: 0;
+	background-color: transparent;
+	color: #4a56a9;
+}
+
 /*---------- 모바일 ----------*/
 
 @media(max-width: 1199px) {
@@ -1284,6 +1480,9 @@ input#user_security:checked + label.security:before {
 }
 
 @media(max-width: 1050px) {
+	.newGallery  {
+		display: none;
+	}
 	.display-ad-main-mid-sub {
 		font-size: 1.5rem;
 	}
@@ -1299,7 +1498,6 @@ input#user_security:checked + label.security:before {
 		cursor: pointer;
 		margin: 25px 0;
 	}
-<<<<<<< HEAD
 
 	.contact-title {
 		font-size: 1.2rem;
@@ -1315,10 +1513,6 @@ input#user_security:checked + label.security:before {
 		width: 86%;
 		max-width: 900px;
 		margin: 20px 0;
-=======
-	.newPost img {
-		height: 100px;
->>>>>>> 4560334f26bf8d3d561ce8e315c1de2a8371b9db
 	}
 }
 
@@ -1338,6 +1532,9 @@ input#user_security:checked + label.security:before {
 	.etc .mb_menu {
 		display: block;
 	}
+	.mobile-login-box {
+		display: inline-block;
+	}
 }
 
 @media(max-width: 767px) {
@@ -1354,9 +1551,6 @@ input#user_security:checked + label.security:before {
 		flex: 0 0 50%;
 		max-width: 50%;
 		margin-bottom: 3px;
-	}
-	.newPost img {
-		height: 100%;
 	}
 	.display-ad-step-item {
 		width: 48%;
@@ -1513,6 +1707,32 @@ input#user_security:checked + label.security:before {
 		width: 100%;
 		height: auto;
 	}
+
+	.gallery-card-container {
+		flex-wrap: wrap;
+	}
+
+	.gallery-card-box {
+		width: 48%;
+		margin-bottom: 20px;
+	}
+
+	.gallery-card-img-box {
+		height: 40vw;
+		max-height: 230px;
+	}
+}
+
+@media(max-width: 450px) {
+	.mobile-login-etc {
+		justify-content: center;
+	}
+	
+	.mobile-login-etc button {
+		border: 0;
+		background-color: transparent;
+		color: #4a56a9;
+	}
 }
 
 @media(max-width: 350px) {
@@ -1549,5 +1769,36 @@ input#user_security:checked + label.security:before {
 
 	.header-dropdown-menu {
 		top: 33px;
+	}
+
+	.mainFoot-notice-title {
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center;
+	}
+
+	.ad {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.ad .ad-info {
+		margin: 0 0 5px 0;
+		padding: 0;
+	}
+
+	.ad-info-box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.gallery-card-box {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+	.gallery-card-img-box {
+		height: 90vw;
 	}
 }

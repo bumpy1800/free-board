@@ -5,6 +5,10 @@
             <a class="mb_menu" href="login">로그아웃</a>
         </div>
         -->
+        
+        <div class="mobile-login-box">
+            <span id="btn-mobile-login">Login</span>
+        </div>
         <div class="header-container">
             <div class="main-header">
                 <a href="/" class="logo"><img src="{{ asset('assets/img/sjinside-main-logo.png') }}" class="logo-img"></a>

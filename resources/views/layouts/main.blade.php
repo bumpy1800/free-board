@@ -16,22 +16,25 @@
 				<div class="hit">
 					<a href="{{ route('gallery-hit.index') }}"><h6 class="title "><b>HIT 갤러리</b></h6></a>
 					<hr class="line">
-					<div class="row">
+					<div class="gallery-card-container">
 						@foreach($hitPosts as $hitPost)
-							<div class="col-3">
-								<div class="card">
-									@if($hitPost->post_thumbnail == '' || $hitPost->post_thumbnail == null)
-								  		<img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="card-img-top" alt="...">
-								  	@else
-										<img src="{{ $hitPost->post_thumbnail }}" class="card-img-top" alt="...">
-									@endif
-									<div class="card-body">
-										<p class="card-title"><a href="{{ route('gallery-hit.show', $hitPost->post_id) }}"><b>{{ $hitPost->post_title }}</b></a></p>
-										<a href="{{ route('gallery.show', $hitPost->gallery_link) }}"><p class="card-gallery">{{ $hitPost->gallery_name }}</p></a>
-										<p class="card-count"><b>댓글</b> {{ $hitPost->post_comments }}개 <b>추천</b> {{ $hitPost->post_good }}개</p>
-									</div>
+						<div class="gallery-card-box">
+							<div class="gallery-card-img-box">
+								@if($hitPost->post_thumbnail == '' || $hitPost->post_thumbnail == null)
+								  		<img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="gallery-card-img" alt="...">
+								@else
+								<img src="{{ $hitPost->post_thumbnail }}" alt="..." class="gallery-card-img">
+								@endif
+							</div>
+							<div class="gallery-card-info">
+								<div class="gallery-card-info-title"><a href="{{ route('gallery-hit.show', $hitPost->post_id) }}">{{ $hitPost->post_title }}</a></div>
+								<div class="gallery-card-info-gallery"><a href="{{ route('gallery.show', $hitPost->gallery_link) }}">{{ $hitPost->gallery_name }}</a></div>
+								<div class="gallery-card-info-etc">
+									<span class="comment"><b>댓글</b> {{ $hitPost->post_comments }}개</span>
+									<span class="recomand"><b>추천</b> {{ $hitPost->post_good }}건</span>
 								</div>
 							</div>
+						</div>
 						@endforeach
 					</div>
 				</div>
@@ -39,22 +42,23 @@
 				<div class="newPost">
 					<h6 class="title "><b>최신글</b></h6>
 					<hr class="line">
-					<div class="row">
+
+					<div class="gallery-card-container">
 						@foreach($imgPosts as $imgPost)
-						<div class="col-3">
-							<div class="card">
-							  <img src="{{ $imgPost->thumbnail }}" class="card-img-top" alt="...">
-							  <div class="card-body">
-								<p class="card-title">
-									<a href="{{ route('gallery.show', $imgPost->gallery_link)}}"><b>[{{ $imgPost->gallery_s_name }}]</b> </a>
-									<a href="{{ url('gallery-post/'.$imgPost->gallery_link.'/'.$imgPost->post_id) }}">{{ $imgPost->post_title }}</a>
-								</p>
-							  </div>
+						<div class="gallery-card-box">
+							<div class="gallery-card-img-box">
+								<img src="{{ $imgPost->thumbnail }}" alt="..." class="gallery-card-img">
+							</div>
+							<div class="gallery-card-info new">
+								<div class="gallery-card-info-gallery new lc1"><a href="{{ route('gallery.show', $imgPost->gallery_link)}}"><b>[{{ $imgPost->gallery_s_name }}]</b></a></div>
+								<div class="gallery-card-info-title new"><a href="{{ url('gallery-post/'.$imgPost->gallery_link.'/'.$imgPost->post_id) }}">{{ $imgPost->post_title }}</a></div>
 							</div>
 						</div>
 						@endforeach
 					</div>
+
 					<hr class="dot-line">
+
 					<div class="newPost-more">
 						<div class="row">
 							@php
@@ -65,12 +69,12 @@
 								@if($i % 5 == 0)
 										<div class="col-6">
 										<p>
-												<b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b>
+												<b><a href="{{ route('gallery.show', $post->gallery_link) }}" class="lc1">[{{ $post->gallery_s_name }}]</a></b>
 												<a href="{{ url('gallery-post/'.$post->gallery_link.'/'.$post->post_id) }}">{{ $post->post_title }}</a>
 										</p>
 								@else
 										<p>
-												<b><a href="{{ route('gallery.show', $post->gallery_link) }}">[{{ $post->gallery_s_name }}]</a></b>
+												<b><a href="{{ route('gallery.show', $post->gallery_link) }}" class="lc1">[{{ $post->gallery_s_name }}]</a></b>
 												<a href="{{ url('gallery-post/'.$post->gallery_link.'/'.$post->post_id) }}">{{ $post->post_title }}</a>
 										</p>
 								@endif
@@ -92,6 +96,7 @@
 				</div>
 			</div>
 
+
 			<div class="mainRight">
 				<div class="boxline login">
 					@if(!Auth::check())
@@ -99,15 +104,15 @@
 							@method('POST')
 		  				  	@csrf
 							<div class="row">
-								<div class="col-7">
+								<div class="col-8">
 									<div class="input_box">
-										<input name="user_id" class="id form-control" type="text" value="{{ Cookie::get('save_id') }}">
+										<input name="user_id" class="input-id" placeholder="아이디" type="text" value="{{ Cookie::get('save_id') }}">
 									</div>
 									<div class="input_box">
-										<input name="user_pw" class="pw form-control" type="password" value="">
+										<input name="user_pw" class="input-pw" placeholder="비밀번호" type="password" value="">
 									</div>
 								</div>
-								<div class="col-5">
+								<div class="col-4 btn-box">
 									<div class="service">
 										<div>
 											<input name="user_save" id="user_save" value="0" type="checkbox" hidden>
@@ -136,16 +141,12 @@
 					@endif
 					<hr class="dot-line">
 					<div class="service">
-						<div class="row">
-							<div class="col-sm-4">
+						<div class="login-bottom">
 								<a href="register"><b>회원가입</b></a>
-							</div>
-							<div class="col-sm-6">
-								<a href="/">아이디/비밀번호찾기</a>
-							</div>
-							<div class="col-sm-2">
+								<span>|</span>
+								<a href="/">아이디ㆍ비밀번호찾기</a>
+								<span>|</span>
 								<a href="/"><i class="fas fa-bell"></i></a>
-							</div>
 						</div>
 					</div>
 				</div>

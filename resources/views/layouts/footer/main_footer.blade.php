@@ -1,12 +1,6 @@
 <div class="mainFoot">
+    <div class="mainFoot-notice-title">공지사항</div>
     <table class="table">
-        <thead class="notice">
-            <tr>
-            <th scope="col" class="fir"><a class="" href="{{ route('notice.index') }}">공지사항</a></th>
-            <th scope="col"></th>
-            <th scope="col" class="las"></th>
-            </tr>
-        </thead>
         <tbody>
             <tr class="LRline">
                 <th class="pdB6 Rline" scope="row"><b>갤러리</b></th>
@@ -33,10 +27,12 @@
         </tbody>
     </table>
     <div class="ad">
-        <span class="ad-info"><a href="/"><b>광고 안내</b></a></span>
-        <span class="ad-display"><a href="{{ route('display-ad.index') }}">디스플레이광고</a></span>
-        <span class="mLine">|</span>
-        <span class="ad-question"><a href="{{ route('display-ad.create') }}">광고문의</a></span>
+        <span class="ad-info"><a href="/">광고 안내</a></span>
+        <div class="ad-info-box">
+            <span class="ad-display"><a href="{{ route('display-ad.index') }}">디스플레이광고</a></span>
+            <span class="mLine">|</span>
+            <span class="ad-question"><a href="{{ route('display-ad.create') }}">광고문의</a></span>
+        </div>
     </div>
 
     <div class="biz">
