@@ -1,5 +1,16 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<meta charset="utf-8">
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/sjinside-icon-white.png') }}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>@yield('title', '없음')</title>
+		@yield('css')
+	</head>
 		@yield('header')
 
+	<body>
 		<div class="container">
 			<div class="mainLeft">
 				<div class="hit">
@@ -164,7 +175,7 @@
 					<div class="clear"></div>
 				</div>
 
-				<div class="ranking-more">
+				<div class="ranking-more main-lg-next">
 					<div id="ranking-more">
 						<div class="live-pagination">
 								<div id="live-pagination">

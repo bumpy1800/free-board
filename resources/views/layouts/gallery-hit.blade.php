@@ -7,17 +7,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>@yield('title', '없음')</title>
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+		@yield('css')
 		<script type="text/javascript" src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
-		<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 		<script src="{{ asset('assets/js/gallery-hit.js') }}"></script>
-		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/gallery.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/gallery-hit.css') }}" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	</head>
 
 	<body>
@@ -253,7 +247,7 @@
 										<ul>
 											<li><p id="title"><a href=""><b>[{{ $top_imgPost->gallery_s_name }}] {{ $top_imgPost->post_title }}</b></a></p></li>
 											<li><p id="contents">{{ strip_tags($top_imgPost->post_contents) }}</p></li>
-											<li><b>작성자 : </b>ㅁㅇㄴㅁㅇㄴㅇㅁㄴ</p></li>
+											<li><b>작성자 : </b>여기고치기</p></li>
 										</ul>
 									@endforeach
 								</div>

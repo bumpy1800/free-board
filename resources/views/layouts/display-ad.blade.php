@@ -17,10 +17,10 @@
         <a href="/" class="header-logo-a"><img src="{{ asset('assets/img/sjinside-white.png') }}" class="display-ad-header-logo"/></a>
         <a href="/" class="header-mobile-logo-a"><img src="{{ asset('assets/img/sjinside-icon-white.png') }}" class="display-ad-header-mobile-logo" /></a>
         <ul class="display-ad-header-menu">
-            <li class="display-ad-header-menu-item active"><a href="/display-ad">광고 안내</a>
+            <li class="display-ad-header-menu-item active"><a href="{{ route('display-ad.index') }}">광고 안내</a>
             <div class="menuline-active"></div></li>
             <li class="display-ad-header-menu-bar">|</li>
-            <li class="display-ad-header-menu-item"><a href="/display-ad/contact">광고 문의</a>
+            <li class="display-ad-header-menu-item"><a href="{{ route('display-ad.create') }}">광고 문의</a>
             <div class="menuline"></div>
             </li>
         </ul>
@@ -32,7 +32,7 @@
         <div class="display-ad-main-textbox">
             <div class="display-ad-main-top-text-lg">디스플레이 광고</div>
             <div class="display-ad-main-top-text-sm">소비자 취향을 반영한 타겟팅 광고를 지금 시작하세요 !</div>
-            <div class="display-ad-main-top-text-link"><a href="/display-ad/contact">광고 문의 하기 <i class="fas fa-caret-square-right"></i></a></div>
+            <div class="display-ad-main-top-text-link"><a href="{{ route('display-ad.create') }}">광고 문의 하기 <i class="fas fa-caret-square-right"></i></a></div>
         </div>
         <img src="{{ asset('assets/img/display-main-img.png') }}" class="display-ad-main-tio-img"></img>
     </div>
@@ -94,7 +94,7 @@
             <li class="display-ad-footer-menu-bar">|</li>
             <li class="display-ad-footer-menu-item">청소년보호정책</li>
         </ul>
-        <span class="display-ad-footer-copyright">Copyright ⓒ 1999 - 2020 sjinside. All rights reserved.</span>
+        <span class="display-ad-footer-copyright">Copyright ⓒ 2020 - 2020 sjinside. All rights reserved.</span>
     </div>
     <!-- Footer Part End -->
 </body>

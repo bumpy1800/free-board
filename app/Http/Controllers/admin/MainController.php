@@ -43,9 +43,9 @@ class MainController extends Controller
         $postCnt = Post::where('reg_date', $today)->count();
         $visitorCnt = Visitor::whereBetween('time', [$fromDate, $toDate])->count();
         $qnaCnt = Qna::where('reg_date', $today)->count();
-        $singoCnt = Qna::where('reg_date', $today)->count();
+        $singoCnt = Singo::where('reg_date', $today)->count();
 
-        $singos = Qna::where('reg_date', $today)->get();
+        $singos = Singo::where('reg_date', $today)->get();
         $qnas = Qna::where('reg_date', $today)->get();
 
         return view('admin.index', [

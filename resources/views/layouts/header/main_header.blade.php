@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="kr">
-	<head>
-		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<meta charset="utf-8">
-    	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/sjinside-icon-white.png') }}"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>@yield('title', '없음')</title>
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-		<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@800&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-		<script src="{{ asset('assets/js/jquery-3.4.1.js') }}"></script>
-		<script src="{{ asset('assets/js/visitor.js') }}"></script>
-        <script defer src="{{ asset('assets/js/header.js') }}"></script>
-		<script src="{{ asset('assets/js/main.js') }}"></script>
-	</head>
-	<body>
-        <!--
+        <!-- 모바일 화면
         <div class="etc">
             <a class="mb_menu" href="register">회원가입</a>
             <a class="mb_menu" href="login">로그인</a>
@@ -57,94 +35,32 @@
             </div>
         </div>
 
-<!--<<<<<<< HEAD-->
         <div class="header-category-container">
             <div class="use-space">
                 <ul class="header-menu">
                     <li class="header-menu-item">
                         <span class="btn-dropdown">카테고리 +</span>
                         <div class="header-dropdown-menu none">
-                                <a class="header-dropdown-menu-item" href="{{ url('game-gallery') }}">게임</a>
-                                <a class="header-dropdown-menu-item" href="{{ url('enter-gallery') }}">연예/방송</a>
-                                <a class="header-dropdown-menu-item" href="{{ url('sports-gallery') }}">스포츠</a>
-                                <a class="header-dropdown-menu-item" href="{{ url('edu-gallery') }}">교육/금융/IT</a>
-                                <a class="header-dropdown-menu-item" href="{{ url('travel-gallery') }}">여행/음식/생물</a>
-                                <a class="header-dropdown-menu-item" href="{{ url('hobby-gallery') }}">취미/생활</a>
+                            <a class="header-dropdown-menu-item" href="{{ url('game-gallery') }}">게임</a>
+                            <a class="header-dropdown-menu-item" href="{{ url('enter-gallery') }}">연예/방송</a>
+                            <a class="header-dropdown-menu-item" href="{{ url('sports-gallery') }}">스포츠</a>
+                            <a class="header-dropdown-menu-item" href="{{ url('edu-gallery') }}">교육/금융/IT</a>
+                            <a class="header-dropdown-menu-item" href="{{ url('travel-gallery') }}">여행/음식/생물</a>
+                            <a class="header-dropdown-menu-item" href="{{ url('hobby-gallery') }}">취미/생활</a>
                         </div>
                     </li>
                     <li class="header-menu-item"><a href="{{ route('gallery.index') }}">갤러리</a></li>
-                    <li class="header-menu-item"><a href="gallog">갤로그</a></li>
+					@if(Auth::check())
+						<li class="header-menu-item"><a href="{{ url('gallog') }}/{{ Auth::user()->nick }}">갤로그</a></li>
+                    @else
+						<li class="header-menu-item"><a id="noUser" href="/">갤로그</a></li>
+                    @endif
+                    <li class="header-menu-item"><a href="event">이벤트</a></li>
                     <li class="header-menu-item"><a href="report">신고 / Q&A</a></li>
                 </ul>
                 <div class="header-yesterday-info">
-                    <div class="yesterday-writing">어제<B class="yesterday-info-number yellow">889,521개</B>게시글 등록</div>
-                    <div class="yesterday-comment down">어제<B class="yesterday-info-number blue">2,409,528개</B>댓글 등록</div>
+                    <div class="yesterday-writing">어제<B class="yesterday-info-number yellow">{{ number_format($yPostCnt) }}개</B>게시글 등록</div>
+                    <div class="yesterday-comment down">어제<B class="yesterday-info-number blue">{{ number_format($yCommentCnt) }}개</B>댓글 등록</div>
                 </div>
             </div>
         </div>
-
-<!--
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <b>카테고리+</b>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('game-gallery') }}">게임</a>
-                        <a class="dropdown-item" href="{{ url('enter-gallery') }}">연예/방송</a>
-                        <a class="dropdown-item" href="{{ url('sports-gallery') }}">스포츠</a>
-                        <a class="dropdown-item" href="{{ url('edu-gallery') }}">교육/금융/IT</a>
-                        <a class="dropdown-item" href="{{ url('travel-gallery') }}">여행/음식/생물</a>
-                        <a class="dropdown-item" href="{{ url('hobby-gallery') }}">취미/생활</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('gallery.index') }}"><b>갤러리</b></a>
-                </li>
-                <li class="nav-item">
-                    @if(Auth::check())
-                        <a class="nav-link" href="{{ url('gallog') }}/{{ Auth::user()->nick }}"><b>갤로그</b></a>
-                    @else
-                        <button style="background-color: transparent; border: 0px;" class="nav-link"><b>갤로그</b></button>
-                    @endif
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="report"><b>신고/Q&amp;A</b></a>
-                </li>
-            </ul>
-            <span class="yesterday" id="yPost">
-                어제 <b class="number">{{ number_format($yPostCnt) }}</b> 게시글 등록
-            </span>
-            <span style="display: none;" class="yesterday" id="yComment">
-                어제 <b class="number" style="color:#4bdeff; ">{{ number_format($yCommentCnt) }}</b> 댓글 등록
-            </span>
-        </div>
-    </div>
-</nav>
-
-<script>
-    $(document).on("click", ".nav-item button", function(){
-        alert("로그인이 필요한 서비스입니다.");
-        return false;
-    });
-    setInterval('headerChange()', 3000);
-    function headerChange(){
-        if($("#yPost").css("display") == "none") {
-            $("#yComment").fadeOut(1000);
-            $("#yComment").hide();
-            $("#yPost").fadeIn(1000);
-        } else {
-            $("#yPost").fadeOut(1000);
-            $("#yPost").hide();
-            $("#yComment").fadeIn(1000);
-        }
-    };
-</script>
->>>>>>> 4560334f26bf8d3d561ce8e315c1de2a8371b9db
--->

@@ -15,6 +15,14 @@
                     <div class="sb-nav-link-icon"><i class="far fa-image"></i></div>
                     팝업관리
                 </a>
+                <a class="nav-link" href="{{ route('admin_popup2.index') }}">
+                    <div class="sb-nav-link-icon"><i class="far fa-image"></i></div>
+                    팝업2관리
+                </a>
+                <a class="nav-link" href="{{ route('admin_display-ad.index') }}">
+                    <div class="sb-nav-link-icon"><i class="far fa-image"></i></div>
+                    광고문의
+                </a>
                 <a class="nav-link" href="{{ route('admin_logo.index') }}">
                     <div class="sb-nav-link-icon"><i class="far fa-image"></i></i></div>
                     로고관리

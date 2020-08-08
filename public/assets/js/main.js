@@ -1,3 +1,8 @@
+$(document).on("click", ".header-menu-item #noUser", function(){
+    alert("로그인이 필요한 서비스입니다.");
+    return false;
+});
+
 $(document).on("click", "#user_save, #user_security", function(){
     if($(this).val() == 0) {
         $(this).val('1');
@@ -6,7 +11,7 @@ $(document).on("click", "#user_save, #user_security", function(){
     }
 });
 
-$(document).on("click", ".lg-next", function(e){
+$(document).on("click", ".main-lg-next .lg-next", function(e){
     var href = $(this).attr("href");
     href = href.split('&');
     var rank = href[0].substring(6, 99);

@@ -68,13 +68,11 @@ Route::any('admin', 'admin\MainController@index');
 Route::get('/admin/find', function () {
 	return view('find');
 });
-Route::get('display-ad', function () {
-	return view('display-ad');
-});
-Route::get('display-ad/contact', function () {
-	return view('display-ad-contact');
-});
 
+//디스플레이 광고
+Route::resources([
+    'display-ad' => 'DisplayadController',
+]);
 
 Route::resources([
     'user' => 'admin\UserController',
@@ -110,12 +108,15 @@ Route::resources([
 	'gallery-hit' => 'Post_hitController',
 	'comment' => 'CommentController',
 	'notice' => 'NoticeController',
+
     'admin_post' => 'admin\PostController',
     'admin_category' => 'admin\CategoryController',
     'admin_comment' => 'admin\CommentController',
     'admin_notice' => 'admin\NoticeController',
     'admin_popup' => 'admin\PopupController',
     'admin_popup_category' => 'admin\Popup_categoryController',
+	'admin_popup2' => 'admin\Popup2Controller',
+	'admin_display-ad' => 'admin\DisplayadController',
     'admin_qna' => 'admin\QnaController',
     'admin_qna_category' => 'admin\Qna_categoryController'
 ]);

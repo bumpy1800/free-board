@@ -232,8 +232,10 @@ $.ajax({
      }
 });
 
-$(function () {
-    $('[data-toggle="popover"]').popover({
-        html: true
-    })
-})
+$(document).ready(function(){
+    $(function () {
+        $('[data-toggle="popover"]').popover({
+            html: true
+        })
+    });
+});
