@@ -110,7 +110,7 @@
 										<p><b>{{ $scrap->post_title }}</b></p>
 									</div>
 									<div class="test user-content col-5">
-										<p>{{ $scrap->post_contents }}</p>
+										<p>{{ strip_tags($scrap->post_contents) }}</p>
 									</div>
 									<div class="user-writeday col-3">
 										<p><b>{{ $scrap->gallery_name }}</b></p>

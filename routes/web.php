@@ -162,6 +162,7 @@ Route::get('gallery-post/{link}/{id}', 'PostController@show');
 Route::post('plusHitPoint', 'PostController@plusHitPoint');
 Route::post('plusBadPoint', 'PostController@plusBadPoint');
 Route::post('plusGoodPoint', 'PostController@plusGoodPoint');
+Route::post('saveScrap', 'PostController@saveScrap');
 //공지사항 댓글
 Route::post('notice-comment', 'CommentController@notice_store');
 //관리자

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 use App\Post;
 use App\Gallery;
@@ -15,6 +16,7 @@ use App\Comment;
 use App\Popup;
 use App\User;
 use App\Post_hit;
+use App\Scrap;
 
 class PostController extends Controller
 {
@@ -490,5 +492,40 @@ class PostController extends Controller
        else
            $ipaddress = 'UNKNOWN';
        return $ipaddress;
+    }
+
+    //스크랩 저장
+    public function saveScrap(Request $request) {
+        $id = $request->input('id');
+
+        if(Auth::check()) {
+            $u_id = Auth::user()->id;
+            //중복된 스크랩인지 체크
+            $scrap = Scrap::select('*')
+                ->where('post_id', $id)
+                ->where('user_id', $u_id)
+                ->first();
+            //$scrap에 값이 있으면 리턴
+            if(!empty($scrap)) {
+                return response()->json([
+                    'status' => false,
+                    'needLogin' => false
+                ]);
+            }
+            Scrap::create([
+              'post_id' => $id,
+              'user_id' => $u_id,
+            ]);
+            return response()->json([
+                'status' => true,
+                'needLogin' => false
+            ]);
+        } else {
+            //로그인이 안되었을 때 리턴
+            return response()->json([
+                'status' => false,
+                'needLogin' => true
+            ]);
+        }
     }
 }

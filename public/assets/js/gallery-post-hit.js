@@ -513,6 +513,34 @@ $(document).on("click", "#police-button", function(){
     location.href="/report";
 });
 
+$(document).on("click", "#scrap-share-btn", function(){
+    var post_id = $('.view_title .view_headtext').attr('id');
+    $.ajax({
+         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+         type: 'post',
+         url: '/saveScrap',
+         dataType: 'json',
+         data: {
+             'id': post_id,
+         },
+         success: function(data) {
+             if(data['status']) {
+                 alert('스크랩이 정상적으로 완료되었습니다.')
+                 location.reload();
+             } else {
+                 if(data['needLogin']) {
+                     alert("로그인이 필요한 서비스입니다.");
+                 }else {
+                     alert("이미 스크랩한 게시물 입니다.");
+                 }
+             }
+         },
+         error: function(data) {
+              console.log("error" +data);
+         }
+    });
+});
+
 $(document).on("click", "#fb-share-btn", function(){
     var url = '';
     var description = '';

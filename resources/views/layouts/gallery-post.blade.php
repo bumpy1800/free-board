@@ -346,6 +346,11 @@
 												<img src='{{ asset('assets/img/band.png') }}'/>
 											</a>
 										</li>
+										<li>
+											<a id='scrap-share-btn'>
+												<img src='{{ asset('assets/img/scrap-square.png') }}'/>
+											</a>
+										</li>
 										<div class='clear'></div>
 									</ul>
 									">
