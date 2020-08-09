@@ -129,6 +129,16 @@
 								</div>
 							</div>
 						</form>
+						<hr class="dot-line">
+						<div class="service">
+							<div class="login-bottom">
+									<a href="register"><b>회원가입</b></a>
+									<span>|</span>
+									<a href="/">아이디ㆍ비밀번호찾기</a>
+									<span>|</span>
+									<a href="/"><i class="fas fa-bell"></i></a>
+							</div>
+						</div>
 					@else
 						<form action="{{ url('auth/logout') }}" method="post">
 							@method('POST')
@@ -138,17 +148,17 @@
 							<br>
 							글 1 댓글 1 방명록 1
 						</form>
-					@endif
-					<hr class="dot-line">
-					<div class="service">
-						<div class="login-bottom">
-								<a href="register"><b>회원가입</b></a>
-								<span>|</span>
-								<a href="/">아이디ㆍ비밀번호찾기</a>
-								<span>|</span>
-								<a href="/"><i class="fas fa-bell"></i></a>
+						<hr class="dot-line">
+						<div class="service">
+							<div class="login-bottom">
+									<a href="register"><b>최근방문</b></a>
+									<span>|</span>
+									<a href="/">MY갤로그</a>
+									<span>|</span>
+									<a href="{{ route('user-info.index') }}">회원정보</a>
+							</div>
 						</div>
-					</div>
+					@endif
 				</div>
 
 				<div class="boxline liveRanking">

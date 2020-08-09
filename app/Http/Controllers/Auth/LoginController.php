@@ -78,4 +78,21 @@ class LoginController extends Controller
         }
         return redirect('/');
     }
+
+    //유저 비밀번호 체크
+    public function chkUserPw(Request $request)
+    {
+        $credentials = [
+            'uid' => Auth::user()->uid,
+            'pwd' => $request->input('user_pw')
+        ];
+
+        $id = Auth::user()->id;
+
+        if(Auth::attempt($credentials)) {
+            return redirect(route('user-info.show', $id));
+        }
+        //비밀번호 인증 페이지로 이동
+        return redirect(route('user-info.index'));
+    }
 }

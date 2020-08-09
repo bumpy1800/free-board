@@ -21,6 +21,7 @@ Route::get('/', 'MainController@index');
 Route::post('visitor_save', 'MainController@visitor_save');
 
 //로그인 인증
+Route::post('auth/chkUser', 'Auth\LoginController@chkUserPw');
 Route::post('auth/login', 'Auth\LoginController@login');
 Route::any('auth/logout', 'Auth\LoginController@logout');
 
@@ -134,6 +135,13 @@ Route::middleware(['guest'])->group(function() {
 	Route::post('gallog-guestbook/{uid}/destroy', 'GallogController@guestbook_destroy');
 	Route::post('gallog-guestbook/{uid}/hidden', 'GallogController@guestbook_hidden');
 	Route::post('gallog-guestbook/{uid}/open', 'GallogController@guestbook_open');
+
+	Route::resources([
+	    'user-info' => 'UserInfoController',
+	]);
+	Route::get('user-info-changePw', 'UserInfoController@showChangePw');
+	Route::get('user-info-security', 'UserInfoController@showSecurity');
+	Route::get('user-info-leave', 'UserInfoController@showLeave');
 });
 
 //카테고리 관련

@@ -1,0 +1,229 @@
+.clear {
+	clear: both;
+}
+.user_select .right {
+	width: 100%;
+}
+.user_select .right .boxline {
+	padding: 100px;
+	padding-top: 150px;
+	padding-bottom: 150px;
+	text-align: center;
+}
+.user_select .right .boxline h6 b{
+	color: #d31900;
+}
+.user_select .right .boxline .chk-form {
+	display: inline-block;
+	width: 300px;
+}
+.user_select .right .boxline .chk-form input {
+	width: 100%;
+	height: 35px;
+	margin-bottom: 5px;
+}
+.user_select .right .boxline .chk-form button {
+	background-color: #4a56a9;
+	width: 100%;
+	color: white;
+	height: 35px;
+	border: 0px;
+	font-size: 13px;
+}
+
+.user_select .right .normal {
+	padding: 150px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+.user_select .right .normal .form-group{
+	display: inline-block;
+	width: 100%;
+	height: 35px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+.user_select .right .normal .form-group .label {
+	float: left;
+	width: 30%;
+	text-align: left;
+	height: 100%;
+	line-height: 37px;
+}
+.user_select .right .normal .form-group .normal-form {
+	float: right;
+	width: 70%;
+	height: 100%;
+}
+.user_select .right .normal .form-group .normal-form input{
+	width: 100%;
+	height: 100%;
+}
+.user_select .right .normal .form-group .normal-form small{
+	float: left;
+	color: rgb(170, 170, 170);
+}
+.user_select .right .normal .form-group .normal-form #email{
+	width: 70%;
+	float: left;
+}
+.user_select .right .normal .form-group .normal-form #change-email{
+	width: 30%;
+	float: right;
+	height: 100%;
+	border: 2px solid #4a56a9;
+	color: #4a56a9;
+	font-size: 13px;
+	background-color: transparent;
+}
+
+
+.user_select .right .changePw {
+	padding-left: 180px;
+	padding-right: 180px;
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+.user_select .right .boxline ul{
+	list-style: disc;
+	margin-bottom: 30px;
+	padding-left: 15px;
+}
+.user_select .right .boxline .emphasis{
+	font-size: 16px;
+	color: #d31900;
+	margin-bottom: 5px;
+}
+.user_select .right .boxline li{
+	text-align: left;
+	font-size: 13px;
+}
+.user_select .right .boxline .changePw-bg{
+	background-color: #eee;
+	padding: 50px;
+	padding-left: 150px;
+	padding-right: 150px;
+}
+.user_select .right .boxline .changePw-bg .safe-box{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.user_select .right .boxline .changePw-bg .safe-box .bar{
+	float: left;
+	display: inline-block;
+	height: 10px;
+	width: 32.67%;
+	margin-left: 1px;
+	margin-right: 1px;
+	background-color: #cfcfcf;
+}
+.user_select .right .boxline .changePw-bg .must{
+	float: left;
+	clear: both;
+}
+.user_select .right .boxline .changePw-bg #must{
+	margin-top: 5px;
+}
+.user_select .right .boxline .changePw-bg .must .fa-check-circle{
+	color: #4a56a9;
+}
+.user_select .right .boxline .changePw-bg .changePw-form input{
+	width: 100%;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	height: 35px;
+	padding: 5px;
+}
+.user_select .right .boxline .changePw-bg .changePw-form button {
+	background-color: #4a56a9;
+	width: 100%;
+	color: white;
+	height: 35px;
+	border: 0px;
+	font-size: 13px;
+}
+.user_select .right .boxline .changePw-bg .changePw-form .must {
+	color: #999;
+}
+
+#sub-title {
+	margin-top: 20px;
+	color: #d31900;
+}
+#user_select-security {
+	padding-top: 5px;
+}
+.user_select .right .security {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.user_select .right .security .info{
+	margin-bottom: 20px;
+}
+
+.user_select .right .boxline .leave-bg .user-info .user {
+	margin-right: 20px;
+}
+.user_select .right .boxline .leave-bg .user-info .info {
+	color: #4a56a9;
+}
+
+.button .next-btn {
+	background-color: #4a56a9;
+}
+
+.button #cancel{
+	background-color: gray;
+	margin-left: 10px;
+}
+@media(max-width: 1199px) {
+	.user_select .right .changePw {
+		padding: 50px;
+	}
+
+	.user_select .right .normal .form-group .normal-form #email{
+		width: 100%;
+	}
+	.user_select .right .normal .form-group .normal-form #change-email{
+		width: 100%;
+	}
+}
+
+@media(max-width: 991px) {
+	.user_select .right .changePw .changePw-bg{
+		padding: 10px;
+	}
+}
+
+@media(max-width: 767px) {
+	.user_select .right .boxline {
+		padding: 10px;
+	}
+	.user_select .right .boxline h6 b{
+		font-size: 14px;
+	}
+	.user_select .right .boxline .chk-form {
+		width: 100%;
+	}
+
+	.user_select .right .normal {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+	.user_select .right .normal .form-group{
+		height: 35px;
+	}
+	.user_select .right .normal .form-group .label {
+		font-size: 80%;
+	}
+	.user_select .right .normal .form-group .normal-form small{
+		font-size: 70%;
+	}
+
+	.user_select .right .boxline .changePw-bg .safe-box .bar{
+		margin-left: 0px;
+	}
+	.next-btn {
+		margin-top: 0px;
+	}
+}

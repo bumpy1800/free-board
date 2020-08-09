@@ -1,14 +1,14 @@
-        <!-- 모바일 화면
-        <div class="etc">
-            <a class="mb_menu" href="register">회원가입</a>
-            <a class="mb_menu" href="login">로그인</a>
-            <a class="mb_menu" href="login">로그아웃</a>
-        </div>
-        -->
-        
-        <div class="mobile-login-box">
-            <span id="btn-mobile-login">Login</span>
-        </div>
+
+        @if(Auth::check())
+            <div class="mobile-login-box">
+                <span><a href="{{ url('auth/logout') }}">Logout</a></span>
+            </div>
+        @else
+            <div class="mobile-login-box">
+                <span id="btn-mobile-login">Login</span>
+            </div>
+        @endif
+
         <div class="header-container">
             <div class="main-header">
                 <a href="/" class="logo"><img src="{{ asset('assets/img/sjinside-main-logo.png') }}" class="logo-img"></a>

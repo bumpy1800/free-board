@@ -96,8 +96,9 @@ class Post_hitController extends Controller
 
         $top_imgPosts = Post::join('post_hit', 'post.id', '=', 'post_hit.post_id')
             ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
+            ->join('user', 'post.user_id', '=', 'user.id')
             ->select('post.id as post_id', 'post.title as post_title', 'post.contents as post_contents', 'thumbnail',
-            'gallery.s_name as gallery_s_name', 'gallery.link as gallery_link')
+            'gallery.s_name as gallery_s_name', 'gallery.link as gallery_link', 'user.nick as user_nick')
             ->where('post.contents', 'like', '%<img%')
             ->orderby('post.id', 'desc')
             ->limit(1)

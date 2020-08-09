@@ -247,7 +247,7 @@
 										<ul>
 											<li><p id="title"><a href=""><b>[{{ $top_imgPost->gallery_s_name }}] {{ $top_imgPost->post_title }}</b></a></p></li>
 											<li><p id="contents">{{ strip_tags($top_imgPost->post_contents) }}</p></li>
-											<li><b>작성자 : </b>여기고치기</p></li>
+											<li><b>작성자 : </b>{{ $top_imgPost->user_nick }}</p></li>
 										</ul>
 									@endforeach
 								</div>

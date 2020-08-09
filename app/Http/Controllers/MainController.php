@@ -101,7 +101,7 @@ class MainController extends Controller
                            'gallery.s_name as gallery_s_name', 'gallery.link as gallery_link')
                           ->where('post.contents', 'like', '%<img%')
                           ->orderby('post.id', 'desc')
-                          ->limit(8)
+                          ->limit(4)
                           ->get();
         $notIn = [];
         if(count($imgPosts) > 0) { //imgPosts 와 중복되지 않기 위함  ``
@@ -118,7 +118,6 @@ class MainController extends Controller
                       ->orderby('post.id', 'desc')
                       ->limit(10)
                       ->get();
-
         return view('main', [
             'hitPosts' => $hitPosts,
             'imgPosts' => $imgPosts,
