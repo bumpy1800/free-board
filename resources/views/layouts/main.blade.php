@@ -7,9 +7,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>@yield('title', '없음')</title>
 		@yield('css')
+		<script defer src="{{ asset('assets/js/popup.js') }}"></script>
 	</head>
 		@yield('header')
-
+		
 	<body>
 		<div class="container">
 			<div class="mainLeft">
