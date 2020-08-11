@@ -13,6 +13,7 @@ use App\Notice;
 use App\Comment;
 use App\Post;
 use App\Popup;
+use App\Issue;
 
 class NoticeController extends Controller
 {
@@ -28,6 +29,7 @@ class NoticeController extends Controller
                             ->orderby('total', 'desc')
                             ->limit(10)
                             ->get();
+        $this->issues = Issue::select('keyword')->orderby('count', 'desc')->limit(8)->get();
     }
 
     public function index(Request $request)
@@ -75,6 +77,7 @@ class NoticeController extends Controller
             'yPostCnt' => $this->yPostCnt,
             'yCommentCnt' => $this->yCommentCnt,
             'footer_gallerys' => $this->footer_gallerys,
+            'issues' => $this->issues,
         ]);
     }
 
@@ -84,7 +87,7 @@ class NoticeController extends Controller
         $recentGallerys = explode('/', $list);
 
         $notice = Notice::findOrFail($id);
-        notice::where('id', $id)->update([
+        Notice::where('id', $id)->update([
             'view' => $notice->view + 1
         ]);
 
@@ -136,6 +139,7 @@ class NoticeController extends Controller
             'yPostCnt' => $this->yPostCnt,
             'yCommentCnt' => $this->yCommentCnt,
             'footer_gallerys' => $this->footer_gallerys,
+            'issues' => $this->issues,
         ]);
     }
 

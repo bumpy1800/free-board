@@ -1,7 +1,7 @@
 
         @if(Auth::check())
             <div class="mobile-login-box">
-                <span><a href="{{ url('auth/logout') }}">Logout</a></span>
+                <span id="btn-mobile-login"><a href="{{ url('auth/logout') }}">Logout</a></span>
             </div>
         @else
             <div class="mobile-login-box">
@@ -17,13 +17,25 @@
                         <div class="todayIsue">
                             <span class="todayIsue-title">오늘의 이슈</span>
                             <ul class="todayIsue-menu">
-                                <li class="todayIsue-item">일본 화산</li>
-                                <li class="todayIsue-bar">|</li>
-                                <li class="todayIsue-item">오지환</li>
-                                <li class="todayIsue-bar">|</li>
-                                <li class="todayIsue-item">박상철</li>
-                                <li class="todayIsue-bar">|</li>
-                                <li class="todayIsue-item">이지현</li>
+                                @php
+                                    $i = 0;
+                                @endphp
+                                @foreach($issues as $issue)
+                                    @if($i < 4)
+                                        <li id="issue{{ $i }}" class="todayIsue-item fir-issue">{{ $issue->keyword }}</li>
+                                        @if($i % 4 != 3)
+                                            <li class="todayIsue-bar fir-issue">|</li>
+                                        @endif
+                                    @else
+                                        <li id="issue{{ $i }}" class="todayIsue-item sec-issue">{{ $issue->keyword }}</li>
+                                        @if($i % 4 != 3)
+                                            <li class="todayIsue-bar sec-issue">|</li>
+                                        @endif
+                                    @endif
+                                    @php
+                                        $i ++;
+                                    @endphp
+                                @endforeach
                             </ul>
                         </div>
                         <div class="todayIsue-btn-box">
@@ -31,10 +43,14 @@
                             <button class="btn-todayIsue-right">▶</button>
                         </div>
                     </div>
-                    <div class="search-line">
-                        <input type="text" placeholder="갤러리 & 통합검색" class="search-space" />
-                        <button class="btn-search"><i class="fas fa-search"></i></button>
-                    </div>
+                    <form action="{{ route('issue.store') }}" method="post">
+                        @method('POST')
+                        @csrf
+                        <div class="search-line">
+                            <input type="text" placeholder="갤러리 & 통합검색" name="search-keyword" class="search-space" />
+                            <button class="btn-search"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

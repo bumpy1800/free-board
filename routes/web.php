@@ -109,6 +109,7 @@ Route::resources([
 	'gallery-hit' => 'Post_hitController',
 	'comment' => 'CommentController',
 	'notice' => 'NoticeController',
+	'issue' => 'IssueController',
 
     'admin_post' => 'admin\PostController',
     'admin_category' => 'admin\CategoryController',

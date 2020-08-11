@@ -39,7 +39,7 @@ a:link {
 	text-decoration: none;
 }
 
-input[type="checkbox"] { 
+input[type="checkbox"] {
 	cursor: pointer;
 	margin-right: 10px;
 }
@@ -185,6 +185,10 @@ ul {
 	width: 40%;
 	min-width: 400px;
 	margin-top: 20px;
+}
+
+.sec-issue {
+	display: none;
 }
 
 .todayIsue-box {
@@ -1080,7 +1084,7 @@ input#user_security:checked + label.security:before {
 .display-ad-main-mid {
 	width: 72%;
 	max-width: 1600px;
-	text-align: left;	
+	text-align: left;
 }
 
 .display-ad-main-mid-sub {
@@ -1298,22 +1302,22 @@ input#user_security:checked + label.security:before {
 	border: 1px solid rgb(155, 155, 155);
 	border-left: 0;
 	cursor: pointer;
-	font-size: 0.9rem; 
+	font-size: 0.9rem;
 }
-.filebox label { 
-	vertical-align: middle; 
+.filebox label {
+	vertical-align: middle;
 	cursor: pointer;
 	color: #4d4d4d;
 }
 
-.btn-filebox input[type="file"] { 
-	position: absolute; 
-	width: 1px; 
-	height: 1px; 
-	padding: 0; 
-	margin: -1px; 
-	overflow: hidden; 
-	clip:rect(0,0,0,0); border: 0; 
+.btn-filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0); border: 0;
 }
 
 .red {
@@ -1541,7 +1545,7 @@ input#user_security:checked + label.security:before {
 		font-size: 1.2rem;
 		width: 90%;
 	}
-	
+
 	.contact-box {
 		width: 82%;
 		padding: 3% 3%;
@@ -1610,7 +1614,7 @@ input#user_security:checked + label.security:before {
 		font-size: 1rem;
 		margin-bottom: 90px;
 	}
-	
+
 	.display-ad-main-top-text-link {
 		width: fit-content;
 		padding-bottom: 2px;
@@ -1618,12 +1622,12 @@ input#user_security:checked + label.security:before {
 		margin-bottom: 10px;
 		cursor: pointer;
 	}
-	
+
 	.recombox-textbox-text-lg {
 		font-size: 1.1rem;
 		padding-left: 0;
 	}
-	
+
 	.recombox-textbox-text-sm {
 		font-size: 0.9rem;
 		padding-left: 0;
@@ -1631,7 +1635,7 @@ input#user_security:checked + label.security:before {
 
 	.display-ad-main-mid {
 		width: 90%;
-		text-align: center;	
+		text-align: center;
 	}
 
 	.display-ad-header-menu {
@@ -1642,7 +1646,7 @@ input#user_security:checked + label.security:before {
 		display: inline;
 		margin-right: 7%;
 	}
-	
+
 	.dispay-ad-mobile-menu-icon.fas {
 		display: inline;
 	}
@@ -1735,12 +1739,12 @@ input#user_security:checked + label.security:before {
 		display: none;
 	}
 
-	.logo {				
+	.logo {
 		width: 80vw;
 		max-width: 500px;
 		height: auto;
 	}
-	
+
 	.logo-img {
 		width: 100%;
 		height: auto;
@@ -1765,7 +1769,7 @@ input#user_security:checked + label.security:before {
 	.mobile-login-etc {
 		justify-content: center;
 	}
-	
+
 	.mobile-login-etc button {
 		border: 0;
 		background-color: transparent;
@@ -1777,19 +1781,19 @@ input#user_security:checked + label.security:before {
 	.display-ad-header {
 		justify-content: center;
 	}
-	
+
 	.display-ad-header-mobile-logo {
 		margin-left: 0;
 		display: none;
 	}
-	
+
 	.header-logo-a {
 		display: inline;
 		width: 65%;
 		height: auto;
 		margin-left: 0;
 	}
-		
+
 	.display-ad-header-logo {
 		width: 100%;
 		height: auto;
@@ -1800,7 +1804,7 @@ input#user_security:checked + label.security:before {
 	.display-ad-header-menu {
 		display: none;
 	}
-	
+
 	.header-menu-item {
 		font-size: .7rem;
 	}
