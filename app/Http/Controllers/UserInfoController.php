@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\User;                     //ORM
 
 
@@ -24,8 +25,10 @@ class UserInfoController extends Controller
 
     public function show($id)
     {
-        //개인 정보 변경
-        return view('user-info-normal', ['user' => User::findOrFail($id)]);
+        if($id == Auth::user()->id) {
+            return view('user-info-normal', ['user' => User::findOrFail($id)]);
+        }
+        return view('user-info-chk');
     }
 
     public function edit($id)

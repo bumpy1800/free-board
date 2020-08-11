@@ -15,6 +15,7 @@ use App\User;
 use App\Popup;
 use App\Link_gallery;
 use App\Comment;
+use App\Issue;
 
 class GalleryController extends Controller
 {
@@ -30,6 +31,7 @@ class GalleryController extends Controller
                             ->orderby('total', 'desc')
                             ->limit(10)
                             ->get();
+        $this->issues = Issue::select('keyword')->orderby('count', 'desc')->limit(8)->get();
     }
 
     public function index(Request $request)
@@ -146,6 +148,7 @@ class GalleryController extends Controller
             'yPostCnt' => $this->yPostCnt,
             'yCommentCnt' => $this->yCommentCnt,
             'footer_gallerys' => $this->footer_gallerys,
+            'issues' => $this->issues,
         ]);
     }
 
@@ -267,6 +270,7 @@ class GalleryController extends Controller
             'yPostCnt' => $this->yPostCnt,
             'yCommentCnt' => $this->yCommentCnt,
             'footer_gallerys' => $this->footer_gallerys,
+            'issues' => $this->issues,
         ]);
     }
 

@@ -17,6 +17,7 @@ use App\Popup;
 use App\User;
 use App\Post_hit;
 use App\Scrap;
+use App\Issue;
 
 class PostController extends Controller
 {
@@ -33,6 +34,7 @@ class PostController extends Controller
                             ->orderby('total', 'desc')
                             ->limit(10)
                             ->get();
+        $this->issues = Issue::select('keyword')->orderby('count', 'desc')->limit(8)->get();
     }
 
     public function create(Request $request)
@@ -72,6 +74,7 @@ class PostController extends Controller
             'yPostCnt' => $this->yPostCnt,
             'yCommentCnt' => $this->yCommentCnt,
             'footer_gallerys' => $this->footer_gallerys,
+            'issues' => $this->issues,
         ]);
     }
 
@@ -197,6 +200,7 @@ class PostController extends Controller
             'yPostCnt' => $this->yPostCnt,
             'yCommentCnt' => $this->yCommentCnt,
             'footer_gallerys' => $this->footer_gallerys,
+            'issues' => $this->issues,
         ]);
     }
 
@@ -356,6 +360,7 @@ class PostController extends Controller
             'yPostCnt' => $this->yPostCnt,
             'yCommentCnt' => $this->yCommentCnt,
             'footer_gallerys' => $this->footer_gallerys,
+            'issues' => $this->issues,
         ]);
     }
 

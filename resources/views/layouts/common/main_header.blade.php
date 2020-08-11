@@ -6,6 +6,7 @@
 <script src="{{ asset('assets/js/visitor.js') }}"></script>
 <script defer src="{{ asset('assets/js/header.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="{{ asset('assets/js/issue.js') }}"></script>
 
 <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
