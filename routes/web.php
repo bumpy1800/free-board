@@ -10,15 +10,10 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*Route::get('test', function () {
-	return view('main');
-});*/
-
-/*Route::get('/', function () {
-    return view('main');
-});*/
+//메인
 Route::get('/', 'MainController@index');
 Route::post('visitor_save', 'MainController@visitor_save');
+Route::post('getPopupImage', 'MainController@getPopupImage');
 
 //로그인 인증
 Route::post('auth/chkUser', 'Auth\LoginController@chkUserPw');
@@ -122,7 +117,6 @@ Route::resources([
     'admin_qna' => 'admin\QnaController',
     'admin_qna_category' => 'admin\Qna_categoryController'
 ]);
-
 
 //로그인이 필요한 경로들
 Route::middleware(['guest'])->group(function() {

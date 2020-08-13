@@ -29,7 +29,7 @@ class NoticeController extends Controller
                             ->orderby('total', 'desc')
                             ->limit(10)
                             ->get();
-        $this->issues = Issue::select('keyword')->orderby('count', 'desc')->limit(8)->get();
+        $this->issues = Issue::select('keyword')->where('search_date', date('Y-m-d'))->orderby('count', 'desc')->limit(8)->get();
     }
 
     public function index(Request $request)

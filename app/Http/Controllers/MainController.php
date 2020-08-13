@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
+
+//use Illuminate\Database\Migrations\Migration;
+//use Illuminate\Database\Schema\Blueprint;
 
 use App\Visitor;
 use App\Post;
@@ -16,6 +18,7 @@ use App\Post_hit;
 use App\Gallery;
 use App\Comment;
 use App\Issue;
+use App\Popup2;
 
 class MainController extends Controller
 {
@@ -31,7 +34,7 @@ class MainController extends Controller
                             ->orderby('total', 'desc')
                             ->limit(10)
                             ->get();
-        $this->issues = Issue::select('keyword')->orderby('count', 'desc')->limit(8)->get();
+        $this->issues = Issue::select('keyword')->where('search_date', date('Y-m-d'))->orderby('count', 'desc')->limit(8)->get();
     }
 
     public function index(Request $request)
@@ -120,6 +123,7 @@ class MainController extends Controller
                       ->orderby('post.id', 'desc')
                       ->limit(10)
                       ->get();
+
         return view('main', [
             'hitPosts' => $hitPosts,
             'imgPosts' => $imgPosts,
@@ -171,5 +175,22 @@ class MainController extends Controller
        else
            $ipaddress = 'UNKNOWN';
        return $ipaddress;
+    }
+
+    public function getPopupImage(){
+        //메인화면 팝업 가져오기
+        $popup2 = Popup2::select('image')
+            ->where('status', 1)
+            ->inRandomOrder()
+            ->first();
+        if($popup2) {
+            $image = Storage::get($popup2->image); //이미지 가져와서 text 변환
+            $image = base64_encode($image); //base64로 인코딩
+        } else {
+            $image = '';
+        }
+        return response()->json([
+            'image'=>$image,
+        ]);
     }
 }
