@@ -11,6 +11,7 @@
 		<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/register.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/user-info.css') }}" rel="stylesheet">
+
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	</head>
 	<body>

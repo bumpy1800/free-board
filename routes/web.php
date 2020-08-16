@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::any('/', 'UserInfoController@sendEmail');
 //메인
 Route::get('/', 'MainController@index');
 Route::post('visitor_save', 'MainController@visitor_save');
@@ -137,6 +138,8 @@ Route::middleware(['guest'])->group(function() {
 	Route::get('user-info-changePw', 'UserInfoController@showChangePw');
 	Route::get('user-info-security', 'UserInfoController@showSecurity');
 	Route::get('user-info-leave', 'UserInfoController@showLeave');
+	Route::post('user-info-sendEmail', 'UserInfoController@sendEmail');
+	Route::post('user-info-checkCode', 'UserInfoController@checkCode');
 });
 
 //카테고리 관련
