@@ -21,19 +21,17 @@
 				<div class="newPost">
 					<h6 class="title "><b>@yield('category-name') 최신글</b></h6>
 					<hr class="line">
-					<div class="row">
+					<div class="gallery-card-container">
 							@forEach($imgPosts as $imgPost)
-									<div class="col-4">
-											<div class="card">
-													<img src="{{ $imgPost->thumbnail }}" class="card-img-top" alt="...">
-													<div class="card-body">
-															<p class="card-title">
-																	<b><a href="{{ route('gallery.show', $imgPost->gallery_link) }}">[{{ $imgPost->gallery_s_name }}]</a></b>
-																	<a href="{{ url('gallery-post/'.$imgPost->gallery_link.'/'.$imgPost->post_id) }}">{{ $imgPost->post_title }}</a>
-															</p>
-													</div>
-											</div>
+								<div class="gallery-card-box plus">
+									<div class="gallery-card-img-box plus">
+										<img src="{{ $imgPost->thumbnail }}" alt="..." class="gallery-card-img">
 									</div>
+									<div class="gallery-card-info new">
+										<div class="gallery-card-info-gallery new lc1"><a href="{{ route('gallery.show', $imgPost->gallery_link)}}"><b>[{{ $imgPost->gallery_s_name }}]</b></a></div>
+										<div class="gallery-card-info-title new"><a href="{{ url('gallery-post/'.$imgPost->gallery_link.'/'.$imgPost->post_id) }}">{{ $imgPost->post_title }}</a></div>
+									</div>
+								</div>
 							@endforEach
 					</div>
 					<hr class="dot-line">
@@ -175,10 +173,13 @@
 							<form action="{{ url('auth/logout') }}" method="post">
 								@method('POST')
 								@csrf
-								<b style="color: blue">{{ Auth::user()->nick }}</b>님
-								<button type="submit" style="background-color: blue; color: white;" class="btn">로그아웃</button>
-								<br>
-								글 1 댓글 1 방명록 1
+								<div class="logout-box">
+									<div class="user-box">
+										<span><b>{{ Auth::user()->nick }}</b>님</span>
+										<button type="submit" class="btn-logout"><b>로그아웃</b></button>
+									</div>
+									<span class="user-info">글 1 댓글 1 방명록 1</span>
+								</div>
 							</form>
 						@endif
 					</div>
@@ -196,7 +197,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="ad">
+				<div class="side-ad">
 					<img src="data:image/png;base64,{{ $image }}">
 				</div>
 			</div>
@@ -320,10 +321,8 @@
 						</div>
 				@endforEach
 			</div>
+
 			@yield('footer')
 		</div>
 	</body>
-		<script>
-
-		</script>
 </html>

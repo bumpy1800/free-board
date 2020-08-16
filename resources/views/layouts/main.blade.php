@@ -43,7 +43,6 @@
 				<div class="newPost">
 					<h6 class="title "><b>최신글</b></h6>
 					<hr class="line">
-
 					<div class="gallery-card-container">
 						@foreach($imgPosts as $imgPost)
 						<div class="gallery-card-box">
@@ -143,11 +142,14 @@
 					@else
 						<form action="{{ url('auth/logout') }}" method="post">
 							@method('POST')
-		  				  	@csrf
-							<b style="color: blue">{{ Auth::user()->nick }}</b>님
-							<button type="submit" style="background-color: blue; color: white;" class="btn">로그아웃</button>
-							<br>
-							글 1 댓글 1 방명록 1
+							@csrf
+							<div class="logout-box">
+								<div class="user-box">
+									<span><b>{{ Auth::user()->nick }}</b>님</span>
+									<button type="submit" class="btn-logout"><b>로그아웃</b></button>
+								</div>
+								<span class="user-info">글 1 댓글 1 방명록 1</span>
+							</div>
 						</form>
 						<hr class="dot-line">
 						<div class="service">

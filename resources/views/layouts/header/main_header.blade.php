@@ -1,14 +1,38 @@
 
         @if(Auth::check())
-            <div class="mobile-login-box">
-                <span id="btn-mobile-login"><a href="{{ url('auth/logout') }}">Logout</a></span>
-            </div>
+            <form action="{{ url('auth/logout') }}" method="post" class="mobile-login-box">
+                @method('POST')
+                @csrf
+                <button type="submit" id="btn-mobile-logout">Logout</button>
+            </form>
         @else
             <div class="mobile-login-box">
-                <span id="btn-mobile-login">Login</span>
+                <button id="btn-mobile-login">Login</button>
             </div>
         @endif
 
+		<div class="back-cover">
+			<form action="{{ url('auth/login') }}" method="post" class="mobile-login-form">
+			@method('POST')
+			@csrf
+				<i class="fas fa-times"></i>
+				<div class="mobile-login-title">sjinside 로그인</div>
+				<div class="mobile-login-input">
+					<input name="user_id" type="text" class="mobile-login-id" placeholder="아이디" value="{{ Cookie::get('save_id') }}"/>
+					<input name="user_pw" type="text" class="mobile-login-pw" placeholder="비밀번호" value=""/>
+				</div>
+				<div class="mobile-login-save-box">
+					<input type="checkbox" class="btn-mobile-idcheck">
+					<span>아이디 저장</span>
+				</div>
+				<button type="submit" class="btn-mobile-login">로그인</button>
+				<div class="mobile-login-etc">
+					<button>아이디ㆍ비밀번호 찾기</button>
+					<span>계정이 없으신가요?<button>회원가입</button></span>
+				</div>
+			</form>
+		</div>
+        
         <div class="header-container">
             <div class="main-header">
                 <a href="/" class="logo"><img src="{{ asset('assets/img/sjinside-main-logo.png') }}" class="logo-img"></a>

@@ -9,6 +9,8 @@
     margin-bottom: 20px;
 }
 
+/*
+
 .newPost {
     margin-bottom: 0px;
 }
@@ -16,8 +18,8 @@
 	height: 180px;
 }
 .newPost .dot-line{
-    margin-top: 40px;
-	margin-bottom: 8px;
+    margin-top: 20px;
+	margin-bottom: 20px;
 }
 .newPost-more {
 	margin-top: 15px;
@@ -27,6 +29,7 @@
 	padding-top: 3px;
 	padding-bottom: 3px;
 }
+*/
 
 .recently-visit {
 	border: 1px solid #999;
@@ -198,11 +201,11 @@
     padding-right: 0px;
     padding-bottom: 0px;
 }
-.ad { /*수정x*/
+.side-ad { /*수정x*/
 	padding: 5px;
 	border: 1px solid #dee2e6;
 }
-.ad img {
+.side-ad img {
 	width: 100%;
 }
 .nologin {
@@ -339,15 +342,12 @@
 }
 
 @media(max-width: 991px) {
-	.ad {
+	.side-ad {
 		display: none;
 	}
 }
 
 @media(max-width: 767px) {
-	.newPost img {
-		height: 100px;
-	}
 	.row .col-4 {
 		flex: 0 0 50%;
 		max-width: 50%;
@@ -357,9 +357,6 @@
 	}
 	.m-show {
 		display: block;
-	}
-	.newPost .dot-line {
-		margin-top: 20px;
 	}
 	.recently-visit .fir{
 		width: 100%;
