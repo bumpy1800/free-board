@@ -618,15 +618,169 @@ input#user_security:checked + label.security:before {
 	margin-bottom: 0px;
 	border-bottom-width: 0px;
 }
-.liveRanking .ranking h6 {
-	font-size: 13px;
-}
-.liveRanking .ranking-left{
-	float: left;
+
+.boxline-issue {
+	border-color: gray;
+	padding-bottom: 0px;
+	margin-bottom: 15px;
 }
 
-.liveRanking .ranking-right{
-	float: right;
+.boxline-hit {
+	border-color: gray;
+	padding-bottom: 0px;
+	margin-bottom: 15px;
+}
+
+.boxline-hit-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.boxline-hit-top h6 {
+	margin: 0;
+}
+
+.hit-btn-box {
+	display: flex;
+	align-items: center;
+}
+
+.hit-btn-box span {
+	font-size: .8rem;
+	margin-right: 10px;
+}
+
+.boxline-hit-main {
+	width: 100%;
+}
+
+.boxline-hit-main img{
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	object-position: center;
+	border: 1px solid #d8d8d8;
+}
+
+.boxline-hit-main-title {
+	margin: 8px 0 3px 0;
+	font-size: .85rem;
+	font-weight: bold;
+}
+
+.boxline-hit-main-writeday {
+	margin-bottom: 14px;
+	color: #8b8b8b;
+	font-size: .8rem;
+}
+
+.hit-btn-box button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	width: 17px;
+	height: 17px;
+	font-size: 10px;
+	background-color: #4a56a9;
+	border: 0;
+}
+
+.daum-search {
+	display: flex;
+	flex-direction: column;
+	border-color: gray;
+	margin-bottom: 15px;
+}
+
+.daum-search-bar {
+	width: 100%;
+	height: 28px;
+	display: flex;
+}
+
+.daum-search-bar-input-box {
+	display: flex;
+	align-items: center;
+	width: 75%;
+	height: 100%;
+}
+
+.daum-search-bar-input-box input {
+	width: 85%;
+	height: 100%;
+	border: 1px solid dodgerblue;
+	border-right: 0px;
+	font-size: .9rem;
+	padding-left: 10px;
+}
+
+.daum-search-bar-input-box i {
+	display: flex;
+	align-items: center;
+	width: 15%;
+	height: 100%;
+	font-size: 1rem;
+	border: 1px solid dodgerblue;
+	color: dodgerblue;
+	border-left: 0;
+}
+
+.btn-daum-search {
+	width: 25%;
+	height: 100%;
+	font-size: .7rem;
+	background-color: dodgerblue;
+	border: 1px solid dodgerblue;
+	color: white;
+}
+
+.daum-search-menu {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	background-color: #f0f0f0;
+	border: 1px solid #c4c4c4;
+}
+
+.daum-search-menu a {
+	width: 33%;
+	text-align: center;
+	font-size: .7rem;
+	margin: 5px 0;
+}
+
+.daum-search-menu a:nth-child(2) {
+	border-left: 1px solid #c4c4c4;
+	border-right: 1px solid #c4c4c4;
+}
+
+.ranking {
+	display: flex;
+	width: 100%;
+}
+
+.boxline-issue-box{
+	display: flex;
+	width: 100%;
+	margin-bottom: .4rem;
+}
+
+.ranking-left, .ranking-right, .issue-left, .issue-right {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	font-size: 13px;
+}
+
+.issue-left a, .issue-right a {
+	margin-bottom: .2rem;
+}
+
+.liveRanking .ranking h6 {
+	font-size: 13px;
 }
 
 .ranking-more {
@@ -649,7 +803,7 @@ input#user_security:checked + label.security:before {
 
 .newGallery {
 	border-color: gray;
-	margin-bottom: 0px;
+	margin-bottom: 15px;
 }
 .newGallery ul {
 	list-style: none;
@@ -667,6 +821,65 @@ input#user_security:checked + label.security:before {
 .clear {
 	clear: both;
 }
+
+/* 검색창 */
+
+.container.search {
+	display: flex;
+	justify-content: space-between;
+}
+
+.search-left {
+	display: flex;
+	flex-direction: column;
+	width: 15%;
+	height: 100vh;
+}
+
+.search-center {
+	width: 55%;
+	height: 200vh;
+	background-color: black;
+}
+
+.search-right {
+	width: 25%;
+}
+
+.search-left-ad-box {
+	width: 100%;
+	border-left: 1px solid #c5c5c5;
+	border-right: 1px solid #c5c5c5;
+	border-bottom: 1px solid #c5c5c5;
+	background-color: #f3f3f3;
+	padding: 20px 10px;
+}
+
+.search-left-ad-box.top {
+	width: 100%;
+	border-top: 1px solid #c5c5c5;
+	padding: 20px 10px;
+	background-color: white;
+}
+
+.search-left-ad-text-lg {
+	font-size: 1.6rem;
+	font-weight: bold;
+	margin-bottom: 15px;
+	line-height: 2rem;
+}
+
+.search-left-ad-text-sm {
+	font-size: .9rem;
+	margin-bottom: 30px;
+}
+
+.search-left-ad-text-link {
+	font-size: .9rem;
+	color: royalblue;
+	word-break: break-all;
+}
+
 
 
 /*푸터*/

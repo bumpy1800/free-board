@@ -9,8 +9,9 @@
 		@yield('css')
 		<script defer src="{{ asset('assets/js/popup.js') }}"></script>
 	</head>
-		
+
 	<body>
+		@yield('header')
 		<div class="container search">
 			<div class="search-left">
 				<div class="search-left-ad-box top">
@@ -110,7 +111,7 @@
 						</div>
 					<div class="clear"></div>
 				</div>
-				
+
 				<div class="boxline boxline-hit">
 					<div class="boxline-hit-top">
 						<h6><strong>힛(HIT)</strong></h6>
@@ -128,9 +129,10 @@
 					</a>
 				</div>
 			</div>
-
 			<div class="clear"></div>
-
+			{{--
+				@yield('footer')
+			--}}
 		</div>
 	</body>
 </html>

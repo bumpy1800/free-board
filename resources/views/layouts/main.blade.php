@@ -9,9 +9,9 @@
 		@yield('css')
 		<script defer src="{{ asset('assets/js/popup.js') }}"></script>
 	</head>
-		@yield('header')
-		
+
 	<body>
+		@yield('header')
 		<div class="container">
 			<div class="mainLeft">
 				<div class="hit">

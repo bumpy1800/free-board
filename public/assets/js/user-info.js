@@ -172,6 +172,9 @@ $(document).on("click", ".last-check", function(){
 
                  $('.s-cnt').html('인증 코드 입력까지 남은 시간은 <b id="s-cnt" style="color: red;">5분 00초</b> 입니다.');
 
+                 text = '<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>';
+                 $('.modal-footer').html(text);
+
                  var date = new Date();
                  date.setTime(date.getTime() + 5*60*1000); // 5분
                  $.cookie('timeover', '1', { expires: date });
