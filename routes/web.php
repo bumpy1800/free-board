@@ -70,6 +70,11 @@ Route::resources([
     'display-ad' => 'DisplayadController',
 ]);
 
+//검색 임시
+Route::get('search', function () {
+	return view('search');
+});
+
 Route::resources([
     'user' => 'admin\UserController',
     'user_wait' => 'admin\UserWaitController',
