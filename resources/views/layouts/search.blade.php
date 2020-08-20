@@ -27,7 +27,47 @@
 			</div>
 
 			<div class="search-center">
+				<div class="search-result-gallery-box">
+					<div class="search-result-title">갤러리명 검색결과</div>
+					<ul class="search-result-gallery">
+						<li><a href="#">갤리리명 검색결과1</a></li>
+						<li><a href="#">갤리리명 검색결과2</a></li>
+						<li><a href="#">갤리리명 검색결과3</a></li>
+					</ul>
+					<button class="btn-more">갤러리명 더보기</button>
+				</div>
+				<div class="search-result-post-box">
+					<div class="search-result-title">게시물 검색결과</div>
+					<ul class="search-result-post">
+						<li>
+							<div class="search-post-sub"><a href="#">게시물 검색결과1</a></div>
+								<div class="search-post-content">게시물 검색결과1 내용</div>
+								<div>
+									<span class="search-post-info-gal">게임</span>
+									<span class="search-post-info-writeday">2020.08.20 17:50</span>
+							</div>
+						</li>
+						<li>
+							<div class="search-post-sub"><a href="#">게시물 검색결과1</a></div>
+								<div class="search-post-content">게시물 검색결과1 내용</div>
+								<div>
+									<span class="search-post-info-gal">게임</span>
+									<span class="search-post-info-writeday">2020.08.20 17:50</span>
+							</div>
+						</li>
+						<li>
+							<div class="search-post-sub"><a href="#">게시물 검색결과1</a></div>
+								<div class="search-post-content">게시물 검색결과1 내용</div>
+								<div>
+									<span class="search-post-info-gal">게임</span>
+									<span class="search-post-info-writeday">2020.08.20 17:50</span>
+							</div>
+						</li>
+					</ul>
+					<button class="btn-more">게시물 더보기</button>
+				</div>
 			</div>
+
 			<div class="search-right">
 				<div class="boxline boxline-issue">
 					<div>
@@ -130,9 +170,25 @@
 				</div>
 			</div>
 			<div class="clear"></div>
-			{{--
-				@yield('footer')
-			--}}
+		</div>
+		<div class="container searchft">
+			<div class="biz">
+				<span><a href="/">회사소개</a></span>
+				<span class="mLine">|</span>
+				<span><a href="/">인재채용</a></span>
+				<span class="mLine">|</span>
+				<span><a href="/">제휴안내</a></span>
+				<span class="mLine">|</span>
+				<span><a href="/">광고안내</a></span>
+				<span class="mLine">|</span>
+				<span><a href="/">이용약관</a></span>
+				<span class="mLine">|</span>
+				<span><a href="/"><b>개인정보처리방침</b></a></span>
+				<span class="mLine">|</span>
+				<span><a href="/">청소년보호정책</a></span>
+				<div class="copy">
+					Copyright &copy; 2020 - 2020 KSK&amp;KJS&amp;PCY. All rights reserved.
+        	</div>
 		</div>
 	</body>
 </html>
