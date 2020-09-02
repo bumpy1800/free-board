@@ -30,39 +30,29 @@
 				<div class="search-result-gallery-box">
 					<div class="search-result-title">갤러리명 검색결과</div>
 					<ul class="search-result-gallery">
-						<li><a href="#">갤리리명 검색결과1</a></li>
-						<li><a href="#">갤리리명 검색결과2</a></li>
-						<li><a href="#">갤리리명 검색결과3</a></li>
+						@foreach($gallerys as $gallery)
+							<li><a href="{{ url('gallery/'.$gallery->link) }}">{{ $gallery->name }}</a></li>
+						@endforeach
 					</ul>
 					<button class="btn-more">갤러리명 더보기</button>
 				</div>
 				<div class="search-result-post-box">
 					<div class="search-result-title">게시물 검색결과</div>
 					<ul class="search-result-post">
-						<li>
-							<div class="search-post-sub"><a href="#">게시물 검색결과1</a></div>
-								<div class="search-post-content">게시물 검색결과1 내용</div>
-								<div>
-									<span class="search-post-info-gal">게임</span>
-									<span class="search-post-info-writeday">2020.08.20 17:50</span>
-							</div>
-						</li>
-						<li>
-							<div class="search-post-sub"><a href="#">게시물 검색결과1</a></div>
-								<div class="search-post-content">게시물 검색결과1 내용</div>
-								<div>
-									<span class="search-post-info-gal">게임</span>
-									<span class="search-post-info-writeday">2020.08.20 17:50</span>
-							</div>
-						</li>
-						<li>
-							<div class="search-post-sub"><a href="#">게시물 검색결과1</a></div>
-								<div class="search-post-content">게시물 검색결과1 내용</div>
-								<div>
-									<span class="search-post-info-gal">게임</span>
-									<span class="search-post-info-writeday">2020.08.20 17:50</span>
-							</div>
-						</li>
+						@foreach($posts as $post)
+							<li>
+								<div class="search-post-sub"><a href="#">{{ $post->post_title }}</a></div>
+									<div class="search-post-content">{!! $post->post_contents !!}</div>
+									<div>
+										<span class="search-post-info-gal">
+											<a href="{{ url('gallery/'.$post->gallery_link)}}">
+												{{ $post->gallery_name }}
+											</a>
+										</span>
+										<span class="search-post-info-writeday">{{ $post->post_reg_date }}</span>
+								</div>
+							</li>
+						@endforeach
 					</ul>
 					<button class="btn-more">게시물 더보기</button>
 				</div>
@@ -75,20 +65,32 @@
 					</div>
 					<hr class="dot-line">
 						<div id="lg-dropdown" class="boxline-issue-box">
-							<div class="issue-left">
-								<a href="#">이슈1</a>
-								<a href="#">이슈2</a>
-								<a href="#">이슈3</a>
-								<a href="#">이슈4</a>
-								<a href="#">이슈5</a>
-							</div>
-							<div class="issue-right">
-								<a href="#">이슈6</a>
-								<a href="#">이슈7</a>
-								<a href="#">이슈8</a>
-								<a href="#">이슈9</a>
-								<a href="#">이슈10</a>
-							</div>
+							@php
+								$i = 0;
+							@endphp
+							@foreach($todayIssues as $todayIssue)
+								@if($i < 5)
+									@if($i % 5 == 0)
+										<div class="issue-left">
+									@endif
+									<a href="{{ url('search/'.$todayIssue->keyword) }}">{{ $todayIssue->keyword }}</a>
+									@if($i % 5 == 4)
+										</div>
+									@endif
+								@endif
+								@if($i > 4)
+									@if($i % 5 == 0)
+										<div class="issue-right">
+									@endif
+									<a href="{{ url('search/'.$todayIssue->keyword) }}">{{ $todayIssue->keyword }}</a>
+									@if($i % 5 == 4)
+										</div>
+									@endif
+								@endif
+								@php
+									$i ++;
+								@endphp
+							@endforeach
 						</div>
 				</div>
 
@@ -101,9 +103,9 @@
 						<button class="btn-daum-search">다음 검색</button>
 					</div>
 					<div class="daum-search-menu">
-						<a href="#">날씨</a>
-						<a href="#">운세</a>
-						<a href="#">환율</a>
+						<a target="_blank" href="https://search.daum.net/search?&w=tot&DA=DIK&q=날씨">날씨</a>
+						<a target="_blank" href="https://search.daum.net/search?&w=tot&DA=DIK&q=운세">운세</a>
+						<a target="_blank" href="https://search.daum.net/search?&w=tot&DA=DIK&q=환율">환율</a>
 					</div>
 				</form>
 

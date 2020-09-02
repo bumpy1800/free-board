@@ -56,7 +56,7 @@ class IssueController extends Controller
                 ]);
             }
         }
-        return redirect(route('search.index'));
+        return redirect('search/'.$saveKeyword);
     }
 
     public function update(Request $request, $id)

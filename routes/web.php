@@ -106,7 +106,6 @@ Route::resources([
 	'comment' => 'CommentController',
 	'notice' => 'NoticeController',
 	'issue' => 'IssueController',
-	'search' => 'SearchController',
 
     'admin_post' => 'admin\PostController',
     'admin_category' => 'admin\CategoryController',
@@ -119,6 +118,8 @@ Route::resources([
     'admin_qna' => 'admin\QnaController',
     'admin_qna_category' => 'admin\Qna_categoryController'
 ]);
+
+Route::get('search/{keyword}', 'SearchController@index');
 
 //로그인이 필요한 경로들
 Route::middleware(['guest'])->group(function() {

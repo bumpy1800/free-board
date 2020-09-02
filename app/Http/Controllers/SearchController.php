@@ -30,12 +30,30 @@ class SearchController extends Controller
         $this->issues = Issue::select('keyword')->where('search_date', date('Y-m-d'))->orderby('count', 'desc')->limit(8)->get();
     }
 
-    public function index() {
+    public function index($keyword) {
+
+        $posts = Post::select('post.title as post_title', 'post.contents as post_contents',
+            'post.reg_date as post_reg_date',
+            'gallery.name as gallery_name', 'gallery.link as gallery_link')
+            ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
+            ->where('post.title', 'like', '%'.$keyword.'%')
+            ->orWhere('post.contents', 'like', '%'.$keyword.'%')
+            ->get();
+        $gallerys = Gallery::where('name', 'like', '%'.$keyword.'%')
+            ->get();
+
+        $todayIssues = Issue::select('keyword')->where('search_date', date('Y-m-d'))->orderby('count', 'desc')->limit(10)->get();
+
         return view('search', [
             'yPostCnt' => $this->yPostCnt,
             'yCommentCnt' => $this->yCommentCnt,
             'footer_gallerys' => $this->footer_gallerys,
             'issues' => $this->issues,
+
+            'posts' => $posts,
+            'gallerys' => $gallerys,
+            'todayIssues' => $todayIssues,
+            'keyword' => $keyword,
         ]);
     }
 
