@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>@yield('title', '없음')</title>
 		@yield('css')
-		<script defer src="{{ asset('assets/js/popup.js') }}"></script>
+		<script defer src="{{ asset('assets/js/search.js') }}"></script>
 	</head>
 
 	<body>
@@ -42,7 +42,7 @@
 						@foreach($posts as $post)
 							<li>
 								<div class="search-post-sub"><a href="#">{{ $post->post_title }}</a></div>
-									<div class="search-post-content">{!! $post->post_contents !!}</div>
+									<div class="search-post-content">{!! preg_replace('/<img[^>]+\>/i', '사진', $post->post_contents) !!}</div>
 									<div>
 										<span class="search-post-info-gal">
 											<a href="{{ url('gallery/'.$post->gallery_link)}}">
@@ -64,7 +64,7 @@
 						<h6><strong>오늘의 이슈</strong></h6>
 					</div>
 					<hr class="dot-line">
-						<div id="lg-dropdown" class="boxline-issue-box">
+						<div class="boxline-issue-box">
 							@php
 								$i = 0;
 							@endphp
@@ -114,27 +114,49 @@
 						<h6><strong>실북갤</strong></h6>
 					</div>
 					<hr class="dot-line">
-						<div id="lg-dropdown" class="ranking">
-							<div class="ranking-left">
+					<div id="lg-dropdown" class="ranking">
+						@php
+							$i = 0;
+						@endphp
+						@foreach($liveGallerys as $liveGallery)
+							@if($i < 5)
+								@if($i % 5 == 0)
+									<div class="ranking-left">
+								@endif
 								<h6>
-									<a href="#" class="badge badge-primary">1</a>
-									<a href="#">갤러리 왼쪽</a>
+									<a href="{{ url('gallery/'.$liveGallery->gallery_id) }}" class="badge badge-primary">{{ $i+1 }}</a>
+									<a href="{{ url('gallery/'.$liveGallery->gallery_id) }}">{{ $liveGallery->gallery_name }}</a>
 								</h6>
-							</div>
-							<div class="ranking-right">
+								@if($i % 5 == 4)
+									</div>
+								@endif
+							@endif
+
+							@if($i > 4)
+								@if($i % 5 == 0)
+									<div class="ranking-right">
+								@endif
 								<h6>
-									<a href="#" class="badge badge-primary">6</a>
-									<a href="#">갤러리 오른쪽</a>
+									<a href="{{ url('gallery/'.$liveGallery->gallery_id) }}" class="badge badge-primary">6</a>
+									<a href="{{ url('gallery/'.$liveGallery->gallery_id) }}">{{ $liveGallery->gallery_name }}</a>
 								</h6>
-							</div>
-						</div>
+								@if($i % 5 == 4)
+									</div>
+								@endif
+							@endif
+
+							@php
+								$i ++;
+							@endphp
+						@endforeach
+					</div>
 				</div>
 
-				<div class="ranking-more main-lg-next">
+				<div class="ranking-more">
 					<div id="ranking-more">
 						<div class="live-pagination">
 								<div id="live-pagination">
-									페이지네이션
+									{{ $liveGallerys->links('vendor.pagination.gallery-plus-pagination2') }}
 								</div>
 								<div class="clear"></div>
 						</div>
@@ -190,7 +212,8 @@
 				<span><a href="/">청소년보호정책</a></span>
 				<div class="copy">
 					Copyright &copy; 2020 - 2020 KSK&amp;KJS&amp;PCY. All rights reserved.
-        	</div>
+        		</div>
+			</div>
 		</div>
 	</body>
 </html>

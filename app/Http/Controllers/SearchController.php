@@ -30,7 +30,16 @@ class SearchController extends Controller
         $this->issues = Issue::select('keyword')->where('search_date', date('Y-m-d'))->orderby('count', 'desc')->limit(8)->get();
     }
 
-    public function index($keyword) {
+    public function index(Request $request, $keyword) {
+
+        if($request->input('rank') && $request->input('page')) {
+            $result = $this->getLiveGalleryPageResult($request->input('rank'), $request->input('page'));
+            return response()->json([
+                'rank'=>$result['rank'],
+                'page'=>$result['page'],
+                'liveGallerys'=>$result['liveGallerys']
+            ]);
+        }
 
         $posts = Post::select('post.title as post_title', 'post.contents as post_contents',
             'post.reg_date as post_reg_date',
@@ -44,6 +53,14 @@ class SearchController extends Controller
 
         $todayIssues = Issue::select('keyword')->where('search_date', date('Y-m-d'))->orderby('count', 'desc')->limit(10)->get();
 
+        $liveGallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                            ->groupBy('gallery_id')
+                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                            ->orderby('total', 'desc')
+                            ->limit(50)
+                            ->paginate(10);
+        $liveGallerys->withPath('?rank=11');
+
         return view('search', [
             'yPostCnt' => $this->yPostCnt,
             'yCommentCnt' => $this->yCommentCnt,
@@ -54,7 +71,23 @@ class SearchController extends Controller
             'gallerys' => $gallerys,
             'todayIssues' => $todayIssues,
             'keyword' => $keyword,
+            'liveGallerys' => $liveGallerys,
         ]);
     }
 
+    public function getLiveGalleryPageResult($rank, $page) {
+        $liveGallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
+                            ->groupBy('gallery_id')
+                            ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
+                            ->orderby('total', 'desc')
+                            ->limit(50)
+                            ->paginate(10);
+        $liveGallerys->withPath('?rank='.$rank);
+
+        return ([
+            'rank' => $rank,
+            'page' => $page,
+            'liveGallerys' => $liveGallerys
+        ]);
+    }
 }

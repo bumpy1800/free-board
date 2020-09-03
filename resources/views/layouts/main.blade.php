@@ -169,24 +169,42 @@
 						<h6><strong>실북갤</strong></h6>
 					</div>
 					<hr class="dot-line">
-						<div id="lg-dropdown" class="ranking">
+					<div id="lg-dropdown" class="ranking">
+						@php
+							$i = 0;
+						@endphp
+						@foreach($liveGallerys as $liveGallery)
+							@if($i < 5)
+								@if($i % 5 == 0)
+									<div class="ranking-left">
+								@endif
+								<h6>
+									<a href="{{ url('gallery/'.$liveGallery->gallery_id) }}" class="badge badge-primary">{{ $i+1 }}</a>
+									<a href="{{ url('gallery/'.$liveGallery->gallery_id) }}">{{ $liveGallery->gallery_name }}</a>
+								</h6>
+								@if($i % 5 == 4)
+									</div>
+								@endif
+							@endif
+
+							@if($i > 4)
+								@if($i % 5 == 0)
+									<div class="ranking-right">
+								@endif
+								<h6>
+									<a href="{{ url('gallery/'.$liveGallery->gallery_id) }}" class="badge badge-primary">6</a>
+									<a href="{{ url('gallery/'.$liveGallery->gallery_id) }}">{{ $liveGallery->gallery_name }}</a>
+								</h6>
+								@if($i % 5 == 4)
+									</div>
+								@endif
+							@endif
+
 							@php
-									$i = 1;
+								$i ++;
 							@endphp
-							@forEach($liveGallerys as $liveGallery)
-								<div class="ranking-left">
-									<h6>
-										<a href="{{ url('gallery/'.$liveGallery->gallery_link) }}" class="badge badge-primary">{{ $i }}</a>
-										<a href="{{ url('gallery/'.$liveGallery->gallery_link) }}">{{ $liveGallery->gallery_name }}</a>
-									</h6>
-								</div>
-								<div class="clear"></div>
-								@php
-									$i ++;
-								@endphp
-							@endforEach
-						</div>
-					<div class="clear"></div>
+						@endforeach
+					</div>
 				</div>
 
 				<div class="ranking-more main-lg-next">

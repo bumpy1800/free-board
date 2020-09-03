@@ -1,17 +1,4 @@
-$(document).on("click", ".header-menu-item #noUser", function(){
-    alert("로그인이 필요한 서비스입니다.");
-    return false;
-});
-
-$(document).on("click", "#user_save, #user_security", function(){
-    if($(this).val() == 0) {
-        $(this).val('1');
-    } else {
-        $(this).val('0');
-    }
-});
-
-$(document).on("click", ".main-lg-next .lg-next", function(e){
+$(document).on("click", "#live-pagination .lg-next", function(e){
     var href = $(this).attr("href");
     href = href.split('&');
     var rank = href[0].substring(6, 99);
@@ -94,31 +81,30 @@ $(document).on("click", ".main-lg-next .lg-next", function(e){
                   }
               }
 
-              var pagination = ''
-              pagination += '<nav style="display: inline-block; margin-right: 10px;">';
-              pagination += '<ul class="pagination" style="margin-bottom: 0px;">';
+             var pagination = ''
+             pagination += '<nav style="display: inline-block; margin-right: 10px;">';
+             pagination += '<ul class="pagination" style="margin-bottom: 0px;">';
 
-              i = Number(data['rank']) + 10;
-              if(data['liveGallerys']['next_page_url'] == null) {
-                  i = 1;
-                  href = data['liveGallerys']['first_page_url'];
-              } else {
-                  href = data['liveGallerys']['next_page_url'];
-              }
-              href = href.split('&');
-              rank = i;
-              page = href[1].substring(5, 99);
-              href = '?rank='+ rank +'&page=' + page;
-              pagination += '&nbsp;<li><b><a class="lg-next" href="' + href + '" onclick="return false;">';
-              pagination += '' + i + '위 - ' + (i+9) + '위</a></b></li>&nbsp;';
-              pagination += '</ul></nav>';
+             i = Number(data['rank']) + 10;
+             if(data['liveGallerys']['next_page_url'] == null) {
+                 i = 1;
+                 href = data['liveGallerys']['first_page_url'];
+             } else {
+                 href = data['liveGallerys']['next_page_url'];
+             }
+             href = href.split('&');
+             rank = i;
+             page = href[1].substring(5, 99);
+             href = '?rank='+ rank +'&page=' + page;
+             pagination += '&nbsp;<li><b><a class="lg-next" href="' + href + '" onclick="return false;">';
+             pagination += '' + i + '위 - ' + (i+9) + '위</a></b></li>&nbsp;';
+             pagination += '</ul></nav>';
 
-              $('#lg-dropdown').html(value);
-              //$('.ranking-left').appendTo(remainText);
-              $('#live-pagination').html(pagination);
+             $('#lg-dropdown').html(value);
+             $('#live-pagination').html(pagination);
          },
-        error:function(request,status,error){
-            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-        }
+         error:function(request,status,error){
+             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+         }
     });
 });
