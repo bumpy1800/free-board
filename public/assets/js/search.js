@@ -108,3 +108,70 @@ $(document).on("click", "#live-pagination .lg-next", function(e){
          }
     });
 });
+
+
+$(document).on("click", ".btn-hit-right", function(){
+    var id = $(this).attr("id");
+
+    switch(id) {
+        case '0':
+            $('.hitPostBox0').hide();
+            $('.hitPostBox1').show();
+            $('.hitPostBox2').hide();
+            $('.currentPage').html('1/3');
+            $('.btn-hit-left').attr("id", '2');
+            $(this).attr("id", '1');
+            break;
+        case '1':
+            $('.hitPostBox0').hide();
+            $('.hitPostBox1').hide();
+            $('.hitPostBox2').show();
+            $('.currentPage').html('2/3');
+            $('.btn-hit-left').attr("id", '0');
+            $(this).attr("id", '2');
+            break;
+        case '2':
+            $('.hitPostBox0').show();
+            $('.hitPostBox1').hide();
+            $('.hitPostBox2').hide();
+            $('.currentPage').html('3/3');
+            $('.btn-hit-left').attr("id", '1');
+            $(this).attr("id", '0');
+            break;
+        default :
+          document.write("nothing");
+    }
+});
+
+$(document).on("click", ".btn-hit-left", function(){
+    var id = $(this).attr("id");
+
+    switch(id) {
+        case '0':
+            $('.hitPostBox0').hide();
+            $('.hitPostBox1').show();
+            $('.hitPostBox2').hide();
+            $('.currentPage').html('1/3');
+            $(this).attr("id", '2');
+            $('.btn-hit-right').attr("id", '1');
+            break;
+        case '1':
+            $('.hitPostBox0').hide();
+            $('.hitPostBox1').hide();
+            $('.hitPostBox2').show();
+            $('.currentPage').html('2/3');
+            $(this).attr("id", '0');
+            $('.btn-hit-right').attr("id", '2');
+            break;
+        case '2':
+            $('.hitPostBox0').show();
+            $('.hitPostBox1').hide();
+            $('.hitPostBox2').hide();
+            $('.currentPage').html('3/3');
+            $(this).attr("id", '1');
+            $('.btn-hit-right').attr("id", '0');
+            break;
+        default:
+            alert("error");
+    }
+});

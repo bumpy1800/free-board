@@ -67,6 +67,7 @@
 						<div class="boxline-issue-box">
 							@php
 								$i = 0;
+								$issueCnt = count($todayIssues);
 							@endphp
 							@foreach($todayIssues as $todayIssue)
 								@if($i < 5)
@@ -74,7 +75,7 @@
 										<div class="issue-left">
 									@endif
 									<a href="{{ url('search/'.$todayIssue->keyword) }}">{{ $todayIssue->keyword }}</a>
-									@if($i % 5 == 4)
+									@if($i % 5 == 4 || $issueCnt == $i+1)
 										</div>
 									@endif
 								@endif
@@ -83,7 +84,7 @@
 										<div class="issue-right">
 									@endif
 									<a href="{{ url('search/'.$todayIssue->keyword) }}">{{ $todayIssue->keyword }}</a>
-									@if($i % 5 == 4)
+									@if($i % 5 == 4 || $issueCnt == $i+1)
 										</div>
 									@endif
 								@endif
@@ -170,7 +171,9 @@
 					<hr class="dot-line">
 						<div class="list">
 							<ul>
-								<li><a href="#">이름</a></li>
+								@foreach($newGallerys as $newGallery)
+									<li><a href="#">{{ $newGallery->name }}</a></li>
+								@endforeach
 							</ul>
 						</div>
 					<div class="clear"></div>
@@ -180,17 +183,41 @@
 					<div class="boxline-hit-top">
 						<h6><strong>힛(HIT)</strong></h6>
 						<div class="hit-btn-box">
-							<span>1/3</span>
-							<button class="btn-hit-left">◀</button>
-							<button class="btn-hit-right">▶</button>
+							<span class="currentPage">1/3</span>
+							<button class="btn-hit-left" id="2">◀</button>
+							<button class="btn-hit-right" id="1">▶</button>
 						</div>
 					</div>
 					<hr class="dot-line">
-					<a href="#" class="boxline-hit-main">
-						<img src="{{ asset('assets/img/iu.jpg') }}"/>
-						<div class="boxline-hit-main-title">인생이 나이스입니다.</div>
-						<div class="boxline-hit-main-writeday">작성일 2020-08-18</div>
-					</a>
+					@php
+						$i = 0;
+					@endphp
+					@foreach($hitPosts as $hitPost)
+						@if($i == 0)
+							<a href="#" class="boxline-hit-main hitPostBox{{ $i }}" id="{{ $i }}">
+								@if(isset($hitPost->post_thumbnail))
+									<img src="{{ asset('assets/img/no_image.png') }}" class="gallery-card-img" alt="...">
+								@else
+									<img src="{{ $hitPost->post_thumbnail }}" alt="..." class="gallery-card-img">
+								@endif
+								<div class="boxline-hit-main-title">{{ $hitPost->post_title }}</div>
+								<div class="boxline-hit-main-writeday">작성일 {{ $hitPost->post_reg_date }}</div>
+							</a>
+						@else
+							<a style="display: none;" href="#" class="boxline-hit-main hitPostBox{{ $i }}" id="{{ $i }}">
+								@if(isset($hitPost->post_thumbnail))
+									<img src="{{ asset('assets/img/no_image.png') }}" class="gallery-card-img" alt="...">
+								@else
+									<img src="{{ $hitPost->post_thumbnail }}" alt="..." class="gallery-card-img">
+								@endif
+								<div class="boxline-hit-main-title">{{ $hitPost->post_title }}</div>
+								<div class="boxline-hit-main-writeday">작성일 {{ $hitPost->post_reg_date }}</div>
+							</a>
+						@endif
+						@php
+							$i ++;
+						@endphp
+					@endforeach
 				</div>
 			</div>
 			<div class="clear"></div>

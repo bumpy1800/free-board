@@ -31,12 +31,11 @@ class SearchController extends Controller
     }
 
     public function index(Request $request, $keyword) {
-
         if($request->input('rank') && $request->input('page')) {
             $result = $this->getLiveGalleryPageResult($request->input('rank'), $request->input('page'));
             return response()->json([
                 'rank'=>$result['rank'],
-                'page'=>$result['page'],
+                'page'=>$request->input('page'),
                 'liveGallerys'=>$result['liveGallerys']
             ]);
         }
@@ -53,6 +52,7 @@ class SearchController extends Controller
 
         $todayIssues = Issue::select('keyword')->where('search_date', date('Y-m-d'))->orderby('count', 'desc')->limit(10)->get();
 
+        //실북갤
         $liveGallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
                             ->groupBy('gallery_id')
                             ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
@@ -60,6 +60,23 @@ class SearchController extends Controller
                             ->limit(50)
                             ->paginate(10);
         $liveGallerys->withPath('?rank=11');
+
+        //신설갤
+        $todayTo = date('Y-m-d');
+        $todayFrom = date('Y-m-d', strtotime($todayTo.'-7days'));
+        $newGallerys = Gallery::select('name', 'link')
+                      ->whereBetween('agree_date', [$todayFrom, $todayTo])
+                      ->get();
+
+        //HIT게시글
+        $hitPosts = Post::join('post_hit', 'post.id', '=', 'post_hit.post_id')
+                        ->select(
+                            'post.id as post_id', 'post.title as post_title',
+                            'post.reg_date as post_reg_date', 'post.thumbnail as post_thumbnail'
+                        )
+                        ->orderby('post.id', 'desc')
+                        ->limit(3)
+                        ->get();
 
         return view('search', [
             'yPostCnt' => $this->yPostCnt,
@@ -72,10 +89,12 @@ class SearchController extends Controller
             'todayIssues' => $todayIssues,
             'keyword' => $keyword,
             'liveGallerys' => $liveGallerys,
+            'newGallerys' => $newGallerys,
+            'hitPosts' => $hitPosts,
         ]);
     }
 
-    public function getLiveGalleryPageResult($rank, $page) {
+    public function getLiveGalleryPageResult($rank) {
         $liveGallerys = Post::join('gallery', 'post.gallery_id', '=', 'gallery.id')
                             ->groupBy('gallery_id')
                             ->selectRaw('gallery.name as gallery_name, gallery.link as gallery_link, count(*) as total')
@@ -86,7 +105,6 @@ class SearchController extends Controller
 
         return ([
             'rank' => $rank,
-            'page' => $page,
             'liveGallerys' => $liveGallerys
         ]);
     }

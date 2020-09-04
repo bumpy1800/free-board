@@ -22,9 +22,9 @@
 						<div class="gallery-card-box">
 							<div class="gallery-card-img-box">
 								@if($hitPost->post_thumbnail == '' || $hitPost->post_thumbnail == null)
-								  		<img src="https://wstatic.dcinside.com/main/main2011/2020/01/17/gall_60616_20200117155638.jpg" class="gallery-card-img" alt="...">
+								  	<img src="{{ asset('assets/img/no_image.png') }}" class="gallery-card-img" alt="...">
 								@else
-								<img src="{{ $hitPost->post_thumbnail }}" alt="..." class="gallery-card-img">
+									<img src="{{ $hitPost->post_thumbnail }}" alt="..." class="gallery-card-img">
 								@endif
 							</div>
 							<div class="gallery-card-info">
