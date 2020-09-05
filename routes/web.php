@@ -119,7 +119,10 @@ Route::resources([
     'admin_qna_category' => 'admin\Qna_categoryController'
 ]);
 
+//검색
 Route::get('search/{keyword}', 'SearchController@index');
+Route::get('search-morePost/{keyword}', 'SearchController@showMorePost');
+Route::get('search-moreGallery/{keyword}', 'SearchController@showMoreGallery');
 
 //로그인이 필요한 경로들
 Route::middleware(['guest'])->group(function() {

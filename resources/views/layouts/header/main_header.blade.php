@@ -71,7 +71,7 @@
                         @method('POST')
                         @csrf
                         <div class="search-line">
-                            <input type="text" placeholder="{{ isset($keyword) ? $keyword : '갤러리 & 통합검색' }}" name="search-keyword" class="search-space" />
+                            <input type="text" value="{{ isset($keyword) ? $keyword : '' }}" placeholder="갤러리 & 통합검색" name="search-keyword" class="search-space" />
                             <button class="btn-search"><i class="fas fa-search"></i></button>
                         </div>
                     </form>

@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>@yield('title', '없음')</title>
 		@yield('css')
+		<link href="{{ asset('assets/css/search.css') }}" rel="stylesheet">
 		<script defer src="{{ asset('assets/js/search.js') }}"></script>
 	</head>
 
@@ -34,41 +35,9 @@
 							<li><a href="{{ url('gallery/'.$gallery->link) }}">{{ $gallery->name }}</a></li>
 						@endforeach
 					</ul>
-					@if(count($gallerys) >= 5)
-						<button class="btn-more">
-							<a href="{{ url('search-moreGallery/'.$keyword) }}">
-								갤러리명 더보기
-							</a>
-						</button>
-					@endif
-				</div>
-				<div class="search-result-post-box">
-					<div class="search-result-title">게시물 검색결과</div>
-					<ul class="search-result-post">
-						@foreach($posts as $post)
-							<li>
-								<div class="search-post-sub">
-									<a href="{{ url('gallery-post/'.$post->gallery_link.'/'.$post->post_id) }}">
-										{{ $post->post_title }}
-									</a>
-								</div>
-								<div class="search-post-content">
-									{!! preg_replace('/<img[^>]+\>/i', '사진', $post->post_contents) !!}
-								</div>
-								<div>
-									<span class="search-post-info-gal">
-										<a href="{{ url('gallery/'.$post->gallery_link)}}">
-											{{ $post->gallery_name }}
-										</a>
-									</span>
-									<span class="search-post-info-writeday">{{ $post->post_reg_date }}</span>
-								</div>
-							</li>
-						@endforeach
-					</ul>
-					@if(count($posts) >= 10)
-						<button class="btn-more"><a href="{{ url('search-morePost/'.$keyword) }}">게시물 더보기</a></button>
-					@endif
+					<div class="gallery-page">
+						{{ $gallerys->links() }}
+					</div>
 				</div>
 			</div>
 

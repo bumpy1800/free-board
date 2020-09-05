@@ -1,0 +1,12 @@
+.post-page,
+.gallery-page {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.post-page .page-item.active .page-link,
+.gallery-page .page-item.active .page-link {
+	background-color: #4a56a9;
+    border-color: #4a56a9;
+}

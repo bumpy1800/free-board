@@ -115,8 +115,8 @@ $(document).on("click", ".btn-hit-right", function(){
 
     switch(id) {
         case '0':
-            $('.hitPostBox0').hide();
-            $('.hitPostBox1').show();
+            $('.hitPostBox0').show();
+            $('.hitPostBox1').hide();
             $('.hitPostBox2').hide();
             $('.currentPage').html('1/3');
             $('.btn-hit-left').attr("id", '2');
@@ -124,16 +124,16 @@ $(document).on("click", ".btn-hit-right", function(){
             break;
         case '1':
             $('.hitPostBox0').hide();
-            $('.hitPostBox1').hide();
-            $('.hitPostBox2').show();
+            $('.hitPostBox1').show();
+            $('.hitPostBox2').hide();
             $('.currentPage').html('2/3');
             $('.btn-hit-left').attr("id", '0');
             $(this).attr("id", '2');
             break;
         case '2':
-            $('.hitPostBox0').show();
+            $('.hitPostBox0').hide();
             $('.hitPostBox1').hide();
-            $('.hitPostBox2').hide();
+            $('.hitPostBox2').show();
             $('.currentPage').html('3/3');
             $('.btn-hit-left').attr("id", '1');
             $(this).attr("id", '0');
@@ -148,8 +148,8 @@ $(document).on("click", ".btn-hit-left", function(){
 
     switch(id) {
         case '0':
-            $('.hitPostBox0').hide();
-            $('.hitPostBox1').show();
+            $('.hitPostBox0').show();
+            $('.hitPostBox1').hide();
             $('.hitPostBox2').hide();
             $('.currentPage').html('1/3');
             $(this).attr("id", '2');
@@ -157,16 +157,16 @@ $(document).on("click", ".btn-hit-left", function(){
             break;
         case '1':
             $('.hitPostBox0').hide();
-            $('.hitPostBox1').hide();
-            $('.hitPostBox2').show();
+            $('.hitPostBox1').show();
+            $('.hitPostBox2').hide();
             $('.currentPage').html('2/3');
             $(this).attr("id", '0');
             $('.btn-hit-right').attr("id", '2');
             break;
         case '2':
-            $('.hitPostBox0').show();
+            $('.hitPostBox0').hide();
             $('.hitPostBox1').hide();
-            $('.hitPostBox2').hide();
+            $('.hitPostBox2').show();
             $('.currentPage').html('3/3');
             $(this).attr("id", '1');
             $('.btn-hit-right').attr("id", '0');
