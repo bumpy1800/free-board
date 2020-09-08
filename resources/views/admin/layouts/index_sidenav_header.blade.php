@@ -53,7 +53,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('user.index') }}">회원목록 </a>
                         <a class="nav-link" href="{{ route('user_wait.index') }}">인증대기회원</a>
-                        <a class="nav-link" href="layout-sidenav-light.php">회원통계</a>
+                        <a class="nav-link" href="{{ url('admin_user_stat') }}">회원통계</a>
                         <a class="nav-link" href="{{ route('policy.index') }}">가입약관 및 개인정보 보호정책</a>
                     </nav>
                 </div>
@@ -78,9 +78,10 @@
                 </a>
                 <div class="collapse" id="police" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                      <a class="nav-link" href="{{ route('admin_singo.index') }}">신고목록</a>
-                      <a class="nav-link" href="{{ route('admin_singo_wait.index') }}">보류목록</a>
-                      <a class="nav-link" href="layout-static.php">신고통계</a>
+                        <a class="nav-link" href="{{ route('admin_singo_category.index') }}">신고카테고리 관리</a>
+                        <a class="nav-link" href="{{ route('admin_singo.index') }}">신고목록</a>
+                        <a class="nav-link" href="{{ route('admin_singo_wait.index') }}">보류목록</a>
+                        <a class="nav-link" href="{{ url('admin_singo_stat') }}">신고통계</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#qna" aria-expanded="false" aria-controls="collapseLayouts">

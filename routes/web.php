@@ -76,7 +76,8 @@ Route::resources([
     'user_wait' => 'admin\UserWaitController',
     'admin_logo' => 'admin\LogoController',
     'admin_singo' => 'admin\SingoController',
-    'admin_singo_wait' => 'admin\SingoWaitController'
+    'admin_singo_wait' => 'admin\SingoWaitController',
+	'admin_singo_category' => 'admin\Singo_CategoryController'
 ]);
 Route::PATCH('admin/singo-wait/{id}', 'admin\SingoController@wait');
 
@@ -98,6 +99,12 @@ Route::get('admin/policy-add-form', 'admin\PolicyController@create');
 Route::get('admin/policy-edit-form/{id}', 'admin\PolicyController@edit');
 Route::get('admin/policy-destroy/{id}', 'admin\PolicyController@destroy');
 Route::get('admin/policy-show/{id}', 'admin\PolicyController@show');
+
+Route::any('admin_singo_stat', 'admin\SingoController@stat_index');
+Route::any('admin_singo_chart', 'admin\SingoController@chart_index');
+
+Route::any('admin_user_stat', 'admin\UserController@stat_index');
+Route::any('admin_user_chart', 'admin\UserController@chart_index');
 
 Route::resources([
     'gallery' => 'GalleryController',

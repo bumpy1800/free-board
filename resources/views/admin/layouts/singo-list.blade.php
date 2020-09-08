@@ -40,6 +40,7 @@
                                             <th>게시글</th>
                                             <th>작성자</th>
                                             <th>신고자</th>
+                                            <th>신고날짜</th>
                                             <th>제목</th>
                                             <th>신고내용</th>
                                             <th>답변</th>
@@ -53,6 +54,7 @@
                                             <th>게시글</th>
                                             <th>작성자</th>
                                             <th>신고자</th>
+                                            <th>신고날짜</th>
                                             <th>제목</th>
                                             <th>신고내용</th>
                                             <th>답변</th>
@@ -63,14 +65,23 @@
                                         @foreach ($Singos as $singo)
                                           <tr>
                                             <td>{{ $singo->id }}</td>
-                                            <td>{{ $singo->category_id }}</td>
-                                            <td><a href="{{ route('admin_singo.edit', $singo->id) }}">{{ $singo->post_id }}</a></td>
-                                            <td>{{ $singo->post_writer }}</td>
-                                            <td>{{ $singo->reporter }}</td>
+                                            <td>{{ $singo->singo_category_name }}</td>
+                                            <td><a href="{{ route('admin_singo.edit', $singo->id) }}">{{ $singo->post_title }}</a></td>
+                                            <td>{{ $singo->writer }}</td>
+                                            <td>{{ $singo->user_reporter }}</td>
+                                            <td>{{ $singo->reg_date }}</td>
                                             <td>{{ $singo->title }}</td>
                                             <td>{{ $singo->content }}</td>
                                             <td>{{ $singo->solution }}</td>
-                                            <td>{{ $singo->status }}</td>
+                                            @if($singo->status == -1)
+                                                <td>보류</td>
+                                            @elseif($singo->status == 1)
+                                                <td>답변대기중</td>
+                                            @elseif($singo->status == 2)
+                                                <td>답변완료</td>
+                                            @else
+                                                <td>에러</td>
+                                            @endif
                                             <form name="form" action="/admin/singo-wait/{{ $singo->id }}" method="post">
                                               @METHOD('PATCH')
                                               @csrf
@@ -82,6 +93,7 @@
                                                 <td><button type="submit" id="del" class="btn btn-danger">삭제</button></td>
                                             </form>
                                           </tr>
+
                                         @endforeach
                                     </tbody>
                                 </table>

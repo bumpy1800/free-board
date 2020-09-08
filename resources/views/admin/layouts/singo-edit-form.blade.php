@@ -40,21 +40,21 @@ $Singo<!DOCTYPE html>
                                 </div>
                                 <div class="form-group col-3">
                                   <label for="category">분류</label>
-                                  <input type="text" name="category" class="form-control" id="category" value="{{ $Singo->category_id }}" disabled>
+                                  <input type="text" name="category" class="form-control" id="category" value="{{ $Singo->singo_category_name }}" disabled>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-5">
                                   <label for="post">해당 게시글</label>
-                                  <input type="text" name="post" class="form-control" id="post" value="{{ $Singo->post_id }}" disabled>
+                                  <input type="text" name="post" class="form-control" id="post" value="{{ $Singo->post_title }}" disabled>
                                 </div>
                                 <div class="form-group col-2">
                                   <label for="writer">게시글 작성자</label>
-                                  <input type="text" name="writer" class="form-control" id="writer" value="{{ $Singo->post_writer }}" disabled>
+                                  <input type="text" name="writer" class="form-control" id="writer" value="{{ $Singo->writer }}" disabled>
                                 </div>
                                 <div class="form-group col-2">
                                   <label for="reporter">신고자</label>
-                                  <input type="text" name="reporter" class="form-control" id="reporter" value="{{ $Singo->reporter }}" disabled>
+                                  <input type="text" name="reporter" class="form-control" id="reporter" value="{{ $Singo->user_reporter }}" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -70,9 +70,25 @@ $Singo<!DOCTYPE html>
                                 </div>
                             </div>
                             <div class="row">
+                                @if($Singo->status == -1)
+                                    <div class="form-group col-3">
+                                      <label for="status">처리 상태</label>
+                                      <input type="text" name="status" class="form-control" id="status" value="보류" disabled>
+                                    </div>
+                                @elseif($Singo->status == 1)
+                                    <div class="form-group col-3">
+                                      <label for="status">처리 상태</label>
+                                      <input type="text" name="status" class="form-control" id="status" value="답변대기중" disabled>
+                                    </div>
+                                @elseif($Singo->status == 2)
+                                    <div class="form-group col-3">
+                                      <label for="status">처리 상태</label>
+                                      <input type="text" name="status" class="form-control" id="status" value="답변완료" disabled>
+                                    </div>
+                                @endif
                                 <div class="form-group col-3">
-                                  <label for="status">처리 상태</label>
-                                  <input type="text" name="status" class="form-control" id="status" value="{{ $Singo->status }}" disabled>
+                                  <label for="reg_date">신고 날짜</label>
+                                  <input type="text" name="reg_date" class="form-control" id="reg_date" value="{{ $Singo->reg_date }}" disabled>
                                 </div>
                             </div>
                         </form>

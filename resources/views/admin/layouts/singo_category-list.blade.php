@@ -28,65 +28,37 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">관리자님 환영합니다.</h1>
                     <div class="card mb-4">
-                        <div class="card-header"><i class="fas fa-table mr-1"></i>신고보류 목록
+                        <div class="card-header"><i class="fas fa-table mr-1"></i>신고카테고리 목록
+                          <a style="float: right; padding-top: 0px; padding-bottom: 0px;" class="btn btn-warning" href="{{ route('admin_singo_category.create') }}">등록</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>분류</th>
-                                            <th>게시글</th>
-                                            <th>작성자</th>
-                                            <th>신고자</th>
-                                            <th>신고날짜</th>
-                                            <th>제목</th>
-                                            <th>신고내용</th>
-                                            <th>답변</th>
-                                            <th>상태</th>
+                                          <th>id</th>
+                                          <th>카테고리명</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>id</th>
-                                            <th>분류</th>
-                                            <th>게시글</th>
-                                            <th>작성자</th>
-                                            <th>신고자</th>
-                                            <th>신고날짜</th>
-                                            <th>제목</th>
-                                            <th>신고내용</th>
-                                            <th>답변</th>
-                                            <th>상태</th>
+                                            <th>카테고리명</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($Singos as $singo)
+                                        @foreach ($singo_categorys as $singo_category)
                                           <tr>
-                                            <td>{{ $singo->id }}</td>
-                                            <td>{{ $singo->singo_category_name }}</td>
-                                            <td><a href="{{ route('admin_singo.edit', $singo->id) }}">{{ $singo->post_title }}</a></td>
-                                            <td>{{ $singo->writer }}</td>
-                                            <td>{{ $singo->user_reporter }}</td>
-                                            <td>{{ $singo->reg_date }}</td>
-                                            <td>{{ $singo->title }}</td>
-                                            <td>{{ $singo->content }}</td>
-                                            <td>{{ $singo->solution }}</td>
-                                            @if($singo->status == -1)
-                                                <td>보류</td>
-                                            @elseif($singo->status == 1)
-                                                <td>답변대기중</td>
-                                            @elseif($singo->status == 2)
-                                                <td>답변완료</td>
-                                            @else
-                                                <td>에러</td>
-                                            @endif
-                                            <form class="" action="{{ route('admin_singo_wait.destroy', $singo->id) }}" method="post">
-                                                @METHOD('DELETE')
+                                            <td>{{ $singo_category->id }}</td>
+                                            <td><a href="{{ route('admin_singo_category.edit', $singo_category->id) }}">{{ $singo_category->name }}</a></td>
+                                            <td><a id="edit" class="btn btn-warning" href="{{ route('admin_singo_category.edit', $singo_category->id) }}">수정</a></td>
+                                            <td>
+                                              <form action="{{ route('admin_singo_category.destroy', $singo_category->id) }}" method="POST">
+                                                @method('DELETE')
                                                 @csrf
-                                                <td><button type="submit" id="del" class="btn btn-danger">삭제</button></td>
-                                            </form>
+                                                <button id="del" class="btn btn-danger">삭제</button>
+                                              </form>
+                                            </td>
                                           </tr>
                                         @endforeach
                                     </tbody>

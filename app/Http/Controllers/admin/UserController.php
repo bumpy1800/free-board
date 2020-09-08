@@ -183,4 +183,164 @@ class UserController extends Controller
         User::destroy($id);
         return redirect(route('user.index'));
     }
+    public function stat_index(Request $request)
+    {
+        $today = date('Y-m-d', time());
+        $totalUser = User::count();
+        $todayUser = User::where('reg_date',$today)->count();
+
+        $nowMonth = date('Y-m', time());
+        $nowMonthDayCount = date('t', strtotime($nowMonth)); //해당 달의 일 수
+
+        return view('admin.user-stat',[
+            'totalUser' => $totalUser,
+            'todayUser' => $todayUser,
+            'nowMonth' => $nowMonth
+        ]);
+    }
+
+    public function chart_index(Request $request)
+    {
+        $chartKind = $request->input('chartKind');
+
+        if($chartKind == 1)
+        {
+            $nowMonth = $request->input('nowMonth');
+            $nowMonthDayCount = date('t', strtotime($nowMonth)); //해당 달의 일 수
+
+            $selectAreaChart = $this->selectAreaChart($nowMonth, $nowMonthDayCount, 0);
+            $selectAreaChartLabel = $selectAreaChart[0];
+            $selectAreaChartData = $selectAreaChart[1];
+            $selectAreaChartMax = $selectAreaChart[2];
+
+            return response()->json([
+                'selectAreaChartLabel'=>$selectAreaChartLabel,
+                'selectAreaChartData'=>$selectAreaChartData,
+                'selectAreaChartMax'=>$selectAreaChartMax
+            ]);
+        }
+        else
+        {
+            $nowMonth = date('Y-m', time());
+            $nowMonthDayCount = date('t', strtotime($nowMonth)); //해당 달의 일 수
+
+            $selectAreaChart = $this->selectAreaChart($nowMonth, $nowMonthDayCount, 0);
+            $selectAreaChartLabel = $selectAreaChart[0];
+            $selectAreaChartData = $selectAreaChart[1];
+            $selectAreaChartMax = $selectAreaChart[2];
+
+            $dayAreaChart = $this->dayAreaChart();
+            $dayAreaChartLabel = $dayAreaChart[0];
+            $dayAreaChartData = $dayAreaChart[1];
+            $dayAreaChartMax = $dayAreaChart[2];
+
+            $monthBarChart = $this->monthBarChart();
+            $monthBarChartLabel = $monthBarChart[0];
+            $monthBarChartData = $monthBarChart[1];
+            $monthBarChartMax = $monthBarChart[2];
+
+            $pieChart = $this->pieChart();
+            $pieChartLabel = $pieChart[0];
+            $pieChartData = $pieChart[1];
+
+            return response()->json([
+              'selectAreaChartLabel'=>$selectAreaChartLabel,
+              'selectAreaChartData'=>$selectAreaChartData,
+              'selectAreaChartMax'=>$selectAreaChartMax,
+              'dayAreaChartLabel'=>$dayAreaChartLabel,
+              'dayAreaChartData'=>$dayAreaChartData,
+              'dayAreaChartMax'=>$dayAreaChartMax,
+              'monthBarChartLabel'=>$monthBarChartLabel,
+              'monthBarChartData'=>$monthBarChartData,
+              'monthBarChartMax'=>$monthBarChartMax,
+              'pieChartLabel'=>$pieChartLabel,
+              'pieChartData'=>$pieChartData
+            ]);
+        }
+    }
+
+    public function selectAreaChart($nowMonth, $nowMonthDayCount, $singo_category){
+
+        for($i = 0; $i < $nowMonthDayCount; $i++)
+        {
+            $day = $i+1;
+            if($i<10)
+            {
+                $day = '0'.$day.'일';
+            }
+            else
+            {
+                $day = $day.'일';
+            }
+
+            $selectAreaChartLabel[$i] = $day;
+            $reg_date[$i] = date($nowMonth . '-' . $day);
+
+            $selectAreaChartData[$i] = User::where('reg_date',$reg_date[$i])->count();
+
+        }
+        $selectAreaChartMax = max($selectAreaChartData);
+        return [$selectAreaChartLabel, $selectAreaChartData, $selectAreaChartMax];
+    }
+
+    public function dayAreaChart()
+    {
+        $endday = date('Y-m-d', time());
+        $startday = date('Y-m-d', strtotime($endday.'-1 week'));
+        $startday_m = date('m', strtotime($startday));
+        $startday_d = date('d', strtotime($startday));
+
+        for($i=0; $i<7; $i++)
+        {
+            $dayAreaChartLabel[$i] = $startday_m.'월'.$startday_d.'일';
+            $dayAreaChartData[$i] = User::where('reg_date',$startday)->count();
+
+            $startday = date('Y-m-d', strtotime($startday.'+1 days'));
+            $startday_m = date('m', strtotime($startday));
+            $startday_d = date('d', strtotime($startday));
+        }
+        $dayAreaChartMax = max($dayAreaChartData);
+        return [$dayAreaChartLabel, $dayAreaChartData, $dayAreaChartMax];
+    }
+
+    public function monthBarChart()
+    {
+        $nowday = date('Y-m-d', time());
+        $startday = date('Y-m-1', strtotime($nowday.'-5 month'));
+        $startday_y = date('y', strtotime($startday));
+        $startday_m = date('m', strtotime($startday));
+        $endday = date('Y-m-1', strtotime($startday.'+1 month'));
+
+        for($i=0; $i<6; $i++)
+        {
+            $monthBarChartLabel[$i] = $startday_y.'년 '.$startday_m.'월';
+            $monthBarChartData[$i] = User::whereBetween('reg_date',[$startday, $endday])->count();
+
+            $startday = date('Y-m-d', strtotime($startday.'+1 month'));
+            $startday_m = date('m', strtotime($startday));
+            $startday_d = date('d', strtotime($startday));
+            $endday = date('Y-m-d', strtotime($startday.'+1 month'));
+        }
+        $monthBarChartMax = max($monthBarChartData);
+        return [$monthBarChartLabel, $monthBarChartData, $monthBarChartMax];
+    }
+
+    public function pieChart()
+    {
+        $userGroupCnt = User::groupBy('status')
+                                    ->selectRaw('status, count(status) as cnt')
+                                    ->get();
+          $i = 0;
+        foreach($userGroupCnt as $sGC) {
+
+            if($sGC->status == '0')
+                $pieChartLabel[$i] = '가입자';
+            elseif($sGC->status == '-1')
+                $pieChartLabel[$i] = '미승인가입자';
+
+            $pieChartData[$i] = $sGC->cnt;
+            $i ++;
+        }
+        return [$pieChartLabel, $pieChartData];
+    }
 }

@@ -19,7 +19,13 @@ class SingoWaitController extends Controller
     public function index()
     {
         //$users = DB::table('User')->get();
-        $Singos = Singo::where('status','-1')->get();
+        $Singos = Singo::join('singo_category', 'singo.category_id', '=', 'singo_category.id')
+                            ->join('post', 'singo.post_id', '=', 'post.id')
+                            ->join('user as user1', 'singo.reporter', '=', 'user1.id')
+                            ->join('user as user2', 'singo.post_writer', '=', 'user2.id')
+                            ->select('singo.*', 'singo_category.name as singo_category_name', 'post.title as post_title', 'user1.name as user_reporter', 'user2.name as writer')
+                            ->where('singo.status', '-1')
+                            ->get();
         return view('admin.singo_wait-list', ['Singos' => $Singos]);
     }
 
