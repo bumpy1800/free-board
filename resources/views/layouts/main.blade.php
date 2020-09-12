@@ -204,6 +204,7 @@
 								$i ++;
 							@endphp
 						@endforeach
+						</div>
 					</div>
 				</div>
 

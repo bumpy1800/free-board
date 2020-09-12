@@ -66,6 +66,11 @@ Route::get('/admin/find', function () {
 	return view('find');
 });
 
+//갤러리 생성 임시
+Route::get('gallery-create', function () {
+	return view('gallery-create');
+});
+
 //디스플레이 광고
 Route::resources([
     'display-ad' => 'DisplayadController',
