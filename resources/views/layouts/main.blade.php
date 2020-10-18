@@ -81,12 +81,7 @@
 
 								@if($i % 5 == 4)
 										</div>
-								@else
-										@if($i == $posts_cnt-1)
-												</div>
-										@endif
 								@endif
-
 								@php
 										$i ++;
 								@endphp
@@ -204,17 +199,16 @@
 								$i ++;
 							@endphp
 						@endforeach
-						</div>
 					</div>
 				</div>
 
 				<div class="ranking-more main-lg-next">
 					<div id="ranking-more">
 						<div class="live-pagination">
-								<div id="live-pagination">
-									{{ $liveGallerys->links('vendor.pagination.gallery-plus-pagination2') }}
-								</div>
-								<div class="clear"></div>
+							<div id="live-pagination">
+								{{ $liveGallerys->links('vendor.pagination.gallery-plus-pagination2') }}
+							</div>
+							<div class="clear"></div>
 						</div>
 					</div>
 				</div>
