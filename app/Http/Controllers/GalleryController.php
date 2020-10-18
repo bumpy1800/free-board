@@ -181,7 +181,7 @@ class GalleryController extends Controller
         ], $messages);
         if ($validator->fails()) {
             echo("
-                <script>
+                <script charset='UTF-8'>
                     alert('값을 모두 입력해주세요.');
                     history.back();
                 </script>
@@ -211,7 +211,7 @@ class GalleryController extends Controller
 
         $url = route('gallery.index');
         echo("
-            <script>
+            <script charset='UTF-8'>
                 alert('갤러리가 생성되었습니다.');
                 location.href='$url';
             </script>

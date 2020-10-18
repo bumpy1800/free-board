@@ -1,0 +1,381 @@
+[33mcommit afaec2a0925355318be1d8f7372de1a48c65b49c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sun Oct 18 13:53:53 2020 +0900
+
+    갤러리 생성 기능 [중복검사X 추후 추가]
+
+[33mcommit a1aaece9186733918a081f3f36603ba98cf044cd[m
+Author: pcy <kipa1003@naver.com>
+Date:   Sat Sep 12 18:14:32 2020 +0900
+
+    Add: gallery create page
+
+[33mcommit 293fa922c95f58a987390157bad8dac3d9851bd9[m
+Author: bumpy1800 <bumpy1800@gmail.com>
+Date:   Wed Sep 9 01:53:08 2020 +0900
+
+    Add: user,singo stat / singo SQL update
+
+[33mcommit 8f436d7bd2b69802b1ca982005e63d86969a7bd4[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sat Sep 5 16:31:50 2020 +0900
+
+    Add: search page - show morePage/moreGallery
+
+[33mcommit fdd1f6d10d0353d2c73a66dad16b51eed96b9f0e[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Fri Sep 4 12:56:21 2020 +0900
+
+    Add: search page - newgallerys and hitposts
+
+[33mcommit 45120fb05568686aff459955291449578ac28ef6[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Thu Sep 3 21:53:20 2020 +0900
+
+    Add: search page - LiveGallery
+
+[33mcommit 50740581c7f9989886ff8eef9d0593d6cc027d02[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Wed Sep 2 14:51:19 2020 +0900
+
+    Add: search page - gallery/post search result
+
+[33mcommit da642adc5b011439a33222f6410aacc664fdc3cb[m
+Author: pcy <kipa1003@naver.com>
+Date:   Thu Aug 20 20:47:08 2020 +0900
+
+    Eidt: Search Page
+
+[33mcommit 6d78c53385bbd40e36d20f602332e50648412aea[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Tue Aug 18 22:16:54 2020 +0900
+
+    Add: connect search page
+
+[33mcommit 6ac3ee847cfe486d90b5bf63e188c2c72a2a4db1[m
+Merge: a11181c c2db756
+Author: pcy <kipa1003@naver.com>
+Date:   Tue Aug 18 20:11:59 2020 +0900
+
+    Merge branch 'master' of https://github.com/bumpy1800/free-board
+
+[33mcommit a11181c108e974a1e13505e9b8a75501cd5b7ea1[m
+Author: pcy <kipa1003@naver.com>
+Date:   Tue Aug 18 20:11:41 2020 +0900
+
+    Add:Search page
+
+[33mcommit c2db75687b3199856e7f713b9d6c5198df22cb7d[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sun Aug 16 21:27:50 2020 +0900
+
+    Add: change email func (userinfo)
+
+[33mcommit 4b9a160fc1f5e4e497f4b81b6bf1ed7176653cd2[m
+Author: pcy <kipa1003@naver.com>
+Date:   Sun Aug 16 18:11:44 2020 +0900
+
+    Edit: Login Form and Gallery Form
+
+[33mcommit 8ad6a01ff593763c13c68de0815be8cde1f8b392[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Thu Aug 13 13:14:25 2020 +0900
+
+    Add: popup func
+
+[33mcommit 2f4bc27f51264a6f1f780b16914aa8abeb8bf9b7[m
+Merge: ab6ddec 117cc65
+Author: pcy <kipa1003@naver.com>
+Date:   Tue Aug 11 22:48:08 2020 +0900
+
+    Merge branch 'master' of https://github.com/bumpy1800/free-board
+
+[33mcommit ab6ddec6980f1e7f84c0273a379fe435cf2bedd6[m
+Author: pcy <kipa1003@naver.com>
+Date:   Tue Aug 11 22:47:20 2020 +0900
+
+    Add: popup func
+
+[33mcommit 117cc65fd96475181417f06179685076c2307b18[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Tue Aug 11 20:15:25 2020 +0900
+
+    Add: issue func
+
+[33mcommit 8a00d59d7c2bce6ce864450aa13ed2f284ed5ea0[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sun Aug 9 20:54:27 2020 +0900
+
+    Add: scrap func
+
+[33mcommit b21637faf5d19ce44c9f8d2e2563909ac41d1118[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sun Aug 9 15:51:36 2020 +0900
+
+    Add: user-info page
+
+[33mcommit f29bf0b6b2104d1308f3ae6cbf01a2dc9491e291[m
+Author: pcy <kipa1003@naver.com>
+Date:   Sat Aug 8 20:40:10 2020 +0900
+
+    Add: Mobile Login Form and Edit: Main page
+
+[33mcommit b0e3988c34ee965fda10c85715233f7e070ac652[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sat Aug 8 13:55:15 2020 +0900
+
+    Add: display-ad func and popup2 page
+
+[33mcommit 0ea0c2a02469b58449341b37255023646b028054[m
+Merge: e7585db 4560334
+Author: pcy <kipa1003@naver.com>
+Date:   Wed Aug 5 02:03:08 2020 +0900
+
+    Add: display-ad page & Edit: header
+
+[33mcommit e7585dbe523f387c4197fac12ec5f0a5c47547aa[m
+Author: pcy <kipa1003@naver.com>
+Date:   Wed Aug 5 01:50:42 2020 +0900
+
+    Add: display-ad page & Edit: header
+
+[33mcommit 4560334f26bf8d3d561ce8e315c1de2a8371b9db[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Tue Aug 4 15:59:40 2020 +0900
+
+    Add: admin main page
+
+[33mcommit b4cac115619fe5e1ae0d4466a95afba71eaf6bcc[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Mon Aug 3 13:44:43 2020 +0900
+
+    Add: login func and gallog page
+
+[33mcommit a22f9b199c7ff8da249771c33d5460a332bd2d52[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Wed Jul 29 16:31:36 2020 +0900
+
+    Add: notice page, main page
+
+[33mcommit 1dfe5c5ff4e8d9acc62a8155321869d1acbf1eb6[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Tue Jul 28 15:33:59 2020 +0900
+
+    Add: hit gallery page
+
+[33mcommit 4a641181caf16b1aa9b826276fda22cbd301f582[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sun Jul 26 16:37:34 2020 +0900
+
+    Add: gallery post update/delete func
+
+[33mcommit fd0568d393b17888c41042eb8ea6365c661b3c53[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sun Jul 26 11:40:06 2020 +0900
+
+    Add: gallery post write page
+
+[33mcommit 4ec4b7b7cf5c6e86dc66d1453706d7c06df6f056[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sat Jul 25 16:44:01 2020 +0900
+
+    Add: gallery post page
+
+[33mcommit 922402819d8f54b950e828fbeec79441b34067a8[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Thu Jul 23 13:42:09 2020 +0900
+
+    Add: gallery detail view page
+
+[33mcommit 290ffc79f8aed1cb476ab68c8944a2623b47a30a[m
+Author: bumpy1800 <bumpy1800@gmail.com>
+Date:   Fri Jul 17 18:52:01 2020 +0900
+
+    ADD : singo,logo CRUD
+
+[33mcommit bf4e50478e71e31c67135f3c78fb13b08a249e3f[m[33m ([m[1;32mksk[m[33m)[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Thu Jul 16 23:08:15 2020 +0900
+
+    Add: category-page
+
+[33mcommit cefce0a1bd417fd544f3b6d5d86ebdd961f0f0c2[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Wed Jul 15 00:06:19 2020 +0900
+
+    Add: gallery page data
+
+[33mcommit 370b9b27c19a23ad1a08f7903e30f225e8694e86[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sun Jul 12 12:29:54 2020 +0900
+
+    Add: admin qna stat page
+
+[33mcommit bdface4c7c92cda58ce88e0e901d126bcaa5bf4a[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sat Jul 11 19:14:33 2020 +0900
+
+    Add: admin browser stat page
+
+[33mcommit 9baddc97b8881f3ee241b5a5bc38423a4672ddd2[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Sat Jul 11 11:39:37 2020 +0900
+
+    Add: admin visitor refer stat page
+
+[33mcommit 4d7451bb782345096ae5676b706e1343a11aab15[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Fri Jul 10 16:14:41 2020 +0900
+
+    Add: admin visitor stat page
+
+[33mcommit ac536604502abcfe9f14c4245f728781ea31e818[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Thu Jul 9 18:07:22 2020 +0900
+
+    Add: admin post stat page
+
+[33mcommit 97c130db386ecd2908a2e53fcc2c0c26f1450e60[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Thu Jul 9 13:28:51 2020 +0900
+
+    Update: admin gallery stat page(Pie chart)
+
+[33mcommit 7efacdbedd9ff3a4b926abdc03a346b5dffa5c55[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Wed Jul 8 19:01:49 2020 +0900
+
+    Add: admin gallery stat page
+
+[33mcommit 4704f5a1e30d6ca17aafb4bc3abfcce1da36a62d[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Thu Jun 18 22:10:04 2020 +0900
+
+    Fix admin popup image
+
+[33mcommit 6b38cab70a23ed3f8fc4a7c615d4d2097c29e284[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Thu Jun 11 21:39:12 2020 +0900
+
+    Add CRUD(popup, qna, notice)
+
+[33mcommit 1fc1d0bbbd3017726f3c09f9a1b8c3715d5208c7[m[33m ([m[1;31morigin/bumpy[m[33m)[m
+Author: bumpy1800 <bumpy1800@gmail.com>
+Date:   Thu Jun 4 16:14:16 2020 +0900
+
+    Add CRUD(user)
+
+[33mcommit 5a3e2b9503a76e56d06f2ddfcd2e9e7a298b5c97[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Wed Jun 3 14:50:01 2020 +0900
+
+    Add CRUD4
+
+[33mcommit ec7bef0a6e07be493f40020672233b229d0e9609[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Tue May 26 16:21:42 2020 +0900
+
+    Update: Gallery CRUD front
+
+[33mcommit 7ebe2281252cc6e8f9faf4b39405ad2d34120e64[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Mon May 25 18:04:53 2020 +0900
+
+    Add: Gallery CRUD
+
+[33mcommit ef81315e42eef8bccb1f98d87c646ff9237c5b5f[m[33m ([m[1;31morigin/ksk[m[33m)[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Tue May 12 21:19:52 2020 +0900
+
+    Update: Blade template(gallog, register, login)
+
+[33mcommit d5fa7a21dfdb00e2f62daffec994030a5bee1c5d[m
+Author: bumpy1800 <bumpy1800@gmail.com>
+Date:   Tue May 12 21:05:08 2020 +0900
+
+    Update : blade template(main, gallery)
+
+[33mcommit 331847175fa2126211f888b08185cb1ab516ee0e[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Wed May 6 22:49:01 2020 +0900
+
+    Update: Admin path2
+
+[33mcommit 458c08d86965b401e8a30537ac744844cc1cd4c6[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Wed May 6 22:30:49 2020 +0900
+
+    Update: Admin path
+
+[33mcommit e72b6ff62e81a472ff01a978830d1a6aa17cd5b4[m
+Author: bumpy1800 <bumpy1800@gmail.com>
+Date:   Sun May 3 23:12:32 2020 +0900
+
+    Add: write front
+
+[33mcommit 2b5530f06b4ec5766a247186e1b024d1cd5b3caf[m
+Author: bumpy1800 <bumpy1800@gmail.com>
+Date:   Tue Apr 28 19:07:27 2020 +0900
+
+    Add : post front
+
+[33mcommit d02999432feabc5a44d1e12cd52efb5e57dff1e8[m
+Merge: ca817c2 d2439aa
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Wed Apr 22 20:21:49 2020 +0900
+
+    Merge branch 'master' of https://github.com/bumpy1800/free-board
+
+[33mcommit ca817c2c5c93beb1ef79ec5f5920e0dc09904218[m
+Author: kimsunkyu1 <doerksk@naver.com>
+Date:   Wed Apr 22 20:14:40 2020 +0900
+
+    Add: Translate english into korean for admin page
+
+[33mcommit d2439aa1a34d5b4c2e9013764bddd33bb7205e99[m
+Author: bumpy1800 <bumpy1800@gmail.com>
+Date:   Tue Mar 10 20:19:56 2020 +0900
+
+    gallery front
+
+[33mcommit 4d51bc576af08cc411825c168ca2d6ae3c974786[m
+Author: KSK <doerksk@naver.com>
+Date:   Sat Feb 8 07:16:24 2020 +0900
+
+    gallery-plus front
+
+[33mcommit b4ce2db6fe48f15f29713cb4bb657854ba934e8b[m
+Author: KSK <doerksk@naver.com>
+Date:   Sat Feb 1 07:48:54 2020 +0900
+
+    신고센터 프론트2
+
+[33mcommit 2a13fd3a403a92e8b0096f0e8887cc9dc8f6c433[m
+Author: KSK <doerksk@naver.com>
+Date:   Sat Feb 1 07:36:46 2020 +0900
+
+    신고센터 프론트
+
+[33mcommit 85d6aa8ee63faabe305679822dbe8835781610ab[m
+Author: KSK <doerksk@naver.com>
+Date:   Thu Jan 30 22:31:57 2020 +0900
+
+    갤로그프론트 구현
+
+[33mcommit e4b57754ebe25398dd35f2cda956f99b568c4384[m
+Author: bumpy1800 <bumpy1800@gmail.com>
+Date:   Thu Jan 30 20:20:34 2020 +0900
+
+    로그인프론트 구현
+
+[33mcommit 61f7fae2d3c021449559a4cc47a2a73529a5ed4f[m
+Author: KSK <doerksk@naver.com>
+Date:   Thu Jan 30 19:55:29 2020 +0900
+
+    Front gallog
+
+[33mcommit f8169d9a6eeac1f2ee832b50fc4f9f48964a857f[m
+Author: KSK <doerksk@naver.com>
+Date:   Thu Jan 30 19:34:58 2020 +0900
+
+    start
