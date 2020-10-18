@@ -117,7 +117,6 @@ class SearchController extends Controller
             ->join('gallery', 'post.gallery_id', '=', 'gallery.id')
             ->where('post.title', 'like', '%'.$keyword.'%')
             ->orWhere('post.contents', 'like', '%'.$keyword.'%')
-            ->limit(10)
             ->paginate(10, '[*]', 'postPage');
 
         $todayIssues = Issue::select('keyword')->where('search_date', date('Y-m-d'))->orderby('count', 'desc')->limit(10)->get();
@@ -173,9 +172,9 @@ class SearchController extends Controller
             ]);
         }
 
-        $gallerys = Gallery::where('name', 'like', '%'.$keyword.'%')
-            ->limit(5)
-            ->paginate(10, '[*]', 'galleryPage');
+        $gallerys = Gallery::select('*')
+                            ->where('name', 'like', '%'.$keyword.'%')
+                            ->paginate(20, '[*]', 'galleryPage');
 
         $todayIssues = Issue::select('keyword')->where('search_date', date('Y-m-d'))->orderby('count', 'desc')->limit(10)->get();
 

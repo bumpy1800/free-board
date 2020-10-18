@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
+
 use App\Gallery;                     //ORM
 use App\Category;                     //ORM
 use App\Post;
@@ -152,16 +153,70 @@ class GalleryController extends Controller
         ]);
     }
 
-
+    //갤러리 생성 신청 페이지
     public function create()
     {
-        return view('admin.gallery-add-form');
+        $categorys = Category::all();
+        return view('gallery-create', ['categorys' => $categorys]);
     }
 
-
+    //갤러리 생성 신청
     public function store(Request $request)
     {
-        return redirect('admin/gallery-list');
+        //유효성 검사
+        $messages = [
+            'name.required'    => '갤러리 이름을 입력해주세요.',
+            'name.max'    => '갤러리 이름은 12자를 넘을 수 없습니다.',
+            'explain.required'    => '갤러리 설명을 입력해주세요.',
+            'link.required'    => '갤러리 주소를 입력해주세요.',
+            'gallery-category.required'    => '갤러리 카테고리를 선택해주세요.',
+            'reason.required'    => '갤러리 개설 이유를 입력해주세요.',
+        ];
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:12',
+            'explain' => 'required',
+            'link' => 'required',
+            'gallery-category' => 'required',
+            'reason' => 'required'
+        ], $messages);
+        if ($validator->fails()) {
+            echo("
+                <script>
+                    alert('값을 모두 입력해주세요.');
+                    history.back();
+                </script>
+            ");
+            exit;
+            //return redirect()->route('gallery.create');
+        }
+
+        //post값
+        $name = $request->input('name');
+        $explain = $request->input('explain');
+        $link = $request->input('link');
+        $category = $request->input('gallery-category');
+        $reason = $request->input('reason');
+
+        //DB 데이터 삽입
+        Gallery::create([
+            's_name' => '',
+            'name' => $name,    //이름
+            'category_id' => $category,  //카테고리ID
+            'link' => $link,    //주소
+            'contents' => $explain, //설명
+            'reason' => $reason,    //이유
+            'heads' => '',
+            'agree' => 0,   //승인여부(0: 미승인, 1: 승인)
+        ]);
+
+        $url = route('gallery.index');
+        echo("
+            <script>
+                alert('갤러리가 생성되었습니다.');
+                location.href='$url';
+            </script>
+        ");
+        exit;
     }
 
 

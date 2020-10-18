@@ -101,6 +101,7 @@
                     @endif
                     <li class="header-menu-item"><a href="event">이벤트</a></li>
                     <li class="header-menu-item"><a href="report">신고 / Q&A</a></li>
+                    <li class="header-menu-item"><a href="{{ route('gallery.create') }}">갤러리생성테스트버튼(버튼생성되면삭제)</a></li>
                 </ul>
                 <div class="header-yesterday-info">
                     <div class="yesterday-writing">어제<B class="yesterday-info-number yellow">{{ number_format($yPostCnt) }}개</B>게시글 등록</div>
