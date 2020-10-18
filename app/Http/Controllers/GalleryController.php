@@ -182,9 +182,8 @@ class GalleryController extends Controller
         if ($validator->fails()) {
             echo("
                 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-                <script charset='UTF-8'>
+                <script>
                     alert('값을 모두 입력해주세요.');
-                    document.write('<p>document.characterSet : ' + document.characterSet + '</p>' );
                     history.back();
                 </script>
             ");
@@ -213,6 +212,7 @@ class GalleryController extends Controller
 
         $url = route('gallery.index');
         echo("
+            <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
             <script>
                 alert('갤러리가 생성되었습니다.');
                 location.href='$url';
