@@ -19,6 +19,9 @@
 		<div class="container">
 			<div class="mainLeft">
 				<div class="newPost">
+					<div class="gallery-create-notice">
+						활발한 활동을 보여주는 마이너 갤러리는 메인 갤러리로 승격됩니다. <a href="{{ route('gallery.create') }}">마이너 갤러리 만들기</a>
+					</div>
 					<h6 class="title "><b>@yield('category-name') 최신글</b></h6>
 					<hr class="line">
 					<div class="gallery-card-container">

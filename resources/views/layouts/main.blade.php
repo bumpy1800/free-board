@@ -89,8 +89,8 @@
 						</div>
 					</div>
 				</div>
+				</div>
 			</div>
-
 
 			<div class="mainRight">
 				<div class="boxline login">
@@ -228,11 +228,11 @@
 					<div class="clear"></div>
 				</div>
 			</div>
+			</div>
 
 			<div class="clear"></div>
 
 			@yield('footer')
-
-		</div>
+			</div>
 	</body>
 </html>

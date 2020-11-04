@@ -1178,6 +1178,24 @@ input#user_security:checked + label.security:before {
 	margin-right: 7px;
 }
 
+.gallery-create-notice {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	font-weight: 600;
+}
+
+.gallery-create-notice a {
+	padding: 5px 15px;
+	border: 0;
+	font-size: .9rem;
+	border-radius: 20px;
+	background-color: tomato;
+	color: white;
+	cursor: pointer;
+}
+
 /* 광고문의 페이지 */
 .display-ad-header {
 	position: fixed;
